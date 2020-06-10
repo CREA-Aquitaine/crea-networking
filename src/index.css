@@ -1,3 +1,8 @@
+@font-face {
+	font-family: "Raleway";
+	src: url('../src/components/Raleway/Raleway-Regular.ttf');
+}
+
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
@@ -5,6 +10,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #28262B;
 }
+
 hr {
   height: 8px;
   width: 10%;
