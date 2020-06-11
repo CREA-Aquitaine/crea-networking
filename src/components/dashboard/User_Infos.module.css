@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'Raleway-Bold';
+  src: url('../raleway/Raleway-Bold.ttf');
+}
 p {
   font-size: 16px;
   color: white;
@@ -23,7 +27,7 @@ p {
   color: white;
   line-height: 1.5;
   font-weight: 800;
-  font-family: 'Raleway';
+  font-family: 'Raleway-Bold';
 }
 .contact {
   padding: 2vw;
@@ -37,5 +41,5 @@ p {
   color: white;
   line-height: 1.5;
   font-weight: 800;
-  font-family: 'Raleway';
+  font-family: 'Raleway-Bold';
 }

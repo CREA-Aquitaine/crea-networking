@@ -1,9 +1,14 @@
+@font-face {
+  font-family: 'Raleway-Bold';
+  src: url('../raleway/Raleway-Bold.ttf');
+}
 .dashboardTable h3 {
   font-size: 25px;
   color: #28262b;
   line-height: 1.5;
   font-weight: 800;
   text-align: left;
+  font-family: 'Raleway-Bold';
 }
 .dashboardTable hr {
   height: 8px;
@@ -11,11 +16,14 @@
   background-color: #dd2b25;
   margin: 0;
 }
-.dashboardTable td {
+.tables td {
   font-family: 'Raleway';
-  text-align: center;
+  text-align: left;
+  font-size: 16px;
 }
-.dashboardTable th {
-  font-family: 'Raleway';
-  text-align: center;
+
+.tables th {
+  text-align: left;
+  font-family: 'Raleway-Bold';
+  font-size: 17px;
 }
