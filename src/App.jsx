@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 
-import Dashboard from './components/dashboard/Dashboard';
+import Router from './components/Router';
 
 function App() {
   return (
     <div className="App">
-      <Dashboard />
+      <Router />
     </div>
   );
 }

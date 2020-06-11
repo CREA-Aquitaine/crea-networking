@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-dom';
+import Dashboard from './dashboard/Dashboard';
 
 function Router() {
   return (
@@ -7,7 +8,7 @@ function Router() {
       <Switch>
         <Route exact path="/home" />
         <Route path="/user" />
-        <Route path="/user/:id" />
+        <Route path="/user/id" component={Dashboard} />
       </Switch>
     </BrowserRouter>
   );
