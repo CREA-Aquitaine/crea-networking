@@ -3,12 +3,13 @@
   src: url('../raleway/Raleway-Bold.ttf');
 }
 .dashboardTable h3 {
-  font-size: 25px;
+  font-size: 23px;
   color: #28262b;
   line-height: 1.5;
   font-weight: 800;
   text-align: left;
   font-family: 'Raleway-Bold';
+  text-transform: uppercase;
 }
 .dashboardTable hr {
   height: 8px;
@@ -26,4 +27,21 @@
   text-align: left;
   font-family: 'Raleway-Bold';
   font-size: 17px;
+}
+.table {
+  color: black;
+}
+.activeOn {
+  background-color: #dd2b25;
+}
+.activeOff {
+  color: grey;
+}
+.rowTd {
+  display: flex;
+  flex-direction: row;
+  color: black;
+}
+.rowTd img {
+  margin-right: 1vw;
 }

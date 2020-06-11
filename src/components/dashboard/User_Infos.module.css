@@ -2,7 +2,7 @@
   font-family: 'Raleway-Bold';
   src: url('../raleway/Raleway-Bold.ttf');
 }
-p {
+.userInfosPart p {
   font-size: 16px;
   color: white;
   font-family: 'Raleway';
