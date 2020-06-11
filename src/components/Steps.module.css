@@ -1,0 +1,13 @@
+.size {
+  height: 350px;
+}
+
+.position {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.color {
+  font-size: 20px;
+  color: white;
+}
