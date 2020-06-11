@@ -32,10 +32,10 @@
   color: black;
 }
 .activeOn {
-  background-color: #dd2b25;
+  color: black !important;
 }
 .activeOff {
-  color: grey;
+  color: grey !important;
 }
 .rowTd {
   display: flex;
@@ -44,4 +44,7 @@
 }
 .rowTd img {
   margin-right: 1vw;
+}
+.navButton {
+  margin-left: 15vw;
 }

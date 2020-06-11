@@ -10,6 +10,7 @@ import {
   TabPane,
   Row,
 } from 'reactstrap';
+
 import styles from './Dashboard_table.module.css';
 import send from '../image/greenbutton.png';
 import closed from '../image/redbutton.png';
@@ -23,7 +24,7 @@ function DashboardTable() {
   };
   return (
     <div className={styles.dashboardTable}>
-      <Nav tabs>
+      <Nav tabs className={styles.navButton}>
         <NavItem>
           <NavLink
             className={{ active: activeTab === '1' }}
@@ -31,19 +32,23 @@ function DashboardTable() {
               toggle('1');
             }}
           >
-            <h3 className={activeTab === '1' ? 'activeOn' : 'activeOff'}>
+            <h3
+              className={activeTab === '1' ? styles.activeOn : styles.activeOff}
+            >
               Partenariats
             </h3>
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink
-            className={{ active: activeTab === '2' }}
+            className={{ active: activeTab === '1' }}
             onClick={() => {
               toggle('2');
             }}
           >
-            <h3 className={activeTab === '2' ? 'activeOn' : 'activeOff'}>
+            <h3
+              className={activeTab === '2' ? styles.activeOn : styles.activeOff}
+            >
               Recrutement
             </h3>
           </NavLink>

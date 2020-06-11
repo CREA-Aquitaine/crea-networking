@@ -6,9 +6,9 @@ function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/home" />
-        <Route path="/user" />
         <Route path="/user/id" component={Dashboard} />
+        <Route path="/user" />
+        <Route exact path="/home" />
       </Switch>
     </BrowserRouter>
   );
