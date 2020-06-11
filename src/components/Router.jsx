@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-dom';
+import Dashboard from './dashboard/Dashboard';
 
 import Footer from './Footer';
 
@@ -7,9 +8,9 @@ function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/home" />
+        <Route path="/user/id" component={Dashboard} />
         <Route path="/user" />
-        <Route path="/user/:id" />
+        <Route exact path="/home" />
       </Switch>
       <Footer />
     </BrowserRouter>
