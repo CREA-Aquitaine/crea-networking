@@ -10,6 +10,9 @@ import cv from './img/cv.png';
 function Steps() {
   return (
     <Container fluid className="redCrea">
+      <Row>
+        <h3 className="mx-auto mt-5 text-white">Comment ça marche</h3>
+      </Row>
       <Row className={styles.size}>
         <Col className={styles.position}>
           <img src={inscription} alt="inscription" className="mb-4" />

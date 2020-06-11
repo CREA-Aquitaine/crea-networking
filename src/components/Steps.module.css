@@ -1,5 +1,5 @@
 .size {
-  height: 350px;
+  height: 300px;
 }
 
 .position {
@@ -10,4 +10,9 @@
 .color {
   font-size: 20px;
   color: white;
+}
+
+.partenaire {
+  width: 150px;
+  margin: auto;
 }
