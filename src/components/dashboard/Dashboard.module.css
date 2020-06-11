@@ -2,5 +2,9 @@ body {
   font-family: 'Raleway';
 }
 .userInfos {
-  background-color: #de4334;
+  background-color: #dd2b25;
+}
+.dashboard {
+  margin: 0 !important;
+  width: 100vw !important;
 }

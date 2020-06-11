@@ -1,16 +1,20 @@
 import React from 'react';
-import { Row, Table, Col } from 'reactstrap';
+
+import { Table, Col } from 'reactstrap';
+import styles from './Dashboard_table.module.css';
 
 function DashboardTable() {
   return (
-    <Row>
-      <Col>
+    <div className={styles.dashboardTable}>
+      <Col sm="12" xs="12">
+        <h3>Partenariats</h3>
+        <hr />
         <Table size="sm">
           <thead>
             <tr>
               <th>Mes Annonces</th>
               <th>Vues</th>
-              <th>Candidateures à confirmer</th>
+              <th>Candidatures à confirmer</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -45,7 +49,7 @@ function DashboardTable() {
           </tbody>
         </Table>
       </Col>
-    </Row>
+    </div>
   );
 }
 export default DashboardTable;

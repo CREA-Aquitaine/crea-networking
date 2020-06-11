@@ -1,0 +1,21 @@
+.dashboardTable h3 {
+  font-size: 25px;
+  color: #28262b;
+  line-height: 1.5;
+  font-weight: 800;
+  text-align: left;
+}
+.dashboardTable hr {
+  height: 8px;
+  width: 10%;
+  background-color: #dd2b25;
+  margin: 0;
+}
+.dashboardTable td {
+  font-family: 'Raleway';
+  text-align: center;
+}
+.dashboardTable th {
+  font-family: 'Raleway';
+  text-align: center;
+}
