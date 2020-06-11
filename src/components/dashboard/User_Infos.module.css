@@ -1,0 +1,41 @@
+p {
+  font-size: 16px;
+  color: white;
+  font-family: 'Raleway';
+}
+.userLogo {
+  width: 8vw;
+  height: 17vh;
+  border-radius: 50%;
+}
+.logoSection {
+  padding: 2vw;
+}
+.userInfos {
+  padding: 2vw;
+}
+.userInfos li {
+  list-style: none;
+  text-align: left;
+}
+.userInfos h4 {
+  font-size: 18px;
+  color: white;
+  line-height: 1.5;
+  font-weight: 800;
+  font-family: 'Raleway';
+}
+.contact {
+  padding: 2vw;
+}
+.contact li {
+  list-style: none;
+  text-align: left;
+}
+.contact h4 {
+  font-size: 20px;
+  color: white;
+  line-height: 1.5;
+  font-weight: 800;
+  font-family: 'Raleway';
+}
