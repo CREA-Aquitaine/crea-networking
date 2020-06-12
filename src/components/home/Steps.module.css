@@ -1,0 +1,18 @@
+.size {
+  height: 300px;
+}
+
+.position {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.color {
+  font-size: 20px;
+  color: white;
+}
+
+.partenaire {
+  width: 150px;
+  margin: auto;
+}
