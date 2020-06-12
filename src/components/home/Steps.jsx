@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Container, Col } from 'reactstrap';
 
-import '../index.css';
+import '../../index.css';
 import styles from './Steps.module.css';
 import inscription from './img/inscription.png';
 import search from './img/search.png';
