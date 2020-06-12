@@ -3,12 +3,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Dashboard from './dashboard/Dashboard';
 
 import Footer from './Footer';
+import NavBar from './navbar/NavBar';
 
 import Announce from './annouce/Annouce';
 
 function Router() {
   return (
     <BrowserRouter>
+      <NavBar />
       <Switch>
         <Route path="/user/id" component={Dashboard} />
         <Route path="/user" />
