@@ -1,12 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Dashboard from './dashboard/Dashboard';
-
 import Footer from './footer/Footer';
 import NavBar from './navbar/NavBar';
 import Announce from './announce/Announce';
 import Home from './home/Home';
-
 
 function Router() {
   return (
