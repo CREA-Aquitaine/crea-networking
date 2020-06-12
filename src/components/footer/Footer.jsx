@@ -4,8 +4,8 @@ import { Container, Row, Col } from 'reactstrap';
 // eslint-disable-next-line import/no-unresolved
 import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa';
 import styles from './footer.module.css';
-import LogoCrea from './image/logo_Crea.png';
-import LogoNetworking from './image/logo_netWorking.png';
+import LogoCrea from '../image/logo_Crea.png';
+import LogoNetworking from '../image/logo_netWorking.png';
 
 export default function footer() {
   return (
