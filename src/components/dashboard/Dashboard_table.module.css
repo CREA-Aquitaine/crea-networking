@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'Raleway-Bold';
+  src: url('../raleway/Raleway-Bold.ttf');
+}
+.dashboardTable h3 {
+  font-size: 23px;
+  color: #28262b;
+  line-height: 1.5;
+  font-weight: 800;
+  text-align: left;
+  font-family: 'Raleway-Bold';
+  text-transform: uppercase;
+}
+.dashboardTable hr {
+  height: 8px;
+  width: 10%;
+  background-color: #dd2b25;
+  margin: 0;
+}
+.tables td {
+  font-family: 'Raleway';
+  text-align: left;
+  font-size: 16px;
+}
+
+.tables th {
+  text-align: left;
+  font-family: 'Raleway-Bold';
+  font-size: 17px;
+}
+.table {
+  color: black;
+}
+.activeOn {
+  color: black !important;
+}
+.activeOff {
+  color: grey !important;
+}
+.rowTd {
+  display: flex;
+  flex-direction: row;
+  color: black;
+}
+.rowTd img {
+  margin-right: 1vw;
+}
+.navButton {
+  margin-left: 15vw;
+}
