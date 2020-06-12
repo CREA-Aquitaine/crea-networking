@@ -46,7 +46,7 @@ function SecondNavbar() {
           <NavItem className={styles.partenaires}>
             <NavLink>PARTENAIRES</NavLink>
           </NavItem>
-          <NavItem>
+          <NavItem className={styles.contact}>
             <NavLink>CONTACT</NavLink>
           </NavItem>
         </Nav>

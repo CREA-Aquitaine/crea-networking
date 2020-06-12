@@ -16,7 +16,7 @@ function Steps() {
       <Row className={styles.size}>
         <Col className={styles.position}>
           <img src={inscription} alt="inscription" className="mb-4" />
-          <p className={styles.color}>je m&apos;inscris</p>
+          <p className={styles.color}>Je m&apos;inscris</p>
         </Col>
         <Col className={styles.position}>
           <img src={search} alt="search" className="mb-4" />

@@ -10,9 +10,9 @@ import partenaire5 from './img/partenaires/escpau.jpg';
 
 function BestFriends() {
   return (
-    <Container fluid>
+    <Container fluid className={styles.partner}>
       <Row>
-        <h3 className="mx-auto mt-5 mb-3">Ils nous font confaince</h3>
+        <h3 className="mx-auto mt-5 mb-3">Ils nous font confiance</h3>
       </Row>
       <Row>
         <img src={partenaire1} alt="ok" className={styles.partenaire} />
