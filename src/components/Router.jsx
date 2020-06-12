@@ -2,10 +2,11 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Dashboard from './dashboard/Dashboard';
 
-import Footer from './Footer';
+import Footer from './footer/Footer';
 import NavBar from './navbar/NavBar';
-
 import Announce from './announce/Announce';
+import Home from './home/Home';
+
 
 function Router() {
   return (
@@ -14,9 +15,8 @@ function Router() {
       <Switch>
         <Route path="/user/id" component={Dashboard} />
         <Route path="/user" />
-        <Route path="/user/:id" />
         <Route path="/announce/:id" component={Announce} />
-        <Route exact path="/home" />
+        <Route exact path="/" component={Home} />
       </Switch>
       <Footer />
     </BrowserRouter>
