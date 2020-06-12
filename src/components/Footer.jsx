@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
+// eslint-disable-next-line import/no-unresolved
 import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa';
 import styles from './footer.module.css';
 import LogoCrea from './image/logo_Crea.png';

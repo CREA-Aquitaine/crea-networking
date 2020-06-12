@@ -1,20 +1,20 @@
 .logo_crea {
-    width: 10vw;
-    margin-right: 2vw;
-  }
-  .logo_anec {
-    width: 8vw;
-    padding-top: 0.7vw;
-    margin-right: 2vw;
-  }
-  .logo_networking {
-    width: 14vw;
-  }
-  .navbar {
-    background-color: rgb(255, 255, 255, 0.5);
-    height: 70px;
-  }
-  .partenaires {
-    padding-left: 25vw;
-    padding-right: 10vw;
-  }
+  width: 10vw;
+  margin-right: 2vw;
+}
+.logo_anec {
+  width: 8vw;
+  padding-top: 0.7vw;
+  margin-right: 2vw;
+}
+.logo_networking {
+  width: 14vw;
+}
+.navbar {
+  background-color: rgb(255, 255, 255, 0.5);
+  height: 70px;
+}
+.partenaires {
+  padding-left: 25vw;
+  padding-right: 10vw;
+}

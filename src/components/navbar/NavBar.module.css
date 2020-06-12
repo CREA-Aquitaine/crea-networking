@@ -2,12 +2,12 @@
   width: 25px;
 }
 .dropdowm {
-    min-width : 40px !important;
+  min-width: 40px !important;
 }
 .nav {
-    display : flex;
+  display: flex;
 }
 .navbar {
   justify-content: flex-end;
-  width : 100%;
+  width: 100%;
 }
