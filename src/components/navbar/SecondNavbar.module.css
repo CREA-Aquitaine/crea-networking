@@ -1,20 +1,26 @@
 .logo_crea {
-  width: 10vw;
+  width: 15vw;
   margin-right: 2vw;
 }
 .logo_anec {
-  width: 8vw;
+  width: 12vw;
   padding-top: 0.7vw;
   margin-right: 2vw;
 }
 .logo_networking {
-  width: 14vw;
+  width: 18vw;
 }
 .navbar {
   background-color: rgb(255, 255, 255, 0.5);
-  height: 70px;
+  height: 120px;
+  position : absolute !important;
+  width : 100%;
 }
 .partenaires {
-  padding-left: 25vw;
-  padding-right: 10vw;
+  padding-left: 12vw;
+  padding-right: 5vw;
+  font-size: 1.5vw
+}
+.contact {
+  font-size: 1.5vw;;
 }

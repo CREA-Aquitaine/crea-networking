@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Raleway';
+  src: url('../raleway/Raleway-Bold.ttf');
+}
+
+.cover {
+  background-image: url('../image/img_header_crea.png');
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  height: 500px;
+  text-align: left;
+  padding-left: 1vw;
+  padding-top: 30vh;
+}
+
+.cover hr {
+  background-color: white;
+  width: 15vw;
+  height : 0.6vw;
+}
+
+.pres {
+  padding: 0 10vw;
+  line-height: 2;
+}
+
+.presentation {
+  margin-bottom: 4vw;
+}
