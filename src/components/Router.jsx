@@ -5,7 +5,7 @@ import Dashboard from './dashboard/Dashboard';
 import Footer from './Footer';
 import NavBar from './navbar/NavBar';
 
-import Announce from './annouce/Annouce';
+import Announce from './announce/Announce';
 
 function Router() {
   return (
