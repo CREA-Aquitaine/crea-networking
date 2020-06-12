@@ -11,7 +11,7 @@ function Steps() {
   return (
     <Container fluid className="redCrea">
       <Row>
-        <h3 className="mx-auto mt-5 text-white">Comment ça marche</h3>
+        <h3 className="mx-auto mt-5 text-white">Comment ça marche ?</h3>
       </Row>
       <Row className={styles.size}>
         <Col className={styles.position}>
@@ -20,7 +20,7 @@ function Steps() {
         </Col>
         <Col className={styles.position}>
           <img src={search} alt="search" className="mb-4" />
-          <p className={styles.color}>Je consule les annonces</p>
+          <p className={styles.color}>Je consulte les annonces</p>
         </Col>
         <Col className={styles.position}>
           <img src={cv} alt="cv" className="mb-4" />
