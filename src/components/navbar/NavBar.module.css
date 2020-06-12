@@ -1,0 +1,13 @@
+.drapeau {
+  width: 25px;
+}
+.dropdowm {
+    min-width : 40px !important;
+}
+.nav {
+    display : flex;
+}
+.navbar {
+  justify-content: flex-end;
+  width : 100%;
+}
