@@ -11,9 +11,9 @@ class Annouce extends React.Component {
 
   render() {
     return (
-      <Container className={styles.zoneglobal}>
-        <Row className={styles.zonetop}>
-          <Col sm={{ size: 4 }} className={styles.card}>
+      <Container className={styles.global}>
+        <Row className={styles.top}>
+          <Col sm={{ size: 4 }} className={styles.topleft}>
             <p>ID:</p>
             <p>Ville:</p>
             <p>Secteur d&#39;activité:</p>
@@ -29,7 +29,7 @@ class Annouce extends React.Component {
             </p>
           </Col>
         </Row>
-        <Row className={styles.zonebottom}>
+        <Row className={styles.bottom}>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid in
           impedit placeat! Facilis magnam nam corporis, quas, possimus inventore
           quidem porro totam similique, et necessitatibus saepe? Corporis

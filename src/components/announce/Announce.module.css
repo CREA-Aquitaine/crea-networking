@@ -1,12 +1,12 @@
-.zoneglobal {
+.global {
   margin-top: 150px;
 }
 
-.zonetop {
+.top {
   text-align: justify;
 }
 
-.card {
+.topleft {
   background-color: #f9f9f9;
 }
 
@@ -14,7 +14,7 @@
   margin-left: 30px;
 }
 
-.zonebottom {
+.bottom {
   text-align: justify;
   margin-top: 30px;
   padding-right: 15px;
