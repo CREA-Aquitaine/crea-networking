@@ -19,7 +19,7 @@ class Annouce extends React.Component {
             <p>Secteur d&#39;activité:</p>
           </Col>
 
-          <Col sm={{ size: 6, offset: 1 }}>
+          <Col className={styles.topright}>
             <h3>TITRE ANNONCE</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt
