@@ -1,22 +1,31 @@
-.zoneglobal {
-  padding: 50px;
+.global {
+  margin-top: 150px;
 }
 
-.zonetop {
+.top {
   text-align: justify;
-  padding-top: 30px;
-  padding-bottom: 30px;
 }
 
-.card {
+.topleft {
   background-color: #f9f9f9;
 }
 
-.zonebottom {
-  padding-top: 30px;
-  padding-bottom: 30px;
+.topright {
+  margin-left: 30px;
+}
+
+.bottom {
+  text-align: justify;
+  margin-top: 30px;
+  padding-right: 15px;
 }
 
 .btn {
   justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
+
+/* .justify {
+  text-align: justify;
+} */
