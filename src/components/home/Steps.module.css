@@ -1,5 +1,6 @@
 .size {
   height: 300px;
+  padding : 0 10vw;
 }
 
 .position {
@@ -19,3 +20,13 @@
 .partner {
   margin-bottom: 4vw;
 }
+
+@media screen and (max-width: 800px) {
+  .image {
+    width : 12vw;
+  }
+  .color {
+    font-size: 15px;
+    color: white;
+  }
+} 

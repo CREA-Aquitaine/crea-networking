@@ -4,7 +4,13 @@ import { Row, Col, Container } from 'reactstrap';
 function Blocs() {
   return (
     <Container>
-      <Row style={{ paddingTop: '20px', paddingBottom: '20px' }}>
+      <Row
+        style={{
+          paddingTop: '20px',
+          paddingBottom: '20px',
+          marginBottom: '20px',
+        }}
+      >
         <Col xs="12" sm="12" md="6" lg="6" style={{ alignSelf: 'center' }}>
           <img
             style={{ width: 'inherit' }}
@@ -20,8 +26,8 @@ function Blocs() {
           style={{ alignSelf: 'center', textAlign: 'left' }}
         >
           <hr />
-          <h2>Vous êtes une entreprise ?</h2>
-          <h2>Une association ?</h2>
+          <h3>Vous êtes une entreprise ?</h3>
+          <h3>Une association ?</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia error
             explicabo assumenda, soluta voluptas hic necessitatibus ipsam sit
@@ -35,7 +41,13 @@ function Blocs() {
           </button>
         </Col>
       </Row>
-      <Row style={{ paddingTop: '20px', paddingBottom: '20px' }}>
+      <Row
+        style={{
+          paddingTop: '20px',
+          paddingBottom: '20px',
+          marginBottom: '20px',
+        }}
+      >
         <Col
           xs="12"
           sm="12"
@@ -44,7 +56,7 @@ function Blocs() {
           style={{ alignSelf: 'center', textAlign: 'left' }}
         >
           <hr />
-          <h2>Vous êtes un demandeur d&#39;emploi ?</h2>
+          <h3>Vous êtes un demandeur d&#39;emploi ?</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia error
             explicabo assumenda, soluta voluptas hic necessitatibus ipsam sit
@@ -65,7 +77,13 @@ function Blocs() {
           />
         </Col>
       </Row>
-      <Row style={{ paddingTop: '20px', paddingBottom: '20px' }}>
+      <Row
+        style={{
+          paddingTop: '20px',
+          paddingBottom: '20px',
+          marginBottom: '20px',
+        }}
+      >
         <Col xs="12" sm="12" md="6" lg="6" style={{ alignSelf: 'center' }}>
           <img
             style={{ width: 'inherit' }}
@@ -81,7 +99,7 @@ function Blocs() {
           style={{ alignSelf: 'center', textAlign: 'left' }}
         >
           <hr />
-          <h2>Vous êtes une école ou une université ?</h2>
+          <h3>Vous êtes une école ou une université ?</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia error
             explicabo assumenda, soluta voluptas hic necessitatibus ipsam sit

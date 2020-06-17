@@ -21,7 +21,9 @@ function Header() {
         aut et eveniet, nobis vitae itaque tempore modi non distinctio optio
         sequi laborum?
       </p>
-      <button type="button">Nos partenaires</button>
+      <button className={styles.button} type="button">
+        Nos partenaires
+      </button>
     </div>
   );
 }
