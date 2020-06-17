@@ -20,7 +20,7 @@ function SecondNavbar() {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Navbar className={styles.navbar} expand="md">
+    <Navbar className={styles.navbar} expand="xs">
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto align-items-center" navbar>

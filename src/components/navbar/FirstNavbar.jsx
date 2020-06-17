@@ -12,7 +12,7 @@ function FirstNavbar() {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Navbar color="light" expand="md" className={styles.nav}>
+    <Navbar color="light" expand="xs" className={styles.nav}>
       <NavbarToggler onClick={toggle} />
       <Nav navbar className={`${styles.navbar} mr-5`}>
         <NavItem className="mr-5">

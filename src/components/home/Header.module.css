@@ -7,16 +7,17 @@
   background-image: url('../image/img_header_crea.png');
   background-repeat: no-repeat;
   background-size: 100vw;
-  height: 500px;
+  height: 30vw;
   text-align: left;
   padding-left: 1vw;
-  padding-top: 30vh;
+  padding-top: 15vw;
+  margin-bottom : 3vw;
 }
 
 .cover hr {
   background-color: white;
   width: 15vw;
-  height : 0.6vw;
+  height: 0.6vw;
 }
 
 .pres {
@@ -27,3 +28,18 @@
 .presentation {
   margin-bottom: 4vw;
 }
+.button {
+  margin-top : 1vw;
+}
+
+@media screen and (max-width: 800px) {
+  .cover {
+    background-image: url('../image/img_header_crea.png');
+    background-repeat: no-repeat;
+    background-size: 100vw;
+    height: 30vw;
+    text-align: left;
+    padding-left: 1vw;
+    padding-top: 10vw;
+  }
+} 
