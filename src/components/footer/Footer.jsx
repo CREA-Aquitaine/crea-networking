@@ -88,7 +88,7 @@ export default function footer() {
           </Col>
         </Row>
       </Container>
-      <Container>
+      <Container className="mb-5">
         <Row className="p-3">
           <Col>
             <a href="$" className={styles.tagMl}>

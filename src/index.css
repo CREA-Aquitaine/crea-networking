@@ -27,13 +27,13 @@ h1 {
   text-transform: uppercase;
 }
 h2 {
-  font-size: 50px;
+  font-size: 3vw !important;
   color: #28262b;
   line-height: 1.5;
   font-weight: 900;
 }
 h3 {
-  font-size: 40px;
+  font-size: 40px !important;
   color: #28262b;
   line-height: 1.5;
   font-weight: 800;
@@ -52,7 +52,7 @@ button:hover {
   transition: all 0.4 ease-in-out;
 }
 p {
-  font-size: 16px;
+  font-size: 18px;
 }
 .redCrea {
   background-color: #dd2b25;
