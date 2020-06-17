@@ -3,8 +3,16 @@ body {
 }
 .userInfos {
   background-color: #dd2b25;
+  margin: 0;
+  padding: 0;
+}
+.dashboardTable {
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  margin-right: 0;
+  padding: 0;
 }
 .dashboard {
   margin: 0 !important;
-  width: 100vw !important;
+  padding: 0;
 }

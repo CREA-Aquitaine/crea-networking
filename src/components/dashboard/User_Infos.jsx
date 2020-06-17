@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Col } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import styles from './User_Infos.module.css';
 
 function UserInfos() {
   return (
-    <div className={styles.userInfosPart}>
+    <Row className={styles.userInfosCss}>
       <Col xs="4" sm="4" className={styles.logoSection}>
         <img
           className={styles.userLogo}
@@ -53,7 +53,7 @@ function UserInfos() {
           </li>
         </ul>
       </Col>
-    </div>
+    </Row>
   );
 }
 
