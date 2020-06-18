@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row, Col, Container } from 'reactstrap';
+import ModalConnection from './ModalConnection';
 
 function Blocs() {
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
+
   return (
     <Container>
       <Row
@@ -34,7 +39,9 @@ function Blocs() {
             fuga quos, eligendi
           </p>
 
-          <button type="button">Se connecter</button>
+          <button type="button" onClick={toggle}>
+            Se connecter
+          </button>
 
           <button type="button" style={{ marginLeft: '10px' }}>
             S&#39;inscrire
@@ -63,8 +70,10 @@ function Blocs() {
             fuga quos, eligendi
           </p>
 
-          <button type="button">Se connecter</button>
-
+          <button type="button" onClick={toggle}>
+            Se connecter
+          </button>
+          <ModalConnection modal={modal} toggle={toggle} />
           <button type="button" style={{ marginLeft: '10px' }}>
             S&#39;inscrire
           </button>
@@ -106,7 +115,9 @@ function Blocs() {
             fuga quos, eligendi
           </p>
 
-          <button type="button">Se connecter</button>
+          <button type="button" onClick={toggle}>
+            Se connecter
+          </button>
 
           <button type="button" style={{ marginLeft: '10px' }}>
             S&#39;inscrire

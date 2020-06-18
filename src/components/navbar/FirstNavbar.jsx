@@ -5,6 +5,7 @@ import NavbarLanguage from './NavbarLanguage';
 
 import styles from './NavBar.module.css';
 import './Navbar.css';
+import PopUpConnection from '../home/PopUpConnection';
 
 function FirstNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,7 @@ function FirstNavbar() {
       <NavbarToggler onClick={toggle} />
       <Nav navbar className={`${styles.navbar} mr-5`}>
         <NavItem className="mr-5">
-          <NavLink>Espace connexion</NavLink>
+          <PopUpConnection />
         </NavItem>
         <NavItem>
           <NavLink>Langue</NavLink>

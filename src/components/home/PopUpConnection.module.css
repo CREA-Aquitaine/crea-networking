@@ -1,0 +1,17 @@
+.formgroup {
+    padding : 0 4vw;
+}
+.question {
+    text-align: center;
+}
+.button {
+    padding: 10px 20px !important;
+    background-color: #dd2b25 !important;
+    font-size: 15px !important;
+    color: white !important;
+    border: 1px solid transparent !important;
+    border-radius : 0 !important;
+}
+.navlink {
+    cursor : pointer;
+}
