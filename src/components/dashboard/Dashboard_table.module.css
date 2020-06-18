@@ -2,8 +2,12 @@
   font-family: 'Raleway-Bold';
   src: url('../raleway/Raleway-Bold.ttf');
 }
+.dashboardTable {
+  margin: 0;
+  padding: 0;
+}
 .dashboardTable h3 {
-  font-size: 23px;
+  font-size: 20px;
   color: #28262b;
   line-height: 1.5;
   font-weight: 800;
