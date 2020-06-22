@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Col, Row } from 'reactstrap';
+import ModalDashboard from './ModalDashboard';
 import styles from './User_Infos.module.css';
 
 function UserInfos() {
@@ -17,7 +18,7 @@ function UserInfos() {
         <ul>
           <li>
             {' '}
-            <h4>Information entreprise</h4>
+            <h4>Informations entreprise</h4>
           </li>
           <li>
             <p>Entreprise: </p>
@@ -33,10 +34,9 @@ function UserInfos() {
           </li>
         </ul>
       </Col>
-      <Col className={styles.contact} xs="4" sm="4">
+      <Col className={styles.contact} xs="3" sm="3">
         <ul>
           <li>
-            {' '}
             <h4>Contact entreprise</h4>
           </li>
           <li>
@@ -52,6 +52,9 @@ function UserInfos() {
             <p>Téléphone: </p>
           </li>
         </ul>
+      </Col>
+      <Col xs="1" sm="1">
+        <ModalDashboard />
       </Col>
     </Row>
   );
