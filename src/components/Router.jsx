@@ -5,6 +5,7 @@ import Footer from './footer/Footer';
 import NavBar from './navbar/NavBar';
 import Announce from './announce/Announce';
 import Home from './home/Home';
+import PostAnnounce from './announce/PostAnnounce';
 
 function Router() {
   return (
@@ -12,6 +13,7 @@ function Router() {
       <NavBar />
       <Switch>
         <Route path="/user/id" component={Dashboard} />
+        <Route path="/user/post" component={PostAnnounce} />
         <Route path="/user" />
         <Route path="/announce/:id" component={Announce} />
         <Route exact path="/" component={Home} />

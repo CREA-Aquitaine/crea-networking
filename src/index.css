@@ -80,3 +80,22 @@ code {
   border: 1px solid transparent !important;
   border-radius : 0 !important;
 }
+
+/*Editeur de texte */
+.ck-content {
+  height : 20vw;
+}
+
+/* Fil d'ariane */
+.breadcrumb {
+  margin: 1vw 0 2vw 0 ;
+  background-color: transparent !important;
+}
+.breadcrumb a {
+  color: black;
+  text-decoration: none;
+}
+.breadcrumb a:hover {
+  color: blue;
+  text-decoration: none;
+}
