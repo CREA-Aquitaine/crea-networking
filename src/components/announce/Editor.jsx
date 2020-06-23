@@ -7,12 +7,7 @@ import styles from './PostAnnounce.module.css';
 function Editor() {
   return (
     <div className={styles.editor}>
-      <CKEditor
-        editor={ClassicEditor}
-        onChange={(event, editor) => {
-          const data = editor.getData();
-        }}
-      />
+      <CKEditor editor={ClassicEditor} />
     </div>
   );
 }
