@@ -8,8 +8,7 @@ import {
   NavLink,
 } from 'reactstrap';
 
-import crea from '../image/logo_Crea.png';
-import networking from '../image/logo_netWorking.png';
+import crea from '../image/logo-crea_2015.png';
 import anec from '../image/logo_anec.png';
 
 import styles from './SecondNavbar.module.css';
@@ -27,20 +26,6 @@ function SecondNavbar() {
           <NavItem>
             <NavLink>
               <img src={crea} alt="logo crea" className={styles.logo_crea} />
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink>
-              <img src={anec} alt="logo anec" className={styles.logo_anec} />
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink>
-              <img
-                src={networking}
-                alt="logo networking"
-                className={styles.logo_networking}
-              />
             </NavLink>
           </NavItem>
           <NavItem className={styles.partenaires}>

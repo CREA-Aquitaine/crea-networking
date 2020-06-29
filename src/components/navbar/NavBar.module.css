@@ -11,3 +11,14 @@
   justify-content: flex-end;
   width: 100%;
 }
+.banner {
+  width: 100%;
+ 
+}
+.networking {
+  float: left;
+  top : -35vh;
+  position: relative;
+  width: 50vw;
+ 
+}

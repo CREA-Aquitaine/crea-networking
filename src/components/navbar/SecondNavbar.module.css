@@ -1,6 +1,6 @@
 .logo_crea {
-  width: 15vw;
-  margin-right: 2vw;
+  width: 10vw;
+  margin-left : 2vw;
 }
 .logo_anec {
   width: 12vw;
@@ -13,11 +13,11 @@
 .navbar {
   background-color: rgb(255, 255, 255, 0.5);
   height: 8vw;
-  position: absolute !important;
+  position: fixed !important;
   width: 100%;
 }
 .partenaires {
-  padding-left: 10vw;
+  padding-left: 45vw;
   padding-right: 8vw;
   font-size: 1.5vw;
 }

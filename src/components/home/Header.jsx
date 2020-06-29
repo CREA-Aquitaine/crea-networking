@@ -4,13 +4,6 @@ import styles from './Header.module.css';
 function Header() {
   return (
     <div className={styles.presentation}>
-      <div className={styles.cover}>
-        <hr />
-        <h1>
-          NETWORKING <br />
-          TRANSFRONTALIER
-        </h1>
-      </div>
       <h2>Présentation</h2>
       <p className={styles.pres}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
