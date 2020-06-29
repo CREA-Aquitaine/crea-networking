@@ -1,0 +1,10 @@
+.banner {
+    width : 100%;
+}
+.container {
+    text-align: left;
+    padding : 3vh 0 5vh 0;
+}
+.buttonValidate {
+    float : right !important;
+}
