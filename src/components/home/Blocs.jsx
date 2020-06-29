@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col, Container } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import ModalConnection from './ModalConnection';
 
 function Blocs() {
@@ -43,9 +44,11 @@ function Blocs() {
             Se connecter
           </button>
 
-          <button type="button" style={{ marginLeft: '10px' }}>
-            S&#39;inscrire
-          </button>
+          <Link to="/createAccount">
+            <button type="button" style={{ marginLeft: '10px' }}>
+              S&#39;inscrire
+            </button>
+          </Link>
         </Col>
       </Row>
       <Row
@@ -74,9 +77,11 @@ function Blocs() {
             Se connecter
           </button>
           <ModalConnection modal={modal} toggle={toggle} />
-          <button type="button" style={{ marginLeft: '10px' }}>
-            S&#39;inscrire
-          </button>
+          <Link to="/createAccount">
+            <button type="button" style={{ marginLeft: '10px' }}>
+              S&#39;inscrire
+            </button>
+          </Link>
         </Col>
         <Col xs="12" sm="12" md="6" lg="6" style={{ alignSelf: 'center' }}>
           <img
@@ -114,14 +119,14 @@ function Blocs() {
             explicabo assumenda, soluta voluptas hic necessitatibus ipsam sit
             fuga quos, eligendi
           </p>
-
           <button type="button" onClick={toggle}>
             Se connecter
           </button>
-
-          <button type="button" style={{ marginLeft: '10px' }}>
-            S&#39;inscrire
-          </button>
+          <Link to="/createAccount">
+            <button type="button" style={{ marginLeft: '10px' }}>
+              S&#39;inscrire
+            </button>
+          </Link>
         </Col>
       </Row>
     </Container>
