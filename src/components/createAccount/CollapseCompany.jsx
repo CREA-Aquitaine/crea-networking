@@ -103,7 +103,7 @@ function CollapseCompany({ isOpen }) {
           </Col>
         </Row>
       </FormGroup>
-      <p> Les champs * sont obligatoires.</p>
+      <p className={styles.champs}>Les champs * sont obligatoires.</p>
       <Row>
         <Col xs={{ size: 2, offset: 5 }}>
           <Button className={`${styles.buttonValidate} button`}>Valider</Button>

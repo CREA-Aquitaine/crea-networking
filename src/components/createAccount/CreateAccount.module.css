@@ -1,10 +1,27 @@
 .banner {
-    width : 100%;
+  width: 100%;
 }
 .container {
-    text-align: left;
-    padding : 3vh 0 5vh 0;
+  text-align: left;
+  padding: 3vh 0 5vh 0;
 }
 .buttonValidate {
-    float : right !important;
+  float: right !important;
+}
+.champs {
+  font-size: 0.6vw;
+}
+.checkbox {
+  height: 2rem;
+}
+.label {
+  font-size: 1.5rem;
+}
+.formgroupSchool {
+    padding-top : 1vh;
+    padding-bottom : 3vh
+}
+.formgroup {
+    padding-top : 1vh;
+    padding-bottom : 1vh
 }

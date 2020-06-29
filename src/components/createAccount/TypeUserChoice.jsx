@@ -4,6 +4,8 @@ import CollapseSchool from './CollapseSchool';
 import CollapseCompany from './CollapseCompany';
 import CollapseSeeker from './CollapseSeeker';
 
+import styles from './CreateAccount.module.css';
+
 function TypeUserChoice() {
   const [isOpenCompany, setIsOpenCompany] = useState(false);
   const [isOpenSeeker, setIsOpenSeeker] = useState(false);
@@ -28,22 +30,37 @@ function TypeUserChoice() {
     <Form>
       <FormGroup tag="fieldset">
         <h3>Vous êtes ...</h3>
-        <FormGroup check>
-          <Label check>
-            <Input type="radio" name="radio1" onClick={toggleCompany} /> une
-            entreprise ou une association
+        <FormGroup check className={styles.formgroup}>
+          <Label check className={styles.label}>
+            <Input
+              type="radio"
+              className={styles.checkbox}
+              name="radio1"
+              onClick={toggleCompany}
+            />{' '}
+            une entreprise ou une association
           </Label>
         </FormGroup>
-        <FormGroup check>
-          <Label check>
-            <Input type="radio" name="radio1" onClick={toggleSeeker} /> un
-            demandeur d&apos;emploi
+        <FormGroup check className={styles.formgroup}>
+          <Label check className={styles.label}>
+            <Input
+              type="radio"
+              className={styles.checkbox}
+              name="radio1"
+              onClick={toggleSeeker}
+            />{' '}
+            un demandeur d&apos;emploi
           </Label>
         </FormGroup>
-        <FormGroup check>
-          <Label check>
-            <Input type="radio" name="radio1" onClick={toggleSchool} /> une
-            école ou une université
+        <FormGroup check className={styles.formgroupSchool}>
+          <Label check className={styles.label}>
+            <Input
+              type="radio"
+              className={styles.checkbox}
+              name="radio1"
+              onClick={toggleSchool}
+            />{' '}
+            une école ou une université
           </Label>
         </FormGroup>
       </FormGroup>
