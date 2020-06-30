@@ -9,7 +9,6 @@ import {
 } from 'reactstrap';
 
 import crea from '../image/logo-crea_2015.png';
-import anec from '../image/logo_anec.png';
 
 import styles from './SecondNavbar.module.css';
 
