@@ -7,6 +7,7 @@ import Announce from './announce/Announce';
 import Home from './home/Home';
 import PostAnnounce from './announce/PostAnnounce';
 import CreateAccount from './createAccount/CreateAccount';
+import Contact from './contact/Contact';
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
         <Route path="/user" />
         <Route path="/createAccount" component={CreateAccount} />
         <Route path="/announce/:id" component={Announce} />
+        <Route path="/contact" component={Contact} />
         <Route exact path="/" component={Home} />
       </Switch>
       <Footer />
