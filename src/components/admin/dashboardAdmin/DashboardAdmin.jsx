@@ -1,18 +1,38 @@
 import React from 'react';
-import { Breadcrumb, BreadcrumbItem, Container } from 'reactstrap';
-
-import graph from '../../image/dashboardAdmin_placeholder.png';
+import { Breadcrumb, BreadcrumbItem, Container, Row, Col } from 'reactstrap';
+import { Pie } from 'react-chartjs-2';
 
 import styles from './DashboardAdmin.module.css';
+import BarStat from './Bar';
 
 function HomeAdmin() {
   return (
-    <Container>
+    <Container className={styles.containerGeneral}>
       <Breadcrumb>
         <BreadcrumbItem>Accueil</BreadcrumbItem>
         <BreadcrumbItem active>Dashboard</BreadcrumbItem>
       </Breadcrumb>
-      <img src={graph} className={styles.graph} alt="graph" />
+      <Row>
+        <Col xs="6">
+          <Container Fluid className={styles.pie}>
+            <p className={styles.userTypes}>Types d&apos;utilisateurs</p>
+            <Pie
+              data={{
+                datasets: [
+                  {
+                    data: [10, 20, 30],
+                    backgroundColor: ['#ffa500', '#ff4500', '#ffff00'],
+                  },
+                ],
+                labels: ['Demandeurs emploi', 'Ecoles', 'Entreprises'],
+              }}
+            />
+          </Container>
+        </Col>
+        <Col>
+          <BarStat />
+        </Col>
+      </Row>
     </Container>
   );
 }
