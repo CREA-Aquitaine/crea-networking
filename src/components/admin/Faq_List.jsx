@@ -47,6 +47,8 @@ const QR = [
 function FaqList() {
   const [dropdownOpen, setOpen] = useState(false);
 
+  const [modify, setModify] = useState(true);
+
   const toggle = () => setOpen(!dropdownOpen);
   return (
     <Container>
@@ -100,20 +102,50 @@ function FaqList() {
           </>
         ))}
         <Row>
-          <Col xs={{ size: 1, offset: 9 }}>
-            <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-              <DropdownToggle
-                caret
-                className={styles.buttonDropdown}
-                color="white"
-              >
-                Modifier
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem className={styles.item}>Modifier</DropdownItem>
-                <DropdownItem className={styles.item}>Supprimer</DropdownItem>
-              </DropdownMenu>
-            </ButtonDropdown>
+          <Col xs={{ size: 1.5, offset: 8 }}>
+            {modify === true ? (
+              <>
+                <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+                  <DropdownToggle
+                    caret
+                    className={styles.buttonDropdown}
+                    color="white"
+                  >
+                    Modifier
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem className={styles.item}>
+                      Modifier
+                    </DropdownItem>
+                    <DropdownItem
+                      className={styles.item}
+                      onClick={() => setModify(false)}
+                    >
+                      Supprimer
+                    </DropdownItem>
+                  </DropdownMenu>
+                </ButtonDropdown>
+              </>
+            ) : (
+              <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+                <DropdownToggle
+                  caret
+                  className={styles.buttonDropdown}
+                  color="white"
+                >
+                  Supprimer
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem className={styles.item}>Supprimer</DropdownItem>
+                  <DropdownItem
+                    className={styles.item}
+                    onClick={() => setModify(true)}
+                  >
+                    Modifier
+                  </DropdownItem>
+                </DropdownMenu>
+              </ButtonDropdown>
+            )}
           </Col>
           <Col xs="2">
             <Button className="button">Valider</Button>
