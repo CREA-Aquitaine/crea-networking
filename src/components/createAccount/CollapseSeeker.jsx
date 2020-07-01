@@ -63,7 +63,7 @@ function CollapseSeeker({ isOpen }) {
         name="phone2"
         id="phone2"
         placeholder="0102030405"
-        title="Téléphone"
+        title="Téléphone 2"
       />
       <FormGroup>
         <Row>

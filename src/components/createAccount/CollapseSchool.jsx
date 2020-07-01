@@ -70,7 +70,7 @@ function CollapseSchool({ isOpen }) {
         name="phone2"
         id="phone2"
         placeholder="0102030405"
-        title="Téléphone"
+        title="Téléphone 2"
       />
       <FormGroupCollapse
         type="text"
@@ -79,13 +79,24 @@ function CollapseSchool({ isOpen }) {
         placeholder="Etudiant, professeur, ..."
         title="Poste dans l'établissement"
       />
-      <FormGroupCollapse
-        type="text"
-        name="secteur"
-        id="sectuer"
-        placeholder="Sciences, langues, ..."
-        title="Secteur d'activité de l'établissement"
-      />
+      <FormGroup>
+        <Row>
+          <Col xs="2">
+            <Label for="exampleSelect">
+              Secteur d&apos;activité de l&apos;établissement*
+            </Label>
+          </Col>
+          <Col>
+            <Input type="select" name="select" id="exampleSelect">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </Input>
+          </Col>
+        </Row>
+      </FormGroup>
       <FormGroup>
         <Row>
           <Col xs="2">

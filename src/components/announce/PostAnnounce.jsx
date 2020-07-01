@@ -10,7 +10,6 @@ import {
   Col,
 } from 'reactstrap';
 
-import banner from '../image/img_header_crea.png';
 import PostAnnounceBreadcrumb from './PostAnnounceBreadcrumb';
 
 import styles from './PostAnnounce.module.css';
@@ -19,13 +18,6 @@ import Editor from './Editor';
 function PostAnnounce() {
   return (
     <>
-      <img
-        src={banner}
-        alt="header crea"
-        className={styles.banner}
-        width="100%"
-        height="100%"
-      />
       <Container>
         <PostAnnounceBreadcrumb />
         <p className={styles.paragraphLeft}>ID : 40987</p>
