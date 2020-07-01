@@ -31,7 +31,16 @@
   color: black;
 }
 .navlink:hover {
-  color:#dd2b25
+  color: #dd2b25;
+}
+
+.monDashboard {
+  font-size: 1.3vw;
+  margin-left: 15vw;
+}
+.mesnavbarItems {
+  font-size: 1.3vw;
+  margin-left: 5vw;
 }
 
 @media screen and (max-width: 800px) {

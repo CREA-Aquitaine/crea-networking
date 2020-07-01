@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import NavbarLanguage from './NavbarLanguage';
+import PopUpConnection from './PopUpConnection';
 
 import styles from './NavBar.module.css';
 import './Navbar.css';
-import PopUpConnection from '../home/PopUpConnection';
 
-function FirstNavbar() {
+function FirstNavbar({ isAdministrator }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -17,7 +19,7 @@ function FirstNavbar() {
       <NavbarToggler onClick={toggle} />
       <Nav navbar className={`${styles.navbar} mr-5`}>
         <NavItem className="mr-5">
-          <PopUpConnection />
+          {isAdministrator ? 'Mon compte' : <PopUpConnection />}
         </NavItem>
         <NavItem>
           <NavLink>Langue</NavLink>
@@ -27,5 +29,10 @@ function FirstNavbar() {
     </Navbar>
   );
 }
+const mapStateToProps = (state) => ({
+  isAdministrator: state.isAdministrator.isAdmin,
+});
 
-export default FirstNavbar;
+FirstNavbar.propTypes = { isAdministrator: PropTypes.string.isRequired };
+
+export default connect(mapStateToProps)(FirstNavbar);

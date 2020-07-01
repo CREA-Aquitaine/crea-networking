@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import ModalConnection from './ModalConnection';
+import ModalConnection from '../navbar/ModalConnection';
 
 function Blocs() {
   const [modal, setModal] = useState(false);
