@@ -1,6 +1,6 @@
 .size {
   height: 300px;
-  padding : 0 10vw;
+  padding: 0 10vw;
 }
 
 .position {
@@ -9,7 +9,8 @@
 }
 
 .color {
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: 500;
   color: white;
 }
 
@@ -23,10 +24,10 @@
 
 @media screen and (max-width: 800px) {
   .image {
-    width : 12vw;
+    width: 12vw;
   }
   .color {
     font-size: 15px;
     color: white;
   }
-} 
+}

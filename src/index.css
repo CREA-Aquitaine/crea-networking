@@ -1,47 +1,52 @@
-@font-face {
-  font-family: 'Raleway';
-  src: url('../src/components/raleway/Raleway-Regular.ttf');
-}
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800;900&display=swap');
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #28262b;
 }
 hr {
-  height: 8px;
-  width: 15%;
+  width: 30%;
   background-color: #dd2b25;
   margin: 0;
-  height: 0.5vw !important;
+  height: 0.3vw !important;
 }
 h1 {
   font-size: 4.5vw !important;
   color: white;
   line-height: 1.5;
-  font-weight: bold;
+  font-weight: 800;
   text-transform: uppercase;
 }
-h2 {
-  font-size: 3vw !important;
-  color: #28262b;
-  line-height: 1.5;
-  font-weight: 900;
+
+.breadcrumb {
+  background-color: inherit;
 }
-h3 {
-  font-size: 40px !important;
+
+.breadcrumb a {
+  color: #28262b !important;
+}
+h2 {
+  font-size: 30px !important;
   color: #28262b;
   line-height: 1.5;
   font-weight: 800;
+  padding: 20px;
+  text-transform: uppercase;
+}
+h3 {
+  margin: 20px;
+  font-size: 25px;
+  color: #28262b;
+  line-height: 1.4;
+  font-weight: 800;
 }
 button {
-  padding: 10px 20px;
+  padding: 8px 20px;
   background-color: #dd2b25;
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: 500;
   color: white;
   border: 1px solid transparent;
 }
@@ -49,10 +54,11 @@ button:hover {
   background-color: transparent;
   color: #dd2b25;
   border: 1px solid #dd2b25;
-  transition: all 0.4 ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 p {
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 300;
 }
 .redCrea {
   background-color: #dd2b25;
@@ -71,34 +77,4 @@ code {
   height: 0.1vw !important;
   width: 40vw;
   margin: 6vw 30vw 2vw 30vw;
-}
-.button {
-  padding: 10px 20px !important;
-  background-color: #dd2b25 !important;
-  font-size: 15px !important;
-  color: white !important;
-  border: 1px solid transparent !important;
-  border-radius : 0 !important;
-}
-
-/*Editeur de texte */
-.ck-content {
-  height : 20vw;
-}
-
-/* Fil d'ariane */
-.breadcrumb {
-  margin: 1vw 0 2vw 0 ;
-  background-color: transparent !important;
-}
-.breadcrumb a {
-  color: black;
-  text-decoration: none;
-}
-.breadcrumb a:hover {
-  color: blue;
-  text-decoration: none;
-}
-.textarea .form-control {
-  height : 20vh;
 }
