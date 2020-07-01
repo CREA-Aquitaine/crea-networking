@@ -5,6 +5,7 @@ import Footer from './footer/Footer';
 import NavBar from './navbar/NavBar';
 import Announce from './announce/Announce';
 import Home from './home/Home';
+import Partners from './partners/Partners';
 import PostAnnounce from './announce/PostAnnounce';
 import CreateAccount from './createAccount/CreateAccount';
 
@@ -19,6 +20,7 @@ function Router() {
         <Route path="/createAccount" component={CreateAccount} />
         <Route path="/announce/:id" component={Announce} />
         <Route exact path="/" component={Home} />
+        <Route path="/partners" component={Partners} />
       </Switch>
       <Footer />
     </BrowserRouter>
