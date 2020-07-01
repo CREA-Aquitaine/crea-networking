@@ -99,6 +99,12 @@ code {
   color: blue;
   text-decoration: none;
 }
+/*textarea formualire contact*/
 .textarea .form-control {
   height : 20vh;
+}
+
+/*Menu déroulant choix faq admin*/
+.dropdown-menu {
+  width : 8vw !important;
 }

@@ -14,24 +14,35 @@ function SecondNavbar({ isAdministrator }) {
       {isAdministrator ? (
         <Nav className="mr-auto align-items-center" navbar>
           <NavItem>
-            <NavLink>
+            <NavLink tag={Link} to="/">
               <img src={crea} alt="logo crea" className={styles.logo_crea} />
             </NavLink>
           </NavItem>
           <NavItem className={styles.monDashboard}>
-            <NavLink className={styles.navlink}>Mon dashboard</NavLink>
+            <NavLink className={styles.navlink} tag={Link} to="/dashboard">
+              Mon dashboard
+            </NavLink>
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
-            <NavLink className={styles.navlink}>Mes utilisateurs</NavLink>
+            <NavLink className={styles.navlink} tag={Link} to="/users">
+              {' '}
+              Mes utilisateurs{' '}
+            </NavLink>
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
-            <NavLink className={styles.navlink}>Mes annonces</NavLink>
+            <NavLink className={styles.navlink} tag={Link} to="/announces">
+              Mes annonces
+            </NavLink>
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
-            <NavLink className={styles.navlink}>FAQ</NavLink>
+            <NavLink className={styles.navlink} tag={Link} to="/faq">
+              FAQ
+            </NavLink>
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
-            <NavLink className={styles.navlink}>Partenaires</NavLink>
+            <NavLink className={styles.navlink} tag={Link} to="/partners">
+              Partenaires
+            </NavLink>
           </NavItem>
         </Nav>
       ) : (

@@ -1,0 +1,20 @@
+.usersListTitle {
+  background-color: #dd2b25;
+  color: white;
+  padding: 0.8vw;
+}
+.usersListTitleMargin {
+  padding-top: 0.8vh;
+}
+.usersListPage {
+  margin-top: 5vh;
+}
+.inputSearch {
+  border-radius: 0;
+  width: 10vw;
+}
+.containerCadre {
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  border: 1px solid #dfd9d9;
+  margin-bottom : 4vh;
+}
