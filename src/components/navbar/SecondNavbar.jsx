@@ -8,6 +8,7 @@ import {
   NavLink,
 } from 'reactstrap';
 
+import { Link } from 'react-router-dom';
 import crea from '../image/logo-crea_2015.png';
 
 import styles from './SecondNavbar.module.css';
@@ -28,10 +29,12 @@ function SecondNavbar() {
             </NavLink>
           </NavItem>
           <NavItem className={styles.partenaires}>
-            <NavLink>PARTENAIRES</NavLink>
+            <NavLink className={styles.navlink}>PARTENAIRES</NavLink>
           </NavItem>
           <NavItem className={styles.contact}>
-            <NavLink>CONTACT</NavLink>
+            <NavLink className={styles.navlink} tag={Link} to="./contact">
+              CONTACT
+            </NavLink>
           </NavItem>
         </Nav>
       </Collapse>

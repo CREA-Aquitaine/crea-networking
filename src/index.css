@@ -99,3 +99,6 @@ code {
   color: blue;
   text-decoration: none;
 }
+.textarea .form-control {
+  height : 20vh;
+}
