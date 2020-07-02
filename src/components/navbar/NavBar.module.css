@@ -6,9 +6,10 @@
 }
 .nav {
   display: flex;
-  position:   fixed;
- width : 100vw;
- height : 7vh;
+  position: fixed;
+  width: 100vw;
+  height: 7vh;
+  z-index: 1000;
 }
 .navbar {
   justify-content: flex-end;
@@ -16,12 +17,10 @@
 }
 .banner {
   width: 100%;
- 
 }
 .networking {
   float: left;
-  top : -35vh;
+  top: -35vh;
   position: relative;
   width: 50vw;
- 
 }

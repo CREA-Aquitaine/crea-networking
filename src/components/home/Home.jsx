@@ -11,7 +11,6 @@ function Home() {
       <Blocs />
       <Steps />
       <BestFriends />
-      <hr className="hrFooter" />
     </>
   );
 }

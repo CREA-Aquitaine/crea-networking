@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-  Container,
-  Row,
-  Col,
-} from 'reactstrap';
+import { Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 
 import PostAnnounceBreadcrumb from './PostAnnounceBreadcrumb';
 
@@ -50,10 +41,14 @@ function PostAnnounce() {
           <Editor />
           <Row>
             <Col sm={{ size: 1, offset: 9 }}>
-              <Button className="button">Valider</Button>
+              <button type="button" className="button">
+                Valider
+              </button>
             </Col>
             <Col>
-              <Button className="button ml-5 mb-5">Annuler</Button>
+              <button type="button" className={styles.lienButton}>
+                Annuler
+              </button>
             </Col>
           </Row>
         </Form>

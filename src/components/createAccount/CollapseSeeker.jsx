@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Collapse,
-  FormGroup,
-  Label,
-  Input,
-  Row,
-  Col,
-  Button,
-} from 'reactstrap';
+import { Collapse, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import FormGroupCollapse from './FormGroupCollapse';
@@ -78,7 +70,9 @@ function CollapseSeeker({ isOpen }) {
       <p className={styles.champs}> Les champs * sont obligatoires.</p>
       <Row>
         <Col xs={{ size: 2, offset: 5 }}>
-          <Button className={`${styles.buttonValidate} button`}>Valider</Button>
+          <button type="button" className={`${styles.buttonValidate} button`}>
+            Valider
+          </button>
         </Col>
       </Row>
     </Collapse>
