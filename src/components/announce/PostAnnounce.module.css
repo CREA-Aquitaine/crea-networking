@@ -1,9 +1,14 @@
 .banner {
-    width : 100vw;
+  width: 100vw;
 }
 .editor {
-    padding : 2vw 0;
+  padding: 2vw 0;
 }
 .paragraphLeft {
-    text-align : left;
+  text-align: left;
+}
+
+.lienButton {
+  background-color: inherit;
+  color: #dd2b25;
 }
