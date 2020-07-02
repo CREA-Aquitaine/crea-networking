@@ -15,20 +15,39 @@ function Steps() {
       </Row>
       <Row className={styles.size}>
         <Col className={styles.position}>
-          <img
-            src={inscription}
-            alt="inscription"
-            className={`${styles.image} mb-4`}
-          />
-          <p className={styles.color}>Je m&apos;inscris</p>
+          <figure>
+            <img
+              width="20%"
+              src={inscription}
+              alt="inscription"
+              className={`${styles.image} mb-4`}
+            />
+            <figcaption className={styles.color}>Je m&apos;inscris</figcaption>
+          </figure>
         </Col>
         <Col className={styles.position}>
-          <img src={search} alt="search" className={`${styles.image} mb-4`} />
-          <p className={styles.color}>Je consulte les annonces</p>
+          <figure>
+            <img
+              width="20%"
+              src={search}
+              alt="search"
+              className={`${styles.image} mb-4`}
+            />
+            <figcaption className={styles.color}>
+              Je consulte les annonces
+            </figcaption>
+          </figure>
         </Col>
         <Col className={styles.position}>
-          <img src={cv} alt="cv" className={`${styles.image} mb-4`} />
-          <p className={styles.color}>Je postule</p>
+          <figure>
+            <img
+              width="20%"
+              src={cv}
+              alt="cv"
+              className={`${styles.image} mb-4`}
+            />
+            <figcaption className={styles.color}>Je postule</figcaption>
+          </figure>
         </Col>
       </Row>
     </Container>

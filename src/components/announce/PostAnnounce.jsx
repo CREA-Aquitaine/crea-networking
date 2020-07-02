@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-  Container,
-  Row,
-  Col,
-} from 'reactstrap';
+import { Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import Axios from 'axios';
 
 import PostAnnounceBreadcrumb from './PostAnnounceBreadcrumb';
@@ -218,12 +209,18 @@ function PostAnnounce() {
             </FormGroup>
             <Row>
               <Col sm={{ size: 1, offset: 9 }}>
-                <Button className="button">Valider</Button>
+                <button type="button" className="button">
+                  Valider
+                </button>
               </Col>
               <Col>
-                <Button onClick={resetForm} className="button ml-5 mb-5">
+                <button
+                  type="button"
+                  onClick={resetForm}
+                  className="button ml-5 mb-5"
+                >
                   Annuler
-                </Button>
+                </button>
               </Col>
             </Row>
           </Form>

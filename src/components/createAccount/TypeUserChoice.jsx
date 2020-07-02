@@ -32,35 +32,20 @@ function TypeUserChoice() {
         <h3>Vous êtes ...</h3>
         <FormGroup check className={styles.formgroup}>
           <Label check className={styles.label}>
-            <Input
-              type="radio"
-              className={styles.checkbox}
-              name="radio1"
-              onClick={toggleCompany}
-            />{' '}
-            une entreprise ou une association
+            <Input type="radio" name="radio1" onClick={toggleCompany} />
+            Une entreprise ou une association
           </Label>
         </FormGroup>
         <FormGroup check className={styles.formgroup}>
           <Label check className={styles.label}>
-            <Input
-              type="radio"
-              className={styles.checkbox}
-              name="radio1"
-              onClick={toggleSeeker}
-            />{' '}
-            un demandeur d&apos;emploi
+            <Input type="radio" name="radio1" onClick={toggleSeeker} /> un
+            demandeur d&apos;emploi
           </Label>
         </FormGroup>
         <FormGroup check className={styles.formgroupSchool}>
           <Label check className={styles.label}>
-            <Input
-              type="radio"
-              className={styles.checkbox}
-              name="radio1"
-              onClick={toggleSchool}
-            />{' '}
-            une école ou une université
+            <Input type="radio" name="radio1" onClick={toggleSchool} /> Une
+            école ou une université
           </Label>
         </FormGroup>
       </FormGroup>

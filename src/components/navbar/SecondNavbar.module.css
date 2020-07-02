@@ -1,5 +1,5 @@
 .logo_crea {
-  width: 10vw;
+  width: 7vw;
   margin-left: 2vw;
 }
 .logo_anec {
@@ -11,27 +11,27 @@
   width: 18vw;
 }
 .navbar {
-  background-color: rgb(255, 255, 255, 0.7);
-  height: 8vw;
+  background-color: rgb(255, 255, 255, 0.8);
+  height: 6vw;
   position: fixed !important;
   width: 100%;
   margin-top: 7vh;
-  z-index: 1;
+  z-index: 1000;
 }
 .partenaires {
   padding-left: 45vw;
   padding-right: 8vw;
-  font-size: 1.5vw;
+  font-size: 16px;
 }
 .contact {
-  font-size: 1.5vw;
+  font-size: 16px;
   padding-right: 2vw;
 }
 .navlink {
   color: black;
 }
 .navlink:hover {
-  color:#dd2b25
+  color: #dd2b25;
 }
 
 @media screen and (max-width: 800px) {
