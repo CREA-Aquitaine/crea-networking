@@ -1,6 +1,9 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import axios from 'axios';
-// import { Container, Row, Col } from 'reactstrap';
+import { Row } from 'reactstrap';
+import Partner from './Partner';
+
 // import styles from './Partners.module.css';
 
 class Partners extends React.Component {
@@ -42,9 +45,11 @@ class Partners extends React.Component {
       return <div>loading ...</div>;
     }
     return (
-      <div>
-        <p>{partners[0].label}</p>
-      </div>
+      <Row>
+        {partners.map((xa) => (
+          <Partner {...xa} />
+        ))}
+      </Row>
     );
   }
 }
