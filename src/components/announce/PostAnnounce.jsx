@@ -18,20 +18,59 @@ import styles from './PostAnnounce.module.css';
 
 function PostAnnounce() {
   const [content, setContent] = useState('');
+  const [title, setTitle] = useState('');
+  const [isLoading, setisLoading] = useState(true);
+  const [typePostsData, settypePostsData] = useState([]);
+  const [jobCatData, setjobCatData] = useState([]);
+  const [TypePostId, settypePostId] = useState('');
+  const [localisation, setLocalisation] = useState('');
+  const [language, setlanguage] = useState('');
+  const [JobCategoryId, setJobCategoryId] = useState('');
 
-  useEffect(() => {}, []);
+  const getTypePostsData = async () => {
+    try {
+      const res = await Axios.get(`http://localhost:8080/api/v1/postTypes`);
+      settypePostsData(res.data);
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+  const getJobCatData = async () => {
+    try {
+      const res = await Axios.get(`http://localhost:8080/api/v1/jobCategories`);
+      setjobCatData(res.data);
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+
+  const selectTypePost = (e) => {
+    const object = typePostsData.find((el) => el.labelFr === e.target.value);
+    settypePostId(object.id);
+  };
+
+  const selectJobCat = (e) => {
+    const object = jobCatData.find((el) => el.labelFr === e.target.value);
+    setJobCategoryId(object.id);
+  };
+
+  useEffect(() => {
+    getTypePostsData();
+    getJobCatData();
+    setisLoading(false);
+  }, []);
 
   const handlePostAnnounce = async (e) => {
     e.preventDefault();
     try {
       await Axios.post('http://localhost:8080/api/v1/posts', {
-        title: 'title',
+        title,
         content,
-        localisation: 'Landes',
-        language: 'french',
+        localisation,
+        language,
         UserId: '0d7315c2-ce56-4c65-a949-4cc82574dddb',
-        JobCategoryId: '7a6ee62c-f115-4546-b15d-432e96de2a47',
-        TypePostId: 'e7763300-ae52-45f4-9463-7fe2480329ff',
+        JobCategoryId,
+        TypePostId,
       });
     } catch (err) {
       throw new Error(err);
@@ -42,58 +81,154 @@ function PostAnnounce() {
     setContent(e.target.value);
   };
 
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+  const handleLocalisationChange = (e) => {
+    setLocalisation(e.target.value);
+  };
+
+  const selectLanguage = (e) => {
+    setlanguage(e.target.value);
+  };
+
+  const resetForm = (e) => {
+    e.preventDefault();
+    setContent('');
+    setTitle('');
+    settypePostId('');
+    setLocalisation('');
+    setlanguage('');
+    setJobCategoryId('');
+  };
+
   return (
     <>
-      <Container>
-        <PostAnnounceBreadcrumb />
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <Container>
+          <PostAnnounceBreadcrumb />
 
-        <p className={styles.paragraphLeft}>ID : 40987</p>
-        <Form onSubmit={handlePostAnnounce}>
-          <FormGroup row>
-            <Col sm={2} className={styles.paragraphLeft}>
-              <Label for="exampleSelect">Type d&lsquo;annonce: </Label>
-            </Col>
-            <Col sm={5}>
-              <Input type="select" name="select" id="exampleSelect">
-                <option>Partenariat</option>
-                <option>Emploi</option>
-                <option>Recherche & dev</option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Col sm={2} className={styles.paragraphLeft}>
-              <Label for="exampleAddress">Titre / Sujet : </Label>
-            </Col>
-            <Col sm={5}>
+          <Form onSubmit={handlePostAnnounce}>
+            <FormGroup row>
+              <Col sm={2} className={styles.paragraphLeft}>
+                <Label for="exampleSelect">Type d&lsquo;annonce: </Label>
+              </Col>
+              <Col sm={5}>
+                <Input
+                  onClick={selectTypePost}
+                  type="select"
+                  name="select"
+                  id="exampleSelect"
+                  defaultValue="defaultValue"
+                  value="defaultValue"
+                >
+                  <option disabled>Selectionnez</option>
+
+                  {typePostsData.map((typePost) => (
+                    <option>{typePost.labelFr}</option>
+                  ))}
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Col sm={2} className={styles.paragraphLeft}>
+                <Label for="exampleAddress">Titre / Sujet : </Label>
+              </Col>
+              <Col sm={5}>
+                <Input
+                  type="text"
+                  name="Sujet"
+                  id="exampleAddress"
+                  placeholder="Exemple: recherche de partenariat - développement Web & Mobile"
+                  onChange={handleTitleChange}
+                  value={title}
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Col sm={2} className={styles.paragraphLeft}>
+                <Label for="exampleAddress">Localisation :</Label>
+              </Col>
+              <Col sm={5}>
+                <Input
+                  type="text"
+                  name="Sujet"
+                  id="exampleAddress"
+                  placeholder="Exemple: Bayonne"
+                  onChange={handleLocalisationChange}
+                  value={localisation}
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Col sm={2} className={styles.paragraphLeft}>
+                <Label for="exampleSelect">Langue: </Label>
+              </Col>
+              <Col sm={5}>
+                <Input
+                  onClick={selectLanguage}
+                  type="select"
+                  name="select"
+                  id="exampleSelect"
+                  defaultValue="defaultValue"
+                >
+                  <option value="defaultValue" disabled>
+                    Selectionnez
+                  </option>
+                  <option>Français</option>
+                  <option>Euskal</option>
+                  <option>Spanish</option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Col sm={2} className={styles.paragraphLeft}>
+                <Label for="exampleSelect">Catégorie: </Label>
+              </Col>
+              <Col sm={5}>
+                <Input
+                  onClick={selectJobCat}
+                  type="select"
+                  name="select"
+                  id="exampleSelect"
+                  defaultValue="defaultValue"
+                >
+                  <option value="defaultValue" disabled>
+                    Selectionnez
+                  </option>
+
+                  {jobCatData.map((jobCat) => (
+                    <option>{jobCat.labelFr}</option>
+                  ))}
+                </Input>
+              </Col>
+            </FormGroup>
+            {/* <Editor handleEditorChange={() => handleEditorChange()} /> */}
+            <FormGroup>
               <Input
-                type="text"
-                name="Sujet"
-                id="exampleAddress"
-                placeholder="Exemple: recherche de partenariat - développement Web & Mobile"
+                placeholder="Votre annonce"
+                type="textarea"
+                name="text"
+                id="exampleText"
+                onChange={handleEditorChange}
+                value={content}
               />
-            </Col>
-          </FormGroup>
-          {/* <Editor handleEditorChange={() => handleEditorChange()} /> */}
-          <FormGroup>
-            <Input
-              placeholder="Votre annonce"
-              type="textarea"
-              name="text"
-              id="exampleText"
-              onChange={handleEditorChange}
-            />
-          </FormGroup>
-          <Row>
-            <Col sm={{ size: 1, offset: 9 }}>
-              <Button className="button">Valider</Button>
-            </Col>
-            <Col>
-              <Button className="button ml-5 mb-5">Annuler</Button>
-            </Col>
-          </Row>
-        </Form>
-      </Container>
+            </FormGroup>
+            <Row>
+              <Col sm={{ size: 1, offset: 9 }}>
+                <Button className="button">Valider</Button>
+              </Col>
+              <Col>
+                <Button onClick={resetForm} className="button ml-5 mb-5">
+                  Annuler
+                </Button>
+              </Col>
+            </Row>
+          </Form>
+        </Container>
+      )}
     </>
   );
 }
