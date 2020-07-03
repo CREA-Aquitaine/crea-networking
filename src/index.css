@@ -44,11 +44,12 @@ h3 {
 }
 button {
   padding: 8px 20px;
-  background-color: #dd2b25;
+  background-color: #dd2b25 !important;
   font-size: 18px;
   font-weight: 500;
   color: white;
-  border: 1px solid transparent;
+  border: 1px solid transparent !important;
+  border-radius:0 !important;
 }
 button:hover {
   background-color: transparent;
