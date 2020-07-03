@@ -78,17 +78,17 @@ code {
   font-size: 15px !important;
   color: white !important;
   border: 1px solid transparent !important;
-  border-radius : 0 !important;
+  border-radius: 0 !important;
 }
 
 /*Editeur de texte */
 .ck-content {
-  height : 20vw;
+  height: 20vw;
 }
 
 /* Fil d'ariane */
 .breadcrumb {
-  margin: 1vw 0 2vw 0 ;
+  margin: 1vw 0 2vw 0;
   background-color: transparent !important;
 }
 .breadcrumb a {
@@ -101,10 +101,15 @@ code {
 }
 /*textarea formualire contact*/
 .textarea .form-control {
-  height : 20vh;
+  height: 20vh;
 }
 
 /*Menu déroulant choix faq admin*/
 .dropdown-menu {
-  width : 8vw !important;
+  width: 8vw !important;
+}
+
+/*modal faq*/
+.modal-dialog {
+  max-width: 800px;
 }

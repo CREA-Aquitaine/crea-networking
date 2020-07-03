@@ -15,8 +15,8 @@ import NavBarAdmin from './navbar/NavBarAdmin';
 import DashboardAdmin from './admin/dashboardAdmin/DashboardAdmin';
 import UsersList from './admin/UsersList/Users_List';
 import AnnouncesList from './admin/Announces_List';
-import FaqList from './admin/Faq_List';
-import PartnersList from './admin/Partners_List';
+import FaqList from './admin/FAQ/Faq_List';
+import PartnersList from './admin/partners/Partners_List';
 
 function Router({ isAdministrator }) {
   return (

@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
+  Button,
   Breadcrumb,
   BreadcrumbItem,
   Input,
   Container,
   Row,
   Col,
-  FormGroup,
-  Label,
 } from 'reactstrap';
 
 import UsersListTable from './Users_List_Table';
@@ -42,11 +41,8 @@ function UsersList() {
             </Col>
           </Row>
           <Row className={styles.usersListPage}>
-            <Col xs="3">
-              <FormGroup check className={styles.checkbox}>
-                <Label check />
-                <Input type="checkbox" /> Voir tout
-              </FormGroup>
+            <Col xs={{size: "2", offset:"1"}}>
+              <Button className={styles.UsersListButton}>Voir tout</Button>
             </Col>
             <Col xs="3">
               <Input type="select" name="Profils" id="exampleSelect">
@@ -90,6 +86,22 @@ function UsersList() {
           </Row>
           <Row>
             <UsersListTable />
+          </Row>
+          <Row>
+            <Col xs={{ size: '1', offset: '9' }}>
+              <Button className={styles.UsersListButton}>Modifier</Button>
+            </Col>
+            <Col xs="2">
+              <Button className="button">Supprimer</Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col
+              xs={{ size: '3', offset: '9' }}
+              className={styles.UsersListExportButton}
+            >
+              <Link to="/">Exporter la liste </Link>
+            </Col>
           </Row>
         </Container>
       </Container>

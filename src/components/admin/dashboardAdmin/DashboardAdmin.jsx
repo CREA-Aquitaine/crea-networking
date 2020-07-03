@@ -3,7 +3,8 @@ import { Breadcrumb, BreadcrumbItem, Container, Row, Col } from 'reactstrap';
 import { Pie } from 'react-chartjs-2';
 
 import styles from './DashboardAdmin.module.css';
-import BarStat from './Bar';
+// import BarStat from './BarStat';
+import LineInscription from './LineInscription';
 
 function HomeAdmin() {
   return (
@@ -27,10 +28,14 @@ function HomeAdmin() {
                 labels: ['Demandeurs emploi', 'Ecoles', 'Entreprises'],
               }}
             />
+            <p className={styles.nbtotal}>
+              Nombres total d&apos;utilisateurs : 258
+            </p>
           </Container>
         </Col>
         <Col>
-          <BarStat />
+          <LineInscription />
+          {/* <BarStat /> */}
         </Col>
       </Row>
     </Container>

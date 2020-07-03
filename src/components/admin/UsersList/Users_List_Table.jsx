@@ -1,30 +1,21 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
 import {
   Table,
   Col,
   Input,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Button,
 } from 'reactstrap';
 
 import styles from './Users_List_Table.module.css';
 
 function UsersListTable() {
-  const [dropdownOpen, setOpen] = useState(false);
-
-  const toggle = () => setOpen(!dropdownOpen);
   return (
     <Col>
       <Table borderless>
         <thead>
           <tr>
-            <th>
-              <Input type="checkbox" />
+            <th className={styles.thCheckbox}>
+              <Input type="checkbox" className={styles.checkboxTh} />
             </th>
             <th>
               Nom
@@ -145,7 +136,7 @@ function UsersListTable() {
         <tbody>
           <tr>
             <th>
-              <Input type="checkbox" />
+              <Input type="checkbox" className={styles.checkboxTh} />
             </th>
             <td>Mark</td>
             <td>Otto</td>
@@ -154,7 +145,7 @@ function UsersListTable() {
           </tr>
           <tr>
             <th>
-              <Input type="checkbox" />
+              <Input type="checkbox" className={styles.checkboxTh} />
             </th>
             <td>Jacob</td>
             <td>Thornton</td>
@@ -163,7 +154,7 @@ function UsersListTable() {
           </tr>
           <tr>
             <th>
-              <Input type="checkbox" />
+              <Input type="checkbox" className={styles.checkboxTh} />
             </th>
             <td>Larry</td>
             <td>the Bird</td>
@@ -172,7 +163,7 @@ function UsersListTable() {
           </tr>
           <tr>
             <th>
-              <Input type="checkbox" />
+              <Input type="checkbox" className={styles.checkboxTh} />
             </th>
             <td>Roger</td>
             <td>McFly</td>
@@ -181,7 +172,7 @@ function UsersListTable() {
           </tr>
           <tr>
             <th>
-              <Input type="checkbox" />
+              <Input type="checkbox" className={styles.checkboxTh} />
             </th>
             <td>Antoine</td>
             <td>Grant</td>
@@ -189,23 +180,6 @@ function UsersListTable() {
             <td>Chercheur d&apos;emploi</td>
           </tr>
         </tbody>
-        <tfoot>
-          <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-            <DropdownToggle
-              caret
-              className={styles.buttonDropdown}
-              color="white"
-            >
-              Modifier
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem className={styles.item}>Modifier</DropdownItem>
-              <DropdownItem className={styles.item}>Supprimer</DropdownItem>
-            </DropdownMenu>
-          </ButtonDropdown>
-          <Button className="button">OK</Button>
-          <Link to="/">Exporter la liste </Link>
-        </tfoot>
       </Table>
     </Col>
   );

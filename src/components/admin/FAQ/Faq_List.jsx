@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,13 +9,10 @@ import {
   Button,
   Label,
   FormGroup,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
 } from 'reactstrap';
 
 import styles from './Faq_List.module.css';
+import FaqModal from './FaqModal';
 
 const QR = [
   {
@@ -45,11 +42,6 @@ const QR = [
 ];
 
 function FaqList() {
-  const [dropdownOpen, setOpen] = useState(false);
-
-  const [modify, setModify] = useState(true);
-
-  const toggle = () => setOpen(!dropdownOpen);
   return (
     <Container>
       <Breadcrumb>
@@ -92,63 +84,23 @@ function FaqList() {
             </Col>
           </Row>
         </Container>
-        {QR.map((item) => (
-          <>
-            <FormGroup check className={styles.checkbox}>
-              <Label check />
-              <Input type="checkbox" /> {item.question}
-            </FormGroup>
-            <p className={styles.response}>{item.response}</p>
-          </>
-        ))}
+        <div Fluid className={styles.container}>
+          {QR.map((item) => (
+            <>
+              <FormGroup check className={styles.checkbox}>
+                <Label check />
+                <Input type="checkbox" /> {item.question}
+              </FormGroup>
+              <p className={styles.response}>{item.response}</p>
+            </>
+          ))}
+        </div>
         <Row>
           <Col xs={{ size: 1.5, offset: 8 }}>
-            {modify === true ? (
-              <>
-                <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-                  <DropdownToggle
-                    caret
-                    className={styles.buttonDropdown}
-                    color="white"
-                  >
-                    Modifier
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem className={styles.item}>
-                      Modifier
-                    </DropdownItem>
-                    <DropdownItem
-                      className={styles.item}
-                      onClick={() => setModify(false)}
-                    >
-                      Supprimer
-                    </DropdownItem>
-                  </DropdownMenu>
-                </ButtonDropdown>
-              </>
-            ) : (
-              <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-                <DropdownToggle
-                  caret
-                  className={styles.buttonDropdown}
-                  color="white"
-                >
-                  Supprimer
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem className={styles.item}>Supprimer</DropdownItem>
-                  <DropdownItem
-                    className={styles.item}
-                    onClick={() => setModify(true)}
-                  >
-                    Modifier
-                  </DropdownItem>
-                </DropdownMenu>
-              </ButtonDropdown>
-            )}
+            <FaqModal />
           </Col>
           <Col xs="2">
-            <Button className="button">Valider</Button>
+            <Button className="button">Supprimer</Button>
           </Col>
         </Row>
       </Container>
