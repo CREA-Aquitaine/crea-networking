@@ -29,7 +29,9 @@ function SecondNavbar() {
             </NavLink>
           </NavItem>
           <NavItem className={styles.partenaires}>
-            <NavLink className={styles.navlink}>PARTENAIRES</NavLink>
+            <NavLink className={styles.navlink} tag={Link} to="./partners">
+              PARTENAIRES
+            </NavLink>
           </NavItem>
           <NavItem className={styles.contact}>
             <NavLink className={styles.navlink} tag={Link} to="./contact">

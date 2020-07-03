@@ -19,10 +19,10 @@ function Router() {
         <Route path="/user/post" component={PostAnnounce} />
         <Route path="/user" />
         <Route path="/createAccount" component={CreateAccount} />
+        <Route path="/partners" component={Partners} />
         <Route path="/announce/:id" component={Announce} />
         <Route path="/contact" component={Contact} />
         <Route exact path="/" component={Home} />
-        <Route path="/partners" component={Partners} />
       </Switch>
       <Footer />
     </BrowserRouter>
