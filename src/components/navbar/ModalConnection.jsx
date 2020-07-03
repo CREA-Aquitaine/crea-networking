@@ -20,7 +20,7 @@ function ModalConnection({ modal, toggle }) {
   return (
     <>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Espace connexion</ModalHeader>
+        <ModalHeader>Espace connexion</ModalHeader>
         <ModalBody>
           <FormGroup className={styles.formgroup}>
             <Label for="exampleEmail">Email</Label>

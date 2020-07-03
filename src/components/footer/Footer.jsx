@@ -10,7 +10,7 @@ import LogoNetworking from '../image/logo_netWorking.png';
 export default function footer() {
   return (
     <>
-      <Container fluid className={styles.bkgFooter}>
+      <Container fluid className={`${styles.bkgFooter} py-5 mt-5`}>
         <Row>
           <Col className="align-self-center">
             <Container>
@@ -88,7 +88,7 @@ export default function footer() {
           </Col>
         </Row>
       </Container>
-      <Container className="mb-5">
+      <Container>
         <Row className="p-3">
           <Col>
             <a href="$" className={styles.tagMl}>

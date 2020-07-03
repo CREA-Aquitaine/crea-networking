@@ -97,7 +97,7 @@ function Contact() {
           </FormGroup>
           <Row>
             <Col xs={{ size: 2, offset: 8 }} className="mb-5">
-              <Button className="button">Envoyez</Button>
+              <Button className="button">Envoyer</Button>
             </Col>
             {message ? <ToastContact /> : ''}
           </Row>
