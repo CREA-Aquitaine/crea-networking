@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import Dashboard from './dashboard/Dashboard';
 import Footer from './footer/Footer';
 import NavBar from './navbar/NavBar';
@@ -9,24 +12,62 @@ import Partners from './partners/Partners';
 import PostAnnounce from './announce/PostAnnounce';
 import CreateAccount from './createAccount/CreateAccount';
 import Contact from './contact/Contact';
+import DashboardAdmin from './admin/dashboardAdmin/DashboardAdmin';
+import UsersList from './admin/UsersList/Users_List';
+import AnnouncesList from './admin/AnnouncesList/Announces_List';
+import FaqList from './admin/FAQ/Faq_List';
+import PartnersList from './admin/partners/Partners_List';
 
-function Router() {
+function Router({ role }) {
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path="/user/id" component={Dashboard} />
-        <Route path="/user/post" component={PostAnnounce} />
-        <Route path="/user" />
-        <Route path="/createAccount" component={CreateAccount} />
-        <Route path="/partners" component={Partners} />
-        <Route path="/announce/:id" component={Announce} />
-        <Route path="/contact" component={Contact} />
-        <Route exact path="/" component={Home} />
-      </Switch>
-      <Footer />
+      {role === 'admin' ? (
+        <>
+          <NavBar />
+          <Switch>
+            <Route path="/dashboard" component={DashboardAdmin} />
+            <Route path="/users" component={UsersList} />
+            <Route path="/partners" component={PartnersList} />
+            <Route path="/faq" component={FaqList} />
+            <Route path="/announces" component={AnnouncesList} />
+            <Route exact path="/" component={Home} />
+          </Switch>
+          <Footer />
+        </>
+      ) : role === 'user' ? (
+        <>
+          <NavBar />
+          <Switch>
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/post" component={PostAnnounce} />
+            <Route path="/user" />
+            <Route path="/partners" component={Partners} />
+            <Route path="/createAccount" component={CreateAccount} />
+            <Route path="/announces/:id" component={Announce} />
+            <Route path="/contact" component={Contact} />
+            <Route exact path="/" component={Home} />
+          </Switch>
+          <Footer />
+        </>
+      ) : (
+        <>
+          <NavBar />
+          <Switch>
+            <Route path="/partners" component={Partners} />
+            <Route path="/createAccount" component={CreateAccount} />
+            <Route path="/contact" component={Contact} />
+            <Route exact path="/" component={Home} />
+          </Switch>
+          <Footer />
+        </>
+      )}
     </BrowserRouter>
   );
 }
 
-export default Router;
+const mapStateToProps = (state) => ({
+  role: state.role.isRole,
+});
+Router.propTypes = { role: PropTypes.string.isRequired };
+
+export default connect(mapStateToProps)(Router);

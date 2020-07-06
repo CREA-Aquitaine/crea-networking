@@ -1,0 +1,48 @@
+.announcesListTitle {
+  background-color: #28262b;
+  color: white;
+  padding: 0.8vw;
+}
+.announcesListTitleMargin {
+  padding-top: 0.8vh;
+}
+.announcesListPage {
+  margin-top: 5vh;
+}
+.tableTd {
+  width: 30%;
+}
+.inputSearch {
+  border-radius: 0;
+  width: 10vw;
+}
+.containerCadre {
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  border: 1px solid #dfd9d9;
+  margin-bottom: 4vh;
+}
+.checkboxTh {
+  position: relative !important;
+  margin: 0 !important;
+}
+.announcesListButton {
+  padding: 8px 20px !important;
+  border: 1px solid transparent;
+  box-shadow: 5px 5px 2.5px #dfd9d9 !important;
+  background-color: white;
+  color: black;
+  border-radius: 0;
+  margin-bottom: 4vh;
+}
+.announcesListButton:hover {
+  border: 0.2vw solid #dd2b25;
+  background-color: white;
+  color: black;
+}
+.announcesListExportButton {
+  color : black;
+}
+.link {
+  margin-bottom: 4vh;
+  margin-top : 2vh;
+}
