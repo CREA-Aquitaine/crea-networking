@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Variable environment
+*** for this project, you need to create a ".env" with those fields ***
+
+- REACT_APP_HOST =
+
 ## Getting started
 
 ```bash

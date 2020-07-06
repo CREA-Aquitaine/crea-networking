@@ -1,13 +1,16 @@
-.usersListTitle {
-  background-color: #dd2b25;
+.announcesListTitle {
+  background-color: #28262b;
   color: white;
   padding: 0.8vw;
 }
-.usersListTitleMargin {
+.announcesListTitleMargin {
   padding-top: 0.8vh;
 }
-.usersListPage {
+.announcesListPage {
   margin-top: 5vh;
+}
+.tableTd {
+  width: 30%;
 }
 .inputSearch {
   border-radius: 0;
@@ -16,33 +19,30 @@
 .containerCadre {
   box-shadow: 5px 5px 2.5px #dfd9d9;
   border: 1px solid #dfd9d9;
-  margin-bottom : 4vh;
+  margin-bottom: 4vh;
 }
 .checkboxTh {
   position: relative !important;
-  margin:0 !important;
+  margin: 0 !important;
 }
-.UsersListButton {
+.announcesListButton {
   padding: 8px 20px !important;
   border: 1px solid transparent;
-  box-shadow: 5px 5px 2.5px #DFD9D9 !important;
+  box-shadow: 5px 5px 2.5px #dfd9d9 !important;
   background-color: white;
   color: black;
   border-radius: 0;
   margin-bottom: 4vh;
 }
-.UsersListButton:hover {
-  border: 0.2vw solid #DD2B25;
+.announcesListButton:hover {
+  border: 0.2vw solid #dd2b25;
   background-color: white;
   color: black;
 }
-.UsersListExportButton {
-  margin-bottom: 4vh;
-  color: black;
-  margin-top : 2vh;
-
+.announcesListExportButton {
+  color : black;
 }
-.UsersListExportLink {
+.link {
   margin-bottom: 4vh;
-  color: black
+  margin-top : 2vh;
 }

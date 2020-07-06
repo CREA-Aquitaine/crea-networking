@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   Button,
   Breadcrumb,
@@ -9,11 +8,11 @@ import {
   Row,
   Col,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import styles from './Announces.module.css';
+import AnnouncesListTable from './Announces_List_Table';
 
-import UsersListTable from './Users_List_Table';
-import styles from './Users_List_Table.module.css';
-
-function UsersList() {
+function AnnouncesList() {
   return (
     <>
       <Container>
@@ -22,13 +21,13 @@ function UsersList() {
             Accueil
           </BreadcrumbItem>
           <BreadcrumbItem active tag={Link} to="/users">
-            Mes Utilisateurs
+            Mes Annonces
           </BreadcrumbItem>
         </Breadcrumb>
         <Container fluid className={styles.containerCadre}>
-          <Row className={styles.usersListTitle}>
-            <Col xs="3" className={styles.usersListTitleMargin}>
-              Gestion des utilisateurs
+          <Row className={styles.announcesListTitle}>
+            <Col xs="3" className={styles.announcesListTitleMargin}>
+              Gestion des annonces
             </Col>
             <Col xs={{ size: '3', offset: '6' }}>
               <Input
@@ -40,16 +39,17 @@ function UsersList() {
               />
             </Col>
           </Row>
-          <Row className={styles.usersListPage}>
+          <Row className={styles.announcesListPage}>
             <Col xs={{ size: '2', offset: '1' }}>
-              <Button className={styles.UsersListButton}>Voir tout</Button>
+              <Button className={styles.announcesListButton}>Voir tout</Button>
             </Col>
             <Col xs="3">
-              <Input type="select" name="Profils" id="exampleSelect">
-                <option>Sélection par défaut </option>
-                <option>Ecoles/Etudiants</option>
-                <option>Entreprises</option>
-                <option>Chercheurs d&apos;emploi</option>
+              <Input type="select" name="Type" id="exampleSelect">
+                <option> Sélection par défaut </option>
+                <option>Partenariats</option>
+                <option>Emploi</option>
+                <option>Recherche d&apos;emploi</option>
+                <option>Recherche & développement</option>
               </Input>
             </Col>
             <Col xs={{ size: '1.5', offset: '3' }}>
@@ -85,18 +85,15 @@ function UsersList() {
             </Col>
           </Row>
           <Row>
-            <UsersListTable />
+            <AnnouncesListTable />
           </Row>
           <Row>
-            <Col xs="3" className={styles.UsersListExportButton}>
-              <Link className={styles.UsersListExportLink} to="/">
+            <Col xs="3" className={styles.link}>
+              <Link to="/" className={styles.announcesListExportButton}>
                 Exporter la liste{' '}
               </Link>
             </Col>
-            <Col
-              xs={{ size: '3', offset: '6' }}
-              className={styles.UsersListExportButton}
-            >
+            <Col className={styles.link} xs={{ size: '3', offset: '6' }}>
               <Button className="button">Supprimer</Button>
             </Col>
           </Row>
@@ -106,4 +103,4 @@ function UsersList() {
   );
 }
 
-export default UsersList;
+export default AnnouncesList;

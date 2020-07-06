@@ -1,14 +1,16 @@
-const initialState = { isAdmin: true };
+const initialState = { isRole: '' };
 
-const isAdministrator = (state = initialState, action) => {
+const role = (state = initialState, action) => {
   switch (action.type) {
     case 'ADMIN':
-      return { isAdmin: true };
+      return { isRole: 'admin' };
     case 'USER':
-      return { isAdmin: false };
+      return { isRole: 'user' };
+    case 'DISCONNECT':
+      return { isRole: '' };
     default:
       return { ...state };
   }
 };
 
-export default isAdministrator;
+export default role;

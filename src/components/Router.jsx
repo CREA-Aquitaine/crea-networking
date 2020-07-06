@@ -12,19 +12,18 @@ import Partners from './partners/Partners';
 import PostAnnounce from './announce/PostAnnounce';
 import CreateAccount from './createAccount/CreateAccount';
 import Contact from './contact/Contact';
-import NavBarAdmin from './navbar/NavBarAdmin';
 import DashboardAdmin from './admin/dashboardAdmin/DashboardAdmin';
 import UsersList from './admin/UsersList/Users_List';
-import AnnouncesList from './admin/Announces_List';
+import AnnouncesList from './admin/AnnouncesList/Announces_List';
 import FaqList from './admin/FAQ/Faq_List';
 import PartnersList from './admin/partners/Partners_List';
 
-function Router({ isAdministrator }) {
+function Router({ role }) {
   return (
     <BrowserRouter>
-      {isAdministrator === true ? (
+      {role === 'admin' ? (
         <>
-          <NavBarAdmin />
+          <NavBar />
           <Switch>
             <Route path="/dashboard" component={DashboardAdmin} />
             <Route path="/users" component={UsersList} />
@@ -35,7 +34,7 @@ function Router({ isAdministrator }) {
           </Switch>
           <Footer />
         </>
-      ) : (
+      ) : role === 'user' ? (
         <>
           <NavBar />
           <Switch>
@@ -50,15 +49,25 @@ function Router({ isAdministrator }) {
           </Switch>
           <Footer />
         </>
+      ) : (
+        <>
+          <NavBar />
+          <Switch>
+            <Route path="/partners" component={Partners} />
+            <Route path="/createAccount" component={CreateAccount} />
+            <Route path="/contact" component={Contact} />
+            <Route exact path="/" component={Home} />
+          </Switch>
+          <Footer />
+        </>
       )}
     </BrowserRouter>
   );
 }
 
 const mapStateToProps = (state) => ({
-  isAdministrator: state.isAdministrator.isAdmin,
+  role: state.role.isRole,
 });
-
-Router.propTypes = { isAdministrator: PropTypes.string.isRequired };
+Router.propTypes = { role: PropTypes.string.isRequired };
 
 export default connect(mapStateToProps)(Router);

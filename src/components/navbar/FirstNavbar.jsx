@@ -9,7 +9,7 @@ import PopUpConnection from './PopUpConnection';
 import styles from './NavBar.module.css';
 import './Navbar.css';
 
-function FirstNavbar({ isAdministrator }) {
+function FirstNavbar({ role }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -19,7 +19,16 @@ function FirstNavbar({ isAdministrator }) {
       <NavbarToggler onClick={toggle} />
       <Nav navbar className={`${styles.navbar} mr-5`}>
         <NavItem className="mr-5">
-          {isAdministrator ? 'Mon compte' : <PopUpConnection />}
+          {role === 'admin' ? 'Mon compte' : ''}
+        </NavItem>
+        <NavItem className="mr-5">
+          {role === 'admin' ? (
+            'Se déconnecter'
+          ) : role === 'user' ? (
+            'Se déconnecter'
+          ) : (
+            <PopUpConnection />
+          )}
         </NavItem>
         <NavItem>
           <NavLink>Langue</NavLink>
@@ -30,9 +39,9 @@ function FirstNavbar({ isAdministrator }) {
   );
 }
 const mapStateToProps = (state) => ({
-  isAdministrator: state.isAdministrator.isAdmin,
+  role: state.role.isRole,
 });
 
-FirstNavbar.propTypes = { isAdministrator: PropTypes.string.isRequired };
+FirstNavbar.propTypes = { role: PropTypes.string.isRequired };
 
 export default connect(mapStateToProps)(FirstNavbar);

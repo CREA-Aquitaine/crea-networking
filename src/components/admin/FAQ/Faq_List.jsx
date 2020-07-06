@@ -53,15 +53,6 @@ function FaqList() {
           <Col xs="2" className={styles.faqTitle}>
             Gérer la FAQ
           </Col>
-          <Col xs={{ size: 2, offset: 7 }}>
-            <Input
-              className={styles.inputSearch}
-              type="text"
-              name="search"
-              id="search"
-              placeholder="RECHERCHER"
-            />
-          </Col>
         </Row>
         <Container fluid className={styles.addQR}>
           <Input
