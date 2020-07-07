@@ -19,7 +19,7 @@ import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
 import styles from './PopUpConnection.module.css';
 
-function ModalConnection({ modal, toggle }) {
+function ModalConnection({ modal, toggle, userInfos, role, label }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -41,6 +41,11 @@ function ModalConnection({ modal, toggle }) {
       });
       dispatch({ type: AUTHENTICATED, payload: res.data.token });
       dispatch({ type: USERINFOS, payload: res.data.user });
+      if (res.data.user.role.label === 'ADMIN') {
+        dispatch({ type: 'ADMIN' });
+      } else if (res.data.user.role.label === 'USER') {
+        dispatch({ type: 'USER' });
+      }
     } catch (err) {
       setError(err);
     }
