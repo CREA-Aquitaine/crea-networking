@@ -16,7 +16,7 @@ import DashboardAdmin from './admin/dashboardAdmin/DashboardAdmin';
 import UsersList from './admin/UsersList/Users_List';
 import AnnouncesList from './admin/AnnouncesList/Announces_List';
 import Faq from './admin/FAQ/Faq';
-import PartnersList from './admin/partners/Partners_List';
+import PartnersList from './admin/partners/Partners';
 
 function Router({ role }) {
   return (
