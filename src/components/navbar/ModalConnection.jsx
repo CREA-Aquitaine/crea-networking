@@ -41,9 +41,9 @@ function ModalConnection({ modal, toggle, userInfos, role, label }) {
       });
       dispatch({ type: AUTHENTICATED, payload: res.data.token });
       dispatch({ type: USERINFOS, payload: res.data.user });
-      if (res.data.user.role.label === 'ADMIN') {
+      if (res.data.user.Role.label === 'ADMIN') {
         dispatch({ type: 'ADMIN' });
-      } else if (res.data.user.role.label === 'USER') {
+      } else if (res.data.user.Role.label === 'USER') {
         dispatch({ type: 'USER' });
       }
     } catch (err) {
@@ -120,6 +120,10 @@ function ModalConnection({ modal, toggle, userInfos, role, label }) {
 const mapStateToProps = (state) => ({
   token: state.authenticated.token,
   userInfos: state.authenticated.userInfos,
+  role:
+    state.authenticated.userInfos &&
+    state.authenticated.userInfos.role &&
+    state.authenticated.userInfos.role.label,
 });
 
 ModalConnection.propTypes = {
