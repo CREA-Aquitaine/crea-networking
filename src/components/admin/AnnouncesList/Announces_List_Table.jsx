@@ -1,10 +1,38 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Table, Col, Input } from 'reactstrap';
 
 import styles from './Announces.module.css';
 
-function AnnouncesListTable() {
+const labelTable = [
+  { label: 'N° Annonce' },
+  { label: 'Titre' },
+  { label: "Type d'annonce" },
+  { label: 'Catégorie' },
+];
+
+function AnnouncesListTable({ token }) {
+  const [announcesList, setAnnounceslist] = useState([]);
+  const [error, setError] = useState('');
+
+  const getAnnounces = async () => {
+    try {
+      const res = await Axios.get('http://localhost:8080/api/v1/posts', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setAnnounceslist(res.data);
+    } catch (err) {
+      setError(error);
+    }
+  };
+
+  useEffect(() => {
+    getAnnounces();
+  }, []);
   return (
     <Col>
       <Table borderless>
@@ -13,212 +41,54 @@ function AnnouncesListTable() {
             <th className={styles.thCheckbox}>
               <Input type="checkbox" className={styles.checkboxTh} />
             </th>
-            <th>
-              N° Annonce
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-up-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8 5.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M7.646 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 5.707 5.354 8.354a.5.5 0 1 1-.708-.708l3-3z"
-                />
-              </svg>
-            </th>
-            <th className={styles.tableTd}>
-              Titre
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-up-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8 5.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M7.646 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 5.707 5.354 8.354a.5.5 0 1 1-.708-.708l3-3z"
-                />
-              </svg>
-            </th>
-            <th>
-              Type d&apos;annonce
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-up-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8 5.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M7.646 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 5.707 5.354 8.354a.5.5 0 1 1-.708-.708l3-3z"
-                />
-              </svg>
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
-            </th>
-            <th>
-              Catégorie
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-up-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8 5.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M7.646 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 5.707 5.354 8.354a.5.5 0 1 1-.708-.708l3-3z"
-                />
-              </svg>
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
-            </th>
-            <th> Statut </th>
+            {labelTable.map((label) => {
+              return (
+                <th>
+                  {label.label}
+                  <button
+                    type="button"
+                    className={styles.arrowButtons}
+                    onClick={getAnnounces}
+                  >
+                    <span className={styles.arrowDown} />
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.arrowButtons}
+                    onClick={getAnnounces}
+                  >
+                    <span className={styles.arrowUp} />
+                  </button>
+                </th>
+              );
+            })}
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>0123654d</td>
-            <td>CDD à pourvoir Secretariat (H/F)</td>
-            <td>Recherche d&apos;emploi</td>
-            <td>Secretariat</td>
-            <td>Envoyé</td>
-          </tr>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>45564987d</td>
-            <td>Recherche de partenariat Développement</td>
-            <td>Recherche de partenariat</td>
-            <td>Développement</td>
-            <td>En cours</td>
-          </tr>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>7898453sqd</td>
-            <td>Recherche & développement pour la WildCodeSchool</td>
-            <td>Recherche & développement</td>
-            <td>Recherche</td>
-            <td>En cours</td>
-          </tr>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>054654213d</td>
-            <td>CDD à pourvoir Informatique</td>
-            <td>Recherche d&apos;emploi</td>
-            <td>Informatique</td>
-            <td>En attente</td>
-          </tr>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>65431faz</td>
-            <td>Stage à pourvoir Cuisine (H/F)</td>
-            <td>Recherche d&apos;emploi</td>
-            <td>Cuisine</td>
-            <td>Envoyé</td>
-          </tr>
+          {announcesList.map((post) => {
+            return (
+              <tr>
+                <th>
+                  <Input type="checkbox" className={styles.checkboxTh} />
+                </th>
+                <td>{post.id}</td>
+                <td>{post.title}</td>
+                <td>{post.TypePostId}</td>
+                <td>{post.JobCategoryId}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
     </Col>
   );
 }
+const mapStateToProps = (state) => ({
+  token: state.authenticated.token,
+});
 
-export default AnnouncesListTable;
+AnnouncesListTable.propTypes = {
+  token: PropTypes.string.isRequired,
+};
+
+export default connect(mapStateToProps)(AnnouncesListTable);
