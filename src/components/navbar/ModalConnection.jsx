@@ -19,7 +19,7 @@ import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
 import styles from './PopUpConnection.module.css';
 
-function ModalConnection({ modal, toggle, userInfos, role, label }) {
+function ModalConnection({ modal, toggle }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -58,6 +58,13 @@ function ModalConnection({ modal, toggle, userInfos, role, label }) {
 
   return (
     <>
+      {error ? (
+        <div className=" pl-1 pr-1 bg-danger rounded">
+          <p>Mot de passe ou identifiant incorrect</p>
+        </div>
+      ) : (
+        ''
+      )}
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader>Espace connexion</ModalHeader>
         <ModalBody>
