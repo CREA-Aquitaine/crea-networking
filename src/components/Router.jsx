@@ -15,7 +15,7 @@ import Contact from './contact/Contact';
 import DashboardAdmin from './admin/dashboardAdmin/DashboardAdmin';
 import UsersList from './admin/UsersList/Users_List';
 import AnnouncesList from './admin/AnnouncesList/Announces_List';
-import FaqList from './admin/FAQ/Faq_List';
+import Faq from './admin/FAQ/Faq';
 import PartnersList from './admin/partners/Partners_List';
 
 function Router({ role }) {
@@ -28,7 +28,7 @@ function Router({ role }) {
             <Route path="/dashboard" component={DashboardAdmin} />
             <Route path="/users" component={UsersList} />
             <Route path="/partners" component={PartnersList} />
-            <Route path="/faq" component={FaqList} />
+            <Route path="/faq" component={Faq} />
             <Route path="/announces" component={AnnouncesList} />
             <Route exact path="/" component={Home} />
           </Switch>
