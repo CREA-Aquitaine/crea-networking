@@ -127,10 +127,6 @@ function ModalConnection({ modal, toggle }) {
 const mapStateToProps = (state) => ({
   token: state.authenticated.token,
   userInfos: state.authenticated.userInfos,
-  role:
-    state.authenticated.userInfos &&
-    state.authenticated.userInfos.role &&
-    state.authenticated.userInfos.role.label,
 });
 
 ModalConnection.propTypes = {
