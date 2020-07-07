@@ -21,7 +21,8 @@ import FaqList from './FaqList';
 function Faq({ token }) {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
-  const [language, setLanguage] = useState('français');
+  // const [language, setLanguage] = useState('français');
+  const language = 'français';
   const [error, setError] = useState('');
   const [created, setCreated] = useState(false);
 
