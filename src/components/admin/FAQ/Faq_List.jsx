@@ -42,6 +42,27 @@ const QR = [
 ];
 
 function FaqList() {
+  // const [faq, setFaq] = useState([]);
+  // const [error, seterror] = useState('');
+
+  // const getFaq = async () => {
+  //   try {
+  //     const res = await Axios.get('http://localhost:8080/api/v1/faq', {
+  //       headers: {
+  //         Authorization: `Bearer ${TOKEN}`,
+  //       },
+  //     });
+  //     setFaq(res.data);
+  //   } catch (err) {
+  //     seterror(err);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getFaq();
+  //   console.log(faq);
+  // }, []);
+
   return (
     <Container>
       <Breadcrumb>
