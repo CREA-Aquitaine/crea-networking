@@ -30,6 +30,7 @@ function FaqList({ token }) {
 
   return (
     <>
+      {error ? '' : ''}
       <div Fluid className={styles.container}>
         {faq.map((item) => (
           <>
