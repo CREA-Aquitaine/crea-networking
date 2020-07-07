@@ -34,9 +34,8 @@
 .response {
   font-size: 0.8vw;
   text-align: left;
-  margin-bottom: 2vw;
-  padding-left: 1vw;
 }
+
 .buttonDropdown {
   padding: 8px 20px !important;
   border: 1px solid transparent;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -19,20 +19,42 @@ import styles from './Faq_List.module.css';
 import FaqList from './FaqList';
 
 function Faq({ token }) {
+  const [faq, setFaq] = useState([]);
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
-  // const [language, setLanguage] = useState('français');
-  const language = 'français';
+  const [language, setLanguage] = useState('');
   const [error, setError] = useState('');
   const [created, setCreated] = useState(false);
 
   const handleQuestion = (e) => {
     setQuestion(e.target.value);
   };
+  const handleLanguageFrance = (e) => {
+    setLanguage(e.target.value);
+  };
+  const handleLanguageEspagne = (e) => {
+    setLanguage(e.target.value);
+  };
 
   const handleAnswer = (e) => {
     setAnswer(e.target.value);
   };
+
+  const getFaq = async () => {
+    try {
+      const res = await Axios.get('http://localhost:8080/api/v1/faq', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setFaq(res.data);
+    } catch (err) {
+      setError(err);
+    }
+  };
+  useEffect(() => {
+    getFaq();
+  }, []);
 
   const postFaq = async () => {
     try {
@@ -50,6 +72,7 @@ function Faq({ token }) {
         }
       );
       setCreated(true);
+      getFaq();
     } catch (err) {
       setError(err);
     }
@@ -95,6 +118,19 @@ function Faq({ token }) {
               onChange={handleAnswer}
             />
           </FormGroup>
+          <FormGroup>
+            <Row>
+              <Col xs="1">
+                <Label for="exampleSelect">Pays</Label>
+              </Col>
+              <Col xs="3">
+                <Input type="select" name="select" id="exampleSelect">
+                  <option onClick={handleLanguageFrance}>France</option>
+                  <option onClick={handleLanguageEspagne}>Espagne</option>
+                </Input>
+              </Col>
+            </Row>
+          </FormGroup>
           <Row>
             <Col xs={{ size: 2, offset: 10 }}>
               <Button className="button" type="submit">
@@ -111,7 +147,7 @@ function Faq({ token }) {
             )}
           </Row>
         </Form>
-        <FaqList />
+        <FaqList faq={faq} getFaq={getFaq} />
       </Container>
     </Container>
   );
