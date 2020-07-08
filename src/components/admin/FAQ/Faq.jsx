@@ -134,7 +134,7 @@ function Faq({ token }) {
           <Row>
             <Col xs={{ size: 2, offset: 10 }}>
               <Button className="button" type="submit">
-                Valider
+                Ajouter
               </Button>
             </Col>
             {created ? <p> Votre question/réponse a bien été crée.</p> : ''}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
 import NavbarLanguage from './NavbarLanguage';
 import PopUpConnection from './PopUpConnection';
@@ -11,25 +11,40 @@ import './Navbar.css';
 
 function FirstNavbar({ role }) {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
+  const dispatch = useDispatch();
+
+  const disconnect = () => {
+    dispatch({ type: 'DISCONNECT' });
+  };
 
   return (
     <Navbar color="light" expand="xs" className={styles.nav}>
       <NavbarToggler onClick={toggle} />
       <Nav navbar className={`${styles.navbar} mr-5`}>
-        <NavItem className="mr-5">
+        <NavItem className={`${styles.navItem} mr-5 mt-2`}>
           {role === 'admin' ? 'Mon compte' : ''}
         </NavItem>
-        <NavItem className="mr-5">
-          {role === 'admin' ? (
-            'Se déconnecter'
-          ) : role === 'user' ? (
-            'Se déconnecter'
-          ) : (
+        {role === 'admin' ? (
+          <NavItem
+            className={`${styles.navItem} mr-5 mt-2`}
+            onClick={disconnect}
+          >
+            Se déconnecter
+          </NavItem>
+        ) : role === 'user' ? (
+          <NavItem
+            className={`${styles.navItem} mr-5 mt-2`}
+            onClick={disconnect}
+          >
+            Se déconnecter
+          </NavItem>
+        ) : (
+          <NavItem className="mr-5">
             <PopUpConnection />
-          )}
-        </NavItem>
+          </NavItem>
+        )}
+
         <NavItem>
           <NavLink>Langue</NavLink>
         </NavItem>
