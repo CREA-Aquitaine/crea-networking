@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  Container,
-  Row,
-  Col,
-  Button,
-} from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Container, Row, Col } from 'reactstrap';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import styles from './Partner.module.css';
-import PartnerModal from './PartnerModal';
 import PartnersList from './PartnersList';
 import PartnersPost from './PartnersPost';
 
@@ -51,14 +43,6 @@ function Partners({ token }) {
         {error ? <p>Problème lors de la récupération des partenaires</p> : ''}
         <PartnersPost getPartners={getPartners} />
         <PartnersList partners={partners} getPartners={getPartners} />
-        <Row>
-          <Col xs={{ size: 1.5, offset: 8 }}>
-            <PartnerModal />
-          </Col>
-          <Col xs="2">
-            <Button className="button">Supprimer</Button>
-          </Col>
-        </Row>
       </Container>
     </Container>
   );

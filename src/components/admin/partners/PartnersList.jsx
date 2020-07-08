@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import star from './images/star.svg';
 import starYellow from './images/starYellow.svg';
 import styles from './Partner.module.css';
+import PartnerModal from './PartnerModal';
 
-function PartnersList({ partners }) {
+function PartnersList({ partners, getPartners }) {
   return (
     <div Fluid className={styles.container}>
       {partners.map((item) => (
@@ -21,7 +22,7 @@ function PartnersList({ partners }) {
                   <p className={styles.titreDescription}>{item.label}</p>
                 </Col>
                 <Col xs="1">
-                  {item.favorite ? (
+                  {item.favorite === '1' ? (
                     <img
                       className={styles.star}
                       src={starYellow}
@@ -36,6 +37,18 @@ function PartnersList({ partners }) {
               <p className={styles.titreDescription}>{item.url}</p>
             </Col>
           </Row>
+          <Row>
+            <Col xs={{ size: 1.5, offset: 10 }}>
+              <PartnerModal
+                getPartners={getPartners}
+                isfavorite={item.favorite}
+                id={item.id}
+                urlPartner={item.url}
+                descriptionPartner={item.description}
+                labelPartner={item.label}
+              />
+            </Col>
+          </Row>
         </>
       ))}
     </div>
@@ -44,5 +57,6 @@ function PartnersList({ partners }) {
 
 PartnersList.propTypes = {
   partners: PropTypes.string.isRequired,
+  getPartners: PropTypes.string.isRequired,
 };
 export default PartnersList;

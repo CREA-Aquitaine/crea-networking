@@ -130,8 +130,8 @@ function PartnersPost({ getPartners, token }) {
           )}
         </Col>
         <Col xs="8">
-          Cliquer sur l&apos;étoile pour que le partenaire fasse parti de vos
-          partenaires favoris.
+          Cliquez sur l&apos;étoile pour ajouter ce partenaire à vos partenaires
+          favoris.
         </Col>
       </Row>
       <Row>

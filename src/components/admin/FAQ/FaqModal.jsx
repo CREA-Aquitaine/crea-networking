@@ -82,7 +82,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
 
   return (
     <div>
-      {errorDelete ? <p> a bien été supprimé</p> : ''}
+      {errorDelete ? <p>La question/réponse a bien été supprimé</p> : ''}
       {error ? <p>Il y a eu une erreur lors de la modification.</p> : ''}
       <Button className="button" onClick={toggle}>
         Modifier
