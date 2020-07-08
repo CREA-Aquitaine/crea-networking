@@ -4,6 +4,10 @@ import Steps from './Steps';
 import BestFriends from './BestFriends';
 import Header from './Header';
 
+import PutSchool from '../putAccount/PutSchool';
+import PutUser from '../putAccount/PutUserInfo';
+import PutCompany from '../putAccount/PutCompany';
+
 function Home() {
   return (
     <>
@@ -11,6 +15,9 @@ function Home() {
       <Blocs />
       <Steps />
       <BestFriends />
+      <PutSchool />
+      <PutUser />
+      <PutCompany />
     </>
   );
 }

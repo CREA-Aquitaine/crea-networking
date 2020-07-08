@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Row, Container } from 'reactstrap';
 import ModalDashboard from './ModalDashboard';
+
 import styles from './User_Infos.module.css';
 
 function UserInfos({ userInfos, activityFields, userTypes }) {
