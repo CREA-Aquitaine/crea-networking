@@ -33,33 +33,47 @@ function UsersList({ token }) {
     }
   };
 
-  const getCompanies = () => {
-    const companiesList = usersList.filter(
-      (user) => user.UserTypeId.label === 'Entreprises'
-    );
-    setUserslist(companiesList);
-  };
+  // const getCompanies = async () => {
+  //   try {
+  //     const res = await Axios.get('http://localhost:8080/api/v1/users', {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     if (res.data.UserTypeId === 'e3b1e7b9-d001-470d-8438-695ebcea6e3a') {
+  //       const companiesList = usersList.filter(
+  //         (user) =>
+  //           user.res.data.UserTypeId === 'e3b1e7b9-d001-470d-8438-695ebcea6e3a '
+  //       );
+  //       setUserslist(companiesList);
+  //     }
+  //   } catch (err) {
+  //     setError(error);
+  //   }
+  //   // const companiesList = usersList.filter(
+  //   //   (user) => user.UserTypeId === 'e3b1e7b9-d001-470d-8438-695ebcea6e3a '
+  //   // );
+  //   // setUserslist(companiesList);
+  // };
 
-  const getSchools = () => {
-    const schoolsList = usersList.filter(
-      (user) =>
-        user.UserTypeId.label === 'Ecoles' && user.UserTypeId === 'Etudiants'
-    );
-    setUserslist(schoolsList);
-  };
+  // const getSchools = () => {
+  //   const schoolsList = usersList.filter(
+  //     (user) => user.UserTypeId === 'b20f4062-d8bf-4de5-8aeb-e0a78a043f64'
+  //   );
+  //   setUserslist(schoolsList);
+  // };
 
-  const getJobSeekers = () => {
-    const jobSeekersList = usersList.filter(
-      (user) => user.UserTypeId.label === "Chercheurs d'emplois"
-    );
-    setUserslist(jobSeekersList);
-  };
+  // const getJobSeekers = () => {
+  //   const jobSeekersList = usersList.filter(
+  //     (user) => user.UserTypeId === '63ed81f1-b684-4c1d-ad00-c77f5c9df11a'
+  //   );
+  //   setUserslist(jobSeekersList);
+  // };
 
   useEffect(() => {
     getAllUsers();
-    getCompanies();
-    getSchools();
-    getJobSeekers();
+    // getSchools();
+    // getJobSeekers();
   }, []);
 
   return (
@@ -92,16 +106,14 @@ function UsersList({ token }) {
             <Col xs="3">
               <Input type="select" name="Profils" id="exampleSelect">
                 <option onClick={getAllUsers}> Tous </option>
-                <option onClick={getSchools}>Ecoles/Etudiants</option>
-                <option onClick={getCompanies}>Entreprises</option>
-                <option onClick={getJobSeekers}>
-                  Chercheurs d&apos;emploi
-                </option>
+                <option>Ecoles/Etudiants</option>
+                <option>Entreprises</option>
+                <option>Chercheurs d&apos;emploi</option>
               </Input>
             </Col>
           </Row>
           <Row>
-            <UsersListTable usersList={usersList} />
+            <UsersListTable usersList={usersList} getAllUsers={getAllUsers} />
           </Row>
           <Row>
             <Col xs="3" className={styles.UsersListExportButton}>
