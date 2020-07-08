@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Table, Col, Input } from 'reactstrap';
 
 import styles from './Users_List_Table.module.css';
 
-function UsersListTable({ usersList, getAllUsers }) {
+function UsersListTable({ usersList }) {
+  const [isAsc, setIsAsc] = useState(false);
   const [lastName, setLastName] = useState([]);
   const [firstName, setFirstName] = useState([]);
   const [email, setEmail] = useState([]);
@@ -25,7 +26,8 @@ function UsersListTable({ usersList, getAllUsers }) {
       return 0;
     });
     setLastName(ascLastName);
-    return lastName;
+    setIsAsc(true);
+    return lastName && isAsc;
   };
 
   const getDscLastName = () => {
@@ -41,7 +43,8 @@ function UsersListTable({ usersList, getAllUsers }) {
       return 0;
     });
     setLastName(dscLastName);
-    return lastName;
+    setIsAsc(false);
+    return lastName && isAsc;
   };
 
   const getAscFirstName = () => {
@@ -57,7 +60,8 @@ function UsersListTable({ usersList, getAllUsers }) {
       return 0;
     });
     setFirstName(ascFirstName);
-    return firstName;
+    setIsAsc(true);
+    return firstName && isAsc;
   };
   const getDscFirstName = () => {
     const dscFirstName = usersList.sort((a, b) => {
@@ -72,7 +76,8 @@ function UsersListTable({ usersList, getAllUsers }) {
       return 0;
     });
     setFirstName(dscFirstName);
-    return firstName;
+    setIsAsc(false);
+    return firstName && isAsc;
   };
 
   const getAscEmail = () => {
@@ -88,7 +93,8 @@ function UsersListTable({ usersList, getAllUsers }) {
       return 0;
     });
     setEmail(ascEmail);
-    return email;
+    setIsAsc(true);
+    return email && isAsc;
   };
   const getDscEmail = () => {
     const dscEmail = usersList.sort((a, b) => {
@@ -103,7 +109,8 @@ function UsersListTable({ usersList, getAllUsers }) {
       return 0;
     });
     setEmail(dscEmail);
-    return email;
+    setIsAsc(false);
+    return email && isAsc;
   };
 
   const getAscCountry = () => {
@@ -119,7 +126,8 @@ function UsersListTable({ usersList, getAllUsers }) {
       return 0;
     });
     setCountry(ascCountry);
-    return country;
+    setIsAsc(true);
+    return country && isAsc;
   };
   const getDscCountry = () => {
     const dscCountry = usersList.sort((a, b) => {
@@ -134,7 +142,8 @@ function UsersListTable({ usersList, getAllUsers }) {
       return 0;
     });
     setCountry(dscCountry);
-    return country;
+    setIsAsc(false);
+    return country && isAsc;
   };
 
   const getDscUserType = () => {
@@ -150,7 +159,8 @@ function UsersListTable({ usersList, getAllUsers }) {
       return 0;
     });
     setUserType(dscUserType);
-    return userType;
+    setIsAsc(true);
+    return userType && isAsc;
   };
   const getAscUserType = () => {
     const ascUserType = usersList.sort((a, b) => {
@@ -165,12 +175,9 @@ function UsersListTable({ usersList, getAllUsers }) {
       return 0;
     });
     setUserType(ascUserType);
-    return userType;
+    setIsAsc(false);
+    return userType && isAsc;
   };
-
-  useEffect(() => {
-    getAllUsers();
-  }, []);
 
   return (
     <Col>
@@ -290,7 +297,6 @@ function UsersListTable({ usersList, getAllUsers }) {
 
 UsersListTable.propTypes = {
   usersList: PropTypes.string.isRequired,
-  getAllUsers: PropTypes.string.isRequired,
 };
 
 export default UsersListTable;
