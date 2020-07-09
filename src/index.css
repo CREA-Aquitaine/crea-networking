@@ -120,3 +120,6 @@ code {
 .modal-dialog {
   max-width: 800px;
 }
+.modal-title {
+  width : 100%;
+}

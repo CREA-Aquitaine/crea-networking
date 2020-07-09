@@ -15,6 +15,7 @@ function PartnersPost({ getPartners, token }) {
   const [logo, setLogo] = useState('');
   const [favorite, setFavorite] = useState(false);
   const [error, setError] = useState('');
+
   const [created, setCreated] = useState(false);
 
   const handleLabel = (e) => {
@@ -26,40 +27,53 @@ function PartnersPost({ getPartners, token }) {
   const handleUrl = (e) => {
     setUrl(e.target.value);
   };
+
   const handleLogo = (e) => {
-    setLogo(e.target.value);
+    setLogo(e.target.files[0]);
   };
 
   const handleStar = () => {
     setFavorite(!favorite);
   };
 
-  const postPartners = async () => {
-    try {
-      await Axios.post(
-        'http://localhost:8080/api/v1/partners',
-        {
-          label,
-          description,
-          url,
-          logo,
-          favorite,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+  const postNewImage = () => {
+    Axios.post('https://api.imgur.com/3/image', logo, {
+      headers: {
+        Authorization: 'Client-ID 2e5f25887394e85',
+      },
+    })
+      .then((res) => {
+        // setLogo(res.data.data.link);
+        return Axios.post(
+          'http://localhost:8080/api/v1/partners',
+          {
+            label,
+            description,
+            url,
+            logo: res.data.data.link,
+            favorite,
           },
-        }
-      );
-      setCreated(true);
-      getPartners();
-    } catch (err) {
-      setError(err);
-    }
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      })
+      .then(() => setCreated(true))
+      .then(() => getPartners())
+      .catch((err) => {
+        setError(err);
+      });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    postPartners();
+    postNewImage();
+    setLabel('');
+    setDescription('');
+    setUrl('');
+    setLogo('');
+    setFavorite('');
   };
 
   return (
@@ -75,6 +89,7 @@ function PartnersPost({ getPartners, token }) {
         type="text"
         name="search"
         id="search"
+        value={label}
         placeholder="Ajouter le nom de votre partenaire"
         onChange={handleLabel}
       />
@@ -83,6 +98,7 @@ function PartnersPost({ getPartners, token }) {
         type="text"
         name="search"
         id="search"
+        value={description}
         placeholder="Texte descriptif"
         onChange={handleDescription}
       />
@@ -91,6 +107,7 @@ function PartnersPost({ getPartners, token }) {
         type="text"
         name="search"
         id="search"
+        value={url}
         placeholder="URL du site du partenaire"
         onChange={handleUrl}
       />
@@ -101,8 +118,9 @@ function PartnersPost({ getPartners, token }) {
         <Col>
           <Input
             type="file"
-            name="file"
-            id="exampleFile"
+            files={logo}
+            name="logo"
+            id="logoFile"
             onChange={handleLogo}
           />
         </Col>
