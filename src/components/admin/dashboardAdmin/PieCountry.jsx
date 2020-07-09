@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Breadcrumb, BreadcrumbItem, Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 import { Pie } from 'react-chartjs-2';
 
 import { connect } from 'react-redux';
@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import Axios from 'axios';
 
 import styles from './DashboardAdmin.module.css';
-import LineInscription from './LineInscription';
 
 const host = process.env.REACT_APP_HOST;
 
@@ -37,6 +36,7 @@ function PieCountry({ token }) {
 
   return (
     <Container className={styles.pie}>
+      {error ? "Impossible d'afficher les données" : ''}
       <h4 className={styles.userTypes}>Nombre d&apos;utilisateurs par pays</h4>
       <Pie
         data={{

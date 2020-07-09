@@ -127,7 +127,12 @@ function Faq({ token }) {
                 <Label for="exampleSelect">Pays</Label>
               </Col>
               <Col xs="3">
-                <Input type="select" name="select" id="exampleSelect" value={language}>
+                <Input
+                  type="select"
+                  name="select"
+                  id="exampleSelect"
+                  value={language}
+                >
                   <option onClick={handleLanguageFrance}>France</option>
                   <option onClick={handleLanguageEspagne}>Espagne</option>
                 </Input>
