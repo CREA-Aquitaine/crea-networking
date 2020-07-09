@@ -1,5 +1,14 @@
 import React from 'react';
-import { Navbar, Nav, NavItem, NavLink } from 'reactstrap';
+import {
+  Navbar,
+  Nav,
+  NavItem,
+  NavLink,
+  DropdownMenu,
+  DropdownItem,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -25,7 +34,6 @@ function SecondNavbar({ role }) {
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
             <NavLink className={styles.navlink} tag={Link} to="/users">
-              {' '}
               Mes utilisateurs{' '}
             </NavLink>
           </NavItem>
@@ -44,6 +52,28 @@ function SecondNavbar({ role }) {
               Partenaires
             </NavLink>
           </NavItem>
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret className={styles.mesnavbarItems}>
+              Divers
+            </DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem tag={Link} to="/jobCategory">
+                Catégories d&apos;emplois
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem tag={Link} to="/typeAnnounce">
+                Types d&apos;annonces
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem tag={Link} to="/userType">
+                Types d&apos;utilisateurs
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem tag={Link} to="/activityFields">
+                Secteurs d&apos;activité
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
         </Nav>
       ) : role === 'user' ? (
         <Nav className="mr-auto align-items-center" navbar>
@@ -53,7 +83,7 @@ function SecondNavbar({ role }) {
             </NavLink>
           </NavItem>
           <NavItem className={styles.partenairesUser}>
-            <NavLink className={styles.navlink} tag={Link} to="./partners">
+            <NavLink className={styles.navlink} tag={Link} to="./post">
               Déposer une annonce
             </NavLink>
           </NavItem>
