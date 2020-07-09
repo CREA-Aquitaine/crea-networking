@@ -18,6 +18,7 @@ function Partner(props) {
         label={label}
         url={url}
         description={description}
+        logo={logo}
       />
     </Col>
   );
