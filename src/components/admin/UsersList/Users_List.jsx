@@ -10,7 +10,6 @@ import {
   Row,
   Col,
   BreadcrumbItem,
-  Input,
 } from 'reactstrap';
 
 import UsersListTable from './Users_List_Table';
@@ -29,33 +28,75 @@ function UsersList({ token }) {
         },
       });
       setUserslist(res.data);
+      setUserType(true);
     } catch (err) {
       setError(error);
     }
-  };
-
-  const getCompanies = async () => {
-    const companiesList = usersList.filter(
-      (user, i) => user[i].UserType.label === 'Entreprise'
-    );
-    setUserslist(companiesList);
-    setUserType(true);
     return isUserType;
   };
 
-  // const getSchools = () => {
-  //   const schoolsList = usersList.filter(
-  //     (user) => user.UserTypeId === 'b20f4062-d8bf-4de5-8aeb-e0a78a043f64'
-  //   );
-  //   setUserslist(schoolsList);
-  // };
+  const getCompanies = async () => {
+    try {
+      const res = await Axios.get('http://localhost:8080/api/v1/users', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const companies = res.data.filter((user) => {
+        if (user.UserType) {
+          return user.UserType.label === 'Entreprise';
+        }
+        return '';
+      });
+      setUserslist(companies);
+      setUserType(true);
+    } catch (err) {
+      setError(error);
+    }
+    return isUserType;
+  };
 
-  // const getJobSeekers = () => {
-  //   const jobSeekersList = usersList.filter(
-  //     (user) => user.UserTypeId === '63ed81f1-b684-4c1d-ad00-c77f5c9df11a'
-  //   );
-  //   setUserslist(jobSeekersList);
-  // };
+  const getSchools = async () => {
+    try {
+      const res = await Axios.get('http://localhost:8080/api/v1/users', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const schools = res.data.filter((user) => {
+        if (user.UserType) {
+          return user.UserType.label === 'Ecole';
+        }
+        return '';
+      });
+      setUserslist(schools);
+      setUserType(true);
+    } catch (err) {
+      setError(error);
+    }
+    return isUserType;
+  };
+
+  const getJobSeekers = async () => {
+    try {
+      const res = await Axios.get('http://localhost:8080/api/v1/users', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const jobSeeker = res.data.filter((user) => {
+        if (user.UserType) {
+          return user.UserType.label === "Chercheur d'emploi";
+        }
+        return '';
+      });
+      setUserslist(jobSeeker);
+      setUserType(true);
+    } catch (err) {
+      setError(error);
+    }
+    return isUserType;
+  };
 
   useEffect(() => {
     getAllUsers();
@@ -88,14 +129,34 @@ function UsersList({ token }) {
             </Col>
           </Row>
           <Row className={styles.usersListPage}>
-            <Col xs="3">
-              <Input type="select" name="Profils" id="exampleSelect">
-                <option onClick={getAllUsers}> Tous </option>
-                <option>Ecoles/Etudiants</option>
-                <option onClick={getCompanies}>Entreprises</option>
-                <option>Chercheurs d&apos;emploi</option>
-              </Input>
-            </Col>
+            <button
+              type="button"
+              onClick={getAllUsers}
+              className={styles.buttonInput}
+            >
+              Tous
+            </button>
+            <button
+              type="button"
+              onClick={getCompanies}
+              className={styles.buttonInput}
+            >
+              Entreprises
+            </button>
+            <button
+              type="button"
+              onClick={getSchools}
+              className={styles.buttonInput}
+            >
+              Ecoles/Etudiants
+            </button>
+            <button
+              type="button"
+              onClick={getJobSeekers}
+              className={styles.buttonInput}
+            >
+              Chercheurs d&apos;emploi
+            </button>
           </Row>
           <Row>
             <UsersListTable usersList={usersList} />

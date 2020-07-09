@@ -297,7 +297,7 @@ function UsersListTable({ usersList }) {
         <tbody>
           {usersList.map((user) => {
             return (
-              <tr>
+              <tr key={user.id}>
                 <th>
                   <Input type="checkbox" className={styles.checkboxTh} />
                 </th>
