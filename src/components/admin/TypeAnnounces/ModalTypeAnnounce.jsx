@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import {
   Button,
   Modal,
@@ -8,39 +7,14 @@ import {
   ModalFooter,
   Input,
 } from 'reactstrap';
-import Axios from 'axios';
 import PropTypes from 'prop-types';
 
 import styles from './TypeAnnounce.module.css';
 
-function ModalType({ className, getType }) {
+function ModalType({ className }) {
   const [modal, setModal] = useState(false);
   const [labelFr, setLabelFr] = useState('');
   const [labelEs, setLabelEs] = useState('');
-  const [labelEus, setLabelEus] = useState('');
-  const [errorPut, setErrorPut] = useState('');
-
-  const putType = async () => {
-    try {
-      await Axios.put(
-        `${host}/api/v1/postTypes`,
-        {
-          labelFr,
-          labelEs,
-          labelEus,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setModal(!modal);
-      getType();
-    } catch (err) {
-      setErrorPut(err);
-    }
-  };
 
   const toggle = () => setModal(!modal);
   return (
@@ -66,7 +40,6 @@ function ModalType({ className, getType }) {
           <Input
             className={styles.input}
             type="text"
-            value={labelEus}
             onChange={(e) => setLabelEs(e.target.value)}
           />
         </ModalBody>
@@ -85,7 +58,6 @@ function ModalType({ className, getType }) {
 
 ModalType.propTypes = {
   className: PropTypes.string.isRequired,
-  buttonLabel: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps)(ModalType);
+export default ModalType;
