@@ -15,6 +15,8 @@ import PropTypes from 'prop-types';
 
 import styles from './Faq_List.module.css';
 
+const host = process.env.REACT_APP_HOST;
+
 function FaqModal({ request, response, id, country, token, getFaq }) {
   const [modal, setModal] = useState(false);
   const [question, setQuestion] = useState({ request });
@@ -42,7 +44,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
   const putFaq = async () => {
     try {
       await Axios.put(
-        `http://localhost:8080/api/v1/faq/${id}`,
+        `${host}/api/v1/faq/${id}`,
         {
           question,
           answer,
@@ -68,7 +70,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
 
   const deleteFaq = async () => {
     try {
-      await Axios.delete(`http://localhost:8080/api/v1/faq/${id}`, {
+      await Axios.delete(`${host}/api/v1/faq/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

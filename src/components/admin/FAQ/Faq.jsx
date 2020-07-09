@@ -18,6 +18,8 @@ import PropTypes from 'prop-types';
 import styles from './Faq_List.module.css';
 import FaqList from './FaqList';
 
+const host = process.env.REACT_APP_HOST;
+
 function Faq({ token }) {
   const [faq, setFaq] = useState([]);
   const [question, setQuestion] = useState('');
@@ -42,7 +44,7 @@ function Faq({ token }) {
 
   const getFaq = async () => {
     try {
-      const res = await Axios.get('http://localhost:8080/api/v1/faq', {
+      const res = await Axios.get(`${host}/api/v1/faq`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -59,7 +61,7 @@ function Faq({ token }) {
   const postFaq = async () => {
     try {
       await Axios.post(
-        'http://localhost:8080/api/v1/faq',
+        `${host}/api/v1/faq`,
         {
           question,
           answer,
@@ -103,7 +105,7 @@ function Faq({ token }) {
               type="text"
               name="question"
               id="question"
-              placeholder="Votre question"
+              placeholder="Ajouter votre question"
               onChange={handleQuestion}
             />
           </FormGroup>
@@ -114,7 +116,7 @@ function Faq({ token }) {
               type="text"
               name="answer"
               id="answer"
-              placeholder="Votre réponse"
+              placeholder="Ajouter votre réponse"
               onChange={handleAnswer}
             />
           </FormGroup>

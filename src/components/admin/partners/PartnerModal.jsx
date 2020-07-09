@@ -8,6 +8,8 @@ import styles from './Partner.module.css';
 import star from './images/star.svg';
 import starYellow from './images/starYellow.svg';
 
+const host = process.env.REACT_APP_HOST;
+
 function PartnerModal({
   id,
   isfavorite,
@@ -45,7 +47,7 @@ function PartnerModal({
   const putPartner = async () => {
     try {
       await Axios.put(
-        `http://localhost:8080/api/v1/partners/${id}`,
+        `${host}/api/v1/partners/${id}`,
         {
           label,
           description,
@@ -67,7 +69,7 @@ function PartnerModal({
   };
   const deletePartner = async () => {
     try {
-      await Axios.delete(`http://localhost:8080/api/v1/partners/${id}`, {
+      await Axios.delete(`${host}/api/v1/partners/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -81,9 +83,6 @@ function PartnerModal({
 
   return (
     <div>
-      {errorDelete ? <p> Le partenaire a bien été supprimé</p> : ''}
-      {errorPut ? <p>Il y a eu une erreur lors de la modification.</p> : ''}
-
       <Button className="button" onClick={toggle}>
         Modifier
       </Button>
@@ -96,6 +95,12 @@ function PartnerModal({
               l&apos;enregistrer
             </i>
           </p>
+          {errorDelete ? (
+            <p> Il y a eu une erreur lors de la suppression.</p>
+          ) : (
+            ''
+          )}
+          {errorPut ? <p>Il y a eu une erreur lors de la modification.</p> : ''}
           <Row>
             <Col xs="1">
               {favorite === 1 ? (
