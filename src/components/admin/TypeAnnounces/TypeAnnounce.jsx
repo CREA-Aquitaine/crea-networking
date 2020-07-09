@@ -21,7 +21,7 @@ import styles from './TypeAnnounce.module.css';
 const host = process.env.REACT_APP_HOST;
 
 function TypeAnnounce({ token }) {
-  const [typePost,setTypePost] = useState([]);
+  const [typePost, setTypePost] = useState([]);
   const [labelFr, setLabelFr] = useState('');
   const [labelEs, setLabelEs] = useState('');
   const [labelEus, setLabelEus] = useState('');
@@ -140,7 +140,7 @@ function TypeAnnounce({ token }) {
           </Row>
         </Form>
       </Container>
-      <TypeAnnounceList typePost={typePost} />
+      <TypeAnnounceList typePost={typePost} getType={getType} />
     </Container>
   );
 }

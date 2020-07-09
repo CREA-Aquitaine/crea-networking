@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import TypeAnnounceCard from './TypeAnnounceCard';
 
-
 function TypeAnnounceList({ typePost }) {
   return (
     <Row>

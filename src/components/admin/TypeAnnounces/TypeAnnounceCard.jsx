@@ -1,14 +1,6 @@
 import React from 'react';
 
-import {
-  Card,
-  CardImg,
-  CardBody,
-  CardTitle,
-  CardText,
-  Button,
-  Row,
-} from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import announce from './img/announce.png';
 import styles from './TypeAnnounce.module.css';
@@ -31,7 +23,6 @@ function TypeAnnounceCard({ french, euskara, castillan }) {
             <Row>Euskara: {euskara}</Row>
             <Row>Castillan: {castillan}</Row>
           </CardText>
-          <Button>Button</Button>
         </CardBody>
       </Card>
     </div>
