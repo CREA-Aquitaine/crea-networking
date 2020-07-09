@@ -1,25 +1,32 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Container } from 'reactstrap';
+// import PropTypes from 'prop-types';
 
 import styles from './DashboardAdmin.module.css';
 
 function LineInscription() {
   return (
     <>
-      <Container Fluid className={styles.pie}>
+      <Container Fluid className={styles.line}>
         <p className={styles.userTypes}>
           Taux d&apos;inscrition sur les 6 dernières semaines
         </p>
         <Line
           data={{
             labels: [
-              'Semaine 1',
-              'Semaine 2',
-              'Semaine 3',
-              'Semaine 4',
-              'Semaine 5',
-              'Semaine 6',
+              'Mois 1',
+              'Mois 2',
+              'Mois 3',
+              'Mois 4',
+              'Mois 5',
+              'Mois 6',
+              'Mois 7',
+              'Mois 8',
+              'Mois 9',
+              'Mois 10',
+              'Mois 11',
+              'Mois 12',
             ],
             datasets: [
               {
@@ -55,4 +62,8 @@ function LineInscription() {
     </>
   );
 }
+
+// LineInscription.propTypes = {
+//   users: PropTypes.string.isRequired,
+// };
 export default LineInscription;

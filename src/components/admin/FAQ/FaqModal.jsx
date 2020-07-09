@@ -19,10 +19,10 @@ const host = process.env.REACT_APP_HOST;
 
 function FaqModal({ request, response, id, country, token, getFaq }) {
   const [modal, setModal] = useState(false);
-  const [question, setQuestion] = useState({ request });
-  const [answer, setAnswer] = useState({ response });
+  const [question, setQuestion] = useState(request);
+  const [answer, setAnswer] = useState(response);
   const [error, setError] = useState('');
-  const [language, setLanguage] = useState({ country });
+  const [language, setLanguage] = useState(country);
   const [errorDelete, setErrorDelete] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -59,7 +59,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
       setModal(!modal);
       getFaq();
     } catch (err) {
-      setErrorDelete(err);
+      setError(err);
     }
   };
 
@@ -78,7 +78,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
       setModal(!modal);
       getFaq();
     } catch (err) {
-      setError(err);
+      setErrorDelete(err);
     }
   };
 
@@ -106,7 +106,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
               id="quest"
               className={styles.question}
               type="textarea"
-              placeholder={request}
+              value={question}
               onChange={handleQuestion}
             />
             <Label for="reponse" />
@@ -114,7 +114,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
               id="reponse"
               type="textarea"
               className={styles.reponse}
-              placeholder={response}
+              value={answer}
               onChange={handleAnswer}
             />
             <Row>
@@ -122,7 +122,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
                 <Label for="exampleSelect">Pays</Label>
               </Col>
               <Col xs="3">
-                {country === 'France' ? (
+                {language === 'France' ? (
                   <Input type="select" name="select" id="exampleSelect">
                     <option onClick={handleLanguageFrance}>France</option>
                     <option onClick={handleLanguageEspagne}>Espagne</option>

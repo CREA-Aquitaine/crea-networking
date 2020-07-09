@@ -15,57 +15,43 @@ import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import styles from './Faq_List.module.css';
-import FaqList from './FaqList';
+import TypeAnnounceList from './TypeAnnounceList';
+import styles from './TypeAnnounce.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function Faq({ token }) {
-  const [faq, setFaq] = useState([]);
-  const [question, setQuestion] = useState('');
-  const [answer, setAnswer] = useState('');
-  const [language, setLanguage] = useState('France');
+function TypeAnnounce({ token }) {
+  const [typePost, setTypePost] = useState([]);
+  const [labelFr, setLabelFr] = useState('');
+  const [labelEs, setLabelEs] = useState('');
+  const [labelEus, setLabelEus] = useState('');
   const [error, setError] = useState('');
   const [created, setCreated] = useState(false);
 
-  const handleQuestion = (e) => {
-    setQuestion(e.target.value);
-  };
-  const handleLanguageFrance = (e) => {
-    setLanguage(e.target.value);
-  };
-  const handleLanguageEspagne = (e) => {
-    setLanguage(e.target.value);
-  };
-
-  const handleAnswer = (e) => {
-    setAnswer(e.target.value);
-  };
-
-  const getFaq = async () => {
+  const getType = async () => {
     try {
-      const res = await Axios.get(`${host}/api/v1/faq`, {
+      const res = await Axios.get(`${host}/api/v1/postTypes`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setFaq(res.data);
+      setTypePost(res.data);
     } catch (err) {
       setError(err);
     }
   };
   useEffect(() => {
-    getFaq();
+    getType();
   }, []);
 
-  const postFaq = async () => {
+  const postTypeAnnounce = async () => {
     try {
       await Axios.post(
-        `${host}/api/v1/faq`,
+        `${host}/api/v1/postTypes`,
         {
-          question,
-          answer,
-          language,
+          labelFr,
+          labelEs,
+          labelEus,
         },
         {
           headers: {
@@ -74,8 +60,7 @@ function Faq({ token }) {
         }
       );
       setCreated(true);
-      getFaq();
-      setTimeout(() => setCreated(false), 2000);
+      getType();
     } catch (err) {
       setError(err);
     }
@@ -83,19 +68,22 @@ function Faq({ token }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postFaq();
+    postTypeAnnounce();
+    setLabelEs('');
+    setLabelEus('');
+    setLabelFr('');
   };
 
   return (
     <Container>
       <Breadcrumb>
         <BreadcrumbItem>Accueil</BreadcrumbItem>
-        <BreadcrumbItem active>FAQ</BreadcrumbItem>
+        <BreadcrumbItem active>Annonce</BreadcrumbItem>
       </Breadcrumb>
       <Container fluid className={styles.containerQR}>
         <Row className={styles.searchBar}>
-          <Col xs="2" className={styles.faqTitle}>
-            Gérer la FAQ
+          <Col xs="4" className={styles.faqTitle}>
+            Gérer les types d&apos;annonces
           </Col>
         </Row>
         <Form fluid className={styles.addQR} onSubmit={handleSubmit}>
@@ -106,38 +94,34 @@ function Faq({ token }) {
               type="text"
               name="question"
               id="question"
-              placeholder="Ajouter votre question"
-              onChange={handleQuestion}
+              value={labelFr}
+              placeholder="Types d'annonce"
+              onChange={(e) => setLabelFr(e.target.value)}
             />
           </FormGroup>
           <FormGroup>
-            <Label for="exampleEmail" />
+            <Label for="question" />
             <Input
               className={styles.inputQR}
               type="text"
               name="answer"
               id="answer"
-              placeholder="Ajouter votre réponse"
-              onChange={handleAnswer}
+              placeholder="Iragarki motak"
+              value={labelEus}
+              onChange={(e) => setLabelEus(e.target.value)}
             />
           </FormGroup>
           <FormGroup>
-            <Row>
-              <Col xs="1">
-                <Label for="exampleSelect">Pays</Label>
-              </Col>
-              <Col xs="3">
-                <Input
-                  type="select"
-                  name="select"
-                  id="exampleSelect"
-                  value={language}
-                >
-                  <option onClick={handleLanguageFrance}>France</option>
-                  <option onClick={handleLanguageEspagne}>Espagne</option>
-                </Input>
-              </Col>
-            </Row>
+            <Label for="question" />
+            <Input
+              className={styles.inputQR}
+              type="text"
+              name="answer"
+              id="answer"
+              placeholder="Tipos de anuncios"
+              value={labelEs}
+              onChange={(e) => setLabelEs(e.target.value)}
+            />
           </FormGroup>
           <Row>
             <Col xs={{ size: 2, offset: 10 }}>
@@ -155,8 +139,8 @@ function Faq({ token }) {
             )}
           </Row>
         </Form>
-        <FaqList faq={faq} getFaq={getFaq} />
       </Container>
+      <TypeAnnounceList typePost={typePost} getType={getType} />
     </Container>
   );
 }
@@ -164,8 +148,8 @@ const mapStateToProps = (state) => ({
   token: state.authenticated.token,
 });
 
-Faq.propTypes = {
+TypeAnnounce.propTypes = {
   token: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps)(Faq);
+export default connect(mapStateToProps)(TypeAnnounce);
