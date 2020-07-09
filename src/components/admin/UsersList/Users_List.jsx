@@ -120,15 +120,6 @@ function UsersList({ token }) {
             <Col xs="3" className={styles.usersListTitleMargin}>
               Gestion des utilisateurs
             </Col>
-            <Col xs={{ size: '3', offset: '6' }}>
-              <input
-                className={styles.inputSearch}
-                type="search"
-                name="search"
-                id="exampleSearch"
-                placeholder="RECHERCHER"
-              />
-            </Col>
           </Row>
           <Row className={styles.usersListPage}>
             <button

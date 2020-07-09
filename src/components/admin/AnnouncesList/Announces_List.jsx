@@ -6,7 +6,6 @@ import {
   Button,
   Breadcrumb,
   BreadcrumbItem,
-  Input,
   Container,
   Row,
   Col,
@@ -118,41 +117,32 @@ function AnnouncesList({ token }) {
             <Col xs="3" className={styles.announcesListTitleMargin}>
               Gestion des annonces
             </Col>
-            <Col xs={{ size: '3', offset: '6' }}>
-              <Input
-                className={styles.inputSearch}
-                type="search"
-                name="search"
-                id="exampleSearch"
-                placeholder="RECHERCHER"
-              />
-            </Col>
           </Row>
           <Row className={styles.announcesListPage}>
             <button
               type="button"
-              className={styles.buttonIput}
+              className={styles.buttonInput}
               onClick={getAnnounces}
             >
               Toutes les Annonces
             </button>
             <button
               type="button"
-              className={styles.buttonIput}
+              className={styles.buttonInput}
               onClick={getPartnerShip}
             >
               Partenariats
             </button>
             <button
               type="button"
-              className={styles.buttonIput}
+              className={styles.buttonInput}
               onClick={getJobs}
             >
               Recherche d&apos;emploi
             </button>
             <button
               type="button"
-              className={styles.buttonIput}
+              className={styles.buttonInput}
               onClick={getDev}
             >
               Recherche & développement
