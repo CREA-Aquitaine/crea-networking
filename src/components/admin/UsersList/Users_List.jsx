@@ -15,6 +15,8 @@ import {
 import UsersListTable from './Users_List_Table';
 import styles from './Users_List_Table.module.css';
 
+const host = process.env.REACT_APP_HOST;
+
 function UsersList({ token }) {
   const [usersList, setUserslist] = useState([]);
   const [error, setError] = useState('');
@@ -22,7 +24,7 @@ function UsersList({ token }) {
 
   const getAllUsers = async () => {
     try {
-      const res = await Axios.get('http://localhost:8080/api/v1/users', {
+      const res = await Axios.get(`${host}/api/v1/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -134,7 +136,7 @@ function UsersList({ token }) {
               onClick={getAllUsers}
               className={styles.buttonInput}
             >
-              Tous
+              Tous les utilisateurs
             </button>
             <button
               type="button"

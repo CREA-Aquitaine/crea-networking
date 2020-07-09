@@ -80,9 +80,19 @@ function AnnouncesListTable({ announcesList }) {
   };
 
   const getAscTypeAnnounce = () => {
-    const ascTypeAnnounce = announcesList.sort((a, b) => {
-      const firstTypeAnnounce = a.TypePostId.toLowerCase();
-      const secondTypeAnnounce = b.TypePostId.toLowerCase();
+    const ascTypeAnnounceFilter = announcesList.filter((post) => {
+      if (
+        post.TypePost !== null &&
+        post.TypePost.labelFr !== null &&
+        post.TypePostId !== null
+      ) {
+        return post.TypePost.labelFr;
+      }
+      return '';
+    });
+    const ascTypeAnnounce = ascTypeAnnounceFilter.sort((a, b) => {
+      const firstTypeAnnounce = a.TypePost.labelFr.toLowerCase();
+      const secondTypeAnnounce = b.TypePost.labelFr.toLowerCase();
       if (firstTypeAnnounce < secondTypeAnnounce) {
         return -1;
       }
@@ -96,9 +106,19 @@ function AnnouncesListTable({ announcesList }) {
     return typeAnnounces && isAsc;
   };
   const getDscTypeAnnounce = () => {
-    const dscTypeAnnounce = announcesList.sort((a, b) => {
-      const firstTypeAnnounce = a.TypePostId.toLowerCase();
-      const secondTypeAnnounce = b.TypePostId.toLowerCase();
+    const dscTypeAnnounceFilter = announcesList.filter((post) => {
+      if (
+        post.TypePost !== null &&
+        post.TypePost.labelFr !== null &&
+        post.TypePostId !== null
+      ) {
+        return post.TypePost.labelFr;
+      }
+      return '';
+    });
+    const dscTypeAnnounce = dscTypeAnnounceFilter.sort((a, b) => {
+      const firstTypeAnnounce = a.TypePost.labelFr.toLowerCase();
+      const secondTypeAnnounce = b.TypePost.labelFr.toLowerCase();
       if (firstTypeAnnounce > secondTypeAnnounce) {
         return -1;
       }
@@ -113,9 +133,19 @@ function AnnouncesListTable({ announcesList }) {
   };
 
   const getAscCategory = () => {
-    const ascCategory = announcesList.sort((a, b) => {
-      const firstCategory = a.JobCategoryId.toLowerCase();
-      const secondCategory = b.JobCategoryId.toLowerCase();
+    const ascCategoryFilter = announcesList.filter((post) => {
+      if (
+        post.JobCategory !== null &&
+        post.JobCategory.labelFr !== null &&
+        post.JobCategoryId !== null
+      ) {
+        return post.JobCategory.labelFr;
+      }
+      return '';
+    });
+    const ascCategory = ascCategoryFilter.sort((a, b) => {
+      const firstCategory = a.JobCategory.labelFr.toLowerCase();
+      const secondCategory = b.JobCategory.labelFr.toLowerCase();
       if (firstCategory < secondCategory) {
         return -1;
       }
@@ -129,9 +159,19 @@ function AnnouncesListTable({ announcesList }) {
     return category && isAsc;
   };
   const getDscCategory = () => {
-    const dscCategory = announcesList.sort((a, b) => {
-      const firstCategory = a.JobCategoryId.toLowerCase();
-      const secondCategory = b.JobCategoryId.toLowerCase();
+    const dscCategoryFilter = announcesList.filter((post) => {
+      if (
+        post.JobCategory !== null &&
+        post.JobCategory.labelFr !== null &&
+        post.JobCategoryId !== null
+      ) {
+        return post.JobCategory.labelFr;
+      }
+      return '';
+    });
+    const dscCategory = dscCategoryFilter.sort((a, b) => {
+      const firstCategory = a.JobCategory.labelFr.toLowerCase();
+      const secondCategory = b.JobCategory.labelFr.toLowerCase();
       if (firstCategory > secondCategory) {
         return -1;
       }
@@ -232,8 +272,8 @@ function AnnouncesListTable({ announcesList }) {
                 </th>
                 <td>{post.id}</td>
                 <td>{post.title}</td>
-                <td>{post.TypePostId}</td>
-                <td>{post.JobCategoryId}</td>
+                <td>{post.TypePost ? post.TypePost.labelFr : ''}</td>
+                <td>{post.JobCategory ? post.JobCategory.labelFr : ''}</td>
               </tr>
             );
           })}

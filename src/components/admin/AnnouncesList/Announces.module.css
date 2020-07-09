@@ -69,3 +69,19 @@
   margin: 0 0.2vw 0 0.5vw;
   padding: 0;
 }
+.buttonInput {
+  color: black;
+  background-color: white;
+  margin-right: 0.5vw;
+  margin-bottom: 1vw;
+  border: 0.1vw solid black;
+}
+.buttonInput:hover {
+  background-color: transparent;
+  color: #dd2b25;
+  border: 0.1vw solid #dd2b25;
+}
+.buttonInput:active {
+  background-color: #dd2b25;
+  color: white;
+}

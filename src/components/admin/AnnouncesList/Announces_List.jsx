@@ -15,21 +15,88 @@ import { Link } from 'react-router-dom';
 import styles from './Announces.module.css';
 import AnnouncesListTable from './Announces_List_Table';
 
+const host = process.env.REACT_APP_HOST;
+
 function AnnouncesList({ token }) {
   const [announcesList, setAnnounceslist] = useState([]);
   const [error, setError] = useState('');
+  const [isPostType, setIsPostType] = useState(false);
 
   const getAnnounces = async () => {
     try {
-      const res = await Axios.get('http://localhost:8080/api/v1/posts', {
+      const res = await Axios.get(`${host}/api/v1/posts`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       setAnnounceslist(res.data);
+      setIsPostType(true);
     } catch (err) {
       setError(error);
     }
+  };
+
+  const getPartnerShip = async () => {
+    try {
+      const res = await Axios.get(`${host}/api/v1/posts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const partnerShip = res.data.filter((post) => {
+        if (post.TypePost) {
+          return post.TypePost.labelFr === 'Partenariat';
+        }
+        return '';
+      });
+      setAnnounceslist(partnerShip);
+      setIsPostType(true);
+    } catch (err) {
+      setError(error);
+    }
+    return isPostType;
+  };
+
+  const getJobs = async () => {
+    try {
+      const res = await Axios.get(`${host}/api/v1/posts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const jobs = res.data.filter((post) => {
+        if (post.TypePost) {
+          return post.TypePost.labelFr === "Recherche d'emploi";
+        }
+        return '';
+      });
+      setAnnounceslist(jobs);
+      setIsPostType(true);
+    } catch (err) {
+      setError(error);
+    }
+    return isPostType;
+  };
+
+  const getDev = async () => {
+    try {
+      const res = await Axios.get(`${host}/api/v1/posts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const devs = res.data.filter((post) => {
+        if (post.TypePost) {
+          return post.TypePost.labelFr === 'Recherche & Développement';
+        }
+        return '';
+      });
+      setAnnounceslist(devs);
+      setIsPostType(true);
+    } catch (err) {
+      setError(error);
+    }
+    return isPostType;
   };
 
   useEffect(() => {
@@ -62,18 +129,34 @@ function AnnouncesList({ token }) {
             </Col>
           </Row>
           <Row className={styles.announcesListPage}>
-            <Col xs={{ size: '2', offset: '1' }}>
-              <Button className={styles.announcesListButton}>Voir tout</Button>
-            </Col>
-            <Col xs="3">
-              <Input type="select" name="Type" id="exampleSelect">
-                <option> Sélection par défaut </option>
-                <option>Partenariats</option>
-                <option>Emploi</option>
-                <option>Recherche d&apos;emploi</option>
-                <option>Recherche & développement</option>
-              </Input>
-            </Col>
+            <button
+              type="button"
+              className={styles.buttonIput}
+              onClick={getAnnounces}
+            >
+              Toutes les Annonces
+            </button>
+            <button
+              type="button"
+              className={styles.buttonIput}
+              onClick={getPartnerShip}
+            >
+              Partenariats
+            </button>
+            <button
+              type="button"
+              className={styles.buttonIput}
+              onClick={getJobs}
+            >
+              Recherche d&apos;emploi
+            </button>
+            <button
+              type="button"
+              className={styles.buttonIput}
+              onClick={getDev}
+            >
+              Recherche & développement
+            </button>
           </Row>
           <Row>
             <AnnouncesListTable announcesList={announcesList} />
