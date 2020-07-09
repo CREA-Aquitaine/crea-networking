@@ -8,13 +8,15 @@ import styles from './Partner.module.css';
 import PartnersList from './PartnersList';
 import PartnersPost from './PartnersPost';
 
+const host = process.env.REACT_APP_HOST;
+
 function Partners({ token }) {
   const [partners, setPartners] = useState([]);
   const [error, setError] = useState('');
 
   const getPartners = async () => {
     try {
-      const res = await Axios.get('http://localhost:8080/api/v1/partners', {
+      const res = await Axios.get(`${host}/api/v1/partners`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -8,6 +8,9 @@ import styles from './Partner.module.css';
 import star from './images/star.svg';
 import starYellow from './images/starYellow.svg';
 
+const host = process.env.REACT_APP_HOST;
+const imgurToken = process.env.REACT_APP_IMGUR_TOKEN;
+
 function PartnersPost({ getPartners, token }) {
   const [label, setLabel] = useState('');
   const [description, setDescription] = useState('');
@@ -39,13 +42,13 @@ function PartnersPost({ getPartners, token }) {
   const postNewImage = () => {
     Axios.post('https://api.imgur.com/3/image', logo, {
       headers: {
-        Authorization: 'Client-ID 2e5f25887394e85',
+        Authorization: `Client-ID ${imgurToken}`,
       },
     })
       .then((res) => {
         // setLogo(res.data.data.link);
         return Axios.post(
-          'http://localhost:8080/api/v1/partners',
+          `${host}/api/v1/partners`,
           {
             label,
             description,
