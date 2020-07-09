@@ -65,6 +65,7 @@ function PartnersPost({ getPartners, token }) {
       })
       .then(() => setCreated(true))
       .then(() => getPartners())
+      .then(() => setTimeout(() => setCreated(false), 2000))
       .catch((err) => {
         setError(err);
       });
@@ -81,12 +82,6 @@ function PartnersPost({ getPartners, token }) {
 
   return (
     <Form fluid className={styles.addQR} onSubmit={handleSubmit}>
-      {created ? <p>Votre partenaire a bien été ajouté.</p> : ''}
-      {error ? (
-        <p>Une erreur s&apos;est produite lors de la création du partenaire.</p>
-      ) : (
-        ''
-      )}
       <Input
         className={styles.inputQR}
         type="text"
@@ -162,6 +157,12 @@ function PartnersPost({ getPartners, token }) {
           </Button>
         </Col>
       </Row>
+      {created ? <p>Votre partenaire a bien été ajouté.</p> : ''}
+      {error ? (
+        <p>Une erreur s&apos;est produite lors de la création du partenaire.</p>
+      ) : (
+        ''
+      )}
     </Form>
   );
 }

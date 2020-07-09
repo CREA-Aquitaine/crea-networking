@@ -40,11 +40,15 @@
 
 .monDashboard {
   font-size: 1.3vw;
-  margin-left: 15vw;
+  margin-left: 10vw;
 }
 .mesnavbarItems {
   font-size: 1.3vw;
   margin-left: 5vw;
+  color : black;
+}
+.mesnavbarItems:hover {
+  color: #dd2b25;
 }
 
 .itemUser {

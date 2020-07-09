@@ -113,7 +113,8 @@ code {
 
 /*Menu déroulant choix faq admin*/
 .dropdown-menu {
-  width: 8vw !important;
+  width: 15vw !important;
+  text-align : center;
 }
 
 /*modal faq*/
