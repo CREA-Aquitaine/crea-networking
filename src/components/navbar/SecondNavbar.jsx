@@ -53,7 +53,7 @@ function SecondNavbar({ role }) {
             </NavLink>
           </NavItem>
           <NavItem className={styles.partenairesUser}>
-            <NavLink className={styles.navlink} tag={Link} to="./partners">
+            <NavLink className={styles.navlink} tag={Link} to="./post">
               Déposer une annonce
             </NavLink>
           </NavItem>
