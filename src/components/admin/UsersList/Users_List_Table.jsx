@@ -11,7 +11,7 @@ function UsersListTable({ usersList }) {
   const [firstName, setFirstName] = useState([]);
   const [email, setEmail] = useState([]);
   const [country, setCountry] = useState([]);
-  const [userType, setUserType] = useState([]);
+  const [userTypeState, setUserTypeState] = useState([]);
 
   const getAscLastName = () => {
     const ascLastName = usersList.sort((a, b) => {
@@ -146,37 +146,57 @@ function UsersListTable({ usersList }) {
     return country && isAsc;
   };
 
-  const getDscUserType = () => {
-    const dscUserType = usersList.sort((a, b) => {
-      const firstUserType = a.UserTypeId.toLowerCase();
-      const secondUserType = b.UserTypeId.toLowerCase();
-      if (firstUserType > secondUserType) {
-        return -1;
-      }
-      if (firstUserType < secondUserType) {
-        return 1;
-      }
-      return 0;
-    });
-    setUserType(dscUserType);
-    setIsAsc(true);
-    return userType && isAsc;
-  };
   const getAscUserType = () => {
-    const ascUserType = usersList.sort((a, b) => {
-      const firstUserType = a.UserTypeId.toLowerCase();
-      const secondUserType = b.UserTypeId.toLowerCase();
-      if (firstUserType < secondUserType) {
+    const ascUserTypeFilter = usersList.filter((user) => {
+      if (
+        user.UserType !== null &&
+        user.UserTypeId.label !== null &&
+        user.UserTypeId !== null
+      ) {
+        return user.UserType.label;
+      }
+      return '';
+    });
+    const ascUserType = ascUserTypeFilter.sort((a, b) => {
+      const firstCountry = a.UserType.label.toLowerCase();
+      const secondCountry = b.UserType.label.toLowerCase();
+      if (firstCountry < secondCountry) {
         return -1;
       }
-      if (firstUserType > secondUserType) {
+      if (firstCountry > secondCountry) {
         return 1;
       }
       return 0;
     });
-    setUserType(ascUserType);
+    setUserTypeState(ascUserType);
+    setIsAsc(true);
+    return userTypeState && isAsc;
+  };
+  const getDscUserType = () => {
+    const dscUserTypeFilter = usersList.filter((user) => {
+      if (
+        user.UserType !== null &&
+        user.UserTypeId.label !== null &&
+        user.UserTypeId !== null
+      ) {
+        return user.UserType.label;
+      }
+      return '';
+    });
+    const dscUserType = dscUserTypeFilter.sort((a, b) => {
+      const firstCountry = a.UserType.label.toLowerCase();
+      const secondCountry = b.UserType.label.toLowerCase();
+      if (firstCountry > secondCountry) {
+        return -1;
+      }
+      if (firstCountry < secondCountry) {
+        return 1;
+      }
+      return 0;
+    });
+    setUserTypeState(dscUserType);
     setIsAsc(false);
-    return userType && isAsc;
+    return userTypeState && isAsc;
   };
 
   return (
@@ -267,7 +287,7 @@ function UsersListTable({ usersList }) {
               <button
                 type="button"
                 className={styles.arrowButtons}
-                nClick={getDscUserType}
+                onClick={getDscUserType}
               >
                 <span className={styles.arrowUp} />
               </button>
@@ -285,7 +305,7 @@ function UsersListTable({ usersList }) {
                 <td>{user.firstName}</td>
                 <td>{user.email}</td>
                 <td>{user.country}</td>
-                <td>{user.UserTypeId}</td>
+                <td>{user.UserType ? user.UserType.label : ''} </td>
               </tr>
             );
           })}

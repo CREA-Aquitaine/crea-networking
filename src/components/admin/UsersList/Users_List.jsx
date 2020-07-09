@@ -19,6 +19,7 @@ import styles from './Users_List_Table.module.css';
 function UsersList({ token }) {
   const [usersList, setUserslist] = useState([]);
   const [error, setError] = useState('');
+  const [isUserType, setUserType] = useState(false);
 
   const getAllUsers = async () => {
     try {
@@ -33,28 +34,14 @@ function UsersList({ token }) {
     }
   };
 
-  // const getCompanies = async () => {
-  //   try {
-  //     const res = await Axios.get('http://localhost:8080/api/v1/users', {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     if (res.data.UserTypeId === 'e3b1e7b9-d001-470d-8438-695ebcea6e3a') {
-  //       const companiesList = usersList.filter(
-  //         (user) =>
-  //           user.res.data.UserTypeId === 'e3b1e7b9-d001-470d-8438-695ebcea6e3a '
-  //       );
-  //       setUserslist(companiesList);
-  //     }
-  //   } catch (err) {
-  //     setError(error);
-  //   }
-  //   // const companiesList = usersList.filter(
-  //   //   (user) => user.UserTypeId === 'e3b1e7b9-d001-470d-8438-695ebcea6e3a '
-  //   // );
-  //   // setUserslist(companiesList);
-  // };
+  const getCompanies = async () => {
+    const companiesList = usersList.filter(
+      (user, i) => user[i].UserType.label === 'Entreprise'
+    );
+    setUserslist(companiesList);
+    setUserType(true);
+    return isUserType;
+  };
 
   // const getSchools = () => {
   //   const schoolsList = usersList.filter(
@@ -72,8 +59,6 @@ function UsersList({ token }) {
 
   useEffect(() => {
     getAllUsers();
-    // getSchools();
-    // getJobSeekers();
   }, []);
 
   return (
@@ -107,7 +92,7 @@ function UsersList({ token }) {
               <Input type="select" name="Profils" id="exampleSelect">
                 <option onClick={getAllUsers}> Tous </option>
                 <option>Ecoles/Etudiants</option>
-                <option>Entreprises</option>
+                <option onClick={getCompanies}>Entreprises</option>
                 <option>Chercheurs d&apos;emploi</option>
               </Input>
             </Col>
