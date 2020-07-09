@@ -28,7 +28,6 @@ class Partners extends React.Component {
       .then((res) => {
         const { data } = res;
         this.setState({ partners: data });
-        // console.log(data);
       })
       // .catch((err) => {
       //   console.log(err.message);
@@ -39,6 +38,7 @@ class Partners extends React.Component {
   }
 
   render() {
+    console.log(this.state.partners);
     const { loading, partners } = this.state;
 
     if (loading) {
