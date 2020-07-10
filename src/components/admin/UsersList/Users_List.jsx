@@ -100,6 +100,20 @@ function UsersList({ token }) {
     return isUserType;
   };
 
+  const deleteUsers = async () => {
+    try {
+      await Axios.delete(`${host}/api/v1/users/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      getAllUsers();
+    } catch (err) {
+      setError(error);
+    }
+    return isUserType;
+  };
+
   useEffect(() => {
     getAllUsers();
   }, []);
@@ -164,7 +178,9 @@ function UsersList({ token }) {
               xs={{ size: '3', offset: '6' }}
               className={styles.UsersListExportButton}
             >
-              <Button className="button">Supprimer</Button>
+              <Button className="button" onClick={deleteUsers}>
+                Supprimer
+              </Button>
             </Col>
           </Row>
         </Container>
