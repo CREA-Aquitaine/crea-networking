@@ -1,10 +1,204 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { Table, Col, Input } from 'reactstrap';
 
 import styles from './Users_List_Table.module.css';
 
-function UsersListTable() {
+function UsersListTable({ usersList }) {
+  const [isAsc, setIsAsc] = useState(false);
+  const [lastName, setLastName] = useState([]);
+  const [firstName, setFirstName] = useState([]);
+  const [email, setEmail] = useState([]);
+  const [country, setCountry] = useState([]);
+  const [userTypeState, setUserTypeState] = useState([]);
+
+  const getAscLastName = () => {
+    const ascLastName = usersList.sort((a, b) => {
+      const firstLastName = a.lastName.toLowerCase();
+      const secondLastName = b.lastName.toLowerCase();
+      if (firstLastName < secondLastName) {
+        return -1;
+      }
+      if (firstLastName > secondLastName) {
+        return 1;
+      }
+      return 0;
+    });
+    setLastName(ascLastName);
+    setIsAsc(true);
+    return lastName && isAsc;
+  };
+
+  const getDscLastName = () => {
+    const dscLastName = usersList.sort((a, b) => {
+      const firstLastName = a.lastName.toLowerCase();
+      const secondLastName = b.lastName.toLowerCase();
+      if (firstLastName > secondLastName) {
+        return -1;
+      }
+      if (firstLastName < secondLastName) {
+        return 1;
+      }
+      return 0;
+    });
+    setLastName(dscLastName);
+    setIsAsc(false);
+    return lastName && isAsc;
+  };
+
+  const getAscFirstName = () => {
+    const ascFirstName = usersList.sort((a, b) => {
+      const firstFirstName = a.firstName.toLowerCase();
+      const secondFirstName = b.firstName.toLowerCase();
+      if (firstFirstName < secondFirstName) {
+        return -1;
+      }
+      if (firstFirstName > secondFirstName) {
+        return 1;
+      }
+      return 0;
+    });
+    setFirstName(ascFirstName);
+    setIsAsc(true);
+    return firstName && isAsc;
+  };
+  const getDscFirstName = () => {
+    const dscFirstName = usersList.sort((a, b) => {
+      const firstFirstName = a.firstName.toLowerCase();
+      const secondFirstName = b.firstName.toLowerCase();
+      if (firstFirstName > secondFirstName) {
+        return -1;
+      }
+      if (firstFirstName < secondFirstName) {
+        return 1;
+      }
+      return 0;
+    });
+    setFirstName(dscFirstName);
+    setIsAsc(false);
+    return firstName && isAsc;
+  };
+
+  const getAscEmail = () => {
+    const ascEmail = usersList.sort((a, b) => {
+      const firstEmail = a.email.toLowerCase();
+      const secondEmail = b.email.toLowerCase();
+      if (firstEmail < secondEmail) {
+        return -1;
+      }
+      if (firstEmail > secondEmail) {
+        return 1;
+      }
+      return 0;
+    });
+    setEmail(ascEmail);
+    setIsAsc(true);
+    return email && isAsc;
+  };
+  const getDscEmail = () => {
+    const dscEmail = usersList.sort((a, b) => {
+      const firstEmail = a.email.toLowerCase();
+      const secondEmail = b.email.toLowerCase();
+      if (firstEmail > secondEmail) {
+        return -1;
+      }
+      if (firstEmail < secondEmail) {
+        return 1;
+      }
+      return 0;
+    });
+    setEmail(dscEmail);
+    setIsAsc(false);
+    return email && isAsc;
+  };
+
+  const getAscCountry = () => {
+    const ascCountry = usersList.sort((a, b) => {
+      const firstCountry = a.country.toLowerCase();
+      const secondCountry = b.country.toLowerCase();
+      if (firstCountry < secondCountry) {
+        return -1;
+      }
+      if (firstCountry > secondCountry) {
+        return 1;
+      }
+      return 0;
+    });
+    setCountry(ascCountry);
+    setIsAsc(true);
+    return country && isAsc;
+  };
+  const getDscCountry = () => {
+    const dscCountry = usersList.sort((a, b) => {
+      const firstCountry = a.country.toLowerCase();
+      const secondCountry = b.country.toLowerCase();
+      if (firstCountry > secondCountry) {
+        return -1;
+      }
+      if (firstCountry < secondCountry) {
+        return 1;
+      }
+      return 0;
+    });
+    setCountry(dscCountry);
+    setIsAsc(false);
+    return country && isAsc;
+  };
+
+  const getAscUserType = () => {
+    const ascUserTypeFilter = usersList.filter((user) => {
+      if (
+        user.UserType !== null &&
+        user.UserTypeId.label !== null &&
+        user.UserTypeId !== null
+      ) {
+        return user.UserType.label;
+      }
+      return '';
+    });
+    const ascUserType = ascUserTypeFilter.sort((a, b) => {
+      const firstCountry = a.UserType.label.toLowerCase();
+      const secondCountry = b.UserType.label.toLowerCase();
+      if (firstCountry < secondCountry) {
+        return -1;
+      }
+      if (firstCountry > secondCountry) {
+        return 1;
+      }
+      return 0;
+    });
+    setUserTypeState(ascUserType);
+    setIsAsc(true);
+    return userTypeState && isAsc;
+  };
+  const getDscUserType = () => {
+    const dscUserTypeFilter = usersList.filter((user) => {
+      if (
+        user.UserType !== null &&
+        user.UserTypeId.label !== null &&
+        user.UserTypeId !== null
+      ) {
+        return user.UserType.label;
+      }
+      return '';
+    });
+    const dscUserType = dscUserTypeFilter.sort((a, b) => {
+      const firstCountry = a.UserType.label.toLowerCase();
+      const secondCountry = b.UserType.label.toLowerCase();
+      if (firstCountry > secondCountry) {
+        return -1;
+      }
+      if (firstCountry < secondCountry) {
+        return 1;
+      }
+      return 0;
+    });
+    setUserTypeState(dscUserType);
+    setIsAsc(false);
+    return userTypeState && isAsc;
+  };
+
   return (
     <Col>
       <Table borderless>
@@ -15,212 +209,114 @@ function UsersListTable() {
             </th>
             <th>
               Nom
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getAscLastName}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-up-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+                <span className={styles.arrowDown} />
+              </button>
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getDscLastName}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M8 5.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M7.646 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 5.707 5.354 8.354a.5.5 0 1 1-.708-.708l3-3z"
-                />
-              </svg>
+                <span className={styles.arrowUp} />
+              </button>
             </th>
             <th>
               Prénom
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getAscFirstName}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-up-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+                <span className={styles.arrowDown} />
+              </button>
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getDscFirstName}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M8 5.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M7.646 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 5.707 5.354 8.354a.5.5 0 1 1-.708-.708l3-3z"
-                />
-              </svg>
+                <span className={styles.arrowUp} />
+              </button>
             </th>
             <th>
               Email
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getAscEmail}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-up-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+                <span className={styles.arrowDown} />
+              </button>
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getDscEmail}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M8 5.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M7.646 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 5.707 5.354 8.354a.5.5 0 1 1-.708-.708l3-3z"
-                />
-              </svg>
+                <span className={styles.arrowUp} />
+              </button>
             </th>
             <th>
-              Country
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+              Pays
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getAscCountry}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
+                <span className={styles.arrowDown} />
+              </button>
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getDscCountry}
+              >
+                <span className={styles.arrowUp} />
+              </button>
             </th>
             <th>
               Type d&apos;utilisateur
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getAscUserType}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
+                <span className={styles.arrowDown} />
+              </button>
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getDscUserType}
+              >
+                <span className={styles.arrowUp} />
+              </button>
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>Mark.otto@gmail.com</td>
-            <td>Espagne</td>
-            <td>Admin</td>
-          </tr>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>Jacob.Thornton@gmail.com</td>
-            <td>France</td>
-            <td>Entreprise</td>
-          </tr>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>Larry.theBird@gmail.com</td>
-            <td>Espagne</td>
-            <td>Chercheur d&apos;emploi</td>
-          </tr>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>Roger</td>
-            <td>McFly</td>
-            <td>Roger.Mcfly@gmail.com</td>
-            <td>Espagne</td>
-            <td>Ecole</td>
-          </tr>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>Antoine</td>
-            <td>Grant</td>
-            <td>Antoine.grant@gmail.com</td>
-            <td>France</td>
-            <td>Chercheur d&apos;emploi</td>
-          </tr>
+          {usersList.map((user) => {
+            return (
+              <tr key={user.id}>
+                <th>
+                  <Input type="checkbox" className={styles.checkboxTh} />
+                </th>
+                <td>{user.lastName}</td>
+                <td>{user.firstName}</td>
+                <td>{user.email}</td>
+                <td>{user.country}</td>
+                <td>{user.UserType ? user.UserType.label : ''} </td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
     </Col>
   );
 }
+
+UsersListTable.propTypes = {
+  usersList: PropTypes.string.isRequired,
+};
 
 export default UsersListTable;

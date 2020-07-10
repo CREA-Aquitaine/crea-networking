@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import {
   Button,
   Modal,
@@ -12,10 +11,10 @@ import {
   Col,
   Row,
 } from 'reactstrap';
-import Axios from 'axios';
 import PropTypes from 'prop-types';
 
 import styles from './TypeAnnounce.module.css';
+
 
 const host = process.env.REACT_APP_HOST;
 
@@ -76,6 +75,7 @@ function ModalType({ className, getType, token, id }) {
         Modifier/supprimer
       </Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
+
         <ModalHeader toggle={toggle}>
           Modification ou suppression des données
         </ModalHeader>
@@ -151,6 +151,7 @@ function ModalType({ className, getType, token, id }) {
             </ModalFooter>
           </Col>
         </Row>
+
       </Modal>
     </div>
   );
@@ -162,8 +163,10 @@ const mapStateToProps = (state) => ({
 ModalType.propTypes = {
   token: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
+
   id: PropTypes.string.isRequired,
   getType: PropTypes.string.isRequired,
+
 };
 
-export default connect(mapStateToProps)(ModalType);
+export default ModalType;

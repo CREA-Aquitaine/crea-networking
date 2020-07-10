@@ -67,6 +67,7 @@ function AccountModal({ token, userInfos }) {
   return (
     <>
       <NavItem onClick={toggle}>Mon compte</NavItem>
+      {error ? <p>Erreur lors de la modification</p> : ''}
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Mes informations</ModalHeader>
         <Form onSubmit={handleSubmit}>
