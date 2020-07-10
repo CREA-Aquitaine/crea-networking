@@ -110,12 +110,7 @@ function PopUpConnection() {
             </Row>
             <Row className="mt-3">
               <Col xs={{ size: 2, offset: 8 }}>
-                <Button
-                  tag={Link}
-                  to="/"
-                  type="submit"
-                  className={styles.button}
-                >
+                <Button type="submit" className={styles.button}>
                   Valider
                 </Button>
               </Col>
