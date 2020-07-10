@@ -134,9 +134,10 @@ function PostAnnounce({ token, UserId }) {
                   name="select"
                   id="exampleSelect"
                   defaultValue="defaultValue"
-                  value="defaultValue"
                 >
-                  <option disabled>Selectionnez</option>
+                  <option value="defaultValue" disabled>
+                    Selectionnez
+                  </option>
 
                   {typePostsData.map((typePost) => (
                     <option>{typePost.labelFr}</option>
