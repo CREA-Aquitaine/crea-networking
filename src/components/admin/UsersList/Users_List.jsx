@@ -3,14 +3,7 @@ import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  Breadcrumb,
-  Container,
-  Row,
-  Col,
-  BreadcrumbItem,
-} from 'reactstrap';
+import { Breadcrumb, Container, Row, Col, BreadcrumbItem } from 'reactstrap';
 
 import UsersListTable from './Users_List_Table';
 import styles from './Users_List_Table.module.css';
@@ -100,20 +93,6 @@ function UsersList({ token }) {
     return isUserType;
   };
 
-  const deleteUsers = async () => {
-    try {
-      await Axios.delete(`${host}/api/v1/users/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      getAllUsers();
-    } catch (err) {
-      setError(error);
-    }
-    return isUserType;
-  };
-
   useEffect(() => {
     getAllUsers();
   }, []);
@@ -173,14 +152,6 @@ function UsersList({ token }) {
               <Link className={styles.UsersListExportLink} to="/">
                 Exporter la liste{' '}
               </Link>
-            </Col>
-            <Col
-              xs={{ size: '3', offset: '6' }}
-              className={styles.UsersListExportButton}
-            >
-              <Button className="button" onClick={deleteUsers}>
-                Supprimer
-              </Button>
             </Col>
           </Row>
         </Container>
