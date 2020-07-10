@@ -78,11 +78,16 @@ function SecondNavbar({ role }) {
       ) : role === 'user' ? (
         <Nav className="mr-auto align-items-center" navbar>
           <NavItem>
-            <NavLink>
+            <NavLink tag={Link} to="/">
               <img src={crea} alt="logo crea" className={styles.logo_crea} />
             </NavLink>
           </NavItem>
           <NavItem className={styles.partenairesUser}>
+            <NavLink className={styles.navlink} tag={Link} to="/dashboard">
+              Mon dashboard
+            </NavLink>
+          </NavItem>
+          <NavItem className={styles.itemUser}>
             <NavLink className={styles.navlink} tag={Link} to="/post">
               Déposer une annonce
             </NavLink>

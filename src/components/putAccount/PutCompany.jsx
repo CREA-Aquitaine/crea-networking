@@ -15,6 +15,8 @@ import Axios from 'axios';
 import PropTypes from 'prop-types';
 import ModalDelete from './ModalDelete';
 
+const host = process.env.REACT_APP_HOST;
+
 class PutCompany extends React.Component {
   constructor(props) {
     super(props);
@@ -40,7 +42,7 @@ class PutCompany extends React.Component {
     const { id } = params;
     const { password2, password } = this.state;
     if (password === password2) {
-      const url = `http://localhost8080/api/v1/user/${id}`;
+      const url = `${host}/api/v1/user/${id}`;
       Axios.put(url).then();
     } else {
       // <Alert color="danger">Mot de passe différent.</Alert>;

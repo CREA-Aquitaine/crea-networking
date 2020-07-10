@@ -16,7 +16,7 @@ function ModalDelete({ className, deleteInfo }) {
         <ModalFooter>
           <Button color="primary" onClick={deleteInfo}>
             Oui
-          </Button>{' '}
+          </Button>
           <Button color="secondary" onClick={toggle}>
             Non
           </Button>

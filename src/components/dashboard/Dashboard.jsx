@@ -1,38 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import styles from './Dashboard.module.css';
 import UserInfos from './User_Infos';
 import DashboardTable from './Dashboard_table';
 import DashboardBreadcrumb from './DashboardBreadcrumb';
 
-function Dashboard() {
+const host = process.env.REACT_APP_HOST;
+
+function Dashboard({ token }) {
   const [userInfos, setUserInfos] = useState([]);
   const [userTypes, setUserTypes] = useState([]);
   const [activityFields, setActivityFields] = useState([]);
   const [isLoading, setisLoading] = useState(true);
-  const [error, seterror] = useState('');
+  const [error, setError] = useState('');
 
   const getUserInfos = async () => {
     try {
       const id = '53ed22b3-91f3-45b9-a7f3-69d71f799d7e';
-      const res = await Axios.get(`http://localhost:8080/api/v1/users/${id}`);
+      const res = await Axios.get(`${host}/api/v1/users/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setUserInfos(res.data);
 
       const userTypeId = res.data[0].UserTypeId;
       const resType = await Axios.get(
-        `http://localhost:8080/api/v1/userTypes/${userTypeId}`
+        `${host}/api/v1/userTypes/${userTypeId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setUserTypes(resType.data);
 
       const activityFieldId = res.data[0].ActivityFieldId;
       const resActivity = await Axios.get(
-        `http://localhost:8080/api/v1/activityFields/${activityFieldId}`
+        `${host}/api/v1/activityFields/${activityFieldId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setActivityFields(resActivity.data);
 
       setisLoading(false);
     } catch (err) {
-      seterror(err);
+      setError(err);
     }
   };
   useEffect(() => {
@@ -65,5 +84,12 @@ function Dashboard() {
     </>
   );
 }
+const mapStateToProps = (state) => ({
+  token: state.authenticated.token,
+});
 
-export default Dashboard;
+Dashboard.propTypes = {
+  token: PropTypes.string.isRequired,
+};
+
+export default connect(mapStateToProps)(Dashboard);
