@@ -30,7 +30,7 @@ function ListAnnounceUser({ token }) {
   const getAnnounces = async () => {
     const host = process.env.REACT_APP_HOST;
     try {
-      const res = await Axios.get(`${host}api/v1/posts`, {
+      const res = await Axios.get(`${host}/api/v1/posts`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -45,7 +45,7 @@ function ListAnnounceUser({ token }) {
   const getJobCatData = async () => {
     const host = process.env.REACT_APP_HOST;
     try {
-      const res = await Axios.get(`${host}api/v1/jobCategories`, {
+      const res = await Axios.get(`${host}/api/v1/jobCategories`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -59,7 +59,7 @@ function ListAnnounceUser({ token }) {
   const getTypePost = async () => {
     const host = process.env.REACT_APP_HOST;
     try {
-      const res = await Axios.get(`${host}api/v1/postTypes`, {
+      const res = await Axios.get(`${host}/api/v1/postTypes`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
