@@ -15,7 +15,7 @@ function Announce({ token }) {
   const getInfosAnnounce = async () => {
     const host = process.env.REACT_APP_HOST;
     try {
-      const res = await Axios.get(`${host}api/v1/posts/${id}`, {
+      const res = await Axios.get(`${host}/api/v1/posts/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
