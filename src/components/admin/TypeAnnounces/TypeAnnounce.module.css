@@ -13,7 +13,7 @@
   color: white;
   padding-top: 0.8vh;
 }
-.input {
+<<<<<<< HEAD .input {
   box-shadow: 5px 5px 2.5px #dfd9d9;
   border-radius: 0;
 }
@@ -27,6 +27,12 @@
   border-radius: 0;
 }
 
-.imgCard {
+======= .inputQR {
+  margin: 1vw 0;
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  border-radius: 0;
+}
+
+>>>>>>>c3082a5017a184759af738d8996dfb7267c7a99e .imgCard {
   width: 100%;
 }

@@ -45,14 +45,14 @@
 .mesnavbarItems {
   font-size: 1.3vw;
   margin-left: 5vw;
-  color : black;
+  color: black;
 }
 .mesnavbarItems:hover {
   color: #dd2b25;
 }
 
 .itemUser {
-  padding-left : 5vw;
+  padding-left: 5vw;
   font-size: 20px;
 }
 @media screen and (max-width: 800px) {

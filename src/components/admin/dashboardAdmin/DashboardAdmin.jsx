@@ -50,6 +50,7 @@ function HomeAdmin({ token }) {
         <BreadcrumbItem>Accueil</BreadcrumbItem>
         <BreadcrumbItem active>Dashboard</BreadcrumbItem>
       </Breadcrumb>
+      {error ? <p>Erreur lors de la récupération des données</p> : ''}
       <Row>
         <Col xs="6">
           <Container Fluid className={styles.pie}>
