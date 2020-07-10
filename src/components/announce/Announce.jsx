@@ -1,53 +1,76 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import Axios from 'axios';
+import { useParams, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styles from './Announce.module.css';
 
-class Annouce extends React.Component {
-  constructor(props) {
-    super(props);
+function Announce({ token }) {
+  const [infosAnnounce, setInfosAnnounce] = useState([]);
+  const [error, setError] = useState('');
+  const [isLoading, setisLoading] = useState(true);
+  const { id } = useParams();
 
-    this.state = {};
-  }
+  const getInfosAnnounce = async () => {
+    const host = process.env.REACT_APP_HOST;
+    try {
+      const res = await Axios.get(`${host}api/v1/posts/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setInfosAnnounce(res.data);
+      setisLoading(false);
+    } catch (err) {
+      setError(err);
+    }
+  };
 
-  render() {
-    return (
-      <Container className={styles.global}>
-        <Row className={styles.top}>
-          <Col sm={{ size: 4 }} className={styles.topleft}>
-            <p>ID:</p>
-            <p>Ville:</p>
-            <p>Secteur d&#39;activité:</p>
-          </Col>
+  useEffect(() => {
+    getInfosAnnounce();
+  }, []);
 
-          <Col className={styles.topright}>
-            <h3>TITRE ANNONCE</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt
-              laborum mollitia atque reiciendis repellat saepe harum nam amet,
-              odio vel unde nulla perspiciatis doloremque magnam fugiat. Non
-              adipisci provident in.
-            </p>
-          </Col>
-        </Row>
-        <Row className={styles.bottom}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid in
-          impedit placeat! Facilis magnam nam corporis, quas, possimus inventore
-          quidem porro totam similique, et necessitatibus saepe? Corporis
-          expedita aut velit officia cum sequi distinctio esse quibusdam
-          voluptatum consequuntur debitis fuga facere quas ex vel quod modi,
-          voluptas, incidunt, obcaecati quo. Perferendis, ullam fugiat? Pariatur
-          beatae, voluptatem minus ullam voluptate quisquam culpa. Recusandae
-          alias distinctio similique mollitia saepe quasi beatae voluptates quas
-          earum delectus. Animi quae est, eligendi nam vel architecto nobis
-          cumque impedit distinctio cum exercitationem, quo, sunt nesciunt
-          earum.
-        </Row>
-        <Row className={styles.btn}>
-          <button type="button">Postuler</button>
-        </Row>
-      </Container>
-    );
-  }
+  return (
+    <>
+      {isLoading ? (
+        <p>loading...</p>
+      ) : (
+        <Container className={styles.global}>
+          {error ? <p>There is an error</p> : ''}
+          <Row className={styles.top}>
+            <Col sm={{ size: 4 }} className={styles.topleft}>
+              <p>{`Ville: ${infosAnnounce[0].localisation}`}</p>
+              <p>{`Secteur d'activité: ${infosAnnounce[0].JobCategory.labelFr} `}</p>
+              <p>{`Type d'annonce:  ${infosAnnounce[0].TypePost.labelFr} `}</p>
+            </Col>
+            <Col className={styles.topright}>
+              <h3>{infosAnnounce[0].title}</h3>
+            </Col>
+          </Row>
+          <Row className={styles.bottom}>{infosAnnounce[0].content}</Row>
+          <Row className={styles.btn}>
+            <Col>
+              <button type="button">Postuler</button>
+            </Col>
+            <Col>
+              <Link to="/listAnnonce">
+                <button type="button">Retour</button>
+              </Link>
+            </Col>
+          </Row>
+        </Container>
+      )}
+    </>
+  );
 }
 
-export default Annouce;
+const mapStateToProps = (state) => ({
+  token: state.authenticated.token,
+});
+
+Announce.propTypes = {
+  token: PropTypes.string.isRequired,
+};
+
+export default connect(mapStateToProps)(Announce);

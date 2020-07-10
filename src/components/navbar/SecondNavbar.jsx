@@ -53,22 +53,22 @@ function SecondNavbar({ role }) {
             </NavLink>
           </NavItem>
           <NavItem className={styles.partenairesUser}>
-            <NavLink className={styles.navlink} tag={Link} to="./post">
+            <NavLink className={styles.navlink} tag={Link} to="/post">
               Déposer une annonce
             </NavLink>
           </NavItem>
           <NavItem className={styles.itemUser}>
-            <NavLink className={styles.navlink} tag={Link} to="./partners">
+            <NavLink className={styles.navlink} tag={Link} to="/listAnnonce">
               Rechercher une annonce
             </NavLink>
           </NavItem>
           <NavItem className={styles.itemUser}>
-            <NavLink className={styles.navlink} tag={Link} to="./partners">
+            <NavLink className={styles.navlink} tag={Link} to="/partners">
               Partenaires
             </NavLink>
           </NavItem>
           <NavItem className={styles.itemUser}>
-            <NavLink className={styles.navlink} tag={Link} to="./contact">
+            <NavLink className={styles.navlink} tag={Link} to="/contact">
               Contact
             </NavLink>
           </NavItem>
@@ -81,12 +81,12 @@ function SecondNavbar({ role }) {
             </NavLink>
           </NavItem>
           <NavItem className={styles.partenaires}>
-            <NavLink className={styles.navlink} tag={Link} to="./partners">
+            <NavLink className={styles.navlink} tag={Link} to="/partners">
               PARTENAIRES
             </NavLink>
           </NavItem>
           <NavItem className={styles.contact}>
-            <NavLink className={styles.navlink} tag={Link} to="./contact">
+            <NavLink className={styles.navlink} tag={Link} to="/contact">
               CONTACT
             </NavLink>
           </NavItem>
