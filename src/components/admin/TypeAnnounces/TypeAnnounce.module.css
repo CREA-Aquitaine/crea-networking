@@ -13,7 +13,14 @@
   color: white;
   padding-top: 0.8vh;
 }
-
+.input {
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  border-radius: 0;
+}
+.modalText {
+  margin-top: auto;
+  margin-bottom: auto;
+}
 .inputQR {
   margin: 1vw 0;
   box-shadow: 5px 5px 2.5px #dfd9d9;

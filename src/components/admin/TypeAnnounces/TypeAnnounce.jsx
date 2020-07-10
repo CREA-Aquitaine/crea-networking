@@ -61,6 +61,7 @@ function TypeAnnounce({ token }) {
       );
       setCreated(true);
       getType();
+      setTimeout(() => setCreated(false), 2000);
     } catch (err) {
       setError(err);
     }
@@ -129,10 +130,10 @@ function TypeAnnounce({ token }) {
                 Ajouter
               </Button>
             </Col>
-            {created ? <p> Votre question/réponse a bien été crée.</p> : ''}
+            {created ? <p> Votre type d&apos;annonce a bien été crée.</p> : ''}
             {error ? (
               <p>
-                Il y a eu une erreur lors de la création de la question/réponse.
+                Il y a eu une erreur lors de la création du type d&apos;annonce.
               </p>
             ) : (
               ''
