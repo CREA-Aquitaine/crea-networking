@@ -71,12 +71,24 @@ function ListAnnounceUser({ token }) {
   };
 
   const getResults = () => {
-    const arrayFiltered = annonceData.filter(
-      (annonce) =>
-        annonce.JobCategory.labelFr === selectJobCat &&
-        annonce.TypePost.labelFr === selectTypePost
-    );
-    setAnnonceFiltered(arrayFiltered);
+    if (selectJobCat && selectTypePost) {
+      const arrayFiltered = annonceData.filter(
+        (annonce) =>
+          annonce.JobCategory.labelFr === selectJobCat &&
+          annonce.TypePost.labelFr === selectTypePost
+      );
+      setAnnonceFiltered(arrayFiltered);
+    } else if (selectJobCat && !selectTypePost) {
+      const arrayFiltered = annonceData.filter(
+        (annonce) => annonce.JobCategory.labelFr === selectJobCat
+      );
+      setAnnonceFiltered(arrayFiltered);
+    } else if (!selectJobCat && selectTypePost) {
+      const arrayFiltered = annonceData.filter(
+        (annonce) => annonce.TypePost.labelFr === selectTypePost
+      );
+      setAnnonceFiltered(arrayFiltered);
+    }
   };
 
   const resetSearch = () => {
