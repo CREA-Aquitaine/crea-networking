@@ -1,0 +1,25 @@
+.containerQR {
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  border: 1px solid #dfd9d9;
+  margin-bottom: 4vh;
+  padding-bottom: 2vh;
+}
+
+.searchBar {
+  background-color: #dd2b25;
+  padding: 0.8vw;
+}
+.faqTitle {
+  color: white;
+  padding-top: 0.8vh;
+}
+
+.inputQR {
+  margin: 1vw 0;
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  border-radius: 0;
+}
+
+.imgCard {
+  width: 100%;
+}

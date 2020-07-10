@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import Axios from 'axios';
-
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import PostAnnounceBreadcrumb from './PostAnnounceBreadcrumb';
 
 import styles from './PostAnnounce.module.css';
 // import Editor from './Editor';
 
-function PostAnnounce() {
+function PostAnnounce({ token, UserId }) {
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
   const [isLoading, setisLoading] = useState(true);
@@ -17,21 +18,32 @@ function PostAnnounce() {
   const [localisation, setLocalisation] = useState('');
   const [language, setlanguage] = useState('');
   const [JobCategoryId, setJobCategoryId] = useState('');
+  const [error, setError] = useState('');
 
   const getTypePostsData = async () => {
+    const host = process.env.REACT_APP_HOST;
     try {
-      const res = await Axios.get(`http://localhost:8080/api/v1/postTypes`);
+      const res = await Axios.get(`${host}api/v1/postTypes`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       settypePostsData(res.data);
     } catch (err) {
-      throw new Error(err);
+      setError(err);
     }
   };
   const getJobCatData = async () => {
+    const host = process.env.REACT_APP_HOST;
     try {
-      const res = await Axios.get(`http://localhost:8080/api/v1/jobCategories`);
+      const res = await Axios.get(`${host}api/v1/jobCategories`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setjobCatData(res.data);
     } catch (err) {
-      throw new Error(err);
+      setError(err);
     }
   };
 
@@ -54,15 +66,23 @@ function PostAnnounce() {
   const handlePostAnnounce = async (e) => {
     e.preventDefault();
     try {
-      await Axios.post('http://localhost:8080/api/v1/posts', {
-        title,
-        content,
-        localisation,
-        language,
-        UserId: '0d7315c2-ce56-4c65-a949-4cc82574dddb',
-        JobCategoryId,
-        TypePostId,
-      });
+      await Axios.post(
+        'http://localhost:8080/api/v1/posts',
+        {
+          title,
+          content,
+          localisation,
+          language,
+          UserId,
+          JobCategoryId,
+          TypePostId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
     } catch (err) {
       throw new Error(err);
     }
@@ -99,6 +119,7 @@ function PostAnnounce() {
         <p>Loading...</p>
       ) : (
         <Container>
+          {error ? <p>There is an error</p> : ''}
           <PostAnnounceBreadcrumb />
 
           <Form onSubmit={handlePostAnnounce}>
@@ -108,14 +129,15 @@ function PostAnnounce() {
               </Col>
               <Col sm={5}>
                 <Input
-                  onClick={selectTypePost}
+                  onChange={selectTypePost}
                   type="select"
                   name="select"
                   id="exampleSelect"
                   defaultValue="defaultValue"
-                  value="defaultValue"
                 >
-                  <option disabled>Selectionnez</option>
+                  <option value="defaultValue" disabled>
+                    Selectionnez
+                  </option>
 
                   {typePostsData.map((typePost) => (
                     <option>{typePost.labelFr}</option>
@@ -159,7 +181,7 @@ function PostAnnounce() {
               </Col>
               <Col sm={5}>
                 <Input
-                  onClick={selectLanguage}
+                  onChange={selectLanguage}
                   type="select"
                   name="select"
                   id="exampleSelect"
@@ -180,11 +202,11 @@ function PostAnnounce() {
               </Col>
               <Col sm={5}>
                 <Input
-                  onClick={selectJobCat}
                   type="select"
                   name="select"
                   id="exampleSelect"
                   defaultValue="defaultValue"
+                  onChange={selectJobCat}
                 >
                   <option value="defaultValue" disabled>
                     Selectionnez
@@ -209,7 +231,7 @@ function PostAnnounce() {
             </FormGroup>
             <Row>
               <Col sm={{ size: 1, offset: 9 }}>
-                <button type="button" className="button">
+                <button type="submit" className="button">
                   Valider
                 </button>
               </Col>
@@ -230,4 +252,14 @@ function PostAnnounce() {
   );
 }
 
-export default PostAnnounce;
+const mapStateToProps = (state) => ({
+  token: state.authenticated.token,
+  UserId: state.authenticated.userInfos.id,
+});
+
+PostAnnounce.propTypes = {
+  token: PropTypes.string.isRequired,
+  UserId: PropTypes.string.isRequired,
+};
+
+export default connect(mapStateToProps)(PostAnnounce);

@@ -1,0 +1,89 @@
+.searchBar {
+  background-color: #dd2b25;
+  padding: 0.8vw;
+}
+.faqTitle {
+  color: white;
+  padding-top: 0.8vh;
+}
+.inputSearch {
+  border-radius: 0;
+  width: 10vw;
+}
+.addQR {
+  margin: 2vw 0;
+  background-color: #f9f9f9;
+  border: 1px solid #e7e5e5;
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  padding: 2vw;
+}
+.inputQR {
+  margin: 1vw 0;
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  border-radius: 0;
+}
+.checkbox {
+  text-align: left;
+  font-size: 0.8vw;
+  text-align: left;
+  font-weight: bold;
+  margin-right: 10vw;
+  margin-bottom: 1vw;
+}
+
+.response {
+  font-size: 0.8vw;
+  text-align: left;
+}
+
+.buttonDropdown {
+  padding: 8px 20px !important;
+  border: 1px solid transparent;
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  background-color: white;
+  color: black;
+  border-radius: 0;
+}
+.buttonDropdown:hover {
+  border: 1px solid #dd2b25;
+  background-color: white;
+  color: black;
+}
+.item {
+  font-size: 0.8vw;
+}
+.item:hover {
+  border: 1px solid #dfd9d9;
+}
+.containerQR {
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  border: 1px solid #dfd9d9;
+  margin-bottom: 4vh;
+  padding-bottom: 2vh;
+}
+.container {
+  margin: 0 2vw;
+}
+/*FaqModal*/
+.title {
+  text-align: center;
+  margin-top: 1vw;
+}
+.subtitle {
+  text-align: center;
+  font-size: 0.8vw !important;
+  margin-bottom: 2vw;
+}
+.question {
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  border: 1px solid #dfd9d9;
+  margin-bottom: 1vw;
+  padding-top: 0.5vw;
+}
+.reponse {
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  border: 1px solid #dfd9d9;
+  padding: 1vw;
+  margin-bottom: 2vw;
+  height: 20vh !important;
+}

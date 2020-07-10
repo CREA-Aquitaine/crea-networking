@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import ModalConnection from './ModalConnection';
+import PopUpConnection from '../navbar/PopUpConnection';
 
 import styles from './blocs.module.css';
 
@@ -56,7 +56,7 @@ function Blocs() {
           <button type="button" onClick={toggle}>
             Se connecter
           </button>
-          <ModalConnection modal={modal} toggle={toggle} />
+          <PopUpConnection modal={modal} toggle={toggle} />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
               S&#39;inscrire

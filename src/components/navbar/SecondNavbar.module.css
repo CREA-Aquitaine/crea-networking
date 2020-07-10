@@ -21,10 +21,14 @@
 .partenaires {
   padding-left: 45vw;
   padding-right: 8vw;
-  font-size: 16px;
+  font-size: 20px;
+}
+.partenairesUser {
+  padding-left: 30vw;
+  font-size: 20px;
 }
 .contact {
-  font-size: 16px;
+  font-size: 20px;
   padding-right: 2vw;
 }
 .navlink {
@@ -34,6 +38,23 @@
   color: #dd2b25;
 }
 
+.monDashboard {
+  font-size: 1.3vw;
+  margin-left: 10vw;
+}
+.mesnavbarItems {
+  font-size: 1.3vw;
+  margin-left: 5vw;
+  color: black;
+}
+.mesnavbarItems:hover {
+  color: #dd2b25;
+}
+
+.itemUser {
+  padding-left: 5vw;
+  font-size: 20px;
+}
 @media screen and (max-width: 800px) {
   .partenaires {
     padding-left: 8vw;
