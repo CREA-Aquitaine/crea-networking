@@ -1,9 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Variable environment
-*** for this project, you need to create a ".env" with those fields ***
+
+**_ for this project, you need to create a ".env" with those fields _**
 
 - REACT_APP_HOST =
+- REACT_APP_IMGUR_TOKEN=Client_id imgur
 
 ## Getting started
 

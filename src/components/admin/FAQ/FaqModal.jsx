@@ -15,12 +15,14 @@ import PropTypes from 'prop-types';
 
 import styles from './Faq_List.module.css';
 
+const host = process.env.REACT_APP_HOST;
+
 function FaqModal({ request, response, id, country, token, getFaq }) {
   const [modal, setModal] = useState(false);
-  const [question, setQuestion] = useState({ request });
-  const [answer, setAnswer] = useState({ response });
+  const [question, setQuestion] = useState(request);
+  const [answer, setAnswer] = useState(response);
   const [error, setError] = useState('');
-  const [language, setLanguage] = useState({ country });
+  const [language, setLanguage] = useState(country);
   const [errorDelete, setErrorDelete] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -42,7 +44,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
   const putFaq = async () => {
     try {
       await Axios.put(
-        `http://localhost:8080/api/v1/faq/${id}`,
+        `${host}/api/v1/faq/${id}`,
         {
           question,
           answer,
@@ -57,7 +59,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
       setModal(!modal);
       getFaq();
     } catch (err) {
-      setErrorDelete(err);
+      setError(err);
     }
   };
 
@@ -68,7 +70,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
 
   const deleteFaq = async () => {
     try {
-      await Axios.delete(`http://localhost:8080/api/v1/faq/${id}`, {
+      await Axios.delete(`${host}/api/v1/faq/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -76,7 +78,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
       setModal(!modal);
       getFaq();
     } catch (err) {
-      setError(err);
+      setErrorDelete(err);
     }
   };
 
@@ -104,7 +106,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
               id="quest"
               className={styles.question}
               type="textarea"
-              placeholder={request}
+              value={question}
               onChange={handleQuestion}
             />
             <Label for="reponse" />
@@ -112,7 +114,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
               id="reponse"
               type="textarea"
               className={styles.reponse}
-              placeholder={response}
+              value={answer}
               onChange={handleAnswer}
             />
             <Row>
@@ -120,7 +122,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
                 <Label for="exampleSelect">Pays</Label>
               </Col>
               <Col xs="3">
-                {country === 'France' ? (
+                {language === 'France' ? (
                   <Input type="select" name="select" id="exampleSelect">
                     <option onClick={handleLanguageFrance}>France</option>
                     <option onClick={handleLanguageEspagne}>Espagne</option>

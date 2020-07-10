@@ -8,6 +8,8 @@ import styles from './Partner.module.css';
 import star from './images/star.svg';
 import starYellow from './images/starYellow.svg';
 
+const host = process.env.REACT_APP_HOST;
+
 function PartnerModal({
   id,
   isfavorite,
@@ -18,11 +20,11 @@ function PartnerModal({
   getPartners,
 }) {
   const [modal, setModal] = useState(false);
-  const [label, setLabel] = useState({ labelPartner });
-  const [description, setDescription] = useState({ descriptionPartner });
-  const [logo, setImgPartner] = useState('');
-  const [favorite, setFavorite] = useState({ isfavorite });
-  const [url, setUrl] = useState({ urlPartner });
+  const [label, setLabel] = useState(labelPartner);
+  const [description, setDescription] = useState(descriptionPartner);
+  const [logo, setImgPartner] = useState(null);
+  const [favorite, setFavorite] = useState(isfavorite);
+  const [url, setUrl] = useState(urlPartner);
   const [errorDelete, setErrorDelete] = useState(false);
   const [errorPut, setErrorPut] = useState('');
 
@@ -43,31 +45,55 @@ function PartnerModal({
   };
 
   const putPartner = async () => {
-    try {
-      await Axios.put(
-        `http://localhost:8080/api/v1/partners/${id}`,
-        {
-          label,
-          description,
-          url,
-          logo,
-          favorite,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+    if (logo === null) {
+      try {
+        await Axios.put(
+          `${host}/api/v1/partners/${id}`,
+          {
+            label,
+            description,
+            url,
+            favorite,
           },
-        }
-      );
-      setModal(!modal);
-      getPartners();
-    } catch (err) {
-      setErrorPut(err);
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setModal(!modal);
+        getPartners();
+      } catch (err) {
+        setErrorPut(err);
+      }
+    } else {
+      try {
+        await Axios.put(
+          `${host}/api/v1/partners/${id}`,
+          {
+            label,
+            description,
+            url,
+            logo,
+            favorite,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setModal(!modal);
+        getPartners();
+      } catch (err) {
+        setErrorPut(err);
+      }
     }
   };
+
   const deletePartner = async () => {
     try {
-      await Axios.delete(`http://localhost:8080/api/v1/partners/${id}`, {
+      await Axios.delete(`${host}/api/v1/partners/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -81,9 +107,6 @@ function PartnerModal({
 
   return (
     <div>
-      {errorDelete ? <p> Le partenaire a bien été supprimé</p> : ''}
-      {errorPut ? <p>Il y a eu une erreur lors de la modification.</p> : ''}
-
       <Button className="button" onClick={toggle}>
         Modifier
       </Button>
@@ -96,6 +119,12 @@ function PartnerModal({
               l&apos;enregistrer
             </i>
           </p>
+          {errorDelete ? (
+            <p> Il y a eu une erreur lors de la suppression.</p>
+          ) : (
+            ''
+          )}
+          {errorPut ? <p>Il y a eu une erreur lors de la modification.</p> : ''}
           <Row>
             <Col xs="1">
               {favorite === 1 ? (
@@ -127,19 +156,19 @@ function PartnerModal({
           <Input
             className={styles.input}
             type="text"
-            placeholder={labelPartner}
+            value={label}
             onChange={handleLabel}
           />
           <Input
             className={styles.input}
             type="textarea"
-            placeholder={descriptionPartner}
+            value={description}
             onChange={handleDescription}
           />
           <Input
             className={styles.input}
             type="text"
-            placeholder={urlPartner}
+            value={url}
             onChange={handleUrl}
           />
           <Row>

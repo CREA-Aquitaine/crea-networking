@@ -1,19 +1,44 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Row,
+  Col,
+} from 'reactstrap';
 import PropTypes from 'prop-types';
 
+import styles from './Partners.module.css';
+
 const ModalPartners = (props) => {
-  const { className, toggle, isModalOpen, label, url, description } = props;
+  const {
+    className,
+    toggle,
+    isModalOpen,
+    label,
+    url,
+    description,
+    logo,
+  } = props;
 
   return (
     <Modal isOpen={isModalOpen} toggle={toggle} className={className}>
-      <ModalHeader toggle={toggle}>{label}</ModalHeader>
+      <ModalHeader>
+        <Row className={styles.rowHeaders}>
+          <Col xs="9">{label}</Col>
+          <Col className={styles.logo}>
+            <img className={styles.logo} src={logo} alt={label} />
+          </Col>
+        </Row>
+      </ModalHeader>
       <ModalBody>{description}</ModalBody>
       <ModalFooter>
         <a href={url} target="blanck">
-          <Button color="danger" onClick={toggle}>
+          <Button className="button" onClick={toggle}>
             Site Web
-          </Button>{' '}
+          </Button>
         </a>
       </ModalFooter>
     </Modal>
@@ -27,6 +52,7 @@ ModalPartners.propTypes = {
   label: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  logo: PropTypes.string.isRequired,
 };
 
 export default ModalPartners;

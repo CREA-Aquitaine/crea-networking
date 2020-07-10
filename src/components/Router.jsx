@@ -18,6 +18,10 @@ import AnnouncesList from './admin/AnnouncesList/Announces_List';
 import Faq from './admin/FAQ/Faq';
 import PartnersList from './admin/partners/Partners';
 import ListAnnounceUser from './announce/ListAnnounceUser';
+import JobCategory from './admin/JobCategory/JobCategory';
+import UserTypes from './admin/UserType/UserTypes';
+import TypeAnnounce from './admin/TypeAnnounces/TypeAnnounce';
+import ActivityFields from './admin/ActivityFields/ActivityFields';
 
 function Router({ role }) {
   return (
@@ -26,6 +30,10 @@ function Router({ role }) {
         <>
           <NavBar />
           <Switch>
+            <Route path="/jobCategory" component={JobCategory} />
+            <Route path="/typeAnnounce" component={TypeAnnounce} />
+            <Route path="/userType" component={UserTypes} />
+            <Route path="/activityFields" component={ActivityFields} />
             <Route path="/dashboard" component={DashboardAdmin} />
             <Route path="/users" component={UsersList} />
             <Route path="/partners" component={PartnersList} />

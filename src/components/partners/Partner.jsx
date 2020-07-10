@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Col } from 'reactstrap';
 import PropTypes from 'prop-types';
+
+import styles from './Partners.module.css';
 import ModalPartners from './modal';
 
 function Partner(props) {
@@ -11,13 +13,20 @@ function Partner(props) {
   const { label, url, description, logo } = props;
   return (
     <Col>
-      <img onClick={toggle} onKeyDown={toggle} src={logo} alt="blabla" />
+      <img
+        onClick={toggle}
+        className={styles.logoPartner}
+        onKeyDown={toggle}
+        src={logo}
+        alt="blabla"
+      />
       <ModalPartners
         toggle={toggle}
         isModalOpen={isModalOpen}
         label={label}
         url={url}
         description={description}
+        logo={logo}
       />
     </Col>
   );

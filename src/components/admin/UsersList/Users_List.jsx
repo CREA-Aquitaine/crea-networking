@@ -1,19 +1,109 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Button,
   Breadcrumb,
-  BreadcrumbItem,
-  Input,
   Container,
   Row,
   Col,
+  BreadcrumbItem,
 } from 'reactstrap';
 
 import UsersListTable from './Users_List_Table';
 import styles from './Users_List_Table.module.css';
 
-function UsersList() {
+const host = process.env.REACT_APP_HOST;
+
+function UsersList({ token }) {
+  const [usersList, setUserslist] = useState([]);
+  const [error, setError] = useState('');
+  const [isUserType, setUserType] = useState(false);
+
+  const getAllUsers = async () => {
+    try {
+      const res = await Axios.get(`${host}/api/v1/users`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUserslist(res.data);
+      setUserType(true);
+    } catch (err) {
+      setError(error);
+    }
+    return isUserType;
+  };
+
+  const getCompanies = async () => {
+    try {
+      const res = await Axios.get('http://localhost:8080/api/v1/users', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const companies = res.data.filter((user) => {
+        if (user.UserType) {
+          return user.UserType.label === 'Entreprise';
+        }
+        return '';
+      });
+      setUserslist(companies);
+      setUserType(true);
+    } catch (err) {
+      setError(error);
+    }
+    return isUserType;
+  };
+
+  const getSchools = async () => {
+    try {
+      const res = await Axios.get('http://localhost:8080/api/v1/users', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const schools = res.data.filter((user) => {
+        if (user.UserType) {
+          return user.UserType.label === 'Ecole';
+        }
+        return '';
+      });
+      setUserslist(schools);
+      setUserType(true);
+    } catch (err) {
+      setError(error);
+    }
+    return isUserType;
+  };
+
+  const getJobSeekers = async () => {
+    try {
+      const res = await Axios.get('http://localhost:8080/api/v1/users', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const jobSeeker = res.data.filter((user) => {
+        if (user.UserType) {
+          return user.UserType.label === "Chercheur d'emploi";
+        }
+        return '';
+      });
+      setUserslist(jobSeeker);
+      setUserType(true);
+    } catch (err) {
+      setError(error);
+    }
+    return isUserType;
+  };
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+
   return (
     <>
       <Container>
@@ -30,62 +120,39 @@ function UsersList() {
             <Col xs="3" className={styles.usersListTitleMargin}>
               Gestion des utilisateurs
             </Col>
-            <Col xs={{ size: '3', offset: '6' }}>
-              <Input
-                className={styles.inputSearch}
-                type="search"
-                name="search"
-                id="exampleSearch"
-                placeholder="RECHERCHER"
-              />
-            </Col>
           </Row>
           <Row className={styles.usersListPage}>
-            <Col xs={{ size: '2', offset: '1' }}>
-              <Button className={styles.UsersListButton}>Voir tout</Button>
-            </Col>
-            <Col xs="3">
-              <Input type="select" name="Profils" id="exampleSelect">
-                <option>Sélection par défaut </option>
-                <option>Ecoles/Etudiants</option>
-                <option>Entreprises</option>
-                <option>Chercheurs d&apos;emploi</option>
-              </Input>
-            </Col>
-            <Col xs={{ size: '1.5', offset: '3' }}>
-              <p>1-50 sur 568</p>
-            </Col>
-            <Col xs="1">
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                className="bi bi-arrow-left-circle-fill"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.646 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L6.207 7.5H11a.5.5 0 0 1 0 1H6.207l2.147 2.146z"
-                />
-              </svg>
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                className="bi bi-arrow-right-circle-fill"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-8.354 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L9.793 7.5H5a.5.5 0 0 0 0 1h4.793l-2.147 2.146z"
-                />
-              </svg>
-            </Col>
+            <button
+              type="button"
+              onClick={getAllUsers}
+              className={styles.buttonInput}
+            >
+              Tous les utilisateurs
+            </button>
+            <button
+              type="button"
+              onClick={getCompanies}
+              className={styles.buttonInput}
+            >
+              Entreprises
+            </button>
+            <button
+              type="button"
+              onClick={getSchools}
+              className={styles.buttonInput}
+            >
+              Ecoles/Etudiants
+            </button>
+            <button
+              type="button"
+              onClick={getJobSeekers}
+              className={styles.buttonInput}
+            >
+              Chercheurs d&apos;emploi
+            </button>
           </Row>
           <Row>
-            <UsersListTable />
+            <UsersListTable usersList={usersList} />
           </Row>
           <Row>
             <Col xs="3" className={styles.UsersListExportButton}>
@@ -106,4 +173,12 @@ function UsersList() {
   );
 }
 
-export default UsersList;
+const mapStateToProps = (state) => ({
+  token: state.authenticated.token,
+});
+
+UsersList.propTypes = {
+  token: PropTypes.string.isRequired,
+};
+
+export default connect(mapStateToProps)(UsersList);

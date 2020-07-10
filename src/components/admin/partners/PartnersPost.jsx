@@ -8,6 +8,9 @@ import styles from './Partner.module.css';
 import star from './images/star.svg';
 import starYellow from './images/starYellow.svg';
 
+const host = process.env.REACT_APP_HOST;
+const imgurToken = process.env.REACT_APP_IMGUR_TOKEN;
+
 function PartnersPost({ getPartners, token }) {
   const [label, setLabel] = useState('');
   const [description, setDescription] = useState('');
@@ -15,6 +18,7 @@ function PartnersPost({ getPartners, token }) {
   const [logo, setLogo] = useState('');
   const [favorite, setFavorite] = useState(false);
   const [error, setError] = useState('');
+
   const [created, setCreated] = useState(false);
 
   const handleLabel = (e) => {
@@ -26,55 +30,64 @@ function PartnersPost({ getPartners, token }) {
   const handleUrl = (e) => {
     setUrl(e.target.value);
   };
+
   const handleLogo = (e) => {
-    setLogo(e.target.value);
+    setLogo(e.target.files[0]);
   };
 
   const handleStar = () => {
     setFavorite(!favorite);
   };
 
-  const postPartners = async () => {
-    try {
-      await Axios.post(
-        'http://localhost:8080/api/v1/partners',
-        {
-          label,
-          description,
-          url,
-          logo,
-          favorite,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+  const postNewImage = () => {
+    Axios.post('https://api.imgur.com/3/image', logo, {
+      headers: {
+        Authorization: `Client-ID ${imgurToken}`,
+      },
+    })
+      .then((res) => {
+        // setLogo(res.data.data.link);
+        return Axios.post(
+          `${host}/api/v1/partners`,
+          {
+            label,
+            description,
+            url,
+            logo: res.data.data.link,
+            favorite,
           },
-        }
-      );
-      setCreated(true);
-      getPartners();
-    } catch (err) {
-      setError(err);
-    }
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      })
+      .then(() => setCreated(true))
+      .then(() => getPartners())
+      .then(() => setTimeout(() => setCreated(false), 2000))
+      .catch((err) => {
+        setError(err);
+      });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    postPartners();
+    postNewImage();
+    setLabel('');
+    setDescription('');
+    setUrl('');
+    setLogo('');
+    setFavorite('');
   };
 
   return (
     <Form fluid className={styles.addQR} onSubmit={handleSubmit}>
-      {created ? <p>Votre partenaire a bien été ajouté.</p> : ''}
-      {error ? (
-        <p>Une erreur s&apos;est produite lors de la création du partenaire.</p>
-      ) : (
-        ''
-      )}
       <Input
         className={styles.inputQR}
         type="text"
         name="search"
         id="search"
+        value={label}
         placeholder="Ajouter le nom de votre partenaire"
         onChange={handleLabel}
       />
@@ -83,6 +96,7 @@ function PartnersPost({ getPartners, token }) {
         type="text"
         name="search"
         id="search"
+        value={description}
         placeholder="Texte descriptif"
         onChange={handleDescription}
       />
@@ -91,6 +105,7 @@ function PartnersPost({ getPartners, token }) {
         type="text"
         name="search"
         id="search"
+        value={url}
         placeholder="URL du site du partenaire"
         onChange={handleUrl}
       />
@@ -101,8 +116,9 @@ function PartnersPost({ getPartners, token }) {
         <Col>
           <Input
             type="file"
-            name="file"
-            id="exampleFile"
+            files={logo}
+            name="logo"
+            id="logoFile"
             onChange={handleLogo}
           />
         </Col>
@@ -141,6 +157,12 @@ function PartnersPost({ getPartners, token }) {
           </Button>
         </Col>
       </Row>
+      {created ? <p>Votre partenaire a bien été ajouté.</p> : ''}
+      {error ? (
+        <p>Une erreur s&apos;est produite lors de la création du partenaire.</p>
+      ) : (
+        ''
+      )}
     </Form>
   );
 }

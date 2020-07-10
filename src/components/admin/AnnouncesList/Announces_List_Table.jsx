@@ -1,10 +1,190 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { Table, Col, Input } from 'reactstrap';
 
 import styles from './Announces.module.css';
 
-function AnnouncesListTable() {
+function AnnouncesListTable({ announcesList }) {
+  const [isAsc, setIsAsc] = useState(false);
+  const [numberAnnounce, setNumberAnnounce] = useState([]);
+  const [title, setTitle] = useState([]);
+  const [typeAnnounces, setTypeAnnounces] = useState([]);
+  const [category, setCategory] = useState([]);
+
+  const getAscnumberAnnounce = () => {
+    const ascNumberAnnounce = announcesList.sort((a, b) => {
+      const firstNumberAnnounce = a.id.toLowerCase();
+      const secondNumberAnnounce = b.id.toLowerCase();
+      if (firstNumberAnnounce < secondNumberAnnounce) {
+        return -1;
+      }
+      if (firstNumberAnnounce > secondNumberAnnounce) {
+        return 1;
+      }
+      return 0;
+    });
+    setNumberAnnounce(ascNumberAnnounce);
+    setIsAsc(true);
+    return numberAnnounce && isAsc;
+  };
+
+  const getDscnumberAnnounce = () => {
+    const dscNumberAnnounce = announcesList.sort((a, b) => {
+      const firstNumberAnnounce = a.id.toLowerCase();
+      const secondNumberAnnounce = b.id.toLowerCase();
+      if (firstNumberAnnounce > secondNumberAnnounce) {
+        return -1;
+      }
+      if (firstNumberAnnounce < secondNumberAnnounce) {
+        return 1;
+      }
+      return 0;
+    });
+    setNumberAnnounce(dscNumberAnnounce);
+    setIsAsc(false);
+    return numberAnnounce && isAsc;
+  };
+
+  const getAscTitle = () => {
+    const ascTitle = announcesList.sort((a, b) => {
+      const firstTitle = a.title.toLowerCase();
+      const secondTitle = b.title.toLowerCase();
+      if (firstTitle < secondTitle) {
+        return -1;
+      }
+      if (firstTitle > secondTitle) {
+        return 1;
+      }
+      return 0;
+    });
+    setTitle(ascTitle);
+    setIsAsc(true);
+    return title && isAsc;
+  };
+  const getDscTitle = () => {
+    const dscTitle = announcesList.sort((a, b) => {
+      const firstTitle = a.title.toLowerCase();
+      const secondTitle = b.title.toLowerCase();
+      if (firstTitle > secondTitle) {
+        return -1;
+      }
+      if (firstTitle < secondTitle) {
+        return 1;
+      }
+      return 0;
+    });
+    setTitle(dscTitle);
+    setIsAsc(false);
+    return title && isAsc;
+  };
+
+  const getAscTypeAnnounce = () => {
+    const ascTypeAnnounceFilter = announcesList.filter((post) => {
+      if (
+        post.TypePost !== null &&
+        post.TypePost.labelFr !== null &&
+        post.TypePostId !== null
+      ) {
+        return post.TypePost.labelFr;
+      }
+      return '';
+    });
+    const ascTypeAnnounce = ascTypeAnnounceFilter.sort((a, b) => {
+      const firstTypeAnnounce = a.TypePost.labelFr.toLowerCase();
+      const secondTypeAnnounce = b.TypePost.labelFr.toLowerCase();
+      if (firstTypeAnnounce < secondTypeAnnounce) {
+        return -1;
+      }
+      if (firstTypeAnnounce > secondTypeAnnounce) {
+        return 1;
+      }
+      return 0;
+    });
+    setTypeAnnounces(ascTypeAnnounce);
+    setIsAsc(true);
+    return typeAnnounces && isAsc;
+  };
+  const getDscTypeAnnounce = () => {
+    const dscTypeAnnounceFilter = announcesList.filter((post) => {
+      if (
+        post.TypePost !== null &&
+        post.TypePost.labelFr !== null &&
+        post.TypePostId !== null
+      ) {
+        return post.TypePost.labelFr;
+      }
+      return '';
+    });
+    const dscTypeAnnounce = dscTypeAnnounceFilter.sort((a, b) => {
+      const firstTypeAnnounce = a.TypePost.labelFr.toLowerCase();
+      const secondTypeAnnounce = b.TypePost.labelFr.toLowerCase();
+      if (firstTypeAnnounce > secondTypeAnnounce) {
+        return -1;
+      }
+      if (firstTypeAnnounce < secondTypeAnnounce) {
+        return 1;
+      }
+      return 0;
+    });
+    setTypeAnnounces(dscTypeAnnounce);
+    setIsAsc(false);
+    return typeAnnounces && isAsc;
+  };
+
+  const getAscCategory = () => {
+    const ascCategoryFilter = announcesList.filter((post) => {
+      if (
+        post.JobCategory !== null &&
+        post.JobCategory.labelFr !== null &&
+        post.JobCategoryId !== null
+      ) {
+        return post.JobCategory.labelFr;
+      }
+      return '';
+    });
+    const ascCategory = ascCategoryFilter.sort((a, b) => {
+      const firstCategory = a.JobCategory.labelFr.toLowerCase();
+      const secondCategory = b.JobCategory.labelFr.toLowerCase();
+      if (firstCategory < secondCategory) {
+        return -1;
+      }
+      if (firstCategory > secondCategory) {
+        return 1;
+      }
+      return 0;
+    });
+    setCategory(ascCategory);
+    setIsAsc(true);
+    return category && isAsc;
+  };
+  const getDscCategory = () => {
+    const dscCategoryFilter = announcesList.filter((post) => {
+      if (
+        post.JobCategory !== null &&
+        post.JobCategory.labelFr !== null &&
+        post.JobCategoryId !== null
+      ) {
+        return post.JobCategory.labelFr;
+      }
+      return '';
+    });
+    const dscCategory = dscCategoryFilter.sort((a, b) => {
+      const firstCategory = a.JobCategory.labelFr.toLowerCase();
+      const secondCategory = b.JobCategory.labelFr.toLowerCase();
+      if (firstCategory > secondCategory) {
+        return -1;
+      }
+      if (firstCategory < secondCategory) {
+        return 1;
+      }
+      return 0;
+    });
+    setCategory(dscCategory);
+    setIsAsc(false);
+    return category && isAsc;
+  };
+
   return (
     <Col>
       <Table borderless>
@@ -15,210 +195,96 @@ function AnnouncesListTable() {
             </th>
             <th>
               N° Annonce
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getAscnumberAnnounce}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-up-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+                <span className={styles.arrowDown} />
+              </button>
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getDscnumberAnnounce}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M8 5.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M7.646 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 5.707 5.354 8.354a.5.5 0 1 1-.708-.708l3-3z"
-                />
-              </svg>
-            </th>
-            <th className={styles.tableTd}>
-              Titre
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-up-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8 5.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M7.646 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 5.707 5.354 8.354a.5.5 0 1 1-.708-.708l3-3z"
-                />
-              </svg>
+                <span className={styles.arrowUp} />
+              </button>
             </th>
             <th>
-              Type d&apos;annonce
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-up-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+              Titre
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getAscTitle}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M8 5.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M7.646 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 5.707 5.354 8.354a.5.5 0 1 1-.708-.708l3-3z"
-                />
-              </svg>
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+                <span className={styles.arrowDown} />
+              </button>
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getDscTitle}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
+                <span className={styles.arrowUp} />
+              </button>
+            </th>
+            <th>
+              Type d&apos;annonces
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getAscTypeAnnounce}
+              >
+                <span className={styles.arrowDown} />
+              </button>
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getDscTypeAnnounce}
+              >
+                <span className={styles.arrowUp} />
+              </button>
             </th>
             <th>
               Catégorie
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-up-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getAscCategory}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M8 5.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M7.646 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 5.707 5.354 8.354a.5.5 0 1 1-.708-.708l3-3z"
-                />
-              </svg>
-              <svg
-                width="1.5em"
-                height="1.5em"
-                viewBox="0 0 16 16"
-                classNameName="bi bi-arrow-down-short"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
+                <span className={styles.arrowDown} />
+              </button>
+              <button
+                type="button"
+                className={styles.arrowButtons}
+                onClick={getDscCategory}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"
-                />
-              </svg>
+                <span className={styles.arrowUp} />
+              </button>
             </th>
-            <th> Statut </th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>0123654d</td>
-            <td>CDD à pourvoir Secretariat (H/F)</td>
-            <td>Recherche d&apos;emploi</td>
-            <td>Secretariat</td>
-            <td>Envoyé</td>
-          </tr>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>45564987d</td>
-            <td>Recherche de partenariat Développement</td>
-            <td>Recherche de partenariat</td>
-            <td>Développement</td>
-            <td>En cours</td>
-          </tr>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>7898453sqd</td>
-            <td>Recherche & développement pour la WildCodeSchool</td>
-            <td>Recherche & développement</td>
-            <td>Recherche</td>
-            <td>En cours</td>
-          </tr>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>054654213d</td>
-            <td>CDD à pourvoir Informatique</td>
-            <td>Recherche d&apos;emploi</td>
-            <td>Informatique</td>
-            <td>En attente</td>
-          </tr>
-          <tr>
-            <th>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
-            <td>65431faz</td>
-            <td>Stage à pourvoir Cuisine (H/F)</td>
-            <td>Recherche d&apos;emploi</td>
-            <td>Cuisine</td>
-            <td>Envoyé</td>
-          </tr>
+          {announcesList.map((post) => {
+            return (
+              <tr>
+                <th>
+                  <Input type="checkbox" className={styles.checkboxTh} />
+                </th>
+                <td>{post.id}</td>
+                <td>{post.title}</td>
+                <td>{post.TypePost ? post.TypePost.labelFr : ''}</td>
+                <td>{post.JobCategory ? post.JobCategory.labelFr : ''}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
     </Col>
   );
 }
+
+AnnouncesListTable.propTypes = {
+  announcesList: PropTypes.string.isRequired,
+};
 
 export default AnnouncesListTable;

@@ -8,6 +8,7 @@ import PopUpConnection from './PopUpConnection';
 
 import styles from './NavBar.module.css';
 import './Navbar.css';
+import AccountModal from '../admin/account/AccountModal';
 
 function FirstNavbar({ role }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +24,7 @@ function FirstNavbar({ role }) {
       <NavbarToggler onClick={toggle} />
       <Nav navbar className={`${styles.navbar} mr-5`}>
         <NavItem className={`${styles.navItem} mr-5 mt-2`}>
-          {role === 'admin' ? 'Mon compte' : ''}
+          {role === 'admin' ? <AccountModal /> : ''}
         </NavItem>
         {role === 'admin' ? (
           <NavItem

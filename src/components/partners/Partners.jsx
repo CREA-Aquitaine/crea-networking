@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import axios from 'axios';
-import { Row } from 'reactstrap';
+import { Row, Container, Col } from 'reactstrap';
 import Partner from './Partner';
 
-// import styles from './Partners.module.css';
+import styles from './Partners.module.css';
+
+const host = process.env.REACT_APP_HOST;
 
 class Partners extends React.Component {
   constructor(props) {
@@ -22,13 +24,12 @@ class Partners extends React.Component {
   }
 
   getPartner() {
-    const url = 'http://localhost:8080/api/v1/partners';
+    const url = `${host}/api/v1/partners`;
     axios
       .get(url)
       .then((res) => {
         const { data } = res;
         this.setState({ partners: data });
-        // console.log(data);
       })
       // .catch((err) => {
       //   console.log(err.message);
@@ -45,11 +46,16 @@ class Partners extends React.Component {
       return <div>loading ...</div>;
     }
     return (
-      <Row>
-        {partners.map((xa) => (
-          <Partner {...xa} />
-        ))}
-      </Row>
+      <Container>
+        <h2>Nos partenaires</h2>
+        <Row className={styles.rowPartners}>
+          {partners.map((xa) => (
+            <Col xs="4" className={styles.colLogo}>
+              <Partner {...xa} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
     );
   }
 }

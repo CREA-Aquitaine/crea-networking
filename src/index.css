@@ -49,7 +49,7 @@ button {
   font-weight: 500;
   color: white;
   border: 1px solid transparent;
-  border-radius:0 !important;
+  border-radius: 0 !important;
 }
 button:hover {
   background-color: transparent;
@@ -113,10 +113,14 @@ code {
 
 /*Menu déroulant choix faq admin*/
 .dropdown-menu {
-  width: 8vw !important;
+  width: 15vw !important;
+  text-align: center;
 }
 
 /*modal faq*/
 .modal-dialog {
   max-width: 800px;
+}
+.modal-title {
+  width: 100%;
 }
