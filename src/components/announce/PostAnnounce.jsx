@@ -3,10 +3,11 @@ import { Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import PostAnnounceBreadcrumb from './PostAnnounceBreadcrumb';
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+import PostAnnounceBreadcrumb from './PostAnnounceBreadcrumb';
 import styles from './PostAnnounce.module.css';
-// import Editor from './Editor';
 
 function PostAnnounce({ token, UserId }) {
   const [content, setContent] = useState('');
@@ -86,10 +87,6 @@ function PostAnnounce({ token, UserId }) {
     } catch (err) {
       throw new Error(err);
     }
-  };
-
-  const handleEditorChange = (e) => {
-    setContent(e.target.value);
   };
 
   const handleTitleChange = (e) => {
@@ -218,17 +215,14 @@ function PostAnnounce({ token, UserId }) {
                 </Input>
               </Col>
             </FormGroup>
-            {/* <Editor handleEditorChange={() => handleEditorChange()} /> */}
-            <FormGroup>
-              <Input
-                placeholder="Votre annonce"
-                type="textarea"
-                name="text"
-                id="exampleText"
-                onChange={handleEditorChange}
-                value={content}
-              />
-            </FormGroup>
+            <CKEditor
+              editor={ClassicEditor}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                setContent(data);
+              }}
+            />
+
             <Row>
               <Col sm={{ size: 1, offset: 9 }}>
                 <button type="submit" className="button">
