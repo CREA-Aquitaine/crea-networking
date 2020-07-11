@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import PostAnnounceBreadcrumb from './PostAnnounceBreadcrumb';
 import styles from './PostAnnounce.module.css';
@@ -64,28 +66,69 @@ function PostAnnounce({ token, UserId }) {
     setisLoading(false);
   }, []);
 
+  const setToastSuccess = () => {
+    toast.success('Votre annonce a bien été publiée.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastError = () => {
+    toast.error('Une erreur est survenue, vous pouvez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInput = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const handlePostAnnounce = async (e) => {
     e.preventDefault();
     try {
-      await Axios.post(
-        'http://localhost:8080/api/v1/posts',
-        {
-          title,
-          content,
-          localisation,
-          language,
-          UserId,
-          JobCategoryId,
-          TypePostId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      if (JobCategoryId && language && localisation && TypePostId && title) {
+        await Axios.post(
+          'http://localhost:8080/api/v1/posts',
+          {
+            title,
+            content,
+            localisation,
+            language,
+            UserId,
+            JobCategoryId,
+            TypePostId,
           },
-        }
-      );
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setToastSuccess();
+      } else {
+        setToastInput();
+      }
     } catch (err) {
-      throw new Error(err);
+      setToastError();
     }
   };
 
