@@ -35,6 +35,9 @@ const ModalPartners = (props) => {
       </ModalHeader>
       <ModalBody>{description}</ModalBody>
       <ModalFooter>
+        <Button className="button" onClick={toggle}>
+          Annuler
+        </Button>
         <a href={url} target="blanck">
           <Button className="button" onClick={toggle}>
             Site Web

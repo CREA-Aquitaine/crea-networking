@@ -4,21 +4,19 @@ import { Link } from 'react-router-dom';
 import PopUpConnection from '../navbar/PopUpConnection';
 
 import styles from './blocs.module.css';
+import school from '../image/img_ecole.png';
+import company from '../image/img_Part_ets2.png';
+import jobSeeker from '../image/demandeur.jpg';
 
 function Blocs() {
-  const [modal, setModal] = useState(false);
-
-  const toggle = () => setModal(!modal);
+  const [modal2, setModal2] = useState(false);
+  const toggle2 = () => setModal2(!modal2);
 
   return (
     <Container className="my-5 py-3">
       <Row className="my-5 py-4">
         <Col xs="12" md="6">
-          <img
-            alt="logo"
-            width="100%"
-            src="https://cache.marieclaire.fr/data/photo/w1000_ci/1bi/demandeuse-demploi-droit-et-devoirs.jpg"
-          />
+          <img alt="logo" width="100%" src={company} />
         </Col>
         <Col xs="12" md="6" className="text-left">
           <hr />
@@ -32,10 +30,14 @@ function Blocs() {
             fuga quos, eligendi
           </p>
 
-          <button type="button" onClick={toggle}>
+          <button type="button" onClick={toggle2}>
             Se connecter
           </button>
-
+          <PopUpConnection
+            modal={modal2}
+            toggle={toggle2}
+            setModal={setModal2}
+          />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
               S&#39;inscrire
@@ -53,10 +55,14 @@ function Blocs() {
             fuga quos, eligendi
           </p>
 
-          <button type="button" onClick={toggle}>
+          <button type="button" onClick={toggle2}>
             Se connecter
           </button>
-          <PopUpConnection modal={modal} toggle={toggle} />
+          <PopUpConnection
+            modal={modal2}
+            toggle={toggle2}
+            setModal={setModal2}
+          />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
               S&#39;inscrire
@@ -64,19 +70,16 @@ function Blocs() {
           </Link>
         </Col>
         <Col xs="12" md="6">
-          <img
-            width="100%"
-            alt="logo"
-            src="https://cache.marieclaire.fr/data/photo/w1000_ci/1bi/demandeuse-demploi-droit-et-devoirs.jpg"
-          />
+          <img width="100%" alt="logo" src={jobSeeker} />
         </Col>
       </Row>
       <Row className="my-5 py-4">
         <Col xs="12" md="6">
           <img
             width="100%"
+            className={styles.imgSchool}
             alt="logo"
-            src="https://cache.marieclaire.fr/data/photo/w1000_ci/1bi/demandeuse-demploi-droit-et-devoirs.jpg"
+            src={school}
           />
         </Col>
         <Col xs="12" md="6" className="text-left">
@@ -87,9 +90,14 @@ function Blocs() {
             explicabo assumenda, soluta voluptas hic necessitatibus ipsam sit
             fuga quos, eligendi
           </p>
-          <button type="button" onClick={toggle}>
+          <button type="button" onClick={toggle2}>
             Se connecter
           </button>
+          <PopUpConnection
+            modal={modal2}
+            toggle={toggle2}
+            setModal={setModal2}
+          />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
               S&#39;inscrire
