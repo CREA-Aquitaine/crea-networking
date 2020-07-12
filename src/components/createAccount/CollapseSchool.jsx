@@ -3,6 +3,7 @@ import { Collapse, Label, Input, Row, Col, Button, Form } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { connect, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
@@ -28,6 +29,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
   const [errorPassword, setErrorPassword] = useState(false);
   const [created, setCreated] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const postUser = async () => {
     try {
@@ -76,6 +78,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
       try {
         await postUser();
         postRegister();
+        history.push('/');
       } catch (err) {
         setError(err);
       }

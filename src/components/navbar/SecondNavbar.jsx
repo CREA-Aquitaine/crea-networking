@@ -56,7 +56,7 @@ function SecondNavbar({ role }) {
             <DropdownToggle nav caret className={styles.mesnavbarItems}>
               Divers
             </DropdownToggle>
-            <DropdownMenu right>
+            <DropdownMenu bottom>
               <DropdownItem tag={Link} to="/jobCategory">
                 Catégories d&apos;emplois
               </DropdownItem>
