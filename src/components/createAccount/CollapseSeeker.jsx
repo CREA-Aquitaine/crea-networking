@@ -3,7 +3,6 @@ import { Collapse, Label, Input, Row, Col, Form, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
 
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 

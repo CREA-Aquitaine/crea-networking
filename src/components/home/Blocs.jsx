@@ -9,10 +9,6 @@ import company from '../image/img_Part_ets2.png';
 import jobSeeker from '../image/demandeur.jpg';
 
 function Blocs() {
-  const [modal, setModal] = useState(false);
-
-  const toggle = () => setModal(!modal);
-
   const [modal2, setModal2] = useState(false);
   const toggle2 = () => setModal2(!modal2);
 
