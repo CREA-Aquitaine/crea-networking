@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import Axios from 'axios';
 import styles from './Steps.module.css';
+import ModalPartners from '../partners/modal';
 
 const host = process.env.REACT_APP_HOST;
 
 function BestFriends() {
   const [partners, setPartners] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggle = () => setIsModalOpen(!isModalOpen);
 
   const getPartners = async () => {
     try {
@@ -29,7 +33,23 @@ function BestFriends() {
       </Row>
       <Row className="mt-5">
         {partnersFavorite.map((item) => (
-          <img src={item.logo} alt="ok" className={styles.partenaire} />
+          <Col
+            xs="3"
+            onClick={toggle}
+            onKeyDown={toggle}
+            role="button"
+            tabIndex={0}
+          >
+            <img className={styles.partenaire} src={item.logo} alt="ok" />
+            <ModalPartners
+              toggle={toggle}
+              isModalOpen={isModalOpen}
+              label={item.label}
+              url={item.url}
+              description={item.description}
+              logo={item.logo}
+            />
+          </Col>
         ))}
       </Row>
     </Container>
