@@ -12,7 +12,7 @@ import {
   Form,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import Axios from 'axios';
 
@@ -24,6 +24,7 @@ function PopUpConnection({ setModal, toggle, modal }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -47,6 +48,7 @@ function PopUpConnection({ setModal, toggle, modal }) {
         dispatch({ type: 'USER' });
       }
       setModal(!modal);
+      history.push('/dashboard');
     } catch (err) {
       setError(err);
     }
@@ -59,13 +61,6 @@ function PopUpConnection({ setModal, toggle, modal }) {
 
   return (
     <>
-      {error ? (
-        <div className=" pl-1 pr-1 bg-danger rounded">
-          <p>Mot de passe ou identifiant incorrect</p>
-        </div>
-      ) : (
-        ''
-      )}
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader>Espace connexion</ModalHeader>
         <ModalBody>
@@ -112,6 +107,17 @@ function PopUpConnection({ setModal, toggle, modal }) {
                 <Button className={styles.button} onClick={toggle}>
                   Annuler
                 </Button>
+              </Col>
+            </Row>
+            <Row className="mt-2">
+              <Col xs={{ size: 5, offset: 3 }}>
+                {error ? (
+                  <p className={styles.error}>
+                    Mot de passe ou identifiant incorrect
+                  </p>
+                ) : (
+                  ''
+                )}
               </Col>
             </Row>
           </Form>

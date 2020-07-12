@@ -87,7 +87,7 @@ function TypeAnnounce({ token }) {
             Gérer les types d&apos;annonces
           </Col>
         </Row>
-        <Form fluid className={styles.addQR} onSubmit={handleSubmit}>
+        <Form fluid className={styles.addTypePost} onSubmit={handleSubmit}>
           <FormGroup>
             <Label for="question" />
             <Input
