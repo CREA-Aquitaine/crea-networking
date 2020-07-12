@@ -13,6 +13,9 @@ function Blocs() {
 
   const toggle = () => setModal(!modal);
 
+  const [modal2, setModal2] = useState(false);
+  const toggle2 = () => setModal2(!modal2);
+
   return (
     <Container className="my-5 py-3">
       <Row className="my-5 py-4">
@@ -31,10 +34,14 @@ function Blocs() {
             fuga quos, eligendi
           </p>
 
-          <button type="button" onClick={toggle}>
+          <button type="button" onClick={toggle2}>
             Se connecter
           </button>
-
+          <PopUpConnection
+            modal={modal2}
+            toggle={toggle2}
+            setModal={setModal2}
+          />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
               S&#39;inscrire
@@ -52,10 +59,14 @@ function Blocs() {
             fuga quos, eligendi
           </p>
 
-          <button type="button" onClick={toggle}>
+          <button type="button" onClick={toggle2}>
             Se connecter
           </button>
-          <PopUpConnection modal={modal} toggle={toggle} />
+          <PopUpConnection
+            modal={modal2}
+            toggle={toggle2}
+            setModal={setModal2}
+          />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
               S&#39;inscrire
@@ -83,9 +94,14 @@ function Blocs() {
             explicabo assumenda, soluta voluptas hic necessitatibus ipsam sit
             fuga quos, eligendi
           </p>
-          <button type="button" onClick={toggle}>
+          <button type="button" onClick={toggle2}>
             Se connecter
           </button>
+          <PopUpConnection
+            modal={modal2}
+            toggle={toggle2}
+            setModal={setModal2}
+          />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
               S&#39;inscrire

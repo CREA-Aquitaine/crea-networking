@@ -12,6 +12,7 @@ import {
   ModalBody,
   Form,
 } from 'reactstrap';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import Axios from 'axios';
@@ -19,10 +20,7 @@ import Axios from 'axios';
 import styles from './PopUpConnection.module.css';
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
-function PopUpConnection() {
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
-
+function PopUpConnection({ setModal, toggle, modal }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -62,9 +60,6 @@ function PopUpConnection() {
 
   return (
     <>
-      <NavLink className={styles.navlink} onClick={toggle}>
-        Espace connexion
-      </NavLink>
       {error ? (
         <div className=" pl-1 pr-1 bg-danger rounded">
           <p>Mot de passe ou identifiant incorrect</p>
@@ -130,5 +125,11 @@ const mapStateToProps = (state) => ({
   token: state.authenticated.token,
   userInfos: state.authenticated.userInfos,
 });
+
+PopUpConnection.propTypes = {
+  toggle: PropTypes.string.isRequired,
+  modal: PropTypes.string.isRequired,
+  setModal: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps)(PopUpConnection);
