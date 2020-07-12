@@ -84,13 +84,14 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
       <Form onSubmit={handleSubmit}>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="nameOrganisation">Votre Prénom</Label>
+            <Label for="nameOrganisation">Votre Prénom*</Label>
           </Col>
           <Col>
             <Input
               type="text"
               name="firstname"
               id="firstname"
+              required
               placeholder="Jean"
               onChange={(e) => setFirstName(e.target.value)}
             />
@@ -103,6 +104,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
           <Col>
             <Input
               type="text"
+              required
               name="lastname"
               id="lastname"
               placeholder="Dupont"
@@ -118,6 +120,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
             <Input
               type="email"
               name="email"
+              required
               id="email"
               placeholder="jean.dupont@world.com"
               onChange={(e) => setEmail(e.target.value)}
@@ -132,6 +135,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
             <Input
               type="password"
               name="password"
+              required
               id="password"
               placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
@@ -147,6 +151,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
               type="password"
               name="password2"
               id="password2"
+              required
               placeholder="********"
               onChange={(e) => setPasswordRepeat(e.target.value)}
             />
@@ -156,12 +161,13 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
         <Row className="mb-2">
           <Col xs="3">
             <Label for="localisation">
-              Localisation de l&apos;entreprise ou de l&apos;association
+              Localisation de l&apos;entreprise ou de l&apos;association*
             </Label>
           </Col>
           <Col>
             <Input
               type="text"
+              required
               name="localisation"
               id="localisation"
               placeholder="Biarritz"
@@ -177,6 +183,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
             <Input
               type="select"
               name="country"
+              required
               id="country"
               onChange={(e) => setCountry(e.target.value)}
             >
@@ -192,6 +199,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
           <Col>
             <Input
               type="text"
+              required
               name="phone"
               id="phone"
               placeholder="0102030405"
