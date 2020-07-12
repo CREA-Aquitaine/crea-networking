@@ -20,10 +20,12 @@
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
     "react-hooks": "^1.0.1",
+    "react-html-parser": "^2.0.2",
     "react-icons": "^3.10.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-toastify": "^6.0.8",
     "reactstrap": "^8.4.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8"

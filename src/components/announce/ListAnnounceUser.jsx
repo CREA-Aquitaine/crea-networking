@@ -8,14 +8,15 @@ import {
   CardTitle,
   CardBody,
   Card,
-  CardColumns,
   Container,
   Input,
   Row,
   Col,
+  CardHeader,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ReactHtmlParser from 'react-html-parser';
 
 function ListAnnounceUser({ token }) {
   const [isLoading, setisLoading] = useState(true);
@@ -165,7 +166,11 @@ function ListAnnounceUser({ token }) {
           <Button onClick={getResults} className="button">
             Search
           </Button>
-          <Button onClick={resetSearch} className="button">
+          <Button
+            style={{ marginLeft: '20px' }}
+            onClick={resetSearch}
+            className="button"
+          >
             Reset
           </Button>
         </Col>
@@ -174,23 +179,36 @@ function ListAnnounceUser({ token }) {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <CardColumns>
+        <Row>
           {error ? <p>There is an error</p> : ''}
           {annonceFiltered.map((announce) => (
-            <Card>
-              <CardBody>
-                <CardTitle>{announce.title}</CardTitle>
-                <CardSubtitle>{announce.localisation}</CardSubtitle>
-                <CardSubtitle>{announce.JobCategory.labelFr}</CardSubtitle>
-                <CardSubtitle>{announce.TypePost.labelFr}</CardSubtitle>
-                <CardText>{announce.content}</CardText>
-                <Link to={`/announces/${announce.id}`}>
-                  <Button className="button">Button</Button>
-                </Link>
-              </CardBody>
-            </Card>
+            <Col
+              xs={{ size: 10, offset: 1 }}
+              sm={{ size: 10, offset: 1 }}
+              md={{ size: 10, offset: 1 }}
+              lg={{ size: 10, offset: 1 }}
+              style={{ marginTop: '20px' }}
+            >
+              <Card style={{ textAlign: 'left' }}>
+                <CardBody>
+                  <CardHeader>
+                    <CardTitle>{announce.title}</CardTitle>
+                    <CardSubtitle>{announce.localisation}</CardSubtitle>
+                    <CardSubtitle>{announce.JobCategory.labelFr}</CardSubtitle>
+                    <CardSubtitle>{announce.TypePost.labelFr}</CardSubtitle>
+                  </CardHeader>
+
+                  <CardText>{ReactHtmlParser(announce.content)}</CardText>
+                  <Link to={`/announces/${announce.id}`}>
+                    <Button style={{ float: 'right' }} className="button">
+                      Voir annonce
+                    </Button>
+                  </Link>
+                </CardBody>
+              </Card>
+            </Col>
           ))}
-        </CardColumns>
+        </Row>
       )}
     </Container>
   );
