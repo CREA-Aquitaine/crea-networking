@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import PopUpConnection from '../navbar/PopUpConnection';
 
 import styles from './blocs.module.css';
+import school from '../image/img_ecole.png';
+import company from '../image/img_Part_ets2.png';
+import jobSeeker from '../image/demandeur.jpg';
 
 function Blocs() {
   const [modal, setModal] = useState(false);
@@ -14,11 +17,7 @@ function Blocs() {
     <Container className="my-5 py-3">
       <Row className="my-5 py-4">
         <Col xs="12" md="6">
-          <img
-            alt="logo"
-            width="100%"
-            src="https://cache.marieclaire.fr/data/photo/w1000_ci/1bi/demandeuse-demploi-droit-et-devoirs.jpg"
-          />
+          <img alt="logo" width="100%" src={company} />
         </Col>
         <Col xs="12" md="6" className="text-left">
           <hr />
@@ -64,19 +63,16 @@ function Blocs() {
           </Link>
         </Col>
         <Col xs="12" md="6">
-          <img
-            width="100%"
-            alt="logo"
-            src="https://cache.marieclaire.fr/data/photo/w1000_ci/1bi/demandeuse-demploi-droit-et-devoirs.jpg"
-          />
+          <img width="100%" alt="logo" src={jobSeeker} />
         </Col>
       </Row>
       <Row className="my-5 py-4">
         <Col xs="12" md="6">
           <img
             width="100%"
+            className={styles.imgSchool}
             alt="logo"
-            src="https://cache.marieclaire.fr/data/photo/w1000_ci/1bi/demandeuse-demploi-droit-et-devoirs.jpg"
+            src={school}
           />
         </Col>
         <Col xs="12" md="6" className="text-left">

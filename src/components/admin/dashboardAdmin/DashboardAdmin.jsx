@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import Axios from 'axios';
 
 import styles from './DashboardAdmin.module.css';
-import LineInscription from './LineInscription';
+// import LineInscription from './LineInscription';
 import PieCountry from './PieCountry';
 
 const host = process.env.REACT_APP_HOST;
@@ -35,13 +35,13 @@ function HomeAdmin({ token }) {
 
   const usersWithUserType = users.filter((item) => item.UserType !== null);
   const jobSeeker = usersWithUserType.filter(
-    (item) => item.UserType.label === "Demandeur d'emploi"
+    (item) => item.UserType.label === 'Demandeur emploi'
   );
   const company = usersWithUserType.filter(
     (item) => item.UserType.label === 'Entreprise'
   );
   const school = usersWithUserType.filter(
-    (item) => item.UserType.label === 'Ecoles'
+    (item) => item.UserType.label === 'Ecole'
   );
 
   return (
@@ -63,7 +63,7 @@ function HomeAdmin({ token }) {
                     backgroundColor: ['#ffa500', '#ff4500', '#ffff00'],
                   },
                 ],
-                labels: ['Demandeurs emploi', 'Ecoles', 'Entreprises'],
+                labels: ['Demandeur emploi', 'Ecoles', 'Entreprise'],
               }}
             />
             <p className={styles.nbtotal}>
@@ -78,7 +78,9 @@ function HomeAdmin({ token }) {
         </Col>
         <Col>
           <PieCountry />
-          <LineInscription users={usersWithUserType} />
+          {/* TODO : connect graph to createAt */}
+
+          {/* <LineInscription users={usersWithUserType} /> */}
         </Col>
       </Row>
     </Container>

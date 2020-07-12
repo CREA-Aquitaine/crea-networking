@@ -7,6 +7,7 @@ import { connect, useDispatch } from 'react-redux';
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
 import styles from './CreateAccount.module.css';
+import { Link } from 'react-router-dom';
 
 const host = process.env.REACT_APP_HOST;
 

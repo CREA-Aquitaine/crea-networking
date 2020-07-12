@@ -214,12 +214,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
         <p className={styles.champs}> Les champs * sont obligatoires.</p>
         <Row>
           <Col xs={{ size: 2, offset: 5 }}>
-            <Button
-              tag={Link}
-              to="/dashboard"
-              className={`${styles.buttonValidate} button`}
-              type="submit"
-            >
+            <Button className={`${styles.buttonValidate} button`} type="submit">
               Valider
             </Button>
           </Col>

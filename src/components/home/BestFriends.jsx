@@ -1,25 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row } from 'reactstrap';
+import Axios from 'axios';
 import styles from './Steps.module.css';
 
-import partenaire1 from './img/partenaires/partenaire1.png';
-import partenaire2 from './img/partenaires/2.jpg';
-import partenaire3 from './img/partenaires/bihartean.jpg';
-import partenaire4 from './img/partenaires/cci-bayonne.jpg';
-import partenaire5 from './img/partenaires/escpau.jpg';
+const host = process.env.REACT_APP_HOST;
 
 function BestFriends() {
+  const [partners, setPartners] = useState([]);
+
+  const getPartners = async () => {
+    try {
+      const res = await Axios.get(`${host}/api/v1/partners`);
+      return setPartners(res.data);
+    } catch (err) {
+      return err;
+    }
+  };
+
+  useEffect(() => {
+    getPartners();
+  }, []);
+
+  const partnersFavorite = partners.filter((item) => item.favorite === '1');
   return (
     <Container fluid className={`${styles.partner} my-5`}>
       <Row>
         <h3 className="mx-auto mt-5 mb-3">Ils nous font confiance</h3>
       </Row>
-      <Row>
-        <img src={partenaire1} alt="ok" className={styles.partenaire} />
-        <img src={partenaire2} alt="ok" className={styles.partenaire} />
-        <img src={partenaire3} alt="ok" className={styles.partenaire} />
-        <img src={partenaire4} alt="ok" className={styles.partenaire} />
-        <img src={partenaire5} alt="ok" className={styles.partenaire} />
+      <Row className="mt-5">
+        {partnersFavorite.map((item) => (
+          <img src={item.logo} alt="ok" className={styles.partenaire} />
+        ))}
       </Row>
     </Container>
   );
