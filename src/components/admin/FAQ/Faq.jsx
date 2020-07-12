@@ -14,6 +14,8 @@ import {
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './Faq_List.module.css';
 import FaqList from './FaqList';
@@ -58,29 +60,70 @@ function Faq({ token }) {
     getFaq();
   }, []);
 
+  const setToastSuccess = () => {
+    toast.success('Votre question a bien été publiée.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastError = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInput = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const postFaq = async () => {
     try {
-      await Axios.post(
-        `${host}/api/v1/faq`,
-        {
-          question,
-          answer,
-          language,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      if (question && answer && language) {
+        await Axios.post(
+          `${host}/api/v1/faq`,
+          {
+            question,
+            answer,
+            language,
           },
-        }
-      );
-      setCreated(true);
-      getFaq();
-      setTimeout(() => setCreated(false), 2000);
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCreated(true);
+        getFaq();
+        setToastSuccess();
+        setTimeout(() => setCreated(false), 2000);
+      } else {
+        setToastInput();
+      }
     } catch (err) {
+      setToastError();
       setError(err);
     }
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     postFaq();

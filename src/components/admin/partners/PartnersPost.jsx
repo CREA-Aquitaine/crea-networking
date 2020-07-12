@@ -3,6 +3,8 @@ import { Row, Col, Input, Form, Label, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './Partner.module.css';
 import star from './images/star.svg';
@@ -39,36 +41,78 @@ function PartnersPost({ getPartners, token }) {
     setFavorite(!favorite);
   };
 
+  const setToastSuccess = () => {
+    toast.success('Votre partenaire a bien été ajouté.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastError = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInput = () => {
+    toast.info('Veuillez renseigner tous les champs', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const postNewImage = () => {
-    Axios.post('https://api.imgur.com/3/image', logo, {
-      headers: {
-        Authorization: `Client-ID ${imgurToken}`,
-      },
-    })
-      .then((res) => {
-        // setLogo(res.data.data.link);
-        return Axios.post(
-          `${host}/api/v1/partners`,
-          {
-            label,
-            description,
-            url,
-            logo: res.data.data.link,
-            favorite,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+    if (!label || !description || !url) {
+      setToastInput();
+    } else {
+      Axios.post('https://api.imgur.com/3/image', logo, {
+        headers: {
+          Authorization: `Client-ID ${imgurToken}`,
+        },
       })
-      .then(() => setCreated(true))
-      .then(() => getPartners())
-      .then(() => setTimeout(() => setCreated(false), 2000))
-      .catch((err) => {
-        setError(err);
-      });
+        .then((res) => {
+          // setLogo(res.data.data.link);
+          return Axios.post(
+            `${host}/api/v1/partners`,
+            {
+              label,
+              description,
+              url,
+              logo: res.data.data.link,
+              favorite,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+        })
+        .then(() => setCreated(true))
+        .then(() => getPartners())
+        .then(() => setToastSuccess())
+        .then(() => setTimeout(() => setCreated(false), 2000))
+        .catch((err) => {
+          setToastError();
+          setError(err);
+        });
+    }
   };
   const handleSubmit = (e) => {
     e.preventDefault();

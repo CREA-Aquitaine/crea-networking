@@ -3,6 +3,8 @@ import { Button, Modal, ModalBody, Row, Col, Input, Label } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './Partner.module.css';
 import star from './images/star.svg';
@@ -44,48 +46,156 @@ function PartnerModal({
     setUrl(e.target.value);
   };
 
+  const setToastSuccess = () => {
+    toast.success('Votre partenaire a bien été modifié.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastError = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInput = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastSuccessLogo = () => {
+    toast.success('Votre partenaire a bien été modifié.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastErrorLogo = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInputLogo = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastSuccessDel = () => {
+    toast.success('Votre partenaire a bien été supprimé.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastErrorDel = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const putPartner = async () => {
     if (logo === null) {
       try {
-        await Axios.put(
-          `${host}/api/v1/partners/${id}`,
-          {
-            label,
-            description,
-            url,
-            favorite,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
+        if (label && description && url) {
+          await Axios.put(
+            `${host}/api/v1/partners/${id}`,
+            {
+              label,
+              description,
+              url,
+              favorite,
             },
-          }
-        );
-        setModal(!modal);
-        getPartners();
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setModal(!modal);
+          getPartners();
+          setToastSuccess();
+        } else {
+          setToastInput();
+        }
       } catch (err) {
+        setToastError();
         setErrorPut(err);
       }
     } else {
       try {
-        await Axios.put(
-          `${host}/api/v1/partners/${id}`,
-          {
-            label,
-            description,
-            url,
-            logo,
-            favorite,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
+        if (label && description && url) {
+          await Axios.put(
+            `${host}/api/v1/partners/${id}`,
+            {
+              label,
+              description,
+              url,
+              logo,
+              favorite,
             },
-          }
-        );
-        setModal(!modal);
-        getPartners();
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setModal(!modal);
+          getPartners();
+          setToastSuccessLogo();
+        } else {
+          setToastInputLogo();
+        }
       } catch (err) {
+        setToastErrorLogo();
         setErrorPut(err);
       }
     }
@@ -100,8 +210,10 @@ function PartnerModal({
       });
       setModal(!modal);
       getPartners();
+      setToastSuccessDel();
     } catch (err) {
       setErrorDelete(err);
+      setToastErrorDel();
     }
   };
 
