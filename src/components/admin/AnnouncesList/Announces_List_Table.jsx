@@ -206,10 +206,6 @@ function AnnouncesListTable({ announcesList, token, getAnnounces }) {
     }
   };
 
-  // //genre_ids: movie.genre_ids.map(
-  //     (gfm) => genres.find((gfs) => gfm === gfs.id).name,
-  //   ),
-
   return (
     <Col>
       <Table borderless>

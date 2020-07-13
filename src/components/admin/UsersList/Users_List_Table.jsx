@@ -205,16 +205,18 @@ function UsersListTable({ usersList, token, getAllUsers }) {
     return userTypeState && isAsc;
   };
 
-  const deleteUsers = async (id) => {
+  const deleteUsers = async () => {
     try {
-      await Axios.delete(`${host}/api/v1/users/${id}`, {
+      const userId = usersList.find((user) => user.id);
+      await Axios.delete(`${host}/api/v1/users/${userId.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      getAllUsers();
+      return getAllUsers();
     } catch (err) {
-      setError(error);
+      setError(err);
+      return error;
     }
   };
 
