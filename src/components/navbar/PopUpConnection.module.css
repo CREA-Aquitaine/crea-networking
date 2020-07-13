@@ -1,17 +1,23 @@
 .formgroup {
-    padding : 0 4vw;
+  padding: 0 4vw;
 }
 .question {
-    text-align: center;
+  text-align: center;
 }
 .button {
-    padding: 10px 20px !important;
-    background-color: #dd2b25 !important;
-    font-size: 15px !important;
-    color: white !important;
-    border: 1px solid transparent !important;
-    border-radius : 0 !important;
+  padding: 10px 20px !important;
+  background-color: #dd2b25 !important;
+  font-size: 15px !important;
+  color: white !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
 }
 .navlink {
-    cursor : pointer;
+  cursor: pointer;
+}
+.error {
+  font-size: 1rem;
+  color: red;
+  font-weight: bold;
+  text-align: center;
 }

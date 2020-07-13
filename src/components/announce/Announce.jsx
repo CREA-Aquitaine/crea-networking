@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import Axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ReactHtmlParser from 'react-html-parser';
 import { connect } from 'react-redux';
 import styles from './Announce.module.css';
 
@@ -48,7 +49,9 @@ function Announce({ token }) {
               <h3>{infosAnnounce[0].title}</h3>
             </Col>
           </Row>
-          <Row className={styles.bottom}>{infosAnnounce[0].content}</Row>
+          <Row className={styles.bottom}>
+            {ReactHtmlParser(infosAnnounce[0].content)}
+          </Row>
           <Row className={styles.btn}>
             <Col>
               <button type="button">Postuler</button>

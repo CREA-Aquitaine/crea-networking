@@ -56,7 +56,7 @@ function SecondNavbar({ role }) {
             <DropdownToggle nav caret className={styles.mesnavbarItems}>
               Divers
             </DropdownToggle>
-            <DropdownMenu right>
+            <DropdownMenu bottom>
               <DropdownItem tag={Link} to="/jobCategory">
                 Catégories d&apos;emplois
               </DropdownItem>
@@ -78,7 +78,7 @@ function SecondNavbar({ role }) {
       ) : role === 'user' ? (
         <Nav className="mr-auto align-items-center" navbar>
           <NavItem>
-            <NavLink>
+            <NavLink tag={Link} to="/">
               <img src={crea} alt="logo crea" className={styles.logo_crea} />
             </NavLink>
           </NavItem>
@@ -111,7 +111,7 @@ function SecondNavbar({ role }) {
       ) : (
         <Nav className="mr-auto align-items-center" navbar>
           <NavItem>
-            <NavLink>
+            <NavLink tag={Link} to="/">
               <img src={crea} alt="logo crea" className={styles.logo_crea} />
             </NavLink>
           </NavItem>
