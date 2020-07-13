@@ -59,6 +59,7 @@ function HomeAdmin({ token }) {
                 datasets: [
                   {
                     data: types.map((t) => t.Users.length),
+                    // TODO: bind these colors with types state
                     backgroundColor: ['#ffa500', '#ff4500', '#ffff00'],
                   },
                 ],
