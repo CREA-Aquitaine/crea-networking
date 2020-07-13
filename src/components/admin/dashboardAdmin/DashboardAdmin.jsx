@@ -13,36 +13,35 @@ import PieCountry from './PieCountry';
 const host = process.env.REACT_APP_HOST;
 
 function HomeAdmin({ token }) {
-  const [users, setUsers] = useState([]);
-  const [error, setError] = useState('');
-
-  const getUsers = async () => {
-    try {
-      const res = await Axios.get(`${host}/api/v1/users`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setUsers(res.data);
-    } catch (err) {
-      setError(err);
-    }
-  };
+  const [types, setTypes] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getUsers();
-  }, []);
+    const getData = async () => {
+      try {
+        const typesRes = await Axios.get(`${host}/api/v1/userTypes`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const typesWithUsersPromise = typesRes.data.map((type) => {
+          return Axios.get(`${host}/api/v1/userTypes/${type.id}/users`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+        });
 
-  const usersWithUserType = users.filter((item) => item.UserType !== null);
-  const jobSeeker = usersWithUserType.filter(
-    (item) => item.UserType.label === 'Demandeur emploi'
-  );
-  const company = usersWithUserType.filter(
-    (item) => item.UserType.label === 'Entreprise'
-  );
-  const school = usersWithUserType.filter(
-    (item) => item.UserType.label === 'Ecole'
-  );
+        const res = await Promise.all(typesWithUsersPromise);
+
+        const datas = res.map((r) => r.data);
+        setTypes(datas);
+      } catch (err) {
+        setError(err);
+      }
+    };
+    getData();
+  }, []);
 
   return (
     <Container className={styles.containerGeneral}>
@@ -50,7 +49,7 @@ function HomeAdmin({ token }) {
         <BreadcrumbItem>Accueil</BreadcrumbItem>
         <BreadcrumbItem active>Dashboard</BreadcrumbItem>
       </Breadcrumb>
-      {error ? <p>Erreur lors de la récupération des données</p> : ''}
+      {error && <p>Erreur lors de la récupération des données</p>}
       <Row>
         <Col xs="6">
           <Container Fluid className={styles.pie}>
@@ -59,21 +58,21 @@ function HomeAdmin({ token }) {
               data={{
                 datasets: [
                   {
-                    data: [jobSeeker.length, school.length, company.length],
+                    data: types.map((t) => t.Users.length),
                     backgroundColor: ['#ffa500', '#ff4500', '#ffff00'],
                   },
                 ],
-                labels: ['Demandeur emploi', 'Ecoles', 'Entreprise'],
+                labels: types.map((t) => t.label),
               }}
             />
-            <p className={styles.nbtotal}>
-              Nombre total d&apos;utilisateurs : {usersWithUserType.length}
-            </p>
-            <p className={styles.nb}>Nb entreprises : {company.length}</p>
-            <p className={styles.nb}>Nb Ecoles/Etudiants : {school.length}</p>
-            <p className={styles.nb}>
-              Nb de demandeurs d&apos;emploi : {jobSeeker.length}
-            </p>
+            {/* <p className={styles.nbtotal}></p> */}
+            {types.map((type) => {
+              return (
+                <p className={styles.nb}>
+                  {type.label} : {type.Users.length}
+                </p>
+              );
+            })}
           </Container>
         </Col>
         <Col>
