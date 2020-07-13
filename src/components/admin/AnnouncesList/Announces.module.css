@@ -85,3 +85,12 @@
   background-color: #dd2b25;
   color: white;
 }
+.crossImg {
+  width: 4vw;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.deleteButton {
+  background-color: transparent;
+  margin: 0;
+}

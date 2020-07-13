@@ -3,14 +3,7 @@ import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  Breadcrumb,
-  Container,
-  Row,
-  Col,
-  BreadcrumbItem,
-} from 'reactstrap';
+import { Breadcrumb, Container, Row, Col, BreadcrumbItem } from 'reactstrap';
 
 import UsersListTable from './Users_List_Table';
 import styles from './Users_List_Table.module.css';
@@ -152,19 +145,13 @@ function UsersList({ token }) {
             </button>
           </Row>
           <Row>
-            <UsersListTable usersList={usersList} />
+            <UsersListTable usersList={usersList} getAllUsers={getAllUsers} />
           </Row>
           <Row>
             <Col xs="3" className={styles.UsersListExportButton}>
               <Link className={styles.UsersListExportLink} to="/">
                 Exporter la liste{' '}
               </Link>
-            </Col>
-            <Col
-              xs={{ size: '3', offset: '6' }}
-              className={styles.UsersListExportButton}
-            >
-              <Button className="button">Supprimer</Button>
             </Col>
           </Row>
         </Container>
