@@ -12,10 +12,10 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
     <Container>
       {userTypes.label === 'Demandeur emploi' ? (
         <Row className={styles.userInfosCss}>
-          <Col xs="4" sm="4" className={styles.logoSection}>
+          <Col xs="4" sm="2" className={styles.logoSection}>
             <h4 style={{ color: 'white' }}>Mon profil</h4>
           </Col>
-          <Col className={styles.contact} xs="3" sm="3">
+          <Col className={styles.contact} xs="3" sm="5">
             <ul>
               <li>
                 <p>Nom: {userInfos.firstName}</p>
@@ -31,19 +31,16 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
               </li>
             </ul>
           </Col>
-          <Col className={styles.contact} xs="3" sm="3">
+          <Col className={styles.contact} xs="3" sm="4">
             <ul>
               <li>
                 <p>Localisation: {userInfos.localisation}</p>
               </li>
               <li>
-                <p>Mobility: {userInfos.mobility} </p>
+                <p>Pays: {userInfos.country}</p>
               </li>
               <li>
-                <p>Qualification: {userInfos.qualification}</p>
-              </li>
-              <li>
-                <p>Téléphone: {userInfos.phone_number}</p>
+                <p>Téléphone2: {userInfos.phone_number2}</p>
               </li>
             </ul>
           </Col>
@@ -55,10 +52,10 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
         </Row>
       ) : userTypes.label === 'Entreprise' ? (
         <Row className={styles.userInfosCss}>
-          <Col xs="4" sm="4" className={styles.logoSection}>
+          <Col xs="4" sm="2" className={styles.logoSection}>
             <h4 style={{ color: 'white' }}>Mon profil</h4>
           </Col>
-          <Col className={styles.userInfos} xs="4" sm="4">
+          <Col className={styles.userInfos} xs="4" sm="5">
             <ul>
               <li>
                 <h4>Informations entreprise</h4>
@@ -70,6 +67,9 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
                 <p>Localisation: {userInfos.localisation}</p>
               </li>
               <li>
+                <p>Pays: {userInfos.country}</p>
+              </li>
+              <li>
                 <p>N° de siret: {userInfos.siret}</p>
               </li>
               <li>
@@ -77,7 +77,7 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
               </li>
             </ul>
           </Col>
-          <Col className={styles.contact} xs="3" sm="3">
+          <Col className={styles.contact} xs="3" sm="4">
             <ul>
               <li>
                 <h4>Contact entreprise</h4>
@@ -94,6 +94,9 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
               <li>
                 <p>Téléphone: {userInfos.phone_number}</p>
               </li>
+              <li>
+                <p>Téléphone2: {userInfos.phone_number2}</p>
+              </li>
             </ul>
           </Col>
           <Col xs="1" sm="1">
@@ -102,12 +105,12 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
             </Link>
           </Col>
         </Row>
-      ) : userTypes.label === 'Etudiant' ? (
+      ) : userTypes.label === 'Ecole' ? (
         <Row className={styles.userInfosCss}>
-          <Col xs="4" sm="4" className={styles.logoSection}>
+          <Col xs="4" sm="2" className={styles.logoSection}>
             <h4 style={{ color: 'white' }}>Mon profil</h4>
           </Col>
-          <Col className={styles.userInfos} xs="4" sm="4">
+          <Col className={styles.userInfos} xs="4" sm="5">
             <ul>
               <li>
                 <p>Nom: {userInfos.firstName}</p>
@@ -123,13 +126,19 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
               </li>
             </ul>
           </Col>
-          <Col className={styles.contact} xs="3" sm="3">
+          <Col className={styles.contact} xs="3" sm="4">
             <ul>
               <li>
-                <p>Ecole: {userInfos.schoolName}</p>
+                <p>Etablissement: {userInfos.schoolName}</p>
               </li>
               <li>
-                <p>Lsocalisation: {userInfos.localisation} </p>
+                <p>Localisation: {userInfos.localisation} </p>
+              </li>
+              <li>
+                <p>Pays: {userInfos.country}</p>
+              </li>
+              <li>
+                <p>Téléphone2: {userInfos.phone_number2}</p>
               </li>
             </ul>
           </Col>

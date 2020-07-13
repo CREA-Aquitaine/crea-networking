@@ -12,8 +12,8 @@ const host = process.env.REACT_APP_HOST;
 function Put({ token, userInfos }) {
   const [userInformations, setUserInfos] = useState([]);
   const [userType, setUserType] = useState([]);
-  const [activityFields, setActivityFields] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [activityField, setActivityField] = useState([]);
+  //   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
   const getUserInfos = async () => {
@@ -46,9 +46,7 @@ function Put({ token, userInfos }) {
           },
         }
       );
-      setActivityFields(resActivity.data);
-
-      setIsLoading(false);
+      setActivityField(resActivity.data);
     } catch (err) {
       setError(err);
     }
@@ -59,12 +57,20 @@ function Put({ token, userInfos }) {
 
   return (
     <div>
-      {userType === 'Entreprise' ? (
-        <PutCompany />
-      ) : userType === 'Demandeur emploi' ? (
-        <PutUserInfo />
-      ) : userType === 'Ecole' ? (
-        <PutSchool />
+      {userType.label === 'Entreprise' ? (
+        <PutCompany
+          userInfos={userInformations}
+          token={token}
+          activityField={activityField}
+        />
+      ) : userType.label === 'Demandeur emploi' ? (
+        <PutUserInfo userInfos={userInformations} token={token} />
+      ) : userType.label === 'Ecole' ? (
+        <PutSchool
+          userInfos={userInformations}
+          token={token}
+          activityField={activityField}
+        />
       ) : (
         ''
       )}

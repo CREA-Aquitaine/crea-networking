@@ -24,7 +24,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
   const [country, setCountry] = useState('France');
   const [qualification, setQualification] = useState('');
   const [activityFields, setActivityFields] = useState([]);
-  const [ActivityFieldId, setActivityFieldId] = useState();
+  const [ActivityFieldId, setActivityFieldId] = useState('');
   const [error, setError] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [created, setCreated] = useState(false);
@@ -78,7 +78,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
       try {
         await postUser();
         postRegister();
-        history.push('/');
+        history.push('/dashboard');
       } catch (err) {
         setError(err);
       }
@@ -91,6 +91,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
     try {
       const res = await Axios.get(`${host}/api/v1/activityFields`);
       setActivityFields(res.data);
+      setActivityFieldId(res.data[0].id);
     } catch (err) {
       setError(err);
     }
@@ -282,7 +283,6 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
           </Col>
           <Col>
             <Input type="select" name="select" id="exampleSelect" required>
-              <option>Choisir votre secteur d&apos;activité</option>
               {activityFields.map((item) => (
                 <option
                   value={item.id}
