@@ -13,9 +13,6 @@
     "chart.js": "^2.9.3",
     "dotenv": "^8.2.0",
     "node-sass": "^4.14.1",
-    "prettier": "^2.0.5",
-    "prop-types": "^15.7.2",
-    "proptypes": "^1.1.0",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
@@ -29,7 +26,8 @@
     "react-toastify": "^6.0.8",
     "reactstrap": "^8.4.1",
     "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "prop-types": "^15.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -64,6 +62,7 @@
     "eslint-plugin-react-hooks": "^2.5.1",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
+    "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1"
   },
   "husky": {

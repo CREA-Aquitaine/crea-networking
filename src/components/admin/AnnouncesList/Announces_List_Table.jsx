@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Axios from 'axios';
+import { connect } from 'react-redux';
 
-import { Table, Col, Input } from 'reactstrap';
+import { Table, Col } from 'reactstrap';
 
 import styles from './Announces.module.css';
+import cross from './img/cross.png';
 
-function AnnouncesListTable({ announcesList }) {
+const host = process.env.REACT_APP_HOST;
+
+function AnnouncesListTable({ announcesList, token, getAnnounces }) {
   const [isAsc, setIsAsc] = useState(false);
   const [numberAnnounce, setNumberAnnounce] = useState([]);
   const [title, setTitle] = useState([]);
   const [typeAnnounces, setTypeAnnounces] = useState([]);
   const [category, setCategory] = useState([]);
+  const [error, setError] = useState('');
 
   const getAscnumberAnnounce = () => {
     const ascNumberAnnounce = announcesList.sort((a, b) => {
@@ -185,14 +191,26 @@ function AnnouncesListTable({ announcesList }) {
     return category && isAsc;
   };
 
+  const deleteAnnounce = async () => {
+    try {
+      const postId = announcesList.find((post) => post.id);
+      await Axios.delete(`${host}/api/v1/posts/${postId.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return getAnnounces();
+    } catch (err) {
+      setError(err);
+      return error;
+    }
+  };
+
   return (
     <Col>
       <Table borderless>
         <thead>
           <tr>
-            <th className={styles.thCheckbox}>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
             <th>
               N° Annonce
               <button
@@ -266,14 +284,20 @@ function AnnouncesListTable({ announcesList }) {
         <tbody>
           {announcesList.map((post) => {
             return (
-              <tr>
-                <th>
-                  <Input type="checkbox" className={styles.checkboxTh} />
-                </th>
+              <tr key={post.id}>
                 <td>{post.id}</td>
                 <td>{post.title}</td>
                 <td>{post.TypePost ? post.TypePost.labelFr : ''}</td>
                 <td>{post.JobCategory ? post.JobCategory.labelFr : ''}</td>
+                <td className={styles.crossImg}>
+                  <button
+                    type="button"
+                    className={styles.deleteButton}
+                    onClick={deleteAnnounce}
+                  >
+                    <img src={cross} alt="cross" width="80%" />
+                  </button>
+                </td>
               </tr>
             );
           })}
@@ -283,8 +307,13 @@ function AnnouncesListTable({ announcesList }) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  token: state.authenticated.token,
+});
 AnnouncesListTable.propTypes = {
   announcesList: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
+  getAnnounces: PropTypes.string.isRequired,
 };
 
-export default AnnouncesListTable;
+export default connect(mapStateToProps)(AnnouncesListTable);
