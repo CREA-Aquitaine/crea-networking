@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  NavLink,
   Col,
   Row,
   Button,
@@ -12,21 +11,20 @@ import {
   ModalBody,
   Form,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link, useHistory } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import Axios from 'axios';
 
 import styles from './PopUpConnection.module.css';
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
-function PopUpConnection() {
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
-
+function PopUpConnection({ setModal, toggle, modal }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -50,6 +48,7 @@ function PopUpConnection() {
         dispatch({ type: 'USER' });
       }
       setModal(!modal);
+      history.push('/dashboard');
     } catch (err) {
       setError(err);
     }
@@ -62,16 +61,6 @@ function PopUpConnection() {
 
   return (
     <>
-      <NavLink className={styles.navlink} onClick={toggle}>
-        Espace connexion
-      </NavLink>
-      {error ? (
-        <div className=" pl-1 pr-1 bg-danger rounded">
-          <p>Mot de passe ou identifiant incorrect</p>
-        </div>
-      ) : (
-        ''
-      )}
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader>Espace connexion</ModalHeader>
         <ModalBody>
@@ -120,6 +109,17 @@ function PopUpConnection() {
                 </Button>
               </Col>
             </Row>
+            <Row className="mt-2">
+              <Col xs={{ size: 5, offset: 3 }}>
+                {error ? (
+                  <p className={styles.error}>
+                    Mot de passe ou identifiant incorrect
+                  </p>
+                ) : (
+                  ''
+                )}
+              </Col>
+            </Row>
           </Form>
         </ModalBody>
       </Modal>
@@ -130,5 +130,11 @@ const mapStateToProps = (state) => ({
   token: state.authenticated.token,
   userInfos: state.authenticated.userInfos,
 });
+
+PopUpConnection.propTypes = {
+  toggle: PropTypes.string.isRequired,
+  modal: PropTypes.string.isRequired,
+  setModal: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps)(PopUpConnection);

@@ -19,6 +19,9 @@ function FirstNavbar({ role }) {
     dispatch({ type: 'DISCONNECT' });
   };
 
+  const [modal, setModal] = useState(false);
+  const toggle2 = () => setModal(!modal);
+
   return (
     <Navbar color="light" expand="xs" className={styles.nav}>
       <NavbarToggler onClick={toggle} />
@@ -42,7 +45,14 @@ function FirstNavbar({ role }) {
           </NavItem>
         ) : (
           <NavItem className="mr-5">
-            <PopUpConnection />
+            <NavLink className={styles.navItem} onClick={toggle2}>
+              Espace connexion
+            </NavLink>
+            <PopUpConnection
+              setModal={setModal}
+              toggle={toggle2}
+              modal={modal}
+            />
           </NavItem>
         )}
 

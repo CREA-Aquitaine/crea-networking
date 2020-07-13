@@ -4,8 +4,9 @@ import { Card, CardImg, CardBody, CardTitle, CardText, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import announce from './img/announce.png';
 import styles from './TypeAnnounce.module.css';
+import ModalTypeAnnounce from './ModalTypeAnnounce';
 
-function TypeAnnounceCard({ french, euskara, castillan }) {
+function TypeAnnounceCard({ french, euskara, castillan, id, getType }) {
   return (
     <div className={`${styles.card}  mt-5 mr-5`}>
       <Card>
@@ -17,12 +18,13 @@ function TypeAnnounceCard({ french, euskara, castillan }) {
           alt="Card image cap"
         />
         <CardBody>
-          <CardTitle>Card title</CardTitle>
+          <CardTitle>Type D&apos;annonce</CardTitle>
           <CardText>
             <Row>Français: {french}</Row>
             <Row>Euskara: {euskara}</Row>
             <Row>Castillan: {castillan}</Row>
           </CardText>
+          <ModalTypeAnnounce getType={getType} id={id} />
         </CardBody>
       </Card>
     </div>
@@ -30,8 +32,10 @@ function TypeAnnounceCard({ french, euskara, castillan }) {
 }
 
 TypeAnnounceCard.propTypes = {
+  id: PropTypes.string.isRequired,
   french: PropTypes.string.isRequired,
   euskara: PropTypes.string.isRequired,
   castillan: PropTypes.string.isRequired,
+  getType: PropTypes.string.isRequired,
 };
 export default TypeAnnounceCard;

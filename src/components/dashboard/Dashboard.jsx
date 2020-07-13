@@ -9,8 +9,8 @@ function Dashboard() {
   const [userInfos, setUserInfos] = useState([]);
   const [userTypes, setUserTypes] = useState([]);
   const [activityFields, setActivityFields] = useState([]);
-  const [isLoading, setisLoading] = useState(true);
-  const [error, seterror] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
 
   const getUserInfos = async () => {
     try {
@@ -30,9 +30,9 @@ function Dashboard() {
       );
       setActivityFields(resActivity.data);
 
-      setisLoading(false);
+      setIsLoading(false);
     } catch (err) {
-      seterror(err);
+      setError(err);
     }
   };
   useEffect(() => {
