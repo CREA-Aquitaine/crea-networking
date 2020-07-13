@@ -16,32 +16,32 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
           <Col className={styles.contact} xs="3" sm="3">
             <ul>
               <li>
-                <p>Nom: {userInfos[0].firstName}</p>
+                <p>Nom: {userInfos.firstName}</p>
               </li>
               <li>
-                <p>Prenom: {userInfos[0].lastName} </p>
+                <p>Prenom: {userInfos.lastName} </p>
               </li>
               <li>
-                <p>Email: {userInfos[0].email}</p>
+                <p>Email: {userInfos.email}</p>
               </li>
               <li>
-                <p>Téléphone: {userInfos[0].phone_number}</p>
+                <p>Téléphone: {userInfos.phone_number}</p>
               </li>
             </ul>
           </Col>
           <Col className={styles.contact} xs="3" sm="3">
             <ul>
               <li>
-                <p>Localisation: {userInfos[0].localisation}</p>
+                <p>Localisation: {userInfos.localisation}</p>
               </li>
               <li>
-                <p>Mobility: {userInfos[0].mobility} </p>
+                <p>Mobility: {userInfos.mobility} </p>
               </li>
               <li>
-                <p>Qualification: {userInfos[0].qualification}</p>
+                <p>Qualification: {userInfos.qualification}</p>
               </li>
               <li>
-                <p>Téléphone: {userInfos[0].phone_number}</p>
+                <p>Téléphone: {userInfos.phone_number}</p>
               </li>
             </ul>
           </Col>
@@ -60,13 +60,13 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
                 <h4>Informations entreprise</h4>
               </li>
               <li>
-                <p>Entreprise: {userInfos[0].companyName}</p>
+                <p>Entreprise: {userInfos.companyName}</p>
               </li>
               <li>
-                <p>Localisation: {userInfos[0].localisation}</p>
+                <p>Localisation: {userInfos.localisation}</p>
               </li>
               <li>
-                <p>N° de siret: {userInfos[0].siret}</p>
+                <p>N° de siret: {userInfos.siret}</p>
               </li>
               <li>
                 <p>Secteur d&lsquo;activité: {activityFields.labelFr} </p>
@@ -79,16 +79,16 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
                 <h4>Contact entreprise</h4>
               </li>
               <li>
-                <p>Nom: {userInfos[0].firstName}</p>
+                <p>Nom: {userInfos.firstName}</p>
               </li>
               <li>
-                <p>Prenom: {userInfos[0].lastName} </p>
+                <p>Prenom: {userInfos.lastName} </p>
               </li>
               <li>
-                <p>Email: {userInfos[0].email}</p>
+                <p>Email: {userInfos.email}</p>
               </li>
               <li>
-                <p>Téléphone: {userInfos[0].phone_number}</p>
+                <p>Téléphone: {userInfos.phone_number}</p>
               </li>
             </ul>
           </Col>
@@ -104,26 +104,26 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
           <Col className={styles.userInfos} xs="4" sm="4">
             <ul>
               <li>
-                <p>Nom: {userInfos[0].firstName}</p>
+                <p>Nom: {userInfos.firstName}</p>
               </li>
               <li>
-                <p>Prenom: {userInfos[0].lastName} </p>
+                <p>Prenom: {userInfos.lastName} </p>
               </li>
               <li>
-                <p>Email: {userInfos[0].email}</p>
+                <p>Email: {userInfos.email}</p>
               </li>
               <li>
-                <p>Téléphone: {userInfos[0].phone_number}</p>
+                <p>Téléphone: {userInfos.phone_number}</p>
               </li>
             </ul>
           </Col>
           <Col className={styles.contact} xs="3" sm="3">
             <ul>
               <li>
-                <p>Ecole: {userInfos[0].schoolName}</p>
+                <p>Ecole: {userInfos.schoolName}</p>
               </li>
               <li>
-                <p>Lsocalisation: {userInfos[0].localisation} </p>
+                <p>Lsocalisation: {userInfos.localisation} </p>
               </li>
             </ul>
           </Col>

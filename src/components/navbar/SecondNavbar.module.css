@@ -24,8 +24,8 @@
   font-size: 20px;
 }
 .partenairesUser {
-  padding-left: 30vw;
-  font-size: 20px;
+  padding-left: 10vw;
+  font-size: 1.3vw;
 }
 .contact {
   font-size: 20px;
@@ -52,8 +52,8 @@
 }
 
 .itemUser {
-  padding-left: 5vw;
-  font-size: 20px;
+  padding-left: 4vw;
+  font-size: 1.3vw;
 }
 @media screen and (max-width: 800px) {
   .partenaires {

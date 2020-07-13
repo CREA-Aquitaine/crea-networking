@@ -48,7 +48,7 @@ function PopUpConnection({ setModal, toggle, modal }) {
         dispatch({ type: 'USER' });
       }
       setModal(!modal);
-      history.push('/');
+      history.push('/dashboard');
     } catch (err) {
       setError(err);
     }
