@@ -57,6 +57,7 @@ function Put({ token, userInfos }) {
 
   return (
     <div>
+      {error ? '' : ''}
       {userType.label === 'Entreprise' ? (
         <PutCompany
           userInfos={userInformations}
