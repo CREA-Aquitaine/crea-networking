@@ -10,7 +10,7 @@ import cross from './img/cross.png';
 
 const host = process.env.REACT_APP_HOST;
 
-function UsersListTable({ usersList, token, id }) {
+function UsersListTable({ usersList, token, getAllUsers }) {
   const [isAsc, setIsAsc] = useState(false);
   const [lastName, setLastName] = useState([]);
   const [firstName, setFirstName] = useState([]);
@@ -205,17 +205,19 @@ function UsersListTable({ usersList, token, id }) {
     return userTypeState && isAsc;
   };
 
-  const deleteUsers = async () => {
+  const deleteUsers = async (id) => {
     try {
       await Axios.delete(`${host}/api/v1/users/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      getAllUsers();
     } catch (err) {
       setError(error);
     }
   };
+
   return (
     <Col>
       <Table borderless>
@@ -311,7 +313,7 @@ function UsersListTable({ usersList, token, id }) {
         <tbody>
           {usersList.map((user) => {
             return (
-              <tr key={user.id}>
+              <tr key={user.id} id={user.id}>
                 <td>{user.lastName}</td>
                 <td>{user.firstName}</td>
                 <td>{user.email}</td>
@@ -341,7 +343,7 @@ const mapStateToProps = (state) => ({
 UsersListTable.propTypes = {
   usersList: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  getAllUsers: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(UsersListTable);

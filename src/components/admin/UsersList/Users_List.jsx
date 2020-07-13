@@ -145,7 +145,7 @@ function UsersList({ token }) {
             </button>
           </Row>
           <Row>
-            <UsersListTable usersList={usersList} />
+            <UsersListTable usersList={usersList} getAllUsers={getAllUsers} />
           </Row>
           <Row>
             <Col xs="3" className={styles.UsersListExportButton}>

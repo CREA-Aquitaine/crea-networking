@@ -2,14 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  Button,
-  Breadcrumb,
-  BreadcrumbItem,
-  Container,
-  Row,
-  Col,
-} from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import styles from './Announces.module.css';
 import AnnouncesListTable from './Announces_List_Table';
@@ -149,16 +142,16 @@ function AnnouncesList({ token }) {
             </button>
           </Row>
           <Row>
-            <AnnouncesListTable announcesList={announcesList} />
+            <AnnouncesListTable
+              announcesList={announcesList}
+              getAnnounces={getAnnounces}
+            />
           </Row>
           <Row>
             <Col xs="3" className={styles.link}>
               <Link to="/" className={styles.announcesListExportButton}>
                 Exporter la liste{' '}
               </Link>
-            </Col>
-            <Col className={styles.link} xs={{ size: '3', offset: '6' }}>
-              <Button className="button">Supprimer</Button>
             </Col>
           </Row>
         </Container>
