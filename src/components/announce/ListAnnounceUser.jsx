@@ -16,6 +16,7 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import styles from './ListAnnounceUser.module.css';
 
 function ListAnnounceUser({ token }) {
   const [isLoading, setisLoading] = useState(true);
@@ -128,7 +129,7 @@ function ListAnnounceUser({ token }) {
   return (
     <Container className="my-5">
       <Row>
-        <Col>
+        <Col xs="4">
           <Input
             type="select"
             name="select"
@@ -144,7 +145,7 @@ function ListAnnounceUser({ token }) {
             ))}
           </Input>
         </Col>
-        <Col>
+        <Col xs="4">
           <Input
             type="select"
             name="select"
@@ -161,10 +162,12 @@ function ListAnnounceUser({ token }) {
           </Input>
         </Col>
 
-        <Col>
+        <Col xs={{ size: '1', offset: '2' }}>
           <Button onClick={getResults} className="button">
             Search
           </Button>
+        </Col>
+        <Col xs="1">
           <Button onClick={resetSearch} className="button">
             Reset
           </Button>
@@ -174,18 +177,25 @@ function ListAnnounceUser({ token }) {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <CardColumns>
+        <CardColumns className={styles.cardCss}>
           {error ? <p>There is an error</p> : ''}
           {annonceFiltered.map((announce) => (
-            <Card>
-              <CardBody>
-                <CardTitle>{announce.title}</CardTitle>
-                <CardSubtitle>{announce.localisation}</CardSubtitle>
-                <CardSubtitle>{announce.JobCategory.labelFr}</CardSubtitle>
-                <CardSubtitle>{announce.TypePost.labelFr}</CardSubtitle>
-                <CardText>{announce.content}</CardText>
+            <Card className={styles.cardSize}>
+              <CardBody className={styles.cardSize}>
+                <CardTitle className={styles.cardTitle}>
+                  {announce.title}
+                </CardTitle>
+                <CardSubtitle className={styles.cardSubtitle}>
+                  {announce.JobCategory.labelFr} - {announce.localisation}
+                </CardSubtitle>
+                <CardSubtitle className={styles.cardSubtitleDate}>
+                  Publié le {announce.createdAt}
+                </CardSubtitle>
+                <CardText className={styles.cardText}>
+                  {announce.content}
+                </CardText>
                 <Link to={`/announces/${announce.id}`}>
-                  <Button className="button">Button</Button>
+                  <Button className="button">En savoir plus ...</Button>
                 </Link>
               </CardBody>
             </Card>
