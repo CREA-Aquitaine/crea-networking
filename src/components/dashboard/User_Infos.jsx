@@ -2,13 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Row, Container } from 'reactstrap';
-import ModalDashboard from './ModalDashboard';
+import { Link } from 'react-router-dom';
+
 import styles from './User_Infos.module.css';
+import pen from '../image/pen.png';
 
 function UserInfos({ userInfos, activityFields, userTypes }) {
   return (
     <Container>
-      {userTypes.label === 'Chomeur' ? (
+      {userTypes.label === 'Demandeur emploi' ? (
         <Row className={styles.userInfosCss}>
           <Col xs="4" sm="4" className={styles.logoSection}>
             <h4 style={{ color: 'white' }}>Mon profil</h4>
@@ -46,7 +48,9 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
             </ul>
           </Col>
           <Col xs="1" sm="1">
-            <ModalDashboard />
+            <Link to="/settings">
+              <img src={pen} alt="stylo" className={styles.pen} />
+            </Link>
           </Col>
         </Row>
       ) : userTypes.label === 'Entreprise' ? (
@@ -93,7 +97,9 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
             </ul>
           </Col>
           <Col xs="1" sm="1">
-            <ModalDashboard />
+            <Link to="/settings">
+              <img src={pen} alt="stylo" className={styles.pen} />
+            </Link>
           </Col>
         </Row>
       ) : userTypes.label === 'Etudiant' ? (
@@ -128,7 +134,9 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
             </ul>
           </Col>
           <Col xs="1" sm="1">
-            <ModalDashboard />
+            <Link to="/settings">
+              <img src={pen} alt="stylo" className={styles.pen} />
+            </Link>
           </Col>
         </Row>
       ) : (

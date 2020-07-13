@@ -84,7 +84,7 @@ function SecondNavbar({ role }) {
           </NavItem>
           <NavItem className={styles.partenairesUser}>
             <NavLink className={styles.navlink} tag={Link} to="/dashboard">
-              Dashboard
+              Mon dashboard
             </NavLink>
           </NavItem>
           <NavItem className={styles.itemUser}>
