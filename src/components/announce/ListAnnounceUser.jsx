@@ -189,7 +189,7 @@ function ListAnnounceUser({ token }) {
                   {announce.JobCategory.labelFr} - {announce.localisation}
                 </CardSubtitle>
                 <CardSubtitle className={styles.cardSubtitleDate}>
-                  Publié le {announce.createdAt}
+                  {announce.createdAt}
                 </CardSubtitle>
                 <CardText className={styles.cardText}>
                   {announce.content}
