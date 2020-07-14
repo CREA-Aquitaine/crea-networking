@@ -70,7 +70,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
       try {
         await postUser();
         postRegister();
-        history.push('/');
+        history.push('/dashboard');
       } catch (err) {
         setError(err);
       }

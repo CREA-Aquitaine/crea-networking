@@ -33,26 +33,29 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
   const history = useHistory();
 
   const postUser = async () => {
-    try {
-      await Axios.post(`${host}/api/v1/auth/register`, {
-        lastName,
-        firstName,
-        email,
-        password,
-        localisation,
-        country,
-        phone_number: Number(phone),
-        phone_number2: Number(phone2),
-        companyName,
-        siret,
-        qualification,
-        ActivityFieldId,
-        UserTypeId: userTypeId,
-        RoleId: roleId,
-      });
-      setCreated(true);
-    } catch (err) {
-      setError(err);
+    if (ActivityFieldId) {
+      try {
+        await Axios.post(`${host}/api/v1/auth/register`, {
+          lastName,
+          firstName,
+          email,
+          password,
+          localisation,
+          country,
+          phone_number: Number(phone),
+          phone_number2: Number(phone2),
+          companyName,
+          siret,
+          qualification,
+          ActivityFieldId,
+          UserTypeId: userTypeId,
+          RoleId: roleId,
+        });
+
+        setCreated(true);
+      } catch (err) {
+        setError(err);
+      }
     }
   };
   const postRegister = async () => {
@@ -79,7 +82,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
       try {
         await postUser();
         postRegister();
-        history.push('/');
+        history.push('/dashboard');
       } catch (err) {
         setError(err);
       }
@@ -300,7 +303,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
           </Col>
           <Col>
             <Input type="select" name="select" id="exampleSelect" required>
-              <option>Choisir votre secteur d&apos;activité*</option>
               {activityFields.map((item) => (
                 <option
                   value={item.id}

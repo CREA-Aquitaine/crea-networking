@@ -23,6 +23,7 @@ import UserTypes from './admin/UserType/UserTypes';
 import TypeAnnounce from './admin/TypeAnnounces/TypeAnnounce';
 import ActivityFields from './admin/ActivityFields/ActivityFields';
 import FaqUser from './faq/FaqUser';
+import Put from './dashboard/putAccount/Put';
 
 function Router({ role }) {
   return (
@@ -48,6 +49,7 @@ function Router({ role }) {
         <>
           <NavBar />
           <Switch>
+            <Route path="/settings" component={Put} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/post" component={PostAnnounce} />
             <Route path="/faq" component={FaqUser} />

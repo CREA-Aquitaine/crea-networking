@@ -58,14 +58,14 @@ function TypeUserChoice() {
     setUserRole(userRol);
   };
   const toggleSeeker = () => {
-    setUserTypeId(schoolId);
+    setUserTypeId(seekerId);
     setIsOpenSeeker(!isOpenSeeker);
     setIsOpenScool(false);
     setIsOpenCompany(false);
     setUserRole(userRol);
   };
   const toggleSchool = () => {
-    setUserTypeId(seekerId);
+    setUserTypeId(schoolId);
     setIsOpenScool(!isOpenSchool);
     setIsOpenCompany(false);
     setIsOpenSeeker(false);
