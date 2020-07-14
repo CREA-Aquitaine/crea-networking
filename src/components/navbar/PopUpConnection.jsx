@@ -18,6 +18,7 @@ import Axios from 'axios';
 
 import styles from './PopUpConnection.module.css';
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
+import ForgotPassword from './ForgotPassword';
 
 function PopUpConnection({ setModal, toggle, modal }) {
   const [email, setEmail] = useState('');
@@ -92,9 +93,7 @@ function PopUpConnection({ setModal, toggle, modal }) {
                 </a>
               </Col>
               <Col>
-                <a href="a" onClick={toggle}>
-                  Mot de passe oublié ?
-                </a>
+                <ForgotPassword />
               </Col>
             </Row>
             <Row className="mt-3">
