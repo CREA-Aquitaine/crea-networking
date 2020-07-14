@@ -7,6 +7,7 @@ import { Table, Col } from 'reactstrap';
 
 import styles from './Users_List_Table.module.css';
 import cross from './img/cross.png';
+import { useEffect } from 'react';
 
 const host = process.env.REACT_APP_HOST;
 
@@ -220,6 +221,8 @@ function UsersListTable({ usersList, token, getAllUsers }) {
     }
   };
 
+  console.log(usersList);
+
   return (
     <Col>
       <Table borderless>
@@ -310,6 +313,7 @@ function UsersListTable({ usersList, token, getAllUsers }) {
                 <span className={styles.arrowUp} />
               </button>
             </th>
+            <th>Role</th>
           </tr>
         </thead>
         <tbody>
@@ -321,13 +325,14 @@ function UsersListTable({ usersList, token, getAllUsers }) {
                 <td>{user.email}</td>
                 <td>{user.country}</td>
                 <td>{user.UserType ? user.UserType.label : ''} </td>
+                <td>{user.RoleId ? user.Role.label : ''}</td>
                 <td className={styles.crossImg}>
                   <button
                     type="button"
                     className={styles.deleteButton}
                     onClick={deleteUsers}
                   >
-                    <img src={cross} alt="cross" width="80%" />
+                    <img src={cross} alt="cross" width="60%" />
                   </button>
                 </td>
               </tr>
