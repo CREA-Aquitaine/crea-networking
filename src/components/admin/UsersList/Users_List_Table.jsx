@@ -7,7 +7,7 @@ import { Table, Col } from 'reactstrap';
 
 import styles from './Users_List_Table.module.css';
 import cross from './img/cross.png';
-import { useEffect } from 'react';
+import ChangeRole from './ChangeRole';
 
 const host = process.env.REACT_APP_HOST;
 
@@ -221,8 +221,6 @@ function UsersListTable({ usersList, token, getAllUsers }) {
     }
   };
 
-  console.log(usersList);
-
   return (
     <Col>
       <Table borderless>
@@ -325,7 +323,13 @@ function UsersListTable({ usersList, token, getAllUsers }) {
                 <td>{user.email}</td>
                 <td>{user.country}</td>
                 <td>{user.UserType ? user.UserType.label : ''} </td>
-                <td>{user.RoleId ? user.Role.label : ''}</td>
+                {/* <td>{user.RoleId ? user.Role.label : ''}</td> */}
+                <ChangeRole
+                  user={user}
+                  token={token}
+                  key={user.id}
+                  getAllUsers={getAllUsers}
+                />
                 <td className={styles.crossImg}>
                   <button
                     type="button"
