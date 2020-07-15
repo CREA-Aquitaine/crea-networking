@@ -279,6 +279,7 @@ function AnnouncesListTable({ announcesList, token, getAnnounces }) {
                 <span className={styles.arrowUp} />
               </button>
             </th>
+            <th>Supprimer </th>
           </tr>
         </thead>
         <tbody>
@@ -295,7 +296,7 @@ function AnnouncesListTable({ announcesList, token, getAnnounces }) {
                     className={styles.deleteButton}
                     onClick={deleteAnnounce}
                   >
-                    <img src={cross} alt="cross" width="80%" />
+                    <img src={cross} alt="cross" className={styles.cross} />
                   </button>
                 </td>
               </tr>

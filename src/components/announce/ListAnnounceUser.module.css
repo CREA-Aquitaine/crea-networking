@@ -8,9 +8,6 @@
 .cardCss {
   margin-top: 2vw;
 }
-.cardSize {
-  max-height: 30vh;
-}
 .cardTitle {
   font-size: 1.2rem;
   text-align: left;
@@ -23,11 +20,9 @@
   font-style: italic;
   padding-bottom: 0.5vw;
 }
-
 .cardText {
-  text-align: left;
-  max-height: 20vh;
+  text-align: left !important;
+  max-height: 10vh;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
 }

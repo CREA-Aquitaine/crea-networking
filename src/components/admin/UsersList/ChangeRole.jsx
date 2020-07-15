@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, Button, ModalHeader } from 'reactstrap';
 
 import styles from './Users_List_Table.module.css';
 
@@ -58,17 +58,20 @@ function ChangeRole({ user, token, getAllUsers }) {
         </div>
       </td>
       <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader>
+          Changement de rôle 
+        </ModalHeader>
         <ModalBody>
-          <h4>
-            Etes-vous sur de vouloir passer cet utilisateur en administrateur?
-          </h4>
+          <p><b>
+            Êtes-vous sûr de vouloir passer cet utilisateur en administrateur ?</b>
+          </p>
         </ModalBody>
         <ModalFooter>
           <Button className="button" onClick={handleRole}>
             Valider
           </Button>
           <Button className="button" onClick={toggle}>
-            Cancel
+            Annuler
           </Button>
         </ModalFooter>
       </Modal>

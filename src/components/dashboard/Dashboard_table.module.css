@@ -37,9 +37,11 @@
 }
 .activeOn {
   color: black !important;
+  cursor: pointer;
 }
 .activeOff {
   color: grey !important;
+  cursor: pointer;
 }
 .rowTd {
   display: flex;
@@ -51,4 +53,21 @@
 }
 .navButton {
   margin-left: 15vw;
+}
+.cross {
+  width: 1vw;
+  cursor: pointer;
+}
+.deleteButton {
+  background-color: transparent;
+  margin: 0;
+}
+.collapse {
+  max-height: 5vh !important;
+  height: 5vh;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+}
+.collapse:hover {
+  height: auto;
 }
