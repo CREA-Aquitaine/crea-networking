@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
 
 import styles from './Users_List_Table.module.css';
 
@@ -19,8 +19,10 @@ function ChangeRole({ user, token, getAllUsers }) {
     try {
       const role = await Axios.get(`${host}/api/v1/role`);
       setRoles(role.data);
+      return '';
     } catch (err) {
       setError(err);
+      return error;
     }
   };
 
@@ -38,8 +40,10 @@ function ChangeRole({ user, token, getAllUsers }) {
       );
       setModal(false);
       getAllUsers();
+      return '';
     } catch (err) {
       setErrorPut(err);
+      return errorPut;
     }
   };
   useEffect(() => {
@@ -48,8 +52,10 @@ function ChangeRole({ user, token, getAllUsers }) {
 
   return (
     <>
-      <td onClick={toggle} className={styles.role}>
-        {user.RoleId ? user.Role.label : ''}
+      <td className={styles.role}>
+        <div onClick={toggle} onKeyDown={toggle} role="button" tabIndex={0}>
+          {user.RoleId ? user.Role.label : ''}
+        </div>
       </td>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalBody>
