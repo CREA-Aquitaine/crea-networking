@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import { connect } from 'react-redux';
 import styles from './Announce.module.css';
+import ApplyModal from './ApplyModal';
 
 function Announce({ token }) {
   const [infosAnnounce, setInfosAnnounce] = useState([]);
@@ -54,7 +55,10 @@ function Announce({ token }) {
           </Row>
           <Row className={styles.btn}>
             <Col>
-              <button type="button">Postuler</button>
+              <ApplyModal
+                infosAnnounce={infosAnnounce}
+                getInfosAnnounce={getInfosAnnounce}
+              />
             </Col>
             <Col>
               <Link to="/listAnnonce">
