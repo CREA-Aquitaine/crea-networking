@@ -47,7 +47,7 @@ function Contact() {
       text,
       textarea,
     };
-    axios.post('api/sendMail', dataToSubmit);
+    axios.post('/api/sendMail', dataToSubmit);
   };
 
   return (
