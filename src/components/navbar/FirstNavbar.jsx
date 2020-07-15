@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
+import { withNamespaces } from 'react-i18next';
+import styles from './NavBar.module.css';
 
-import NavbarLanguage from './NavbarLanguage';
+// import NavbarLanguage from './NavbarLanguage';
 import PopUpConnection from './PopUpConnection';
 
-import styles from './NavBar.module.css';
-import './Navbar.css';
 import AccountModal from '../admin/account/AccountModal';
+import TraductionNav from './TraductionNav';
 
-function FirstNavbar({ role }) {
+function FirstNavbar({ role, t }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const dispatch = useDispatch();
@@ -34,19 +35,19 @@ function FirstNavbar({ role }) {
             className={`${styles.navItem} mr-5 mt-2`}
             onClick={disconnect}
           >
-            Se déconnecter
+            {t('Deconnexion')}
           </NavItem>
         ) : role === 'user' ? (
           <NavItem
             className={`${styles.navItem} mr-5 mt-2`}
             onClick={disconnect}
           >
-            Se déconnecter
+            {t('Deconnexion')}
           </NavItem>
         ) : (
           <NavItem className="mr-5">
             <NavLink className={styles.navItem} onClick={toggle2}>
-              Espace connexion
+              {t('Espace connexion')}
             </NavLink>
             <PopUpConnection
               setModal={setModal}
@@ -57,9 +58,10 @@ function FirstNavbar({ role }) {
         )}
 
         <NavItem>
-          <NavLink>Langue</NavLink>
+          <NavLink>{t('Langue')}</NavLink>
         </NavItem>
-        <NavbarLanguage />
+        {/* <NavbarLanguage /> */}
+        <TraductionNav />
       </Nav>
     </Navbar>
   );
@@ -68,6 +70,9 @@ const mapStateToProps = (state) => ({
   role: state.role.isRole,
 });
 
-FirstNavbar.propTypes = { role: PropTypes.string.isRequired };
+FirstNavbar.propTypes = {
+  role: PropTypes.string.isRequired,
+  t: PropTypes.string.isRequired,
+};
 
-export default connect(mapStateToProps)(FirstNavbar);
+export default connect(mapStateToProps) && withNamespaces()(FirstNavbar);

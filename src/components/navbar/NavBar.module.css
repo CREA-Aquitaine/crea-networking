@@ -1,6 +1,10 @@
 .drapeau {
   width: 25px;
 }
+.bgDrapeau {
+  background-color: none !important;
+  border-color: none !important;
+}
 .dropdowm {
   min-width: 40px !important;
 }
@@ -25,5 +29,5 @@
   width: 50vw;
 }
 .navItem {
-  cursor : pointer;
+  cursor: pointer;
 }

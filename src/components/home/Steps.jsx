@@ -1,17 +1,20 @@
 import React from 'react';
 import { Row, Container, Col } from 'reactstrap';
 
+import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
+
 import '../../index.css';
 import styles from './Steps.module.css';
 import inscription from './img/inscription.png';
 import search from './img/search.png';
 import cv from './img/cv.png';
 
-function Steps() {
+function Steps({ t }) {
   return (
     <Container fluid className="redCrea">
       <Row>
-        <h3 className="mx-auto mt-5 text-white">Comment ça marche ?</h3>
+        <h3 className="mx-auto mt-5 text-white">{t('marche')} ?</h3>
       </Row>
       <Row className={styles.size}>
         <Col className={styles.position}>
@@ -22,7 +25,7 @@ function Steps() {
               alt="inscription"
               className={`${styles.image} mb-4`}
             />
-            <figcaption className={styles.color}>Je m&apos;inscris</figcaption>
+            <figcaption className={styles.color}>{t('inscrit')}</figcaption>
           </figure>
         </Col>
         <Col className={styles.position}>
@@ -33,9 +36,7 @@ function Steps() {
               alt="search"
               className={`${styles.image} mb-4`}
             />
-            <figcaption className={styles.color}>
-              Je consulte les annonces
-            </figcaption>
+            <figcaption className={styles.color}>{t('annonce')}</figcaption>
           </figure>
         </Col>
         <Col className={styles.position}>
@@ -46,12 +47,15 @@ function Steps() {
               alt="cv"
               className={`${styles.image} mb-4`}
             />
-            <figcaption className={styles.color}>Je postule</figcaption>
+            <figcaption className={styles.color}>{t('postule')}</figcaption>
           </figure>
         </Col>
       </Row>
     </Container>
   );
 }
+Steps.propTypes = {
+  t: PropTypes.string.isRequired,
+};
 
-export default Steps;
+export default withNamespaces()(Steps);

@@ -1,23 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
+
 import styles from './Header.module.css';
 
-function Header() {
+function Header({ t }) {
   return (
     <div className={`${styles.presentation} my-5`}>
-      <h2>Présentation</h2>
-      <p className={styles.pres}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
-        ullam numquam quisquam nulla doloremque inventore praesentium. Officia,
-        numquam atque accusamus, saepe impedit quasi, tenetur similique in quae
-        eos assumenda dolore! Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Eligendi molestiae odio molestias cumque sed. At, dignissimos, hic
-        aut et eveniet, nobis vitae itaque tempore modi non distinctio optio
-        sequi laborum?
-      </p>
+      <h2>{t('TitrePresentation')}</h2>
+      <p className={styles.pres}>{t('TextePresentation')}</p>
       <button className={styles.button} type="button">
-        Nos partenaires
+        {t('ButtonPartenaires')}
       </button>
     </div>
   );
 }
-export default Header;
+
+Header.propTypes = {
+  t: PropTypes.string.isRequired,
+};
+
+export default withNamespaces()(Header);
