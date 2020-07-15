@@ -81,7 +81,7 @@ function UsersList({ token }) {
       });
       const jobSeeker = res.data.filter((user) => {
         if (user.UserType) {
-          return user.UserType.label === "Chercheur d'emploi";
+          return user.UserType.label === 'Demandeur emploi';
         }
         return '';
       });

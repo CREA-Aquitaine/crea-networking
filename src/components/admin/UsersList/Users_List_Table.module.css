@@ -93,3 +93,10 @@
   background-color: transparent;
   margin: 0;
 }
+.role {
+  cursor: pointer;
+  color: black;
+}
+.role:hover {
+  border: 1px solid #dd2b25;
+}
