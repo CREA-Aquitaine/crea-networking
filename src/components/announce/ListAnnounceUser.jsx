@@ -195,7 +195,7 @@ function ListAnnounceUser({ token }) {
                         {announce.createdAt}
                       </CardSubtitle>
                       <CardText className={styles.cardText}>
-                      {ReactHtmlParser(announce.content)}
+                        {ReactHtmlParser(announce.content)}
                       </CardText>
                       <Link to={`/announces/${announce.id}`}>
                         <Button className="button">En savoir plus ...</Button>
