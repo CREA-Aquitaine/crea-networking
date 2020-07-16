@@ -9,7 +9,7 @@
   padding: 0;
 }
 .userInfosCss p {
-  font-size: 14px;
+  font-size: 1vw;
   color: white;
   font-family: 'Raleway';
 }
@@ -29,7 +29,7 @@
   text-align: left;
 }
 .userInfos h4 {
-  font-size: 20px;
+  font-size: 1.3vw;
   color: white;
   line-height: 1.5;
   font-weight: 800;
@@ -44,9 +44,14 @@
   text-align: left;
 }
 .contact h4 {
-  font-size: 20px;
+  font-size: 1.3vw;
   color: white;
   line-height: 1.5;
   font-weight: 800;
   font-family: 'Raleway';
+}
+.pen {
+  width: 1.2vw;
+  cursor: pointer;
+  margin: 1vw;
 }

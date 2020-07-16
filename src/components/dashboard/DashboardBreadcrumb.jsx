@@ -1,5 +1,6 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import styles from './Dashboard.module.css';
 
@@ -8,10 +9,14 @@ function DashboardBreadcrumb() {
     <>
       <Breadcrumb tag="nav" listTag="div" className={styles.fil}>
         <BreadcrumbItem tag="a" href="#">
-          Accueil
+          <Link tag="link" to="/">
+            Accueil
+          </Link>
         </BreadcrumbItem>
         <BreadcrumbItem tag="a" href="#">
-          Dashboard
+          <Link tag="Link" to="/dashboard">
+            Dashboard
+          </Link>
         </BreadcrumbItem>
       </Breadcrumb>
     </>

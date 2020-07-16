@@ -3,6 +3,7 @@ import { Collapse, Label, Input, Row, Col, Button, Form } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
@@ -29,28 +30,32 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
   const [errorPassword, setErrorPassword] = useState(false);
   const [created, setCreated] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const postUser = async () => {
-    try {
-      await Axios.post(`${host}/api/v1/auth/register`, {
-        lastName,
-        firstName,
-        email,
-        password,
-        localisation,
-        country,
-        phone_number: Number(phone),
-        phone_number2: Number(phone2),
-        companyName,
-        siret,
-        qualification,
-        ActivityFieldId,
-        UserTypeId: userTypeId,
-        RoleId: roleId,
-      });
-      setCreated(true);
-    } catch (err) {
-      setError(err);
+    if (ActivityFieldId) {
+      try {
+        await Axios.post(`${host}/api/v1/auth/register`, {
+          lastName,
+          firstName,
+          email,
+          password,
+          localisation,
+          country,
+          phone_number: Number(phone),
+          phone_number2: Number(phone2),
+          companyName,
+          siret,
+          qualification,
+          ActivityFieldId,
+          UserTypeId: userTypeId,
+          RoleId: roleId,
+        });
+
+        setCreated(true);
+      } catch (err) {
+        setError(err);
+      }
     }
   };
   const postRegister = async () => {
@@ -77,6 +82,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
       try {
         await postUser();
         postRegister();
+        history.push('/dashboard');
       } catch (err) {
         setError(err);
       }
@@ -110,6 +116,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
           <Col>
             <Input
               type="text"
+              required
               name="nameOrganisation"
               id="nameOrganisation"
               placeholder="SAS Jean Dupont"
@@ -126,6 +133,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
               type="text"
               name="siret"
               id="siret"
+              required
               placeholder="XXXXXXXXXXXXXX"
               onChange={(e) => setSiret(e.target.value)}
             />
@@ -134,7 +142,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
         <Row className="mb-2">
           <Col xs="3">
             <Label for="localisation">
-              Localisation de l&apos;entreprise ou de l&apos;association
+              Localisation de l&apos;entreprise ou de l&apos;association*
             </Label>
           </Col>
           <Col>
@@ -142,6 +150,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
               type="text"
               name="localisation"
               id="localisation"
+              required
               placeholder="Biarritz"
               onChange={(e) => setLocalisation(e.target.value)}
             />
@@ -155,6 +164,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
             <Input
               type="select"
               name="country"
+              required
               id="country"
               onChange={(e) => setCountry(e.target.value)}
             >
@@ -173,6 +183,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
               name="firstname"
               id="firstname"
               placeholder="Jean"
+              required
               onChange={(e) => setFirstName(e.target.value)}
             />
           </Col>
@@ -185,6 +196,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
             <Input
               type="text"
               name="lastname"
+              required
               id="lastname"
               placeholder="Dupont"
               onChange={(e) => setLastName(e.target.value)}
@@ -198,6 +210,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
           <Col>
             <Input
               type="email"
+              required
               name="email"
               id="email"
               placeholder="jean.dupont@world.com"
@@ -213,6 +226,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
             <Input
               type="password"
               name="password"
+              required
               id="password"
               placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
@@ -228,6 +242,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
               type="password"
               name="password2"
               id="password2"
+              required
               placeholder="********"
               onChange={(e) => setPasswordRepeat(e.target.value)}
             />
@@ -241,6 +256,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
           <Col>
             <Input
               type="text"
+              required
               name="phone"
               id="phone"
               placeholder="0102030405"
@@ -272,6 +288,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
             <Input
               type="text"
               name="poste"
+              required
               id="poste"
               placeholder="DRH"
               onChange={(e) => setQualification(e.target.value)}
@@ -285,8 +302,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
             </Label>
           </Col>
           <Col>
-            <Input type="select" name="select" id="exampleSelect">
-              <option>Choisir votre secteur d&apos;activité</option>
+            <Input type="select" name="select" id="exampleSelect" required>
               {activityFields.map((item) => (
                 <option
                   value={item.id}

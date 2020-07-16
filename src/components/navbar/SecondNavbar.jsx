@@ -56,7 +56,7 @@ function SecondNavbar({ role }) {
             <DropdownToggle nav caret className={styles.mesnavbarItems}>
               Divers
             </DropdownToggle>
-            <DropdownMenu right>
+            <DropdownMenu bottom>
               <DropdownItem tag={Link} to="/jobCategory">
                 Catégories d&apos;emplois
               </DropdownItem>
@@ -83,6 +83,11 @@ function SecondNavbar({ role }) {
             </NavLink>
           </NavItem>
           <NavItem className={styles.partenairesUser}>
+            <NavLink className={styles.navlink} tag={Link} to="/dashboard">
+              Mon dashboard
+            </NavLink>
+          </NavItem>
+          <NavItem className={styles.itemUser}>
             <NavLink className={styles.navlink} tag={Link} to="/post">
               Déposer une annonce
             </NavLink>

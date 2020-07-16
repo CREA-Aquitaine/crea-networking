@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Axios from 'axios';
 
-import styles from './Dashboard.module.css';
-import UserInfos from './User_Infos';
-import DashboardTable from './Dashboard_table';
-import DashboardBreadcrumb from './DashboardBreadcrumb';
+import PutCompany from './PutCompany';
+import PutUserInfo from './PutUserInfo';
+import PutSchool from './PutSchool';
 
 const host = process.env.REACT_APP_HOST;
 
-function Dashboard({ token, userInfos }) {
+function Put({ token, userInfos }) {
   const [userInformations, setUserInfos] = useState([]);
-  const [userTypes, setUserTypes] = useState([]);
-  const [activityFields, setActivityFields] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [userType, setUserType] = useState([]);
+  const [activityField, setActivityField] = useState([]);
+  //   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
   const getUserInfos = async () => {
@@ -36,7 +35,7 @@ function Dashboard({ token, userInfos }) {
           },
         }
       );
-      setUserTypes(resType.data);
+      setUserType(resType.data);
 
       const activityFieldId = res.data.ActivityFieldId;
       const resActivity = await Axios.get(
@@ -47,9 +46,7 @@ function Dashboard({ token, userInfos }) {
           },
         }
       );
-      setActivityFields(resActivity.data);
-
-      setIsLoading(false);
+      setActivityField(resActivity.data);
     } catch (err) {
       setError(err);
     }
@@ -59,29 +56,26 @@ function Dashboard({ token, userInfos }) {
   }, []);
 
   return (
-    <>
-      {isLoading ? (
-        <>
-          <h1>Loading...</h1>
-          <h2>{error}</h2>
-        </>
+    <div>
+      {error ? '' : ''}
+      {userType.label === 'Entreprise' ? (
+        <PutCompany
+          userInfos={userInformations}
+          token={token}
+          activityField={activityField}
+        />
+      ) : userType.label === 'Demandeur emploi' ? (
+        <PutUserInfo userInfos={userInformations} token={token} />
+      ) : userType.label === 'Ecole' ? (
+        <PutSchool
+          userInfos={userInformations}
+          token={token}
+          activityField={activityField}
+        />
       ) : (
-        <div className={styles.dashboard}>
-          <DashboardBreadcrumb />
-          <div className={styles.userInfos}>
-            <UserInfos
-              userInfos={userInformations}
-              activityFields={activityFields}
-              userTypes={userTypes}
-            />
-          </div>
-          <div className={styles.dashboardTable}>
-            <DashboardTable />
-          </div>
-          <hr className="hrFooter" />
-        </div>
+        ''
       )}
-    </>
+    </div>
   );
 }
 
@@ -89,9 +83,9 @@ const mapStateToProps = (state) => ({
   token: state.authenticated.token,
   userInfos: state.authenticated.userInfos,
 });
-Dashboard.propTypes = {
+
+Put.propTypes = {
   token: PropTypes.string.isRequired,
   userInfos: PropTypes.string.isRequired,
 };
-
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(Put);

@@ -1,0 +1,28 @@
+.cardSubtitleDate {
+  font-size: 1rem;
+  text-align: left;
+  font-weight: 300;
+  padding-bottom: 1.1vw;
+  font-style: italic;
+}
+.cardCss {
+  margin-top: 2vw;
+}
+.cardTitle {
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.cardSubtitle {
+  text-align: left;
+  font-weight: 300;
+  font-size: 1.25rem;
+  font-style: italic;
+  padding-bottom: 0.5vw;
+}
+.cardText {
+  text-align: left !important;
+  max-height: 10vh;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

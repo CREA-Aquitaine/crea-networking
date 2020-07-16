@@ -3,6 +3,7 @@ import { Collapse, Label, Input, Row, Col, Button, Form } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { connect, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
@@ -23,11 +24,12 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
   const [country, setCountry] = useState('France');
   const [qualification, setQualification] = useState('');
   const [activityFields, setActivityFields] = useState([]);
-  const [ActivityFieldId, setActivityFieldId] = useState();
+  const [ActivityFieldId, setActivityFieldId] = useState('');
   const [error, setError] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [created, setCreated] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const postUser = async () => {
     try {
@@ -76,6 +78,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
       try {
         await postUser();
         postRegister();
+        history.push('/dashboard');
       } catch (err) {
         setError(err);
       }
@@ -88,6 +91,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
     try {
       const res = await Axios.get(`${host}/api/v1/activityFields`);
       setActivityFields(res.data);
+      setActivityFieldId(res.data[0].id);
     } catch (err) {
       setError(err);
     }
@@ -109,6 +113,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
               type="text"
               name="schoolName"
               id="schoolName"
+              required
               placeholder="Wild Code School"
               onChange={(e) => setSchoolName(e.target.value)}
             />
@@ -122,6 +127,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
             <Input
               type="text"
               name="firstname"
+              required
               id="firstname"
               placeholder="Jean"
               onChange={(e) => setFirstName(e.target.value)}
@@ -136,6 +142,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
             <Input
               type="text"
               name="lastname"
+              required
               id="lastname"
               placeholder="Dupont"
               onChange={(e) => setLastName(e.target.value)}
@@ -150,6 +157,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
             <Input
               type="email"
               name="email"
+              required
               id="email"
               placeholder="jean.dupont@world.com"
               onChange={(e) => setEmail(e.target.value)}
@@ -164,6 +172,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
             <Input
               type="password"
               name="password"
+              required
               id="password"
               placeholder="*******"
               onChange={(e) => setPassword(e.target.value)}
@@ -178,6 +187,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
             <Input
               type="password"
               name="password2"
+              required
               id="password2"
               placeholder="*******"
               onChange={(e) => setPasswordRepeat(e.target.value)}
@@ -196,6 +206,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
             <Input
               type="text"
               name="localisation"
+              required
               id="localisation"
               placeholder="Biarritz"
               onChange={(e) => setLocalisation(e.target.value)}
@@ -210,6 +221,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
             <Input
               type="select"
               name="country"
+              required
               id="country"
               onChange={(e) => setCountry(e.target.value)}
             >
@@ -225,6 +237,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
           <Col>
             <Input
               type="text"
+              required
               name="phone"
               id="phone"
               placeholder="0102030405"
@@ -254,6 +267,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
           <Col>
             <Input
               type="text"
+              required
               name="poste"
               id="poste"
               placeholder="Etudiant, professeur, ..."
@@ -268,8 +282,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
             </Label>
           </Col>
           <Col>
-            <Input type="select" name="select" id="exampleSelect">
-              <option>Choisir votre secteur d&apos;activité</option>
+            <Input type="select" name="select" id="exampleSelect" required>
               {activityFields.map((item) => (
                 <option
                   value={item.id}

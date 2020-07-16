@@ -84,3 +84,22 @@
   background-color: #dd2b25;
   color: white;
 }
+.crossImg {
+  width: 4vw;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.deleteButton {
+  background-color: transparent;
+  margin: 0;
+}
+.role {
+  cursor: pointer;
+  color: black;
+}
+.role:hover {
+  border: 1px solid #dd2b25;
+}
+.cross {
+  width: 1vw;
+}

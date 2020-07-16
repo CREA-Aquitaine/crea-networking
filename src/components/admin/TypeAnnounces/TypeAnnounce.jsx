@@ -131,7 +131,7 @@ function TypeAnnounce({ token }) {
             Gérer les types d&apos;annonces
           </Col>
         </Row>
-        <Form fluid className={styles.addQR} onSubmit={handleSubmit}>
+        <Form fluid className={styles.addTypePost} onSubmit={handleSubmit}>
           <FormGroup>
             <Label for="question" />
             <Input
@@ -140,7 +140,7 @@ function TypeAnnounce({ token }) {
               name="question"
               id="question"
               value={labelFr}
-              placeholder="Types d'annonce"
+              placeholder="Ajouter votre type d'annonces en Français"
               onChange={(e) => setLabelFr(e.target.value)}
             />
           </FormGroup>
@@ -151,9 +151,9 @@ function TypeAnnounce({ token }) {
               type="text"
               name="answer"
               id="answer"
-              placeholder="Iragarki motak"
-              value={labelEus}
-              onChange={(e) => setLabelEus(e.target.value)}
+              placeholder="Ajouter votre type d'annonces en Espagnol"
+              value={labelEs}
+              onChange={(e) => setLabelEs(e.target.value)}
             />
           </FormGroup>
           <FormGroup>
@@ -163,9 +163,9 @@ function TypeAnnounce({ token }) {
               type="text"
               name="answer"
               id="answer"
-              placeholder="Tipos de anuncios"
-              value={labelEs}
-              onChange={(e) => setLabelEs(e.target.value)}
+              placeholder="Ajouter votre type d'annonces en Basque"
+              value={labelEus}
+              onChange={(e) => setLabelEus(e.target.value)}
             />
           </FormGroup>
           <Row>

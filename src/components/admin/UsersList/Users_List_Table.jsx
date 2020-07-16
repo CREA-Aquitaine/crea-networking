@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Axios from 'axios';
+import { connect } from 'react-redux';
 
-import { Table, Col, Input } from 'reactstrap';
+import { Table, Col } from 'reactstrap';
 
 import styles from './Users_List_Table.module.css';
+import cross from './img/cross.png';
+import ChangeRole from './ChangeRole';
 
-function UsersListTable({ usersList }) {
+const host = process.env.REACT_APP_HOST;
+
+function UsersListTable({ usersList, token, getAllUsers }) {
   const [isAsc, setIsAsc] = useState(false);
   const [lastName, setLastName] = useState([]);
   const [firstName, setFirstName] = useState([]);
   const [email, setEmail] = useState([]);
   const [country, setCountry] = useState([]);
   const [userTypeState, setUserTypeState] = useState([]);
+  const [error, setError] = useState('');
 
   const getAscLastName = () => {
     const ascLastName = usersList.sort((a, b) => {
@@ -199,14 +206,26 @@ function UsersListTable({ usersList }) {
     return userTypeState && isAsc;
   };
 
+  const deleteUsers = async () => {
+    try {
+      const userId = usersList.find((user) => user.id);
+      await Axios.delete(`${host}/api/v1/users/${userId.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return getAllUsers();
+    } catch (err) {
+      setError(err);
+      return error;
+    }
+  };
+
   return (
     <Col>
       <Table borderless>
         <thead>
           <tr>
-            <th className={styles.thCheckbox}>
-              <Input type="checkbox" className={styles.checkboxTh} />
-            </th>
             <th>
               Nom
               <button
@@ -292,20 +311,35 @@ function UsersListTable({ usersList }) {
                 <span className={styles.arrowUp} />
               </button>
             </th>
+            <th>Role</th>
+            <th>Supprimer</th>
           </tr>
         </thead>
         <tbody>
           {usersList.map((user) => {
             return (
-              <tr key={user.id}>
-                <th>
-                  <Input type="checkbox" className={styles.checkboxTh} />
-                </th>
+              <tr key={user.id} id={user.id}>
                 <td>{user.lastName}</td>
                 <td>{user.firstName}</td>
                 <td>{user.email}</td>
                 <td>{user.country}</td>
                 <td>{user.UserType ? user.UserType.label : ''} </td>
+                {/* <td>{user.RoleId ? user.Role.label : ''}</td> */}
+                <ChangeRole
+                  user={user}
+                  token={token}
+                  key={user.id}
+                  getAllUsers={getAllUsers}
+                />
+                <td className={styles.crossImg}>
+                  <button
+                    type="button"
+                    className={styles.deleteButton}
+                    onClick={deleteUsers}
+                  >
+                    <img src={cross} alt="cross" className={styles.cross} />
+                  </button>
+                </td>
               </tr>
             );
           })}
@@ -314,9 +348,14 @@ function UsersListTable({ usersList }) {
     </Col>
   );
 }
+const mapStateToProps = (state) => ({
+  token: state.authenticated.token,
+});
 
 UsersListTable.propTypes = {
   usersList: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
+  getAllUsers: PropTypes.string.isRequired,
 };
 
-export default UsersListTable;
+export default connect(mapStateToProps)(UsersListTable);
