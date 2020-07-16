@@ -12,6 +12,8 @@ import {
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './JobCategory.module.css';
 
@@ -34,23 +36,37 @@ function JobCategoryModal({
 
   const toggle = () => setModal(!modal);
 
+  const setToastSuccessPut = () => {
+    toast.success('Votre question a bien été modifiée.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
   const putCategory = async () => {
     try {
-      await Axios.put(
-        `${host}/api/v1/jobCategories/${id}`,
-        {
-          labelFr,
-          labelEs,
-          labelEus,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      if (labelFr && labelEs && labelEus) {
+        await Axios.put(
+          `${host}/api/v1/jobCategories/${id}`,
+          {
+            labelFr,
+            labelEs,
+            labelEus,
           },
-        }
-      );
-      setModal(!modal);
-      getCategories();
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setModal(!modal);
+        getCategories();
+        setToastSuccessPut();
+      }
     } catch (err) {
       setError(err);
     }

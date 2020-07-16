@@ -12,6 +12,8 @@ import {
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './ActivityFields.module.css';
 
@@ -27,24 +29,90 @@ function ActivityModal({ labelF, labelE, labelEu, token, getActivity, id }) {
 
   const toggle = () => setModal(!modal);
 
+  const setToastSuccessPut = () => {
+    toast.success("Le secteur d'activité a bien été modifiée.", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastSuccessDelete = () => {
+    toast.success("Le secteur d'activité a bien été supprimée.", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastErrorPut = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastErrorDelete = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInputPut = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const putActivity = async () => {
     try {
-      await Axios.put(
-        `${host}/api/v1/activityFields/${id}`,
-        {
-          labelFr,
-          labelEs,
-          labelEus,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      if (labelFr && labelEs && labelEus) {
+        await Axios.put(
+          `${host}/api/v1/activityFields/${id}`,
+          {
+            labelFr,
+            labelEs,
+            labelEus,
           },
-        }
-      );
-      setModal(!modal);
-      getActivity();
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setModal(!modal);
+        getActivity();
+        setToastSuccessPut();
+      } else {
+        setToastInputPut();
+      }
     } catch (err) {
+      setToastErrorPut();
       setError(err);
     }
   };
@@ -63,15 +131,17 @@ function ActivityModal({ labelF, labelE, labelEu, token, getActivity, id }) {
       });
       setModal(!modal);
       getActivity();
+      setToastSuccessDelete();
     } catch (err) {
+      setToastErrorDelete();
       setErrorDelete(err);
     }
   };
 
   return (
     <div>
-      {errorDelete ? <p>Le secteur d&apos;activité a bien été supprimé</p> : ''}
-      {error ? <p>Il y a eu une erreur lors de la modification.</p> : ''}
+      {errorDelete ? '' : ''}
+      {error ? '' : ''}
       <Button className="button" onClick={toggle}>
         Modifier
       </Button>

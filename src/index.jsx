@@ -15,7 +15,6 @@ require('dotenv').config();
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -27,7 +26,7 @@ ReactDOM.render(
         draggable
         pauseOnHover
       />
-      {/* Same as */}
+      <App />
       <ToastContainer />
     </Provider>
   </React.StrictMode>,

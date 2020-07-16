@@ -188,14 +188,8 @@ function Faq({ token }) {
                 Ajouter
               </Button>
             </Col>
-            {created ? <p> Votre question/réponse a bien été crée.</p> : ''}
-            {error ? (
-              <p>
-                Il y a eu une erreur lors de la création de la question/réponse.
-              </p>
-            ) : (
-              ''
-            )}
+            {created ? '' : ''}
+            {error ? '' : ''}
           </Row>
         </Form>
         <FaqList faq={faq} getFaq={getFaq} />

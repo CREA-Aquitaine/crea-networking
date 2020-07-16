@@ -66,7 +66,7 @@ function PartnersPost({ getPartners, token }) {
   };
 
   const setToastInput = () => {
-    toast.info('Veuillez renseigner tous les champs', {
+    toast.info('Veuillez renseigner tous les champs et sélectionner un logo', {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -78,7 +78,7 @@ function PartnersPost({ getPartners, token }) {
   };
 
   const postNewImage = () => {
-    if (!label || !description || !url) {
+    if (!label || !description || !url || !logo) {
       setToastInput();
     } else {
       Axios.post('https://api.imgur.com/3/image', logo, {
@@ -201,12 +201,8 @@ function PartnersPost({ getPartners, token }) {
           </Button>
         </Col>
       </Row>
-      {created ? <p>Votre partenaire a bien été ajouté.</p> : ''}
-      {error ? (
-        <p>Une erreur s&apos;est produite lors de la création du partenaire.</p>
-      ) : (
-        ''
-      )}
+      {created ? '' : ''}
+      {error ? '' : ''}
     </Form>
   );
 }

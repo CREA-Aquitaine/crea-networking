@@ -45,7 +45,7 @@ function UserTypes({ token }) {
   }, []);
 
   const setToastSuccess = () => {
-    toast.success('Votre question a bien été publiée.', {
+    toast.success("Le type d'utilisateur a bien été publiée.", {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -144,15 +144,8 @@ function UserTypes({ token }) {
                 Ajouter
               </Button>
             </Col>
-            {created ? <p>Le type d&apos;utilisateurs a bien été crée.</p> : ''}
-            {error ? (
-              <p>
-                Il y a eu une erreur lors de la création du type
-                d&apos;utilisateurs.
-              </p>
-            ) : (
-              ''
-            )}
+            {created ? '' : ''}
+            {error ? '' : ''}
           </Row>
         </Form>
         <UserTypeList userTypes={userTypes} getUserTypes={getUserTypes} />
