@@ -14,6 +14,8 @@ import {
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import TypeAnnounceList from './TypeAnnounceList';
 import styles from './TypeAnnounce.module.css';
@@ -44,25 +46,67 @@ function TypeAnnounce({ token }) {
     getType();
   }, []);
 
+  const setToastSuccess = () => {
+    toast.success('Votre question a bien été publiée.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastError = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInput = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const postTypeAnnounce = async () => {
     try {
-      await Axios.post(
-        `${host}/api/v1/postTypes`,
-        {
-          labelFr,
-          labelEs,
-          labelEus,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      if (labelFr && labelEs && labelEus) {
+        await Axios.post(
+          `${host}/api/v1/postTypes`,
+          {
+            labelFr,
+            labelEs,
+            labelEus,
           },
-        }
-      );
-      setCreated(true);
-      getType();
-      setTimeout(() => setCreated(false), 2000);
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCreated(true);
+        getType();
+        setToastSuccess();
+        setTimeout(() => setCreated(false), 2000);
+      } else {
+        setToastInput();
+      }
     } catch (err) {
+      setToastError();
       setError(err);
     }
   };
@@ -96,7 +140,7 @@ function TypeAnnounce({ token }) {
               name="question"
               id="question"
               value={labelFr}
-              placeholder="Types d'annonce"
+              placeholder="Ajouter votre type d'annonces en Français"
               onChange={(e) => setLabelFr(e.target.value)}
             />
           </FormGroup>
@@ -107,9 +151,9 @@ function TypeAnnounce({ token }) {
               type="text"
               name="answer"
               id="answer"
-              placeholder="Iragarki motak"
-              value={labelEus}
-              onChange={(e) => setLabelEus(e.target.value)}
+              placeholder="Ajouter votre type d'annonces en Espagnol"
+              value={labelEs}
+              onChange={(e) => setLabelEs(e.target.value)}
             />
           </FormGroup>
           <FormGroup>
@@ -119,9 +163,9 @@ function TypeAnnounce({ token }) {
               type="text"
               name="answer"
               id="answer"
-              placeholder="Tipos de anuncios"
-              value={labelEs}
-              onChange={(e) => setLabelEs(e.target.value)}
+              placeholder="Ajouter votre type d'annonces en Basque"
+              value={labelEus}
+              onChange={(e) => setLabelEus(e.target.value)}
             />
           </FormGroup>
           <Row>
@@ -130,7 +174,7 @@ function TypeAnnounce({ token }) {
                 Ajouter
               </Button>
             </Col>
-            {created ? <p> Votre type d&apos;annonce a bien été crée.</p> : ''}
+            {created ? '' : ''}
             {error ? (
               <p>
                 Il y a eu une erreur lors de la création du type d&apos;annonce.

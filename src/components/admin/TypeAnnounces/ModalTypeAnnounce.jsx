@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import {
   Button,
   Modal,
-  ModalHeader,
   ModalBody,
-  ModalFooter,
   Input,
   Form,
   Label,
@@ -12,6 +10,8 @@ import {
   Row,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Axios from 'axios';
 import { connect } from 'react-redux';
@@ -19,33 +19,99 @@ import styles from './TypeAnnounce.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function ModalType({ className, getType, token, id }) {
+function ModalType({ french, euskara, castillan, getType, token, id }) {
   const [modal, setModal] = useState(false);
-  const [labelFr, setLabelFr] = useState('');
-  const [labelEs, setLabelEs] = useState('');
-  const [labelEus, setLabelEus] = useState('');
+  const [labelFr, setLabelFr] = useState(french);
+  const [labelEs, setLabelEs] = useState(castillan);
+  const [labelEus, setLabelEus] = useState(euskara);
   const [errorPut, setErrorPut] = useState('');
   const [errorDelete, setErrorDelete] = useState(false);
 
+  const setToastSuccessPut = () => {
+    toast.success("Votre type d'annonce a bien été modifiée.", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastSuccessDelete = () => {
+    toast.success("Votre type d'annonce a bien été supprimée.", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastErrorPut = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastErrorDelete = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInputPut = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const putType = async () => {
     try {
-      await Axios.put(
-        `${host}/api/v1/postTypes/${id}`,
-        {
-          labelFr,
-          labelEs,
-          labelEus,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      if (labelFr && labelEus && labelEs) {
+        await Axios.put(
+          `${host}/api/v1/postTypes/${id}`,
+          {
+            labelFr,
+            labelEs,
+            labelEus,
           },
-        }
-      );
-      setModal(!modal);
-      getType();
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setModal(!modal);
+        getType();
+        setToastSuccessPut();
+      } else {
+        setToastInputPut();
+      }
     } catch (err) {
       setErrorPut(err);
+      setToastErrorPut();
     }
   };
 
@@ -62,7 +128,9 @@ function ModalType({ className, getType, token, id }) {
         },
       });
       getType();
+      setToastSuccessDelete();
     } catch (err) {
+      setToastErrorDelete();
       setErrorDelete(err);
     }
   };
@@ -70,87 +138,71 @@ function ModalType({ className, getType, token, id }) {
   const toggle = () => setModal(!modal);
   return (
     <div>
-      {errorDelete ? <p>La catégorie a bien été supprimé</p> : ''}
-      {errorPut ? <p>Il y a eu une erreur lors de la modification.</p> : ''}
-      <Button color="danger" onClick={toggle}>
-        Modifier/supprimer
+      {errorDelete ? '' : ''}
+      {errorPut ? '' : ''}
+      <Button className="button" onClick={toggle}>
+        Modifier
       </Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>
+      <Modal isOpen={modal} toggle={toggle}>
+        {/* <ModalHeader toggle={toggle}>
           Modification ou suppression des données
-        </ModalHeader>
-        <Row>
-          <Col xs={6}>
-            <ModalBody>
-              Modification du type d&apos;annonce
-              <Form onSubmit={handleSubmit}>
-                <Label for="type" />
-                <Input
-                  className={`${styles.input}`}
-                  type="text"
-                  value={labelFr}
-                  placeholder="Types d'annonce"
-                  onChange={(e) => setLabelFr(e.target.value)}
-                />
-                <Label for="type" />
-                <Input
-                  className={`${styles.input} mt-2`}
-                  type="text"
-                  placeholder="Iragarki motak"
-                  value={labelEus}
-                  onChange={(e) => setLabelEus(e.target.value)}
-                />
-                <Label for="type" />
-                <Input
-                  className={`${styles.input} mt-2`}
-                  type="text"
-                  value={labelEs}
-                  placeholder="Tipos de anuncios"
-                  onChange={(e) => setLabelEs(e.target.value)}
-                />
-              </Form>
-            </ModalBody>
-            <ModalFooter>
-              <Button
-                className="md-auto mr-5 ml-5"
-                color="warning"
-                onClick={toggle}
-              >
-                Non
-              </Button>{' '}
-              <Button
-                className="md-auto mr-5 ml-5"
-                color="danger"
-                onClick={putType}
-              >
-                Oui
-              </Button>
-            </ModalFooter>
-          </Col>
-          <Col xs={6}>
-            <ModalBody>
-              Souhaitez vous supprimer ce type d&apos;annonce ?
-            </ModalBody>
-            <ModalFooter>
-              <Button
-                className="md-auto ml-5 mr-5"
-                color="warning"
-                onClick={toggle}
-              >
-                {' '}
-                Non
-              </Button>{' '}
-              <Button
-                className="md-auto ml-5 mr-5"
-                color="danger"
-                onClick={deleteType}
-              >
-                {' '}
-                Oui
-              </Button>
-            </ModalFooter>
-          </Col>
-        </Row>
+        </ModalHeader> */}
+        {/* <Row> */}
+        {/* <Col xs={6}> */}
+        <ModalBody>
+          <h5 className={styles.titleModal}>
+            MODIFICATION DU TYPE D&apos;ANNONCES
+          </h5>
+          <p className={styles.subtitle}>
+            <i>
+              Modifiez votre type d&apos;annonce et cliquez sur valider pour
+              l&apos;enregistrer
+            </i>
+          </p>
+          <Form onSubmit={handleSubmit}>
+            <Label for="labelFr" />
+            <Input
+              id="labelFr"
+              className={styles.input}
+              type="text"
+              value={labelFr}
+              onChange={(e) => setLabelFr(e.target.value)}
+            />
+            <Label for="labelEs" />
+            <Input
+              className={`${styles.input} mt-2`}
+              id="labelEs"
+              type="text"
+              value={labelEs}
+              onChange={(e) => setLabelEs(e.target.value)}
+            />
+            <Label for="labelEus" />
+            <Input
+              className={`${styles.input} mt-2`}
+              type="text"
+              id="labelEus"
+              value={labelEus}
+              onChange={(e) => setLabelEus(e.target.value)}
+            />
+            <Row className="mt-5">
+              <Col xs="3">
+                <Button className="mb-2 ml-2 button" onClick={deleteType}>
+                  Supprimer
+                </Button>
+              </Col>
+              <Col xs={{ size: 2, offset: 5 }}>
+                <Button className={styles.buttonCancel} onClick={toggle}>
+                  Annuler
+                </Button>
+              </Col>
+              <Col xs="2">
+                <Button className="button mb-2" type="submit">
+                  Valider
+                </Button>
+              </Col>
+            </Row>
+          </Form>
+        </ModalBody>
       </Modal>
     </div>
   );
@@ -161,9 +213,11 @@ const mapStateToProps = (state) => ({
 });
 ModalType.propTypes = {
   token: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   getType: PropTypes.string.isRequired,
+  french: PropTypes.string.isRequired,
+  castillan: PropTypes.string.isRequired,
+  euskara: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(ModalType);

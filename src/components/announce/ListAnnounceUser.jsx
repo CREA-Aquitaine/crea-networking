@@ -12,7 +12,6 @@ import {
   Input,
   Row,
   Col,
-  CardColumns,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -177,30 +176,34 @@ function ListAnnounceUser({ token }) {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <CardColumns className={styles.cardCss}>
+          <>
             {error ? <p>There is an error</p> : ''}
-            {annonceFiltered.map((announce) => (
-              <Card className={styles.cardSize}>
-                <CardBody className={styles.cardSize}>
-                  <CardTitle className={styles.cardTitle}>
-                    {announce.title}
-                  </CardTitle>
-                  <CardSubtitle className={styles.cardSubtitle}>
-                    {announce.JobCategory.labelFr} - {announce.localisation}
-                  </CardSubtitle>
-                  <CardSubtitle className={styles.cardSubtitleDate}>
-                    {announce.createdAt}
-                  </CardSubtitle>
-                  <CardText className={styles.cardText}>
-                    {announce.content}
-                  </CardText>
-                  <Link to={`/announces/${announce.id}`}>
-                    <Button className="button">En savoir plus ...</Button>
-                  </Link>
-                </CardBody>
-              </Card>
-            ))}
-          </CardColumns>
+            <Row>
+              {annonceFiltered.map((announce) => (
+                <Col xs="6" className="mt-5">
+                  <Card className={styles.cardSize}>
+                    <CardBody className={styles.cardSize}>
+                      <CardTitle className={styles.cardTitle}>
+                        {announce.title}
+                      </CardTitle>
+                      <CardSubtitle className={styles.cardSubtitle}>
+                        {announce.JobCategory.labelFr} - {announce.localisation}
+                      </CardSubtitle>
+                      <CardSubtitle className={styles.cardSubtitleDate}>
+                        {announce.createdAt}
+                      </CardSubtitle>
+                      <CardText className={styles.cardText}>
+                        {announce.content}
+                      </CardText>
+                      <Link to={`/announces/${announce.id}`}>
+                        <Button className="button">En savoir plus ...</Button>
+                      </Link>
+                    </CardBody>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </>
         )}
       </Row>
     </Container>

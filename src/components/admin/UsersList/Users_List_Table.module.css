@@ -100,3 +100,6 @@
 .role:hover {
   border: 1px solid #dd2b25;
 }
+.cross {
+  width: 1vw;
+}

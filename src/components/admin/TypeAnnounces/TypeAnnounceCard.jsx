@@ -24,7 +24,13 @@ function TypeAnnounceCard({ french, euskara, castillan, id, getType }) {
             <Row>Euskara: {euskara}</Row>
             <Row>Castillan: {castillan}</Row>
           </CardText>
-          <ModalTypeAnnounce getType={getType} id={id} />
+          <ModalTypeAnnounce
+            french={french}
+            euskara={euskara}
+            castillan={castillan}
+            getType={getType}
+            id={id}
+          />
         </CardBody>
       </Card>
     </div>
