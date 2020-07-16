@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Breadcrumb, BreadcrumbItem, Container, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
 import styles from './Announces.module.css';
 import AnnouncesListTable from './Announces_List_Table';
 
@@ -13,6 +12,7 @@ function AnnouncesList({ token }) {
   const [announcesList, setAnnounceslist] = useState([]);
   const [error, setError] = useState('');
   const [isPostType, setIsPostType] = useState(false);
+  const [postTypes, setPostTypes] = useState([]);
 
   const getAnnounces = async () => {
     try {
@@ -27,21 +27,20 @@ function AnnouncesList({ token }) {
       setError(error);
     }
   };
-
-  const getPartnerShip = async () => {
+  const getAnnouncesByType = async (type) => {
     try {
       const res = await Axios.get(`${host}/api/v1/posts`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      const partnerShip = res.data.filter((post) => {
+      const announcesByType = res.data.filter((post) => {
         if (post.TypePost) {
-          return post.TypePost.labelFr === 'Partenariat';
+          return post.TypePost.labelFr === type;
         }
         return '';
       });
-      setAnnounceslist(partnerShip);
+      setAnnounceslist(announcesByType);
       setIsPostType(true);
     } catch (err) {
       setError(error);
@@ -49,62 +48,28 @@ function AnnouncesList({ token }) {
     return isPostType;
   };
 
-  const getJobs = async () => {
+  const getTypePost = async () => {
     try {
-      const res = await Axios.get(`${host}/api/v1/posts`, {
+      const res = await Axios.get(`${host}/api/v1/postTypes`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      const jobs = res.data.filter((post) => {
-        if (post.TypePost) {
-          return post.TypePost.labelFr === "Recherche d'emploi";
-        }
-        return '';
-      });
-      setAnnounceslist(jobs);
-      setIsPostType(true);
+      setPostTypes(res.data);
+      return res.data;
     } catch (err) {
-      setError(error);
+      return err;
     }
-    return isPostType;
-  };
-
-  const getDev = async () => {
-    try {
-      const res = await Axios.get(`${host}/api/v1/posts`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const devs = res.data.filter((post) => {
-        if (post.TypePost) {
-          return post.TypePost.labelFr === 'Recherche & Développement';
-        }
-        return '';
-      });
-      setAnnounceslist(devs);
-      setIsPostType(true);
-    } catch (err) {
-      setError(error);
-    }
-    return isPostType;
   };
 
   useEffect(() => {
     getAnnounces();
+    getTypePost();
   }, []);
   return (
     <>
       <Container>
-        <Breadcrumb>
-          <BreadcrumbItem tag={Link} to="/">
-            Accueil
-          </BreadcrumbItem>
-          <BreadcrumbItem active tag={Link} to="/announces">
-            Mes Annonces
-          </BreadcrumbItem>
-        </Breadcrumb>
+        <h2 className="mt-1 mb-3">Les annonces</h2>
         <Container fluid className={styles.containerCadre}>
           <Row className={styles.announcesListTitle}>
             <Col xs="3" className={styles.announcesListTitleMargin}>
@@ -119,40 +84,21 @@ function AnnouncesList({ token }) {
             >
               Toutes les Annonces
             </button>
-            <button
-              type="button"
-              className={styles.buttonInput}
-              onClick={getPartnerShip}
-            >
-              Partenariats
-            </button>
-            <button
-              type="button"
-              className={styles.buttonInput}
-              onClick={getJobs}
-            >
-              Recherche d&apos;emploi
-            </button>
-            <button
-              type="button"
-              className={styles.buttonInput}
-              onClick={getDev}
-            >
-              Recherche & développement
-            </button>
+            {postTypes.map((type) => (
+              <button
+                type="button"
+                className={styles.buttonInput}
+                onClick={() => getAnnouncesByType(type.labelFr)}
+              >
+                {type.labelFr}
+              </button>
+            ))}
           </Row>
           <Row>
             <AnnouncesListTable
               announcesList={announcesList}
               getAnnounces={getAnnounces}
             />
-          </Row>
-          <Row>
-            <Col xs="3" className={styles.link}>
-              <Link to="/" className={styles.announcesListExportButton}>
-                Exporter la liste{' '}
-              </Link>
-            </Col>
           </Row>
         </Container>
       </Container>

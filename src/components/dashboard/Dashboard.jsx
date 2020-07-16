@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Container } from 'reactstrap';
 
 import styles from './Dashboard.module.css';
 import UserInfos from './User_Infos';
 import DashboardTable from './Dashboard_table';
-import DashboardBreadcrumb from './DashboardBreadcrumb';
 
 const host = process.env.REACT_APP_HOST;
 
@@ -67,17 +67,17 @@ function Dashboard({ token, userInfos }) {
         </>
       ) : (
         <div className={styles.dashboard}>
-          <DashboardBreadcrumb />
-          <div className={styles.userInfos}>
+          <h2>Mon dashboard</h2>
+          <Container className={styles.userInfos}>
             <UserInfos
               userInfos={userInformations}
               activityFields={activityFields}
               userTypes={userTypes}
             />
-          </div>
-          <div className={styles.dashboardTable}>
+          </Container>
+          <Container className={styles.dashboardTable}>
             <DashboardTable />
-          </div>
+          </Container>
           <hr className="hrFooter" />
         </div>
       )}

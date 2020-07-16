@@ -34,12 +34,12 @@ function SecondNavbar({ role }) {
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
             <NavLink className={styles.navlink} tag={Link} to="/users">
-              Mes utilisateurs{' '}
+              Les utilisateurs
             </NavLink>
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
             <NavLink className={styles.navlink} tag={Link} to="/announces">
-              Mes annonces
+              Les annonces
             </NavLink>
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>

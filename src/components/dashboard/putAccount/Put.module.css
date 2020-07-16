@@ -1,17 +1,31 @@
 .container {
-    text-align: left;
+  text-align: left;
 }
 
 .no {
-    padding: 8px 20px !important;
-    border: 1px solid transparent;
-    box-shadow: 5px 5px 2.5px #dfd9d9;
-    background-color: white;
-    color: black;
-    border-radius: 0;
-  }
-  .no:hover {
-    border: 1px solid #dd2b25;
-    background-color: white;
-    color: black;
-  }
+  padding: 8px 20px !important;
+  border: 1px solid transparent;
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  background-color: white;
+  color: black;
+  border-radius: 0;
+}
+.no:hover {
+  border: 1px solid #dd2b25;
+  background-color: white;
+  color: black;
+}
+
+.buttonCancel {
+  padding: 8px 20px !important;
+  border: 1px solid transparent;
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  background-color: white;
+  color: black;
+  border-radius: 0;
+}
+.buttonCancel:hover {
+  border: 1px solid #dd2b25;
+  background-color: white;
+  color: black;
+}

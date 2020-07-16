@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Breadcrumb,
-  BreadcrumbItem,
   Container,
   Row,
   Col,
@@ -70,11 +68,7 @@ function UserTypes({ token }) {
   };
   return (
     <Container>
-      <Breadcrumb>
-        <BreadcrumbItem>Accueil</BreadcrumbItem>
-        <BreadcrumbItem>Divers</BreadcrumbItem>
-        <BreadcrumbItem active>Types d&apos;utilisateurs</BreadcrumbItem>
-      </Breadcrumb>
+      <h2 className="mt-1 mb-3">Les types d&apos;utilisateurs</h2>
       <Container fluid className={styles.container}>
         <Row className={styles.title}>
           <Col xs="4" className={styles.activityTitle}>

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Breadcrumb,
-  BreadcrumbItem,
   Container,
   Row,
   Col,
@@ -27,20 +25,6 @@ function Faq({ token }) {
   const [language, setLanguage] = useState('France');
   const [error, setError] = useState('');
   const [created, setCreated] = useState(false);
-
-  const handleQuestion = (e) => {
-    setQuestion(e.target.value);
-  };
-  const handleLanguageFrance = (e) => {
-    setLanguage(e.target.value);
-  };
-  const handleLanguageEspagne = (e) => {
-    setLanguage(e.target.value);
-  };
-
-  const handleAnswer = (e) => {
-    setAnswer(e.target.value);
-  };
 
   const getFaq = async () => {
     try {
@@ -76,6 +60,8 @@ function Faq({ token }) {
       setCreated(true);
       getFaq();
       setTimeout(() => setCreated(false), 2000);
+      setQuestion('');
+      setAnswer('');
     } catch (err) {
       setError(err);
     }
@@ -88,10 +74,7 @@ function Faq({ token }) {
 
   return (
     <Container>
-      <Breadcrumb>
-        <BreadcrumbItem>Accueil</BreadcrumbItem>
-        <BreadcrumbItem active>FAQ</BreadcrumbItem>
-      </Breadcrumb>
+      <h2 className="mt-1 mb-3">FAQ</h2>
       <Container fluid className={styles.containerQR}>
         <Row className={styles.searchBar}>
           <Col xs="2" className={styles.faqTitle}>
@@ -107,7 +90,7 @@ function Faq({ token }) {
               name="question"
               id="question"
               placeholder="Ajouter votre question"
-              onChange={handleQuestion}
+              onChange={(e) => setQuestion(e.target.value)}
             />
           </FormGroup>
           <FormGroup>
@@ -118,7 +101,7 @@ function Faq({ token }) {
               name="answer"
               id="answer"
               placeholder="Ajouter votre réponse"
-              onChange={handleAnswer}
+              onChange={(e) => setAnswer(e.target.value)}
             />
           </FormGroup>
           <FormGroup>
@@ -133,8 +116,12 @@ function Faq({ token }) {
                   id="exampleSelect"
                   value={language}
                 >
-                  <option onClick={handleLanguageFrance}>France</option>
-                  <option onClick={handleLanguageEspagne}>Espagne</option>
+                  <option onClick={(e) => setLanguage(e.target.value)}>
+                    France
+                  </option>
+                  <option onClick={(e) => setLanguage(e.target.value)}>
+                    Espagne
+                  </option>
                 </Input>
               </Col>
             </Row>

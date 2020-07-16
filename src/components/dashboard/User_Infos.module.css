@@ -36,7 +36,7 @@
   font-family: 'Raleway';
 }
 .contact {
-  padding: 2vw 0 0 0 !important;
+  padding: 1vw 0 1vw 0 !important;
   margin: 0;
 }
 .contact li {
@@ -54,4 +54,8 @@
   width: 1.2vw;
   cursor: pointer;
   margin: 1vw;
+}
+.myProfile {
+  color : white;
+  padding-top : 1vh;
 }

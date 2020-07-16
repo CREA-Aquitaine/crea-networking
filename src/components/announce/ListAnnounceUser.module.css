@@ -22,7 +22,7 @@
 }
 .cardText {
   text-align: left !important;
-  max-height: 10vh;
+  height: 8vh;
   overflow: hidden;
   text-overflow: ellipsis;
 }

@@ -280,16 +280,16 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="poste">
+            <Label for="qualification">
               Poste dans l&apos;entreprise ou de l&apos;association*
             </Label>
           </Col>
           <Col>
             <Input
               type="text"
-              name="poste"
+              name="qualification"
               required
-              id="poste"
+              id="qualification"
               placeholder="DRH"
               onChange={(e) => setQualification(e.target.value)}
             />

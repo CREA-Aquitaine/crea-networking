@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import styles from './Header.module.css';
 
 function Header() {
@@ -14,9 +16,11 @@ function Header() {
         aut et eveniet, nobis vitae itaque tempore modi non distinctio optio
         sequi laborum?
       </p>
-      <button className={styles.button} type="button">
-        Nos partenaires
-      </button>
+      <Link to="/partners">
+        <button className={styles.button} type="button">
+          Nos partenaires
+        </button>
+      </Link>
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Breadcrumb, BreadcrumbItem, Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import styles from '../admin/FAQ/Faq_List.module.css';
+import styles from './FaqUser.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
@@ -30,25 +30,13 @@ function FaqUser({ token }) {
 
   return (
     <Container>
-      <Breadcrumb>
-        <BreadcrumbItem>Accueil</BreadcrumbItem>
-        <BreadcrumbItem active>FAQ</BreadcrumbItem>
-      </Breadcrumb>
+      <h2 className="mt-1">Foire aux questions</h2>
       {error ? <p>error</p> : ''}
-
       {faq.map((question) => (
-        <Container fluid className={styles.containerQR}>
-          <Row className={styles.searchBar}>
-            <Col xs="2" className={styles.faqTitle}>
-              {question.question}
-            </Col>
-          </Row>
-          <Row>
-            <Col style={{ textAlign: 'left' }}>
-              <strong>{question.answer}</strong>
-            </Col>
-          </Row>
-        </Container>
+        <div className={styles.container}>
+          <h4 className={styles.question}>{question.question}</h4>
+          <h5 className={styles.answer}>{question.answer}</h5>
+        </div>
       ))}
     </Container>
   );

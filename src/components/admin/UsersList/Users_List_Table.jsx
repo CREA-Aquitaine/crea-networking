@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { connect } from 'react-redux';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 import { Table, Col } from 'reactstrap';
 
@@ -223,7 +224,7 @@ function UsersListTable({ usersList, token, getAllUsers }) {
 
   return (
     <Col>
-      <Table borderless>
+      <Table borderless id="emp">
         <thead>
           <tr>
             <th>
@@ -343,6 +344,13 @@ function UsersListTable({ usersList, token, getAllUsers }) {
               </tr>
             );
           })}
+          <ReactHTMLTableToExcel
+            className={styles.export}
+            table="emp"
+            filename="ReportExcel"
+            sheet="Sheet"
+            buttonText="Export excel"
+          />
         </tbody>
       </Table>
     </Col>

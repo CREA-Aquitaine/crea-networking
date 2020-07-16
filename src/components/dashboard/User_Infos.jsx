@@ -11,143 +11,214 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
   return (
     <Container>
       {userTypes.label === 'Demandeur emploi' ? (
-        <Row className={styles.userInfosCss}>
-          <Col xs="4" sm="2" className={styles.logoSection}>
-            <h4 style={{ color: 'white' }}>Mon profil</h4>
-          </Col>
-          <Col className={styles.contact} xs="3" sm="5">
-            <ul>
-              <li>
-                <p>Nom: {userInfos.firstName}</p>
-              </li>
-              <li>
-                <p>Prenom: {userInfos.lastName} </p>
-              </li>
-              <li>
-                <p>Email: {userInfos.email}</p>
-              </li>
-              <li>
-                <p>Téléphone: {userInfos.phone_number}</p>
-              </li>
-            </ul>
-          </Col>
-          <Col className={styles.contact} xs="3" sm="4">
-            <ul>
-              <li>
-                <p>Localisation: {userInfos.localisation}</p>
-              </li>
-              <li>
-                <p>Pays: {userInfos.country}</p>
-              </li>
-              <li>
-                <p>Téléphone2: {userInfos.phone_number2}</p>
-              </li>
-            </ul>
-          </Col>
-          <Col xs="1" sm="1">
-            <Link to="/settings">
-              <img src={pen} alt="stylo" className={styles.pen} />
-            </Link>
-          </Col>
-        </Row>
+        <>
+          <Row>
+            <Col xs="11">
+              <h3 className={styles.myProfile}>Mon profil</h3>
+            </Col>
+            <Col>
+              <Link to="/settings">
+                <img src={pen} alt="stylo" className={styles.pen} />
+              </Link>
+            </Col>
+          </Row>
+
+          <Row className={styles.userInfosCss}>
+            <Col className={styles.contact} xs="3" sm="4">
+              <ul>
+                <li>
+                  <p>
+                    <b>Nom:</b> {userInfos.firstName}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Prenom:</b> {userInfos.lastName}{' '}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Email:</b> {userInfos.email}
+                  </p>
+                </li>
+              </ul>
+            </Col>
+            <Col className={styles.contact} xs="3" sm="4">
+              <ul>
+                <li>
+                  <p>
+                    <b>Localisation:</b> {userInfos.localisation}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Pays:</b> {userInfos.country}
+                  </p>
+                </li>
+              </ul>
+            </Col>
+            <Col className={styles.contact} xs="3" sm="4">
+              <ul>
+                <li>
+                  <p>
+                    <b>Téléphone:</b> {userInfos.phone_number}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Téléphone2:</b> {userInfos.phone_number2}
+                  </p>
+                </li>
+              </ul>
+            </Col>
+          </Row>
+        </>
       ) : userTypes.label === 'Entreprise' ? (
-        <Row className={styles.userInfosCss}>
-          <Col xs="4" sm="2" className={styles.logoSection}>
-            <h4 style={{ color: 'white' }}>Mon profil</h4>
-          </Col>
-          <Col className={styles.userInfos} xs="4" sm="5">
-            <ul>
-              <li>
-                <h4>Informations entreprise</h4>
-              </li>
-              <li>
-                <p>Entreprise: {userInfos.companyName}</p>
-              </li>
-              <li>
-                <p>Localisation: {userInfos.localisation}</p>
-              </li>
-              <li>
-                <p>Pays: {userInfos.country}</p>
-              </li>
-              <li>
-                <p>N° de siret: {userInfos.siret}</p>
-              </li>
-              <li>
-                <p>Secteur d&lsquo;activité: {activityFields.labelFr} </p>
-              </li>
-            </ul>
-          </Col>
-          <Col className={styles.contact} xs="3" sm="4">
-            <ul>
-              <li>
-                <h4>Contact entreprise</h4>
-              </li>
-              <li>
-                <p>Nom: {userInfos.firstName}</p>
-              </li>
-              <li>
-                <p>Prenom: {userInfos.lastName} </p>
-              </li>
-              <li>
-                <p>Email: {userInfos.email}</p>
-              </li>
-              <li>
-                <p>Téléphone: {userInfos.phone_number}</p>
-              </li>
-              <li>
-                <p>Téléphone2: {userInfos.phone_number2}</p>
-              </li>
-            </ul>
-          </Col>
-          <Col xs="1" sm="1">
-            <Link to="/settings">
-              <img src={pen} alt="stylo" className={styles.pen} />
-            </Link>
-          </Col>
-        </Row>
+        <>
+          {' '}
+          <Row>
+            <Col xs="11">
+              <h3 className={styles.myProfile}>Mon profil</h3>
+            </Col>
+            <Col>
+              <Link to="/settings">
+                <img src={pen} alt="stylo" className={styles.pen} />
+              </Link>
+            </Col>
+          </Row>
+          <Row className={styles.userInfosCss}>
+            <Col className={styles.contact} xs="4" sm="4">
+              <ul>
+                <li>
+                  <p>
+                    <b>Entreprise:</b> {userInfos.companyName}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Localisation:</b> {userInfos.localisation}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Pays:</b> {userInfos.country}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>N° de siret:</b> {userInfos.siret}
+                  </p>
+                </li>
+              </ul>
+            </Col>
+            <Col className={styles.contact} xs="4" sm="4">
+              <ul>
+                <li>
+                  <p>
+                    <b>Nom:</b> {userInfos.firstName}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Prenom:</b> {userInfos.lastName}{' '}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Email:</b> {userInfos.email}
+                  </p>
+                </li>
+              </ul>
+            </Col>
+            <Col className={styles.contact} xs="4" sm="4">
+              <ul>
+                <li>
+                  <p>
+                    <b>Secteur d&lsquo;activité:</b> {activityFields.labelFr}{' '}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Téléphone:</b> {userInfos.phone_number}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Téléphone2:</b> {userInfos.phone_number2}
+                  </p>
+                </li>
+              </ul>
+            </Col>
+          </Row>
+        </>
       ) : userTypes.label === 'Ecole' ? (
-        <Row className={styles.userInfosCss}>
-          <Col xs="4" sm="2" className={styles.logoSection}>
-            <h4 style={{ color: 'white' }}>Mon profil</h4>
-          </Col>
-          <Col className={styles.userInfos} xs="4" sm="5">
-            <ul>
-              <li>
-                <p>Nom: {userInfos.firstName}</p>
-              </li>
-              <li>
-                <p>Prenom: {userInfos.lastName} </p>
-              </li>
-              <li>
-                <p>Email: {userInfos.email}</p>
-              </li>
-              <li>
-                <p>Téléphone: {userInfos.phone_number}</p>
-              </li>
-            </ul>
-          </Col>
-          <Col className={styles.contact} xs="3" sm="4">
-            <ul>
-              <li>
-                <p>Etablissement: {userInfos.schoolName}</p>
-              </li>
-              <li>
-                <p>Localisation: {userInfos.localisation} </p>
-              </li>
-              <li>
-                <p>Pays: {userInfos.country}</p>
-              </li>
-              <li>
-                <p>Téléphone2: {userInfos.phone_number2}</p>
-              </li>
-            </ul>
-          </Col>
-          <Col xs="1" sm="1">
-            <Link to="/settings">
-              <img src={pen} alt="stylo" className={styles.pen} />
-            </Link>
-          </Col>
-        </Row>
+        <>
+          {' '}
+          <Row>
+            <Col xs="11">
+              <h3 className={styles.myProfile}>Mon profil</h3>
+            </Col>
+            <Col>
+              <Link to="/settings">
+                <img src={pen} alt="stylo" className={styles.pen} />
+              </Link>
+            </Col>
+          </Row>
+          <Row className={styles.userInfosCss}>
+            <Col className={styles.contact} xs="4" sm="4">
+              <ul>
+                <li>
+                  <p>
+                    <b>Nom:</b> {userInfos.firstName}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Prenom:</b> {userInfos.lastName}{' '}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Email:</b> {userInfos.email}
+                  </p>
+                </li>
+              </ul>
+            </Col>
+            <Col className={styles.contact} xs="3" sm="4">
+              <ul>
+                <li>
+                  <p>
+                    <b>Etablissement:</b> {userInfos.schoolName}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Localisation:</b> {userInfos.localisation}{' '}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Pays:</b> {userInfos.country}
+                  </p>
+                </li>
+              </ul>
+            </Col>
+            <Col className={styles.contact} xs="3" sm="3">
+              <ul>
+                <li>
+                  <p>
+                    <b>Téléphone:</b> {userInfos.phone_number}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Téléphone2:</b> {userInfos.phone_number2}
+                  </p>
+                </li>
+              </ul>
+            </Col>
+          </Row>
+        </>
       ) : (
         <>jesaispas</>
       )}

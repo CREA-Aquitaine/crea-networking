@@ -212,23 +212,6 @@ function AnnouncesListTable({ announcesList, token, getAnnounces }) {
         <thead>
           <tr>
             <th>
-              N° Annonce
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getAscnumberAnnounce}
-              >
-                <span className={styles.arrowDown} />
-              </button>
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getDscnumberAnnounce}
-              >
-                <span className={styles.arrowUp} />
-              </button>
-            </th>
-            <th>
               Titre
               <button
                 type="button"
@@ -286,7 +269,6 @@ function AnnouncesListTable({ announcesList, token, getAnnounces }) {
           {announcesList.map((post) => {
             return (
               <tr key={post.id}>
-                <td>{post.id}</td>
                 <td>{post.title}</td>
                 <td>{post.TypePost ? post.TypePost.labelFr : ''}</td>
                 <td>{post.JobCategory ? post.JobCategory.labelFr : ''}</td>

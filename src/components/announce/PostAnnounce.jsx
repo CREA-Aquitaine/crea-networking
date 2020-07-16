@@ -8,7 +8,6 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import PostAnnounceBreadcrumb from './PostAnnounceBreadcrumb';
 import styles from './PostAnnounce.module.css';
 
 function PostAnnounce({ token, UserId }) {
@@ -160,8 +159,7 @@ function PostAnnounce({ token, UserId }) {
       ) : (
         <Container>
           {error ? <p>There is an error</p> : ''}
-          <PostAnnounceBreadcrumb />
-
+          <h2 className="mt-2 mb-5">Déposer une annonce</h2>
           <Form onSubmit={handlePostAnnounce}>
             <FormGroup row>
               <Col sm={2} className={styles.paragraphLeft}>
@@ -265,8 +263,7 @@ function PostAnnounce({ token, UserId }) {
                 setContent(data);
               }}
             />
-
-            <Row>
+            <Row className="mt-5">
               <Col sm={{ size: 1, offset: 9 }}>
                 <button type="submit" className="button">
                   Valider

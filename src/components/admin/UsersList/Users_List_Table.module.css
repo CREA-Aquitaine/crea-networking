@@ -8,6 +8,7 @@
 }
 .usersListPage {
   margin-top: 5vh;
+  justify-content: space-evenly;
 }
 .inputSearch {
   border-radius: 0;
@@ -102,4 +103,8 @@
 }
 .cross {
   width: 1vw;
+}
+.export {
+  background-color: #dd2b25;
+  margin : 2vw 0 1vw 0;
 }
