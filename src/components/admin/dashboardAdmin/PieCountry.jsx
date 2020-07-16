@@ -29,7 +29,7 @@ function PieCountry({ token }) {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  });
 
   const france = users.filter((item) => item.country === 'France');
   const espagne = users.filter((item) => item.country === 'Espagne');

@@ -1,5 +1,7 @@
 .colLogo {
-  margin-top: 5vw;
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  border: 1px solid #dfd9d9;
+  margin: 2vw;
 }
 .rowHeaders {
   width: 100%;
@@ -11,4 +13,9 @@
 
 .logoPartner {
   width: 8vw;
+}
+.rowPartners {
+  box-shadow: 5px 5px 2.5px #dfd9d9;
+  border: 1px solid #dfd9d9;
+  justify-content: space-evenly;
 }

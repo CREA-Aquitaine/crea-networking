@@ -42,6 +42,6 @@ TypeAnnounceCard.propTypes = {
   french: PropTypes.string.isRequired,
   euskara: PropTypes.string.isRequired,
   castillan: PropTypes.string.isRequired,
-  getType: PropTypes.string.isRequired,
+  getType: PropTypes.func.isRequired,
 };
 export default TypeAnnounceCard;

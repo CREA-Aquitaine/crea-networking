@@ -168,7 +168,7 @@ JobCategoryModal.propTypes = {
   labelEu: PropTypes.string.isRequired,
   labelF: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  getCategories: PropTypes.string.isRequired,
+  getCategories: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(JobCategoryModal);

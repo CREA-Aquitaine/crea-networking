@@ -9,7 +9,7 @@ function TypeAnnounceList({ typePost, getType }) {
     <Row>
       {typePost.map((item) => {
         return (
-          <Col xs={4}>
+          <Col xs={4} key={item.id}>
             <TypeAnnounceCard
               getType={getType}
               french={item.labelFr}
@@ -26,6 +26,6 @@ function TypeAnnounceList({ typePost, getType }) {
 
 TypeAnnounceList.propTypes = {
   typePost: PropTypes.string.isRequired,
-  getType: PropTypes.string.isRequired,
+  getType: PropTypes.func.isRequired,
 };
 export default TypeAnnounceList;

@@ -40,7 +40,7 @@ function UserTypes({ token }) {
   };
   useEffect(() => {
     getUserTypes();
-  }, []);
+  });
 
   const setToastSuccess = () => {
     toast.success("Le type d'utilisateur a bien été publiée.", {

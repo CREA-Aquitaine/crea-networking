@@ -53,7 +53,7 @@ function Put({ token, userInfos }) {
   };
   useEffect(() => {
     getUserInfos();
-  }, []);
+  });
 
   return (
     <div>

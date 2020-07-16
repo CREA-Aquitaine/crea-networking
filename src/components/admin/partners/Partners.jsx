@@ -28,7 +28,7 @@ function Partners({ token }) {
   };
   useEffect(() => {
     getPartners();
-  }, []);
+  });
 
   return (
     <Container>

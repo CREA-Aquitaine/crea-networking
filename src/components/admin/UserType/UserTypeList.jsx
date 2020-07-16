@@ -3,22 +3,22 @@ import { Row, Col, Card, CardBody, CardTitle } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import styles from './UserTypes.module.css';
-import UserTypesModal from './UserTypesModal';
+// import UserTypesModal from './UserTypesModal';
 
-function UserTypeList({ getUserTypes, userTypes }) {
+function UserTypeList({ userTypes }) {
   return (
     <>
       <Row className={styles.containerList}>
         {userTypes.map((item) => (
-          <Col xs="4" className={styles.card}>
+          <Col xs="4" className={styles.card} key={item.id}>
             <Card>
               <CardBody>
                 <CardTitle>Type d&apos;utilisateur : {item.label}</CardTitle>
-                <UserTypesModal
+                {/* <UserTypesModal
                   getUserTypes={getUserTypes}
                   labelf={item.label}
                   id={item.id}
-                />
+                /> */}
               </CardBody>
             </Card>
           </Col>
@@ -30,7 +30,7 @@ function UserTypeList({ getUserTypes, userTypes }) {
 
 UserTypeList.propTypes = {
   userTypes: PropTypes.string.isRequired,
-  getUserTypes: PropTypes.string.isRequired,
+  // getUserTypes: PropTypes.string.isRequired,
 };
 
 export default UserTypeList;

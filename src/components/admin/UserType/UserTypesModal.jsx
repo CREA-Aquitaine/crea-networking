@@ -193,7 +193,7 @@ UserTypesModal.propTypes = {
   token: PropTypes.string.isRequired,
   labelf: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  getUserTypes: PropTypes.string.isRequired,
+  getUserTypes: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(UserTypesModal);

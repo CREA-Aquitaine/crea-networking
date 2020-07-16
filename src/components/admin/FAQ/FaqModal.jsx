@@ -239,7 +239,7 @@ FaqModal.propTypes = {
   request: PropTypes.string.isRequired,
   response: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  getFaq: PropTypes.string.isRequired,
+  getFaq: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(FaqModal);
