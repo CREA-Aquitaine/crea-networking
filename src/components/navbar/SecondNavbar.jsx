@@ -13,11 +13,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
+import { withNamespaces } from 'react-i18next';
+
 import crea from '../image/logo-crea_2015.png';
 
 import styles from './SecondNavbar.module.css';
 
-function SecondNavbar({ role }) {
+function SecondNavbar({ role, t }) {
   return (
     <Navbar className={styles.navbar} expand="xs">
       {role === 'admin' ? (
@@ -29,48 +31,48 @@ function SecondNavbar({ role }) {
           </NavItem>
           <NavItem className={styles.monDashboard}>
             <NavLink className={styles.navlink} tag={Link} to="/dashboard">
-              Mon dashboard
+              {t('Mon dashboard')}
             </NavLink>
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
             <NavLink className={styles.navlink} tag={Link} to="/users">
-              Les utilisateurs
+              {t('Mes utilisateurs')}{' '}
             </NavLink>
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
             <NavLink className={styles.navlink} tag={Link} to="/announces">
-              Les annonces
+              {t('Mes annonces')}
             </NavLink>
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
             <NavLink className={styles.navlink} tag={Link} to="/faq">
-              FAQ
+              {t('FAQ')}
             </NavLink>
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
             <NavLink className={styles.navlink} tag={Link} to="/partners">
-              Partenaires
+              {t('Partenaires')}
             </NavLink>
           </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret className={styles.mesnavbarItems}>
-              Divers
+              {t('Divers')}
             </DropdownToggle>
             <DropdownMenu bottom>
               <DropdownItem tag={Link} to="/jobCategory">
-                Catégories d&apos;emplois
+                {t('Catégories d&apos;emplois')}
               </DropdownItem>
               <DropdownItem divider />
               <DropdownItem tag={Link} to="/typeAnnounce">
-                Types d&apos;annonces
+                {t('Types d&apos;annonces')}
               </DropdownItem>
               <DropdownItem divider />
               <DropdownItem tag={Link} to="/userType">
-                Types d&apos;utilisateurs
+                {t('Types d&apos;utilisateurs')}
               </DropdownItem>
               <DropdownItem divider />
               <DropdownItem tag={Link} to="/activityFields">
-                Secteurs d&apos;activité
+                {t('Secteurs d&apos;activité')}
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -84,32 +86,32 @@ function SecondNavbar({ role }) {
           </NavItem>
           <NavItem className={styles.partenairesUser}>
             <NavLink className={styles.navlink} tag={Link} to="/dashboard">
-              Mon dashboard
+              {t('Mon dashboard')}
             </NavLink>
           </NavItem>
           <NavItem className={styles.itemUser}>
             <NavLink className={styles.navlink} tag={Link} to="/post">
-              Déposer une annonce
+              {t('Déposer une annonce')}
             </NavLink>
           </NavItem>
           <NavItem className={styles.itemUser}>
             <NavLink className={styles.navlink} tag={Link} to="/listAnnonce">
-              Rechercher une annonce
+              {t('Rechercher une annonce')}
             </NavLink>
           </NavItem>
           <NavItem className={styles.itemUser}>
             <NavLink className={styles.navlink} tag={Link} to="/partners">
-              Partenaires
+              {t('Partenaires')}
             </NavLink>
           </NavItem>
           <NavItem className={styles.itemUser}>
             <NavLink className={styles.navlink} tag={Link} to="/faq">
-              Faq
+              {t('FAQ')}
             </NavLink>
           </NavItem>
           <NavItem className={styles.itemUser}>
             <NavLink className={styles.navlink} tag={Link} to="/contact">
-              Contact
+              {t('CONTACT')}
             </NavLink>
           </NavItem>
         </Nav>
@@ -122,12 +124,12 @@ function SecondNavbar({ role }) {
           </NavItem>
           <NavItem className={styles.partenaires}>
             <NavLink className={styles.navlink} tag={Link} to="/partners">
-              PARTENAIRES
+              {t('Partenaires')}
             </NavLink>
           </NavItem>
           <NavItem className={styles.contact}>
             <NavLink className={styles.navlink} tag={Link} to="/contact">
-              CONTACT
+              {t('CONTACT')}
             </NavLink>
           </NavItem>
         </Nav>
@@ -140,6 +142,9 @@ const mapStateToProps = (state) => ({
   role: state.role.isRole,
 });
 
-SecondNavbar.propTypes = { role: PropTypes.string.isRequired };
+SecondNavbar.propTypes = {
+  role: PropTypes.string.isRequired,
+  t: PropTypes.string.isRequired,
+};
 
-export default connect(mapStateToProps)(SecondNavbar);
+export default connect(mapStateToProps) && withNamespaces()(SecondNavbar);
