@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Breadcrumb,
-  BreadcrumbItem,
   Container,
   Row,
   Col,
@@ -121,10 +119,7 @@ function TypeAnnounce({ token }) {
 
   return (
     <Container>
-      <Breadcrumb>
-        <BreadcrumbItem>Accueil</BreadcrumbItem>
-        <BreadcrumbItem active>Annonce</BreadcrumbItem>
-      </Breadcrumb>
+      <h2 className="mt-1 mb-3">Les types d&apos;annonces</h2>
       <Container fluid className={styles.containerQR}>
         <Row className={styles.searchBar}>
           <Col xs="4" className={styles.faqTitle}>

@@ -27,9 +27,12 @@ function UserName({ id, token }) {
   }, []);
 
   return (
-    <td>
-      {user.lastName} {user.firstName}
-    </td>
+    <>
+      <td>{user.email}</td>
+      <td>
+        {user.lastName} {user.firstName}
+      </td>
+    </>
   );
 }
 

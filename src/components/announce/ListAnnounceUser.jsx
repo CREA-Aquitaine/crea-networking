@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
+import ReactHtmlParser from 'react-html-parser';
 import {
   Button,
   CardText,
@@ -126,8 +127,9 @@ function ListAnnounceUser({ token }) {
   }, []);
 
   return (
-    <Container className="my-5">
-      <Row>
+    <Container>
+      <h2 className="mb-5 mt-2">Rechercher une annonce</h2>
+      <Row className="mt-5">
         <Col xs="4">
           <Input
             type="select"
@@ -161,14 +163,14 @@ function ListAnnounceUser({ token }) {
           </Input>
         </Col>
 
-        <Col xs={{ size: '1', offset: '2' }}>
+        <Col xs={{ size: 1.5, offset: 1 }} className="mr-2">
           <Button onClick={getResults} className="button">
-            Search
+            Rechercher
           </Button>
         </Col>
-        <Col xs="1">
+        <Col xs="1.5">
           <Button onClick={resetSearch} className="button">
-            Reset
+            Reinitialiser
           </Button>
         </Col>
       </Row>
@@ -193,7 +195,7 @@ function ListAnnounceUser({ token }) {
                         {announce.createdAt}
                       </CardSubtitle>
                       <CardText className={styles.cardText}>
-                        {announce.content}
+                        {ReactHtmlParser(announce.content)}
                       </CardText>
                       <Link to={`/announces/${announce.id}`}>
                         <Button className="button">En savoir plus ...</Button>

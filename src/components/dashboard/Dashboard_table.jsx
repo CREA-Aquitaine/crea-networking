@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 import styles from './Dashboard_table.module.css';
 import UserName from './UserName';
 import CrossDelete from './CrossDelete';
+import Comment from './Comment';
 
 const host = process.env.REACT_APP_HOST;
 
@@ -101,8 +102,7 @@ function DashboardTable({ token, userInfos }) {
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
           <Row>
-            <Col sm="2" />
-            <Col sm="8" xs="8">
+            <Col>
               <Table size="sm" className={styles.tables}>
                 <thead>
                   <tr>
@@ -135,19 +135,18 @@ function DashboardTable({ token, userInfos }) {
                 </tbody>
               </Table>
             </Col>
-            <Col sm="2" />
           </Row>
         </TabPane>
         <TabPane tabId="2">
           <Row>
-            <Col sm="2" />
-            <Col sm="8" xs="8">
+            <Col>
               <Table size="sm" className={styles.tables}>
                 <thead>
                   <tr>
                     <th>Annonce</th>
                     <th>Sujet</th>
                     <th>Message</th>
+                    <th>Email</th>
                     <th>Nom/Prénom</th>
                     <th>Supprimer</th>
                   </tr>
@@ -157,7 +156,7 @@ function DashboardTable({ token, userInfos }) {
                     <tr>
                       <td>{item.titlePost}</td>
                       <td>{item.title}</td>
-                      <td className={styles.collapse}>{item.comment}</td>
+                      <Comment comment={item.comment} title={item.title} />{' '}
                       <UserName id={item.UserId} token={token} />
                       <td>
                         <CrossDelete
@@ -172,7 +171,6 @@ function DashboardTable({ token, userInfos }) {
                 </tbody>
               </Table>
             </Col>
-            <Col sm="2" />
           </Row>
         </TabPane>
       </TabContent>

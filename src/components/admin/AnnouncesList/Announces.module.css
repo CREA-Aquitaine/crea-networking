@@ -8,6 +8,7 @@
 }
 .announcesListPage {
   margin-top: 5vh;
+  justify-content: space-evenly;
 }
 .tableTd {
   width: 30%;

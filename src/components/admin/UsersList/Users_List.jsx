@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Breadcrumb, Container, Row, Col, BreadcrumbItem } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 import UsersListTable from './Users_List_Table';
 import styles from './Users_List_Table.module.css';
@@ -100,14 +99,7 @@ function UsersList({ token }) {
   return (
     <>
       <Container>
-        <Breadcrumb>
-          <BreadcrumbItem tag={Link} to="/">
-            Accueil
-          </BreadcrumbItem>
-          <BreadcrumbItem active tag={Link} to="/users">
-            Mes Utilisateurs
-          </BreadcrumbItem>
-        </Breadcrumb>
+        <h2 className="mt-1 mb-3">Les utilisateurs</h2>
         <Container fluid className={styles.containerCadre}>
           <Row className={styles.usersListTitle}>
             <Col xs="3" className={styles.usersListTitleMargin}>
@@ -141,18 +133,11 @@ function UsersList({ token }) {
               onClick={getJobSeekers}
               className={styles.buttonInput}
             >
-              Chercheurs d&apos;emploi
+              Demandeurs d&apos;emploi
             </button>
           </Row>
           <Row>
             <UsersListTable usersList={usersList} getAllUsers={getAllUsers} />
-          </Row>
-          <Row>
-            <Col xs="3" className={styles.UsersListExportButton}>
-              <Link className={styles.UsersListExportLink} to="/">
-                Exporter la liste{' '}
-              </Link>
-            </Col>
           </Row>
         </Container>
       </Container>

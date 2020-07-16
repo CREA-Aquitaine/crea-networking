@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
   Button,
   Modal,
@@ -27,31 +28,72 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
   const [error, setError] = useState('');
 
   const toggle = () => setModal(!modal);
+  const setToastSuccess = () => {
+    toast.success('Votre question a bien été publiée.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastError = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInput = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      Axios.post(
-        `${host}/api/v1/replies/apply`,
-        {
-          title,
-          comment,
-          PostId: infosAnnounce[0].id,
-          UserId: userInfos.id,
-          userPostId: infosAnnounce[0].UserId,
-          titlePost: infosAnnounce[0].title,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      if (title && comment) {
+        Axios.post(
+          `${host}/api/v1/replies/apply`,
+          {
+            title,
+            comment,
+            PostId: infosAnnounce[0].id,
+            UserId: userInfos.id,
+            userPostId: infosAnnounce[0].UserId,
+            titlePost: infosAnnounce[0].title,
           },
-        }
-      );
-      setSend(true);
-      return getInfosAnnounce();
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setSend(true);
+        setModal(false);
+        setToastSuccess();
+        getInfosAnnounce();
+      } else {
+        setToastInput();
+      }
     } catch (err) {
       setError(err);
-      return error;
+      setToastError();
     }
   };
   return (

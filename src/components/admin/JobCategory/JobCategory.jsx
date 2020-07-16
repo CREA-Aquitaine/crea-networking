@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Breadcrumb,
-  BreadcrumbItem,
   Container,
   Row,
   Col,
@@ -121,11 +119,7 @@ function JobCategory({ token }) {
 
   return (
     <Container>
-      <Breadcrumb>
-        <BreadcrumbItem>Accueil</BreadcrumbItem>
-        <BreadcrumbItem>Divers</BreadcrumbItem>
-        <BreadcrumbItem active>Catégories d&apos;emploi</BreadcrumbItem>
-      </Breadcrumb>
+      <h2 className="mt-1 mb-3">Les catégories d&apos;emploi</h2>
       <Container fluid className={styles.container}>
         <Row className={styles.title}>
           <Col xs="4" className={styles.activityTitle}>

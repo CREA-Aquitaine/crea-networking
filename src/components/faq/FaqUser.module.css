@@ -1,0 +1,20 @@
+.container {
+  box-shadow: 5px 5px 2.5px #dd2b25, inset 0px 0px 1px #dd2b25;
+  margin-top:1vw;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: left;
+  width: 70%
+}
+
+.question {
+  margin-top: 3vw;
+  border-bottom: 0.1vw solid #dd2b25;
+  width: 100% !important;
+  padding: 0.5vw;
+  font-weight: bold;
+}
+.answer {
+    padding : 1vw 1vw 1vw 2vw;
+    font-weight: bold;
+}

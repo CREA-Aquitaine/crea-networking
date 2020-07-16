@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Breadcrumb, BreadcrumbItem, Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import { Pie } from 'react-chartjs-2';
 
 import { connect } from 'react-redux';
@@ -45,10 +45,7 @@ function HomeAdmin({ token }) {
 
   return (
     <Container className={styles.containerGeneral}>
-      <Breadcrumb>
-        <BreadcrumbItem>Accueil</BreadcrumbItem>
-        <BreadcrumbItem active>Dashboard</BreadcrumbItem>
-      </Breadcrumb>
+      <h2 className="mt-1 mb-3">Mon dashboard</h2>
       {error && <p>Erreur lors de la récupération des données</p>}
       <Row>
         <Col xs="6">

@@ -3,6 +3,7 @@ import { Container, Row, Col, Form, Label, Input, Button } from 'reactstrap';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 import ModalDelete from './ModalDelete';
 import styles from './Put.module.css';
@@ -361,9 +362,14 @@ function PutCompany({ userInfos, token, activityField }) {
           <Col xs="4">
             <ModalDelete id={userInfos.id} />
           </Col>
-          <Col xs={{ size: 1, offset: 6 }}>
+          <Col xs={{ size: 1.5, offset: 5 }}>
             <Button className="button" onClick={putInfo}>
               Valider
+            </Button>
+          </Col>
+          <Col xs="1">
+            <Button tag={Link} to="/dashboard" className={styles.buttonCancel}>
+              Annuler
             </Button>
           </Col>
         </Row>

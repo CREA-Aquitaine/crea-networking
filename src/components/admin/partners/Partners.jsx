@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Breadcrumb, BreadcrumbItem, Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -32,10 +32,7 @@ function Partners({ token }) {
 
   return (
     <Container>
-      <Breadcrumb>
-        <BreadcrumbItem>Accueil</BreadcrumbItem>
-        <BreadcrumbItem active>Partenaires</BreadcrumbItem>
-      </Breadcrumb>
+      <h2 className="mt-1 mb-3">Les partenaires</h2>
       <Container fluid className={styles.containerQR}>
         <Row className={styles.searchBar}>
           <Col xs="3" className={styles.faqTitle}>
