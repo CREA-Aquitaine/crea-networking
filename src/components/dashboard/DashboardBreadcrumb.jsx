@@ -9,10 +9,14 @@ function DashboardBreadcrumb() {
     <>
       <Breadcrumb tag="nav" listTag="div" className={styles.fil}>
         <BreadcrumbItem tag="a" href="#">
-          <Link tag="link" to="/"> Accueil </Link>
+          <Link tag="link" to="/">
+            Accueil
+          </Link>
         </BreadcrumbItem>
         <BreadcrumbItem tag="a" href="#">
-          <Link tag="Link" to="/dashboard"> Dashboard </Link>
+          <Link tag="Link" to="/dashboard">
+            Dashboard
+          </Link>
         </BreadcrumbItem>
       </Breadcrumb>
     </>

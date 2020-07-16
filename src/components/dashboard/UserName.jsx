@@ -16,6 +16,7 @@ function UserName({ id, token }) {
         },
       });
       setUser(res.data);
+      return user;
     } catch (err) {
       setError(err);
       return error;
