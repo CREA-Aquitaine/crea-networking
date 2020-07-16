@@ -57,9 +57,9 @@ function FirstNavbar({ role, t }) {
           </NavItem>
         )}
 
-        <NavItem>
+        {/* <NavItem>
           <NavLink>{t('Langue')}</NavLink>
-        </NavItem>
+        </NavItem> */}
         <TraductionNav />
       </Nav>
     </Navbar>

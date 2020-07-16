@@ -1,6 +1,21 @@
 .formgroup {
   padding: 0 4vw;
 }
+
+.buttonLien {
+  background-color: inherit;
+  border: none;
+  color: #dd2b25;
+  margin: 5px 10px;
+}
+
+.buttonLien:hover {
+  background-color: inherit;
+  border: none;
+  color: #dd2b25;
+  margin: 5px 10px;
+}
+
 .question {
   text-align: center;
 }
