@@ -98,7 +98,7 @@ function PopUpConnection({ setModal, toggle, modal, t }) {
               </Col>
             </Row>
             <Row className="mt-3">
-              <Col xs={{ size: 2, offset: 8 }}>
+              <Col xs={{ size: 2, offset: 7 }}>
                 <Button type="submit" className={styles.button}>
                   {t('Valider')}
                 </Button>

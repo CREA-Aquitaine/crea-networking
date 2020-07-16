@@ -56,7 +56,7 @@ function footer({ t }) {
                   xs="12"
                 >
                   <Row>
-                    <Col className={styles.iconFooter} md="2">
+                    <Col className={`${styles.iconFooter} mb-3`} md="2">
                       <FaPhoneAlt />
                     </Col>
                     <Col>+33 5 64 11 52 36</Col>
