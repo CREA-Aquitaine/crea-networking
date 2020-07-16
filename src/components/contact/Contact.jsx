@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
   Button,
   Form,
@@ -11,15 +12,52 @@ import {
 } from 'reactstrap';
 
 import styles from './Contact.module.css';
-import ToastContact from './Toast';
+// import ToastContact from './Toast';
+
+const host = process.env.REACT_APP_HOST;
 
 function Contact() {
-  const [message, setMessage] = useState(false);
+  const [lastname, setLastName] = useState('');
+  const [firstname, setFirstName] = useState('');
+  const [email, setEmail] = useState('');
+  const [text, setText] = useState('');
+  const [textarea, setTextArea] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    return setMessage(true);
+
+    if (e.target.id === 'lastname') {
+      setLastName(e.target.value);
+    } else if (e.target.id === 'firstname') {
+      setFirstName(e.target.value);
+    } else if (e.target.id === 'email') {
+      setEmail(e.target.value);
+    } else if (e.target.id === 'text') {
+      setText(e.target.value);
+    } else if (e.target.id === 'textarea') {
+      setTextArea(e.target.value);
+    }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const dataToSubmit = {
+      lastname,
+      firstname,
+      email,
+      text,
+      textarea,
+    };
+
+    try {
+      await axios.post(`${host}/api/v1/sendMail`, dataToSubmit);
+      return '';
+    } catch (err) {
+      return err;
+    }
+  };
+
   return (
     <>
       <Container className={styles.container}>
@@ -36,6 +74,8 @@ function Contact() {
                   name="lastname"
                   id="lastname"
                   placeholder="Dupont"
+                  value={lastname}
+                  onChange={handleClick}
                 />
               </Col>
             </Row>
@@ -49,6 +89,8 @@ function Contact() {
                   name="firstname"
                   id="firstname"
                   placeholder="Jean"
+                  value={firstname}
+                  onChange={handleClick}
                 />
               </Col>
             </Row>
@@ -62,8 +104,10 @@ function Contact() {
                 <Input
                   type="email"
                   name="email"
-                  id="exampleEmail"
-                  placeholder="jean.dupont@wcs.com"
+                  id="email"
+                  placeholder="jean.durand@wcs.com"
+                  value={email}
+                  onChange={handleClick}
                 />
               </Col>
             </Row>
@@ -77,8 +121,10 @@ function Contact() {
                 <Input
                   type="text"
                   name="subject"
-                  id="exampleSubjet"
+                  id="text"
                   placeholder="Information sur CREA"
+                  value={text}
+                  onChange={handleClick}
                 />
               </Col>
             </Row>
@@ -91,15 +137,23 @@ function Contact() {
             </Row>
             <Row>
               <Col className="textarea" xs={{ size: 8, offset: 2 }}>
-                <Input type="textarea" name="text" id="exampleText" />
+                <Input
+                  type="textarea"
+                  name="text"
+                  id="textarea"
+                  value={textarea}
+                  onChange={handleClick}
+                />
               </Col>
             </Row>
           </FormGroup>
           <Row>
             <Col xs={{ size: 2, offset: 8 }} className="mb-5">
-              <Button className="button">Envoyer</Button>
+              <Button type="submit" className="button">
+                Envoyer
+              </Button>
             </Col>
-            {message ? <ToastContact /> : ''}
+            {/* {message ? <ToastContact /> : ''} */}
           </Row>
         </Form>
       </Container>
@@ -108,3 +162,5 @@ function Contact() {
 }
 
 export default Contact;
+
+// tuto used to setup nodemailer https://www.youtube.com/watch?v=04zqBhQx7xU
