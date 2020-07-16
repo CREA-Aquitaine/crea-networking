@@ -312,6 +312,7 @@ function UsersListTable({ usersList, token, getAllUsers }) {
               </button>
             </th>
             <th>Role</th>
+            <th>Supprimer</th>
           </tr>
         </thead>
         <tbody>
@@ -336,7 +337,7 @@ function UsersListTable({ usersList, token, getAllUsers }) {
                     className={styles.deleteButton}
                     onClick={deleteUsers}
                   >
-                    <img src={cross} alt="cross" width="60%" />
+                    <img src={cross} alt="cross" className={styles.cross} />
                   </button>
                 </td>
               </tr>

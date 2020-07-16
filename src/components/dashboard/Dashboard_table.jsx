@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
   Table,
   Col,
@@ -10,18 +10,62 @@ import {
   TabPane,
   Row,
 } from 'reactstrap';
+import Axios from 'axios';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import styles from './Dashboard_table.module.css';
-import send from '../image/greenbutton.png';
-import closed from '../image/redbutton.png';
-import inProgress from '../image/yellowbutton.png';
+import UserName from './UserName';
+import CrossDelete from './CrossDelete';
 
-function DashboardTable() {
+const host = process.env.REACT_APP_HOST;
+
+function DashboardTable({ token, userInfos }) {
   const [activeTab, setActiveTab] = useState('1');
+  const [announces, setAnnounces] = useState([]);
+  const [replies, setReplies] = useState([]);
+  const [error, setError] = useState('');
 
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
+
+  const getAnnounces = async () => {
+    try {
+      const res = await Axios.get(`${host}/api/v1/posts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const filteredPost = res.data.filter(
+        (post) => post.UserId === userInfos.id
+      );
+      setAnnounces(filteredPost);
+      return '';
+    } catch (err) {
+      setError(err);
+      return error;
+    }
+  };
+  const getAnswer = async () => {
+    try {
+      const res = await Axios.get(`${host}/api/v1/replies`);
+      const filteredReply = res.data.filter(
+        (reply) => reply.userPostId === userInfos.id
+      );
+      setReplies(filteredReply);
+      return replies;
+    } catch (err) {
+      setError(err);
+      return error;
+    }
+  };
+
+  useEffect(() => {
+    getAnnounces();
+    getAnswer();
+  }, []);
+
   return (
     <div className={styles.dashboardTable}>
       <Nav tabs className={styles.navButton}>
@@ -32,11 +76,11 @@ function DashboardTable() {
               toggle('1');
             }}
           >
-            <h3
+            <h4
               className={activeTab === '1' ? styles.activeOn : styles.activeOff}
             >
-              Partenariats
-            </h3>
+              Mes Annonces
+            </h4>
           </NavLink>
         </NavItem>
         <NavItem>
@@ -46,11 +90,11 @@ function DashboardTable() {
               toggle('2');
             }}
           >
-            <h3
+            <h4
               className={activeTab === '2' ? styles.activeOn : styles.activeOff}
             >
-              Recrutement
-            </h3>
+              Réponses à mes annonces
+            </h4>
           </NavLink>
         </NavItem>
       </Nav>
@@ -62,55 +106,32 @@ function DashboardTable() {
               <Table size="sm" className={styles.tables}>
                 <thead>
                   <tr>
-                    <th>Mes Annonces</th>
-                    <th>Vues</th>
-                    <th>Candidatures à confirmer</th>
-                    <th>Status</th>
+                    <th>Titre</th>
+                    <th>Localisation</th>
+                    <th>Voir</th>
+                    <th>Supprimer</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">Annonce 1</th>
-                    <td>14</td>
-                    <td>2 en attentes</td>
-                    <td className={styles.rowTd}>
-                      <img
-                        src={send}
-                        alt="Envoyée"
-                        width="16px"
-                        height="16px"
-                      />
-                      <p>Envoyée</p>{' '}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Annonce 2</th>
-                    <td>200</td>
-                    <td>20 en attentes, 5 confirmés</td>
-                    <td className={styles.rowTd}>
-                      <img
-                        src={closed}
-                        alt="Fermée"
-                        width="16px"
-                        height="16px"
-                      />
-                      <p>Fermée</p>{' '}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Annonce 3</th>
-                    <td>18</td>
-                    <td>__</td>
-                    <td className={styles.rowTd}>
-                      <img
-                        src={inProgress}
-                        alt="En attente"
-                        width="16px"
-                        height="16px"
-                      />
-                      <p>En attente</p>{' '}
-                    </td>
-                  </tr>
+                  {announces.map((post) => (
+                    <tr>
+                      <td>{post.title}</td>
+                      <td>{post.localisation}</td>
+                      <td>
+                        <Link to={`/announces/${post.id}`}>
+                          Voir l&apos;annonce
+                        </Link>
+                      </td>
+                      <td>
+                        <CrossDelete
+                          id={post.id}
+                          getDatas={getAnnounces}
+                          token={token}
+                          route="posts"
+                        />
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </Table>
             </Col>
@@ -124,55 +145,30 @@ function DashboardTable() {
               <Table size="sm" className={styles.tables}>
                 <thead>
                   <tr>
-                    <th>Mes Annonces</th>
-                    <th>Vues</th>
-                    <th>Candidatures à confirmer</th>
-                    <th>Status</th>
+                    <th>Annonce</th>
+                    <th>Sujet</th>
+                    <th>Message</th>
+                    <th>Nom/Prénom</th>
+                    <th>Supprimer</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">Annonce 1</th>
-                    <td>20</td>
-                    <td>1 en attentes</td>
-                    <td className={styles.rowTd}>
-                      <img
-                        src={send}
-                        alt="Envoyée"
-                        width="16px"
-                        height="16px"
-                      />
-                      <p>Envoyée</p>{' '}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Annonce 2</th>
-                    <td>100</td>
-                    <td>3 en attentes, 1 confirmés</td>
-                    <td className={styles.rowTd}>
-                      <img
-                        src={closed}
-                        alt="Fermée"
-                        width="16px"
-                        height="16px"
-                      />
-                      <p>Fermée</p>{' '}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Annonce 3</th>
-                    <td>400</td>
-                    <td>__</td>
-                    <td className={styles.rowTd}>
-                      <img
-                        src={inProgress}
-                        alt="En attente"
-                        width="16px"
-                        height="16px"
-                      />
-                      <p>En attente</p>{' '}
-                    </td>
-                  </tr>
+                  {replies.map((item) => (
+                    <tr>
+                      <td>{item.titlePost}</td>
+                      <td>{item.title}</td>
+                      <td className={styles.collapse}>{item.comment}</td>
+                      <UserName id={item.UserId} token={token} />
+                      <td>
+                        <CrossDelete
+                          route="replies"
+                          id={item.id}
+                          getDatas={getAnswer}
+                          token={token}
+                        />
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </Table>
             </Col>
@@ -183,4 +179,13 @@ function DashboardTable() {
     </div>
   );
 }
-export default DashboardTable;
+const mapStateToProps = (state) => ({
+  userInfos: state.authenticated.userInfos,
+  token: state.authenticated.token,
+});
+DashboardTable.propTypes = {
+  token: PropTypes.string.isRequired,
+  userInfos: PropTypes.string.isRequired,
+};
+
+export default connect(mapStateToProps)(DashboardTable);

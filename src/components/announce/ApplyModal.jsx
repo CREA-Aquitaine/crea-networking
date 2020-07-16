@@ -38,6 +38,8 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
           comment,
           PostId: infosAnnounce[0].id,
           UserId: userInfos.id,
+          userPostId: infosAnnounce[0].UserId,
+          titlePost: infosAnnounce[0].title,
         },
         {
           headers: {

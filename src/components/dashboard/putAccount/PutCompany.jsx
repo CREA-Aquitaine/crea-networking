@@ -19,7 +19,7 @@ function PutCompany({ userInfos, token, activityField }) {
   const [email, setemail] = useState(userInfos.email);
   const [phone, setphone] = useState(userInfos.phone_number);
   const [phone2, setphone2] = useState(userInfos.phone_number2);
-  const [poste, setposte] = useState(userInfos.qualifiction);
+  const [poste, setposte] = useState(userInfos.qualification);
   const [sector, setsector] = useState(activityField.label);
   const [localisation, setlocalisation] = useState(userInfos.localisation);
   const [country, setCountry] = useState(userInfos.country);
