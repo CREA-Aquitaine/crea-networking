@@ -10,11 +10,13 @@ import {
   Col,
   Row,
 } from 'reactstrap';
+import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
 import Axios from 'axios';
 
 const host = process.env.REACT_APP_HOST;
 
-function ForgotPassword() {
+function ForgotPassword({ t }) {
   const [modal, setModal] = useState(false);
   const [error, setError] = useState('');
   const [email, setEmail] = useState('');
@@ -37,14 +39,14 @@ function ForgotPassword() {
   return (
     <div>
       <a href="a" onKeyDown={toggle} role="button" tabIndex={0}>
-        Mot de passe oublié ?
+        {t('mdp2')}
       </a>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Mot de passe oublié</ModalHeader>
+        <ModalHeader toggle={toggle}>{t('mdp2')}</ModalHeader>
         <ModalBody>
           <Row>
             <Col xs="2">
-              <Label for="email">Votre email</Label>
+              <Label for="email">Email</Label>
             </Col>
             <Col>
               <Input
@@ -55,19 +57,16 @@ function ForgotPassword() {
             </Col>
           </Row>
           <Row>
-            <em>
-              Veuillez remplir ce champ pour recevoir votre nouveau mot de passe
-              par mail
-            </em>
+            <em>{t('champ')}</em>
           </Row>
-          {validate ? <p>Un mail vient de vous être envoyé.</p> : ''}
+          {validate ? <p>{t('mailsend')}</p> : ''}
         </ModalBody>
         <ModalFooter>
           <Button className="button" onClick={handleSubmit}>
-            Validez
+            {t('Validez')}
           </Button>
           <Button className="button" onClick={toggle}>
-            Annuler
+            {t('Annuler')}
           </Button>
         </ModalFooter>
       </Modal>
@@ -75,4 +74,8 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+ForgotPassword.propTypes = {
+  t: PropTypes.string.isRequired,
+};
+
+export default withNamespaces()(ForgotPassword);

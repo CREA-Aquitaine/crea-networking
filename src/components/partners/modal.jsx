@@ -9,6 +9,7 @@ import {
   Col,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
 
 import styles from './Partners.module.css';
 
@@ -21,6 +22,7 @@ const ModalPartners = (props) => {
     url,
     description,
     logo,
+    t,
   } = props;
 
   return (
@@ -36,11 +38,11 @@ const ModalPartners = (props) => {
       <ModalBody>{description}</ModalBody>
       <ModalFooter>
         <Button className="button" onClick={toggle}>
-          Annuler
+          {t('Annuler')}
         </Button>
         <a href={url} target="blanck">
           <Button className="button" onClick={toggle}>
-            Site Web
+            {t('Web')}
           </Button>
         </a>
       </ModalFooter>
@@ -56,6 +58,7 @@ ModalPartners.propTypes = {
   url: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   logo: PropTypes.string.isRequired,
+  t: PropTypes.string.isRequired,
 };
 
-export default ModalPartners;
+export default withNamespaces()(ModalPartners);

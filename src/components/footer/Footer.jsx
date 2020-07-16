@@ -1,5 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
 
 // eslint-disable-next-line import/no-unresolved
 import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa';
@@ -7,7 +9,7 @@ import styles from './footer.module.css';
 import LogoCrea from '../image/logo-crea_2015.png';
 import LogoNetworking from '../image/logo_netWorking.png';
 
-export default function footer() {
+function footer({ t }) {
   return (
     <>
       <Container fluid className={`${styles.bkgFooter} py-5 mt-5`}>
@@ -92,7 +94,7 @@ export default function footer() {
         <Row className="p-3">
           <Col>
             <a href="$" className={styles.tagMl}>
-              Mentions Légales
+              {t('Mention')}
             </a>
           </Col>
         </Row>
@@ -100,3 +102,8 @@ export default function footer() {
     </>
   );
 }
+footer.propTypes = {
+  t: PropTypes.string.isRequired,
+};
+
+export default withNamespaces()(footer);

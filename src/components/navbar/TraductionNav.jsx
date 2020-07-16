@@ -22,22 +22,20 @@ function TraductionNav() {
           borderColor: 'inherit',
           border: '0',
         }}
-        onClick={() => changeLanguage('eus')}
+        onClick={() => changeLanguage('fr')}
       >
-        <img className={styles.drapeau} src={basque} alt="drapeau basque" />
+        <img className={styles.drapeau} src={france} alt="drapeau france" />
       </Button>
-
       <Button
         style={{
           backgroundColor: 'inherit',
           borderColor: 'inherit',
           border: '0',
         }}
-        onClick={() => changeLanguage('fr')}
+        onClick={() => changeLanguage('eus')}
       >
-        <img className={styles.drapeau} src={france} alt="drapeau france" />
+        <img className={styles.drapeau} src={basque} alt="drapeau basque" />
       </Button>
-
       <Button
         style={{
           backgroundColor: 'inherit',

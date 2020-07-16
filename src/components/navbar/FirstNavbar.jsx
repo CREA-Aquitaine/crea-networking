@@ -5,10 +5,10 @@ import { connect, useDispatch } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import styles from './NavBar.module.css';
 
-// import NavbarLanguage from './NavbarLanguage';
 import PopUpConnection from './PopUpConnection';
 
 import AccountModal from '../admin/account/AccountModal';
+
 import TraductionNav from './TraductionNav';
 
 function FirstNavbar({ role, t }) {
@@ -60,7 +60,6 @@ function FirstNavbar({ role, t }) {
         <NavItem>
           <NavLink>{t('Langue')}</NavLink>
         </NavItem>
-        {/* <NavbarLanguage /> */}
         <TraductionNav />
       </Nav>
     </Navbar>

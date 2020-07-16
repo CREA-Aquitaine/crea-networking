@@ -12,6 +12,7 @@ import {
   Form,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
 import { Link, useHistory } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import Axios from 'axios';
@@ -20,7 +21,7 @@ import styles from './PopUpConnection.module.css';
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 import ForgotPassword from './ForgotPassword';
 
-function PopUpConnection({ setModal, toggle, modal }) {
+function PopUpConnection({ setModal, toggle, modal, t }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -63,7 +64,7 @@ function PopUpConnection({ setModal, toggle, modal }) {
   return (
     <>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader>Espace connexion</ModalHeader>
+        <ModalHeader>{t('Espace connexion')}</ModalHeader>
         <ModalBody>
           <Form onSubmit={handleSubmit}>
             <FormGroup className={styles.formgroup}>
@@ -76,7 +77,7 @@ function PopUpConnection({ setModal, toggle, modal }) {
               />
             </FormGroup>
             <FormGroup className={styles.formgroup}>
-              <Label for="examplePassword">Mot de passe</Label>
+              <Label for="examplePassword">{t('mdp')}</Label>
               <Input
                 type="password"
                 name="password"
@@ -88,7 +89,7 @@ function PopUpConnection({ setModal, toggle, modal }) {
               <Col xs={{ size: 3, offset: 2 }}>
                 <a href="a">
                   <Link onClick={toggle} to="/createAccount">
-                    S&lsquo;inscrire
+                    {t('Inscription')}
                   </Link>
                 </a>
               </Col>
@@ -99,12 +100,12 @@ function PopUpConnection({ setModal, toggle, modal }) {
             <Row className="mt-3">
               <Col xs={{ size: 2, offset: 8 }}>
                 <Button type="submit" className={styles.button}>
-                  Valider
+                  {t('Valider')}
                 </Button>
               </Col>
               <Col>
                 <Button className={styles.button} onClick={toggle}>
-                  Annuler
+                  {t('Annuler')}
                 </Button>
               </Col>
             </Row>
@@ -112,7 +113,7 @@ function PopUpConnection({ setModal, toggle, modal }) {
               <Col xs={{ size: 5, offset: 3 }}>
                 {error ? (
                   <p className={styles.error}>
-                    Mot de passe ou identifiant incorrect
+                    {t('mdp')} {t('ou')} {t('incorrect')}
                   </p>
                 ) : (
                   ''
@@ -134,6 +135,7 @@ PopUpConnection.propTypes = {
   toggle: PropTypes.string.isRequired,
   modal: PropTypes.string.isRequired,
   setModal: PropTypes.string.isRequired,
+  t: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps)(PopUpConnection);
+export default connect(mapStateToProps) && withNamespaces()(PopUpConnection);

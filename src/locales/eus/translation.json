@@ -30,5 +30,15 @@
   "TitreDemandeurEmploi": "Lan bila ari zara?",
   "TexteDemandeurEmploi": "Ipsum dolorearekin erlazionatutako mahaian egon ohi zen. Quia errorea azaldu, ulertu ahal izango duzu eserita behar izatea ipsam fuga quos, eligendi",
   "TitreUniversite": "Eskola edo unibertsitatea al zara?",
-  "TexteUniversite": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia error explicabo assumenda, soluta voluptas hic necessitatibus ipsam sit fuga quos, eligendi"
+  "TexteUniversite": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia error explicabo assumenda, soluta voluptas hic necessitatibus ipsam sit fuga quos, eligendi",
+  "Mention": "Lege oharra",
+  "mdp": "Pasahitza",
+  "mdp2": "Zure pasahitza ahaztu duzu",
+  "Valider": "Balidatu",
+  "Annuler": "Baliogabetzeko",
+  "ou": "edo",
+  "incorrect": "identifikatzaile okerra",
+  "champ": "Mesedez, bete eremu hau zure pasahitz berria jasotzeko posta elektroniko bidez",
+  "mailsend": "Mezu elektronikoa jaso duzu.",
+  "Web": "Webgune"
 }

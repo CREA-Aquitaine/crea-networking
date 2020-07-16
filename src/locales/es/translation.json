@@ -30,5 +30,15 @@
   "TitreDemandeurEmploi": "¿Eres un buscador de trabajo?",
   "TexteDemandeurEmploi": "Lorem ipsum dolor sentarse amet consectetur adipisicing elit. Error de Quia explicabo assumenda, soluta voluptas hic necesitatibib ipsam sit fuga quos, eligendi",
   "TitreUniversite": "¿Eres una escuela o una universidad?",
-  "TexteUniversite": "Lorem ipsum dolor sentarse amet consectetur adipisicing elit. Quia error explicabo assumenda, soluta voluptas hic necesitatibus ipsam sit fuga quos, eligendi"
+  "TexteUniversite": "Lorem ipsum dolor sentarse amet consectetur adipisicing elit. Quia error explicabo assumenda, soluta voluptas hic necesitatibus ipsam sit fuga quos, eligendi",
+  "Mention": "Notas legales",
+  "mdp": "Contraseña",
+  "mdp2": "contraseña olvidada",
+  "Valider": "Validar",
+  "Annuler": "Anular",
+  "ou": "o",
+  "incorrect": "identificador incorrecto",
+  "champ": "Complete este campo para recibir su nueva contraseña por email",
+  "mailsend": "Le acabamos de enviar un correo electrónico.",
+  "Web": "Sitio web"
 }
