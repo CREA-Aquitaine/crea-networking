@@ -14,6 +14,8 @@ import {
 import styles from './Contact.module.css';
 // import ToastContact from './Toast';
 
+const host = process.env.REACT_APP_HOST;
+
 function Contact() {
   const [lastname, setLastName] = useState('');
   const [firstname, setFirstName] = useState('');
@@ -37,7 +39,7 @@ function Contact() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const dataToSubmit = {
@@ -47,7 +49,13 @@ function Contact() {
       text,
       textarea,
     };
-    axios.post('/api/sendMail', dataToSubmit);
+
+    try {
+      await axios.post(`${host}/api/v1/sendMail`, dataToSubmit);
+      return '';
+    } catch (err) {
+      return err;
+    }
   };
 
   return (
@@ -96,7 +104,7 @@ function Contact() {
                 <Input
                   type="email"
                   name="email"
-                  id="exampleEmail"
+                  id="email"
                   placeholder="jean.durand@wcs.com"
                   value={email}
                   onChange={handleClick}
@@ -113,7 +121,7 @@ function Contact() {
                 <Input
                   type="text"
                   name="subject"
-                  id="exampleSubjet"
+                  id="text"
                   placeholder="Information sur CREA"
                   value={text}
                   onChange={handleClick}
@@ -132,7 +140,7 @@ function Contact() {
                 <Input
                   type="textarea"
                   name="text"
-                  id="exampleText"
+                  id="textarea"
                   value={textarea}
                   onChange={handleClick}
                 />
@@ -141,7 +149,7 @@ function Contact() {
           </FormGroup>
           <Row>
             <Col xs={{ size: 2, offset: 8 }} className="mb-5">
-              <Button onClick={handleSubmit} className="button">
+              <Button type="submit" className="button">
                 Envoyer
               </Button>
             </Col>
