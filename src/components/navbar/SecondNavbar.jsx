@@ -59,7 +59,7 @@ function SecondNavbar({ role, t }) {
             <DropdownToggle nav caret className={styles.mesnavbarItems}>
               {t('Divers')}
             </DropdownToggle>
-            <DropdownMenu bottom>
+            <DropdownMenu>
               <DropdownItem tag={Link} to="/jobCategory">
                 {t('Catégories d&apos;emplois')}
               </DropdownItem>
@@ -145,7 +145,7 @@ const mapStateToProps = (state) => ({
 
 SecondNavbar.propTypes = {
   role: PropTypes.string.isRequired,
-  t: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default compose(

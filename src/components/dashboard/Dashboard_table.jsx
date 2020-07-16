@@ -65,7 +65,7 @@ function DashboardTable({ token, userInfos }) {
   useEffect(() => {
     getAnnounces();
     getAnswer();
-  }, []);
+  });
 
   return (
     <div className={styles.dashboardTable}>

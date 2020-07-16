@@ -41,7 +41,7 @@ function HomeAdmin({ token }) {
       }
     };
     getData();
-  }, []);
+  });
 
   return (
     <Container className={styles.containerGeneral}>
@@ -66,7 +66,7 @@ function HomeAdmin({ token }) {
             {/* <p className={styles.nbtotal}></p> */}
             {types.map((type) => {
               return (
-                <p className={styles.nb}>
+                <p className={styles.nb} key={type.id}>
                   {type.label} : {type.Users.length}
                 </p>
               );

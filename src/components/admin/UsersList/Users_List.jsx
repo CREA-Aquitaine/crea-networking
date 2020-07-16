@@ -94,7 +94,7 @@ function UsersList({ token }) {
 
   useEffect(() => {
     getAllUsers();
-  }, []);
+  });
 
   return (
     <>

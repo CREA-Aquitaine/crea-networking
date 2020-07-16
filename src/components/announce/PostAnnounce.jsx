@@ -60,10 +60,8 @@ function PostAnnounce({ token, UserId }) {
   };
 
   useEffect(() => {
-    getTypePostsData();
-    getJobCatData();
     setisLoading(false);
-  }, []);
+  }, [getTypePostsData(), getJobCatData()]);
 
   const setToastSuccess = () => {
     toast.success('Votre annonce a bien été publiée.', {

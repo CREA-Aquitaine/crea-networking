@@ -26,7 +26,7 @@ function FaqUser({ token }) {
   };
   useEffect(() => {
     getFaq();
-  }, []);
+  });
 
   return (
     <Container>

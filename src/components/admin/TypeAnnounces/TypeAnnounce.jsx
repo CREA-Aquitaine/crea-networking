@@ -42,7 +42,7 @@ function TypeAnnounce({ token }) {
   };
   useEffect(() => {
     getType();
-  }, []);
+  });
 
   const setToastSuccess = () => {
     toast.success('Votre question a bien été publiée.', {

@@ -56,7 +56,7 @@ function Dashboard({ token, userInfos }) {
   };
   useEffect(() => {
     getUserInfos();
-  }, []);
+  });
 
   return (
     <>

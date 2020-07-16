@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
+import { Navbar, Nav, NavItem, NavLink } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
+import { compose } from 'redux';
+
 import styles from './NavBar.module.css';
 
 import PopUpConnection from './PopUpConnection';
@@ -12,8 +14,6 @@ import AccountModal from '../admin/account/AccountModal';
 import TraductionNav from './TraductionNav';
 
 function FirstNavbar({ role, t }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
   const dispatch = useDispatch();
 
   const disconnect = () => {
@@ -21,11 +21,10 @@ function FirstNavbar({ role, t }) {
   };
 
   const [modal, setModal] = useState(false);
-  const toggle2 = () => setModal(!modal);
+  const toggle = () => setModal(!modal);
 
   return (
     <Navbar color="light" expand="xs" className={styles.nav}>
-      <NavbarToggler onClick={toggle} />
       <Nav navbar className={`${styles.navbar} mr-5`}>
         <NavItem className={`${styles.navItem} mr-5 mt-2`}>
           {role === 'admin' ? <AccountModal /> : ''}
@@ -46,12 +45,12 @@ function FirstNavbar({ role, t }) {
           </NavItem>
         ) : (
           <NavItem className="mr-5">
-            <NavLink className={styles.navItem} onClick={toggle2}>
+            <NavLink className={styles.navItem} onClick={toggle}>
               {t('Espace connexion')}
             </NavLink>
             <PopUpConnection
               setModal={setModal}
-              toggle={toggle2}
+              toggle={toggle}
               modal={modal}
             />
           </NavItem>
@@ -71,7 +70,7 @@ const mapStateToProps = (state) => ({
 
 FirstNavbar.propTypes = {
   role: PropTypes.string.isRequired,
-  t: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps) && withNamespaces()(FirstNavbar);
+export default compose(connect(mapStateToProps), withNamespaces())(FirstNavbar);

@@ -11,15 +11,17 @@ function Header({ t }) {
     <div className={`${styles.presentation} my-5`}>
       <h2>{t('TitrePresentation')}</h2>
       <p className={styles.pres}>{t('TextePresentation')}</p>
-      <button className={styles.button} tag={Link} to="/partners" type="button">
-        {t('ButtonPartenaires')}
-      </button>
+      <Link to="/partners">
+        <button className={styles.button} type="button">
+          {t('ButtonPartenaires')}
+        </button>
+      </Link>
     </div>
   );
 }
 
 Header.propTypes = {
-  t: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default withNamespaces()(Header);

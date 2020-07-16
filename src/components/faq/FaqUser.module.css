@@ -1,5 +1,5 @@
 .container {
-  box-shadow: 5px 5px 2.5px #dd2b25, inset 0px 0px 1px #dd2b25;
+  box-shadow: 5px 5px 2.5px #dfd9d9, inset 0px 0px 1px #dd2b25;
   margin-top:1vw;
   margin-right: auto;
   margin-left: auto;
@@ -9,7 +9,7 @@
 
 .question {
   margin-top: 3vw;
-  border-bottom: 0.1vw solid #dd2b25;
+  border-bottom: 0.1vw solid #dfd9d9;
   width: 100% !important;
   padding: 0.5vw;
   font-weight: bold;

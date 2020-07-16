@@ -42,7 +42,7 @@ function Faq({ token }) {
   };
   useEffect(() => {
     getFaq();
-  }, []);
+  });
 
   const setToastSuccess = () => {
     toast.success('Votre question a bien été publiée.', {

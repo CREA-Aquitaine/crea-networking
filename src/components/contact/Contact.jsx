@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import {
   Button,
   Form,
@@ -12,7 +13,6 @@ import {
 } from 'reactstrap';
 
 import styles from './Contact.module.css';
-// import ToastContact from './Toast';
 
 const host = process.env.REACT_APP_HOST;
 
@@ -22,6 +22,43 @@ function Contact() {
   const [email, setEmail] = useState('');
   const [text, setText] = useState('');
   const [textarea, setTextArea] = useState('');
+  const [error, setError] = useState(false);
+
+  const setToastSuccess = () => {
+    toast.success('Votre question a bien été publiée.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastError = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInput = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -51,10 +88,20 @@ function Contact() {
     };
 
     try {
-      await axios.post(`${host}/api/v1/sendMail`, dataToSubmit);
-      return '';
+      if (lastname && firstname && email && text && textarea) {
+        await axios.post(`${host}/api/v1/sendMail`, dataToSubmit);
+        setToastSuccess();
+        setEmail('');
+        setFirstName('');
+        setLastName('');
+        setText('');
+        setTextArea('');
+      } else {
+        setToastInput();
+      }
     } catch (err) {
-      return err;
+      setToastError();
+      setError(err);
     }
   };
 
@@ -62,6 +109,7 @@ function Contact() {
     <>
       <Container className={styles.container}>
         <h2>Contactez-nous</h2>
+        {error ? '' : ''}
         <Form onSubmit={handleSubmit} className={styles.form}>
           <FormGroup>
             <Row className="mb-2">
@@ -153,7 +201,6 @@ function Contact() {
                 Envoyer
               </Button>
             </Col>
-            {/* {message ? <ToastContact /> : ''} */}
           </Row>
         </Form>
       </Container>
@@ -162,5 +209,3 @@ function Contact() {
 }
 
 export default Contact;
-
-// tuto used to setup nodemailer https://www.youtube.com/watch?v=04zqBhQx7xU

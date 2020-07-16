@@ -120,11 +120,8 @@ function ListAnnounceUser({ token }) {
   // };
 
   useEffect(() => {
-    getAnnounces();
-    getJobCatData();
-    getTypePost();
     setisLoading(false);
-  }, []);
+  }, [getAnnounces(), getJobCatData(), getTypePost()]);
 
   return (
     <Container>
@@ -162,7 +159,6 @@ function ListAnnounceUser({ token }) {
             ))}
           </Input>
         </Col>
-
         <Col xs={{ size: 1.5, offset: 1 }} className="mr-2">
           <Button onClick={getResults} className="button">
             Rechercher
@@ -180,31 +176,29 @@ function ListAnnounceUser({ token }) {
         ) : (
           <>
             {error ? <p>There is an error</p> : ''}
-            <Row>
-              {annonceFiltered.map((announce) => (
-                <Col xs="6" className="mt-5">
-                  <Card className={styles.cardSize}>
-                    <CardBody className={styles.cardSize}>
-                      <CardTitle className={styles.cardTitle}>
-                        {announce.title}
-                      </CardTitle>
-                      <CardSubtitle className={styles.cardSubtitle}>
-                        {announce.JobCategory.labelFr} - {announce.localisation}
-                      </CardSubtitle>
-                      <CardSubtitle className={styles.cardSubtitleDate}>
-                        {announce.createdAt}
-                      </CardSubtitle>
-                      <CardText className={styles.cardText}>
-                        {ReactHtmlParser(announce.content)}
-                      </CardText>
-                      <Link to={`/announces/${announce.id}`}>
-                        <Button className="button">En savoir plus ...</Button>
-                      </Link>
-                    </CardBody>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
+            {annonceFiltered.map((announce) => (
+              <Col xs="6" className="mt-5">
+                <Card className={styles.cardSize}>
+                  <CardBody className={styles.cardSize}>
+                    <CardTitle className={styles.cardTitle}>
+                      {announce.title}
+                    </CardTitle>
+                    <CardSubtitle className={styles.cardSubtitle}>
+                      {announce.JobCategory.labelFr} - {announce.localisation}
+                    </CardSubtitle>
+                    <CardSubtitle className={styles.cardSubtitleDate}>
+                      {announce.createdAt}
+                    </CardSubtitle>
+                    <CardText className={styles.cardText}>
+                      {ReactHtmlParser(announce.content)}
+                    </CardText>
+                    <Link to={`/announces/${announce.id}`}>
+                      <Button className="button">En savoir plus ...</Button>
+                    </Link>
+                  </CardBody>
+                </Card>
+              </Col>
+            ))}
           </>
         )}
       </Row>
