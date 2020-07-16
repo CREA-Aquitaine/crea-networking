@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+
+import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
+
 import { Row, Col, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import PopUpConnection from '../navbar/PopUpConnection';
@@ -8,7 +12,7 @@ import school from '../image/img_ecole.png';
 import company from '../image/img_Part_ets2.png';
 import jobSeeker from '../image/demandeur.jpg';
 
-function Blocs() {
+function Blocs({ t }) {
   const [modal2, setModal2] = useState(false);
   const toggle2 = () => setModal2(!modal2);
 
@@ -21,17 +25,13 @@ function Blocs() {
         <Col xs="12" md="6" className="text-left">
           <hr />
           <h3 className="text-left">
-            Vous êtes une entreprise ?<br />
-            Une association ?
+            {t('TitreEntreprise')} <br />
+            {t('Association')}
           </h3>
-          <p className="mb-4 text-left">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia error
-            explicabo assumenda, soluta voluptas hic necessitatibus ipsam sit
-            fuga quos, eligendi
-          </p>
+          <p className="mb-4 text-left">{t('TexteBlocEntreprise')}</p>
 
           <button type="button" onClick={toggle2}>
-            Se connecter
+            {t('Espace connexion')}
           </button>
           <PopUpConnection
             modal={modal2}
@@ -40,7 +40,7 @@ function Blocs() {
           />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
-              S&#39;inscrire
+              {t('Inscription')}
             </button>
           </Link>
         </Col>
@@ -48,15 +48,11 @@ function Blocs() {
       <Row className="my-5 py-4">
         <Col xs="12" md="6" className="text-left">
           <hr />
-          <h3>Vous êtes un demandeur d&#39;emploi ?</h3>
-          <p className="mb-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia error
-            explicabo assumenda, soluta voluptas hic necessitatibus ipsam sit
-            fuga quos, eligendi
-          </p>
+          <h3>{t('TitreDemandeurEmploi')} </h3>
+          <p className="mb-5">{t('TexteDemandeurEmploi')}</p>
 
           <button type="button" onClick={toggle2}>
-            Se connecter
+            {t('Espace connexion')}
           </button>
           <PopUpConnection
             modal={modal2}
@@ -65,7 +61,7 @@ function Blocs() {
           />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
-              S&#39;inscrire
+              {t('Inscription')}
             </button>
           </Link>
         </Col>
@@ -84,14 +80,10 @@ function Blocs() {
         </Col>
         <Col xs="12" md="6" className="text-left">
           <hr />
-          <h3>Vous êtes une école ou une université ?</h3>
-          <p className="mb-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia error
-            explicabo assumenda, soluta voluptas hic necessitatibus ipsam sit
-            fuga quos, eligendi
-          </p>
+          <h3>{t('TitreUniversite')}</h3>
+          <p className="mb-5">{t('TexteUniversite')}</p>
           <button type="button" onClick={toggle2}>
-            Se connecter
+            {t('Espace connexion')}
           </button>
           <PopUpConnection
             modal={modal2}
@@ -100,7 +92,7 @@ function Blocs() {
           />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
-              S&#39;inscrire
+              {t('Inscription')}
             </button>
           </Link>
         </Col>
@@ -109,4 +101,8 @@ function Blocs() {
   );
 }
 
-export default Blocs;
+Blocs.propTypes = {
+  t: PropTypes.string.isRequired,
+};
+
+export default withNamespaces()(Blocs);
