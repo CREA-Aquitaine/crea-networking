@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 
 import { Link } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
@@ -36,7 +37,7 @@ function SecondNavbar({ role, t }) {
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
             <NavLink className={styles.navlink} tag={Link} to="/users">
-              {t('Mes utilisateurs')}{' '}
+              {t('Mes utilisateurs')}
             </NavLink>
           </NavItem>
           <NavItem className={styles.mesnavbarItems}>
@@ -147,4 +148,7 @@ SecondNavbar.propTypes = {
   t: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps) && withNamespaces()(SecondNavbar);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(SecondNavbar);
