@@ -14,6 +14,8 @@ import {
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './JobCategory.module.css';
 import JobCategoryList from './JobCategoryList';
@@ -44,25 +46,67 @@ function JobCategory({ token }) {
     getCategories();
   }, []);
 
+  const setToastSuccess = () => {
+    toast.success('Votre question a bien été publiée.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastError = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInput = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const postCategory = async () => {
     try {
-      await Axios.post(
-        `${host}/api/v1/jobCategories`,
-        {
-          labelFr,
-          labelEs,
-          labelEus,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      if (labelFr && labelEs && labelEus) {
+        await Axios.post(
+          `${host}/api/v1/jobCategories`,
+          {
+            labelFr,
+            labelEs,
+            labelEus,
           },
-        }
-      );
-      setCreated(true);
-      getCategories();
-      setTimeout(() => setCreated(false), 2000);
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCreated(true);
+        getCategories();
+        setToastSuccess();
+        setTimeout(() => setCreated(false), 2000);
+      } else {
+        setToastInput();
+      }
     } catch (err) {
+      setToastError();
       setError(err);
     }
   };
@@ -131,7 +175,7 @@ function JobCategory({ token }) {
                 Ajouter
               </Button>
             </Col>
-            {created ? <p> Votre catégorie a bien été crée.</p> : ''}
+            {created ? '' : ''}
             {error ? (
               <p>Il y a eu une erreur lors de la création de la catégorie.</p>
             ) : (
