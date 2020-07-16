@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
@@ -10,7 +11,7 @@ function Header({ t }) {
     <div className={`${styles.presentation} my-5`}>
       <h2>{t('TitrePresentation')}</h2>
       <p className={styles.pres}>{t('TextePresentation')}</p>
-      <button className={styles.button} type="button">
+      <button className={styles.button} tag={Link} to="/partners" type="button">
         {t('ButtonPartenaires')}
       </button>
     </div>
