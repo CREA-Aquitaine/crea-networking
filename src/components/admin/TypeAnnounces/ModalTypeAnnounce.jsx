@@ -10,6 +10,8 @@ import {
   Row,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Axios from 'axios';
 import { connect } from 'react-redux';
@@ -25,25 +27,91 @@ function ModalType({ french, euskara, castillan, getType, token, id }) {
   const [errorPut, setErrorPut] = useState('');
   const [errorDelete, setErrorDelete] = useState(false);
 
+  const setToastSuccessPut = () => {
+    toast.success("Votre type d'annonce a bien été modifiée.", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastSuccessDelete = () => {
+    toast.success("Votre type d'annonce a bien été supprimée.", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastErrorPut = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastErrorDelete = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInputPut = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const putType = async () => {
     try {
-      await Axios.put(
-        `${host}/api/v1/postTypes/${id}`,
-        {
-          labelFr,
-          labelEs,
-          labelEus,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      if (labelFr && labelEus && labelEs) {
+        await Axios.put(
+          `${host}/api/v1/postTypes/${id}`,
+          {
+            labelFr,
+            labelEs,
+            labelEus,
           },
-        }
-      );
-      setModal(!modal);
-      getType();
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setModal(!modal);
+        getType();
+        setToastSuccessPut();
+      } else {
+        setToastInputPut();
+      }
     } catch (err) {
       setErrorPut(err);
+      setToastErrorPut();
     }
   };
 
@@ -60,7 +128,9 @@ function ModalType({ french, euskara, castillan, getType, token, id }) {
         },
       });
       getType();
+      setToastSuccessDelete();
     } catch (err) {
+      setToastErrorDelete();
       setErrorDelete(err);
     }
   };
@@ -68,8 +138,8 @@ function ModalType({ french, euskara, castillan, getType, token, id }) {
   const toggle = () => setModal(!modal);
   return (
     <div>
-      {errorDelete ? <p>La catégorie a bien été supprimé</p> : ''}
-      {errorPut ? <p>Il y a eu une erreur lors de la modification.</p> : ''}
+      {errorDelete ? '' : ''}
+      {errorPut ? '' : ''}
       <Button className="button" onClick={toggle}>
         Modifier
       </Button>

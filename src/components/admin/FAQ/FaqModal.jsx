@@ -12,6 +12,8 @@ import {
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './Faq_List.module.css';
 
@@ -41,24 +43,90 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
     setLanguage(e.target.value);
   };
 
+  const setToastSuccessPut = () => {
+    toast.success('Votre question a bien été modifiée.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastSuccessDelete = () => {
+    toast.success('Votre question a bien été supprimée.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastErrorPut = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastErrorDelete = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastInputPut = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const putFaq = async () => {
     try {
-      await Axios.put(
-        `${host}/api/v1/faq/${id}`,
-        {
-          question,
-          answer,
-          language,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      if (question && answer) {
+        await Axios.put(
+          `${host}/api/v1/faq/${id}`,
+          {
+            question,
+            answer,
+            language,
           },
-        }
-      );
-      setModal(!modal);
-      getFaq();
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setModal(!modal);
+        getFaq();
+        setToastSuccessPut();
+      } else {
+        setToastInputPut();
+      }
     } catch (err) {
+      setToastErrorPut();
       setError(err);
     }
   };
@@ -77,15 +145,17 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
       });
       setModal(!modal);
       getFaq();
+      setToastSuccessDelete();
     } catch (err) {
+      setToastErrorDelete();
       setErrorDelete(err);
     }
   };
 
   return (
     <div>
-      {errorDelete ? <p>La question/réponse a bien été supprimé</p> : ''}
-      {error ? <p>Il y a eu une erreur lors de la modification.</p> : ''}
+      {error ? '' : ''}
+      {errorDelete ? '' : ''}
       <Button className="button" onClick={toggle}>
         Modifier
       </Button>
