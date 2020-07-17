@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
@@ -32,9 +33,56 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const setToastSuccess = () => {
+    toast.success('Votre utilisateur a bien été créé.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+  const setToastError = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+  const setToastInput = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const postUser = async () => {
-    if (ActivityFieldId) {
-      try {
+    try {
+      if (
+        ActivityFieldId &&
+        lastName &&
+        firstName &&
+        email &&
+        password &&
+        localisation &&
+        phone &&
+        companyName &&
+        siret &&
+        qualification &&
+        userTypeId &&
+        roleId
+      ) {
         await Axios.post(`${host}/api/v1/auth/register`, {
           lastName,
           firstName,
@@ -51,13 +99,17 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
           UserTypeId: userTypeId,
           RoleId: roleId,
         });
-
+        setToastSuccess();
         setCreated(true);
-      } catch (err) {
-        setError(err);
+      } else {
+        setToastInput();
       }
+    } catch (err) {
+      setError(err);
+      setToastError();
     }
   };
+
   const postRegister = async () => {
     try {
       const res = await Axios.post('http://localhost:8080/api/v1/auth/login', {
@@ -302,7 +354,13 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
             </Label>
           </Col>
           <Col>
-            <Input type="select" name="select" id="exampleSelect" required>
+            <Input
+              type="select"
+              name="select"
+              id="exampleSelect"
+              required
+              value={activityFields[0] && activityFields[0].labelFr}
+            >
               {activityFields.map((item) => (
                 <option
                   value={item.id}
