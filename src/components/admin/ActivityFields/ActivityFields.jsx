@@ -45,7 +45,7 @@ function ActivityFields({ token }) {
   });
 
   const setToastSuccess = () => {
-    toast.success('Votre question a bien été publiée.', {
+    toast.success("Votre secteur d'activité a bien été publiée.", {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,

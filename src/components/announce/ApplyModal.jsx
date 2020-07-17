@@ -29,7 +29,7 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
 
   const toggle = () => setModal(!modal);
   const setToastSuccess = () => {
-    toast.success('Votre question a bien été publiée.', {
+    toast.success('Votre réponse a bien été publiée.', {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,

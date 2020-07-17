@@ -34,7 +34,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
   const history = useHistory();
 
   const setToastSuccess = () => {
-    toast.success('Votre utilisateur a bien été créé.', {
+    toast.success('Vous êtes bien enregistré.', {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,

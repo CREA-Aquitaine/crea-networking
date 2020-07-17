@@ -37,7 +37,7 @@ function JobCategoryModal({
   const toggle = () => setModal(!modal);
 
   const setToastSuccessPut = () => {
-    toast.success('Votre question a bien été modifiée.', {
+    toast.success('La catégorie a bien été modifiée.', {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
