@@ -24,7 +24,7 @@ function UserName({ id, token }) {
   };
   useEffect(() => {
     getUser();
-  });
+  }, []);
 
   return (
     <>

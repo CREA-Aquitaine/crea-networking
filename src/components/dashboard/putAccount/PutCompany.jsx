@@ -74,10 +74,6 @@ function PutCompany({ userInfos, token, activityField }) {
     }
   };
 
-  useEffect(() => {
-    getActivities();
-  }, []);
-
   const putInfo = async () => {
     const { id } = userInfos;
     if (password === password2) {
@@ -112,6 +108,10 @@ function PutCompany({ userInfos, token, activityField }) {
       setToastError();
     }
   };
+
+  useEffect(() => {
+    getActivities();
+  }, []);
 
   return (
     <Container className={styles.container}>

@@ -40,9 +40,6 @@ function TypeAnnounce({ token }) {
       setError(err);
     }
   };
-  useEffect(() => {
-    getType();
-  });
 
   const setToastSuccess = () => {
     toast.success('Votre question a bien été publiée.', {
@@ -116,6 +113,10 @@ function TypeAnnounce({ token }) {
     setLabelEus('');
     setLabelFr('');
   };
+
+  useEffect(() => {
+    getType();
+  });
 
   return (
     <Container>

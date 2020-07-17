@@ -26,9 +26,10 @@ function Partners({ token }) {
       setError(err);
     }
   };
+
   useEffect(() => {
     getPartners();
-  });
+  }, []);
 
   return (
     <Container>

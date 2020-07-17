@@ -48,7 +48,7 @@ function ChangeRole({ user, token, getAllUsers }) {
   };
   useEffect(() => {
     getRoles();
-  });
+  }, []);
 
   return (
     <>

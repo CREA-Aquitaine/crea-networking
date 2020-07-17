@@ -26,6 +26,7 @@ function DashboardTable({ token, userInfos }) {
   const [announces, setAnnounces] = useState([]);
   const [replies, setReplies] = useState([]);
   const [error, setError] = useState('');
+  const [message, setMessage] = useState([]);
 
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
@@ -61,11 +62,25 @@ function DashboardTable({ token, userInfos }) {
       return error;
     }
   };
+  const getMessage = async () => {
+    try {
+      const res = await Axios.get(`${host}/api/v1/replies`);
+      const filteredMessage = res.data.filter(
+        (reply) => reply.UserId === userInfos.id
+      );
+      setMessage(filteredMessage);
+      return message;
+    } catch (err) {
+      setError(err);
+      return error;
+    }
+  };
 
   useEffect(() => {
     getAnnounces();
     getAnswer();
-  });
+    getMessage();
+  }, []);
 
   return (
     <div className={styles.dashboardTable}>
@@ -95,6 +110,20 @@ function DashboardTable({ token, userInfos }) {
               className={activeTab === '2' ? styles.activeOn : styles.activeOff}
             >
               Réponses à mes annonces
+            </h4>
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={{ active: activeTab === '1' }}
+            onClick={() => {
+              toggle('3');
+            }}
+          >
+            <h4
+              className={activeTab === '3' ? styles.activeOn : styles.activeOff}
+            >
+              Mes messages envoyés
             </h4>
           </NavLink>
         </NavItem>
@@ -158,6 +187,39 @@ function DashboardTable({ token, userInfos }) {
                       <td>{item.title}</td>
                       <Comment comment={item.comment} title={item.title} />{' '}
                       <UserName id={item.UserId} token={token} />
+                      <td>
+                        <CrossDelete
+                          route="replies"
+                          id={item.id}
+                          getDatas={getMessage}
+                          token={token}
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+        </TabPane>
+        <TabPane tabId="3">
+          <Row>
+            <Col>
+              <Table size="sm" className={styles.tables}>
+                <thead>
+                  <tr>
+                    <th>Annonce</th>
+                    <th>Sujet</th>
+                    <th>Message</th>
+                    <th>Supprimer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {message.map((item) => (
+                    <tr>
+                      <td>{item.titlePost}</td>
+                      <td>{item.title}</td>
+                      <Comment comment={item.comment} title={item.title} />{' '}
                       <td>
                         <CrossDelete
                           route="replies"

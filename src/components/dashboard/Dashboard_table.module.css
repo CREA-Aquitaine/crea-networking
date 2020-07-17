@@ -78,6 +78,7 @@
 .modalComment {
   cursor: pointer;
   color: #007bff !important;
+  margin-top: 1vw;
 }
 .modalComment:hover {
   cursor: pointer;

@@ -38,9 +38,6 @@ function UserTypes({ token }) {
       setError(err);
     }
   };
-  useEffect(() => {
-    getUserTypes();
-  });
 
   const setToastSuccess = () => {
     toast.success("Le type d'utilisateur a bien été publiée.", {
@@ -110,6 +107,11 @@ function UserTypes({ token }) {
     postUserTypes();
     setLabel('');
   };
+
+  useEffect(() => {
+    getUserTypes();
+  }, []);
+
   return (
     <Container>
       <h2 className="mt-1 mb-3">Les types d&apos;utilisateurs</h2>

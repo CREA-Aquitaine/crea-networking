@@ -16,32 +16,30 @@ function HomeAdmin({ token }) {
   const [types, setTypes] = useState([]);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const typesRes = await Axios.get(`${host}/api/v1/userTypes`, {
+  const getData = async () => {
+    try {
+      const typesRes = await Axios.get(`${host}/api/v1/userTypes`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const typesWithUsersPromise = typesRes.data.map((type) => {
+        return Axios.get(`${host}/api/v1/userTypes/${type.id}/users`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        const typesWithUsersPromise = typesRes.data.map((type) => {
-          return Axios.get(`${host}/api/v1/userTypes/${type.id}/users`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-        });
-
-        const res = await Promise.all(typesWithUsersPromise);
-
-        const datas = res.map((r) => r.data);
-        setTypes(datas);
-      } catch (err) {
-        setError(err);
-      }
-    };
+      });
+      const res = await Promise.all(typesWithUsersPromise);
+      const datas = res.map((r) => r.data);
+      setTypes(datas);
+    } catch (err) {
+      setError(err);
+    }
+  };
+  useEffect(() => {
     getData();
-  });
+  }, []);
 
   return (
     <Container className={styles.containerGeneral}>
