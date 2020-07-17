@@ -102,7 +102,7 @@ function PopUpConnection({ setModal, toggle, modal, t }) {
                 </Button>
               </Col>
               <Col>
-                <Button className={styles.button} onClick={toggle}>
+                <Button className={styles.buttonLien} onClick={toggle}>
                   {t('Annuler')}
                 </Button>
               </Col>

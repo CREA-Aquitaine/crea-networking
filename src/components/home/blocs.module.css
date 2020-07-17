@@ -2,3 +2,16 @@
   background-color: inherit;
   color: #dd2b25;
 }
+
+.blocsImgResp {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .blocsImgResp {
+    display: inline-block !important;
+  }
+  .blocsImg {
+    display: none !important;
+  }
+}

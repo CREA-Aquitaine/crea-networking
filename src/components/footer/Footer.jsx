@@ -19,18 +19,16 @@ function footer({ t }) {
               <Row>
                 <Col md="3" xs="12" className="align-self-center">
                   <Row>
-                    <Col className="p-3">
+                    <Col xs="6" md="12" className="p-3">
                       <img
-                        className={styles.imgWidth}
+                        className={styles.imgWidthCrea}
                         src={LogoCrea}
                         alt="logo"
                       />
                     </Col>
-                  </Row>
-                  <Row>
-                    <Col className="p-3">
+                    <Col xs="6" md="12" className="p-3">
                       <img
-                        className={styles.imgWidth}
+                        className={styles.imgWidthNetworking}
                         src={LogoNetworking}
                         alt="logo"
                       />
