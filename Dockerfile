@@ -3,7 +3,7 @@ FROM node:lts as builder
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
-ARG REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL}
+ARG REACT_APP_API_BASE_URL=${REACT_APP_HOST}
 ENV REACT_APP_HOST=${REACT_APP_HOST}
 COPY . /usr/src/app
 RUN npm install
