@@ -1,10 +1,10 @@
 .container {
   box-shadow: 5px 5px 2.5px #dfd9d9, inset 0px 0px 1px #dd2b25;
-  margin-top:1vw;
+  margin-top: 1vw;
   margin-right: auto;
   margin-left: auto;
   text-align: left;
-  width: 70%
+  width: 70%;
 }
 
 .question {
@@ -15,6 +15,6 @@
   font-weight: bold;
 }
 .answer {
-    padding : 1vw 1vw 1vw 2vw;
-    font-weight: bold;
+  padding: 1vw 1vw 1vw 2vw;
+  font-weight: bold;
 }

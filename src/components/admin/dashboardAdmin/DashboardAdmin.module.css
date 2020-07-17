@@ -1,19 +1,19 @@
-.graph {
+/* .graph {
   width: 60vw;
   margin-bottom: 10vh;
-}
+} */
+
 .userTypes {
   background-color: #28262b;
   color: white;
-  height: 4vw;
-  padding-top: 1.5vw;
-  margin-bottom: 2vw;
+  padding: 10px;
 }
+
 .pie {
   box-shadow: 5px 5px 2.5px #dfd9d9;
   border: 1px solid #dfd9d9;
   padding: 0;
-  padding-bottom: 4vh;
+
   width: 100%;
 }
 .line {
@@ -21,29 +21,28 @@
   border: 1px solid #dfd9d9;
   padding: 0;
   padding-bottom: 4vh;
-  margin-top: 2vw;
 }
-.bar2 {
+/* .bar2 {
   margin-top: 10vh;
-}
-.containerGeneral {
+} */
+/* .containerGeneral {
   margin-bottom: 10vh;
-}
+} */
 .nbtotal {
-  margin-top: 3vw;
+  /* margin-top: 3vw; */
   text-align: left;
-  margin-left: 5vw;
+  /* margin-left: 5vw; */
   font-size: 1vw;
   font-weight: bold;
 }
 .nbtotal2 {
   text-align: left;
-  margin-left: 5vw;
+  /* margin-left: 5vw; */
   font-size: 1vw;
   font-weight: bold;
 }
 .nb {
   text-align: left;
-  margin-left: 5vw;
+  /* margin-left: 5vw; */
   font-size: 0.8vw;
 }

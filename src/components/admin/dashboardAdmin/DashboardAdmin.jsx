@@ -46,7 +46,7 @@ function HomeAdmin({ token }) {
       <h2 className="mt-1 mb-3">Mon dashboard</h2>
       {error && <p>Erreur lors de la récupération des données</p>}
       <Row>
-        <Col xs="6">
+        <Col xs="12" md="6">
           <Container Fluid className={styles.pie}>
             <h4 className={styles.userTypes}>Types d&apos;utilisateurs</h4>
             <Pie

@@ -46,6 +46,9 @@ function Blocs({ t }) {
         </Col>
       </Row>
       <Row className="my-5 py-4">
+        <Col className={styles.blocsImgResp} xs="12" md="6">
+          <img width="100%" alt="logo" src={jobSeeker} />
+        </Col>
         <Col xs="12" md="6" className="text-left">
           <hr />
           <h3>{t('TitreDemandeurEmploi')} </h3>
@@ -65,7 +68,7 @@ function Blocs({ t }) {
             </button>
           </Link>
         </Col>
-        <Col xs="12" md="6">
+        <Col className={styles.blocsImg} xs="12" md="6">
           <img width="100%" alt="logo" src={jobSeeker} />
         </Col>
       </Row>

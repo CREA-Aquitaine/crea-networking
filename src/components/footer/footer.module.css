@@ -12,11 +12,26 @@
   color: #dd2b25;
 }
 
-.imgWidth {
+.imgWidthCrea {
+  width: 50%;
+}
+.imgWidthNetworking {
   width: 60%;
 }
 
 .tagMl {
   color: #28262b;
   text-align: center;
+}
+
+@media screen and (max-width: 640px) {
+  .bkgFooter {
+    text-align: center;
+  }
+  .imgWidthCrea {
+    width: 50%;
+  }
+  .imgWidthNetworking {
+    width: 80%;
+  }
 }

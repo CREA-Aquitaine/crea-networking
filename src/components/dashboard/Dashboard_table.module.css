@@ -31,9 +31,8 @@
   text-align: left;
   font-family: 'Raleway-Bold';
   font-size: 17px;
-  border-bottom:inherit;
-  border-top:2px solid grey;
-  
+  border-bottom: inherit;
+  border-top: 2px solid grey;
 }
 .table {
   color: black;
@@ -56,7 +55,6 @@
 }
 .navButton {
   border: inherit;
-
 }
 .cross {
   width: 1vw;
