@@ -45,7 +45,7 @@ function JobCategory({ token }) {
   }, []);
 
   const setToastSuccess = () => {
-    toast.success('Votre question a bien été publiée.', {
+    toast.success('La catégorie a bien été publiée.', {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,

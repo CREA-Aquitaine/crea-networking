@@ -42,7 +42,7 @@ function TypeAnnounce({ token }) {
   };
 
   const setToastSuccess = () => {
-    toast.success('Votre question a bien été publiée.', {
+    toast.success("Votre type d'annonce a bien été publiée.", {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
