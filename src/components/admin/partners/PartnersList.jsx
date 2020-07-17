@@ -11,7 +11,7 @@ function PartnersList({ partners, getPartners }) {
   return (
     <div Fluid className={styles.container}>
       {partners.map((item) => (
-        <div className={styles.row}>
+        <div className={styles.row} key={item.id}>
           <Row>
             <Col xs="3">
               <img className={styles.logoPartner} src={item.logo} alt="logo" />

@@ -214,7 +214,7 @@ const mapStateToProps = (state) => ({
 ModalType.propTypes = {
   token: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  getType: PropTypes.string.isRequired,
+  getType: PropTypes.func.isRequired,
   french: PropTypes.string.isRequired,
   castillan: PropTypes.string.isRequired,
   euskara: PropTypes.string.isRequired,

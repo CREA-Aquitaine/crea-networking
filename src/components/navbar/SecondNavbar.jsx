@@ -13,6 +13,7 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 
 import { Link } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
@@ -25,6 +26,7 @@ function SecondNavbar({ role, t }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   return (
+
     <Navbar className={styles.navbar} light expand="md">
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
@@ -148,7 +150,10 @@ const mapStateToProps = (state) => ({
 
 SecondNavbar.propTypes = {
   role: PropTypes.string.isRequired,
-  t: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps) && withNamespaces()(SecondNavbar);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(SecondNavbar);

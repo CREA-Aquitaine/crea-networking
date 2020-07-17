@@ -40,9 +40,6 @@ function Faq({ token }) {
       setError(err);
     }
   };
-  useEffect(() => {
-    getFaq();
-  }, []);
 
   const setToastSuccess = () => {
     toast.success('Votre question a bien été publiée.', {
@@ -114,6 +111,10 @@ function Faq({ token }) {
     e.preventDefault();
     postFaq();
   };
+
+  useEffect(() => {
+    getFaq();
+  });
 
   return (
     <Container>

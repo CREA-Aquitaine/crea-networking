@@ -4,15 +4,11 @@ import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import styles from './Steps.module.css';
-import ModalPartners from '../partners/modal';
 
 const host = process.env.REACT_APP_HOST;
 
 function BestFriends({ t }) {
   const [partners, setPartners] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const toggle = () => setIsModalOpen(!isModalOpen);
 
   const getPartners = async () => {
     try {
@@ -35,21 +31,11 @@ function BestFriends({ t }) {
       </Row>
       <Row className="mt-5">
         {partnersFavorite.map((item) => (
-          <Col
-            xs="3"
-            onClick={toggle}
-            onKeyDown={toggle}
-            role="button"
-            tabIndex={0}
-          >
-            <img className={styles.partenaire} src={item.logo} alt="ok" />
-            <ModalPartners
-              toggle={toggle}
-              isModalOpen={isModalOpen}
-              label={item.label}
-              url={item.url}
-              description={item.description}
-              logo={item.logo}
+          <Col key={item.id}>
+            <img
+              className={styles.partenaire}
+              alt={item.label}
+              src={item.logo}
             />
           </Col>
         ))}
@@ -59,7 +45,7 @@ function BestFriends({ t }) {
 }
 
 BestFriends.propTypes = {
-  t: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default withNamespaces()(BestFriends);

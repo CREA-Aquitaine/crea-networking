@@ -101,7 +101,7 @@ function footer({ t }) {
   );
 }
 footer.propTypes = {
-  t: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default withNamespaces()(footer);

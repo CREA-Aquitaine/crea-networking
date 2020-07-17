@@ -49,9 +49,9 @@ class Partners extends React.Component {
       <Container>
         <h2>Nos partenaires</h2>
         <Row className={styles.rowPartners}>
-          {partners.map((xa) => (
-            <Col xs="4" className={styles.colLogo}>
-              <Partner {...xa} />
+          {partners.map((item) => (
+            <Col xs="3" className={styles.colLogo} key={item.id}>
+              <Partner {...item} />
             </Col>
           ))}
         </Row>

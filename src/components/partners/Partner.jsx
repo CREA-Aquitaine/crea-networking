@@ -12,7 +12,7 @@ function Partner(props) {
   const toggle = () => setIsModalOpen(!isModalOpen);
   const { label, url, description, logo } = props;
   return (
-    <Col>
+    <Col className="py-3">
       <img
         onClick={toggle}
         className={styles.logoPartner}

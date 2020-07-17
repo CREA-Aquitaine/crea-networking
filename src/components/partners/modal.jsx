@@ -13,20 +13,17 @@ import { withNamespaces } from 'react-i18next';
 
 import styles from './Partners.module.css';
 
-const ModalPartners = (props) => {
-  const {
-    className,
-    toggle,
-    isModalOpen,
-    label,
-    url,
-    description,
-    logo,
-    t,
-  } = props;
-
+const ModalPartners = ({
+  toggle,
+  isModalOpen,
+  label,
+  url,
+  description,
+  logo,
+  t,
+}) => {
   return (
-    <Modal isOpen={isModalOpen} toggle={toggle} className={className}>
+    <Modal isOpen={isModalOpen} toggle={toggle}>
       <ModalHeader>
         <Row className={styles.rowHeaders}>
           <Col xs="9">{label}</Col>
@@ -51,14 +48,13 @@ const ModalPartners = (props) => {
 };
 
 ModalPartners.propTypes = {
-  className: PropTypes.string.isRequired,
   toggle: PropTypes.func.isRequired,
-  isModalOpen: PropTypes.string.isRequired,
+  isModalOpen: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   logo: PropTypes.string.isRequired,
-  t: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default withNamespaces()(ModalPartners);

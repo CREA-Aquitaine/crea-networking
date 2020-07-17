@@ -87,11 +87,9 @@ function PopUpConnection({ setModal, toggle, modal, t }) {
             </FormGroup>
             <Row>
               <Col xs={{ size: 3, offset: 2 }}>
-                <a href="a">
-                  <Link onClick={toggle} to="/createAccount">
-                    {t('Inscription')}
-                  </Link>
-                </a>
+                <Link onClick={toggle} to="/createAccount">
+                  {t('Inscription')}
+                </Link>
               </Col>
               <Col>
                 <ForgotPassword />
@@ -132,10 +130,10 @@ const mapStateToProps = (state) => ({
 });
 
 PopUpConnection.propTypes = {
-  toggle: PropTypes.string.isRequired,
-  modal: PropTypes.string.isRequired,
-  setModal: PropTypes.string.isRequired,
-  t: PropTypes.string.isRequired,
+  toggle: PropTypes.func.isRequired,
+  modal: PropTypes.bool.isRequired,
+  setModal: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps) && withNamespaces()(PopUpConnection);

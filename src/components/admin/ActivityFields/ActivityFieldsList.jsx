@@ -10,7 +10,7 @@ function ActivityFieldsList({ getActivity, activityFields }) {
     <>
       <Row className={styles.containerList}>
         {activityFields.map((item) => (
-          <Col xs="4" className={styles.card}>
+          <Col xs="4" className={styles.card} key={item.id}>
             <Card>
               <CardBody>
                 <CardTitle>Secteur d&apos;activité : {item.labelFr}</CardTitle>
@@ -36,8 +36,8 @@ function ActivityFieldsList({ getActivity, activityFields }) {
 }
 
 ActivityFieldsList.propTypes = {
-  activityFields: PropTypes.string.isRequired,
-  getActivity: PropTypes.string.isRequired,
+  activityFields: PropTypes.arrayOf.isRequired,
+  getActivity: PropTypes.func.isRequired,
 };
 
 export default ActivityFieldsList;
