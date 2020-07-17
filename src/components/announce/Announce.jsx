@@ -42,12 +42,21 @@ function Announce({ token }) {
           {error ? <p>There is an error</p> : ''}
           <Row className={styles.top}>
             <Col sm={{ size: 4 }} className={styles.topleft}>
-              <p>{`Ville: ${infosAnnounce[0].localisation}`}</p>
-              <p>{`Secteur d'activité: ${infosAnnounce[0].JobCategory.labelFr} `}</p>
-              <p>{`Type d'annonce:  ${infosAnnounce[0].TypePost.labelFr} `}</p>
+              <p>
+                <b>Ville : </b>
+                {`${infosAnnounce[0].localisation}`}
+              </p>
+              <p>
+                <b>Secteur d&apos;activité : </b>
+                {`${infosAnnounce[0].JobCategory.labelFr} `}
+              </p>
+              <p>
+                <b>Type d&apos;annonce : </b>
+                {`${infosAnnounce[0].TypePost.labelFr} `}
+              </p>
             </Col>
             <Col className={styles.topright}>
-              <h3>{infosAnnounce[0].title}</h3>
+              <h2>{infosAnnounce[0].title}</h2>
             </Col>
           </Row>
           <Row className={styles.bottom}>

@@ -11,7 +11,7 @@ function FaqList({ faq, getFaq }) {
       {/* {error ? 'Les données n&apos;ont pas pu être récupérées' : ''} */}
       <div Fluid className={styles.container}>
         {faq.map((item) => (
-          <>
+          <div key={item.id}>
             <p className={styles.checkbox}>{item.question}</p>
             <p className={styles.response}>{item.answer}</p>
             <p className={styles.checkbox}>{item.language}</p>
@@ -26,7 +26,7 @@ function FaqList({ faq, getFaq }) {
                 />
               </Col>
             </Row>
-          </>
+          </div>
         ))}
       </div>
     </>
@@ -35,7 +35,7 @@ function FaqList({ faq, getFaq }) {
 
 FaqList.propTypes = {
   faq: PropTypes.string.isRequired,
-  getFaq: PropTypes.string.isRequired,
+  getFaq: PropTypes.func.isRequired,
 };
 
 export default FaqList;

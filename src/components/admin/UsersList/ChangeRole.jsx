@@ -83,6 +83,6 @@ function ChangeRole({ user, token, getAllUsers }) {
 ChangeRole.propTypes = {
   user: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
-  getAllUsers: PropTypes.string.isRequired,
+  getAllUsers: PropTypes.func.isRequired,
 };
 export default ChangeRole;

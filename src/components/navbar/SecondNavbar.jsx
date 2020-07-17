@@ -149,7 +149,7 @@ const mapStateToProps = (state) => ({
 
 SecondNavbar.propTypes = {
   role: PropTypes.string.isRequired,
-  t: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default compose(

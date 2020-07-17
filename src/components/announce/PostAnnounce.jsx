@@ -59,12 +59,6 @@ function PostAnnounce({ token, UserId }) {
     setJobCategoryId(object.id);
   };
 
-  useEffect(() => {
-    getTypePostsData();
-    getJobCatData();
-    setisLoading(false);
-  }, []);
-
   const setToastSuccess = () => {
     toast.success('Votre annonce a bien été publiée.', {
       position: 'top-right',
@@ -151,6 +145,12 @@ function PostAnnounce({ token, UserId }) {
     setlanguage('');
     setJobCategoryId('');
   };
+
+  useEffect(() => {
+    getTypePostsData();
+    getJobCatData();
+    setisLoading(false);
+  }, []);
 
   return (
     <>

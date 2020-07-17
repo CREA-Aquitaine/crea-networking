@@ -55,7 +55,7 @@ function Steps({ t }) {
   );
 }
 Steps.propTypes = {
-  t: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default withNamespaces()(Steps);

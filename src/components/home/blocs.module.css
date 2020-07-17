@@ -7,11 +7,11 @@
   display: none;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 800px) {
   .blocsImgResp {
-    display: inline-block;
+    display: inline-block !important;
   }
   .blocsImg {
-    display: none;
+    display: none !important;
   }
 }

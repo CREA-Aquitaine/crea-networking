@@ -8,7 +8,7 @@ function Comment({ comment, title }) {
   const toggle = () => setModal(!modal);
 
   return (
-    <div>
+    <div className="mt-1">
       <a href={toggle} onClick={toggle} className={styles.modalComment}>
         voir message
       </a>

@@ -18,7 +18,6 @@ function UsersListTable({ usersList, token, getAllUsers }) {
   const [firstName, setFirstName] = useState([]);
   const [email, setEmail] = useState([]);
   const [country, setCountry] = useState([]);
-  const [userTypeState, setUserTypeState] = useState([]);
   const [error, setError] = useState('');
 
   const getAscLastName = () => {
@@ -154,59 +153,6 @@ function UsersListTable({ usersList, token, getAllUsers }) {
     return country && isAsc;
   };
 
-  const getAscUserType = () => {
-    const ascUserTypeFilter = usersList.filter((user) => {
-      if (
-        user.UserType !== null &&
-        user.UserTypeId.label !== null &&
-        user.UserTypeId !== null
-      ) {
-        return user.UserType.label;
-      }
-      return '';
-    });
-    const ascUserType = ascUserTypeFilter.sort((a, b) => {
-      const firstCountry = a.UserType.label.toLowerCase();
-      const secondCountry = b.UserType.label.toLowerCase();
-      if (firstCountry < secondCountry) {
-        return -1;
-      }
-      if (firstCountry > secondCountry) {
-        return 1;
-      }
-      return 0;
-    });
-    setUserTypeState(ascUserType);
-    setIsAsc(true);
-    return userTypeState && isAsc;
-  };
-  const getDscUserType = () => {
-    const dscUserTypeFilter = usersList.filter((user) => {
-      if (
-        user.UserType !== null &&
-        user.UserTypeId.label !== null &&
-        user.UserTypeId !== null
-      ) {
-        return user.UserType.label;
-      }
-      return '';
-    });
-    const dscUserType = dscUserTypeFilter.sort((a, b) => {
-      const firstCountry = a.UserType.label.toLowerCase();
-      const secondCountry = b.UserType.label.toLowerCase();
-      if (firstCountry > secondCountry) {
-        return -1;
-      }
-      if (firstCountry < secondCountry) {
-        return 1;
-      }
-      return 0;
-    });
-    setUserTypeState(dscUserType);
-    setIsAsc(false);
-    return userTypeState && isAsc;
-  };
-
   const deleteUsers = async () => {
     try {
       const userId = usersList.find((user) => user.id);
@@ -295,23 +241,7 @@ function UsersListTable({ usersList, token, getAllUsers }) {
                 <span className={styles.arrowUp} />
               </button>
             </th>
-            <th>
-              Type d&apos;utilisateur
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getAscUserType}
-              >
-                <span className={styles.arrowDown} />
-              </button>
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getDscUserType}
-              >
-                <span className={styles.arrowUp} />
-              </button>
-            </th>
+            <th>Type d&apos;utilisateur</th>
             <th>Role</th>
             <th>Supprimer</th>
           </tr>
@@ -344,6 +274,7 @@ function UsersListTable({ usersList, token, getAllUsers }) {
               </tr>
             );
           })}
+
           <ReactHTMLTableToExcel
             className={styles.export}
             table="emp"
@@ -361,7 +292,7 @@ const mapStateToProps = (state) => ({
 });
 
 UsersListTable.propTypes = {
-  usersList: PropTypes.string.isRequired,
+  usersList: PropTypes.arrayOf.isRequired,
   token: PropTypes.string.isRequired,
   getAllUsers: PropTypes.string.isRequired,
 };

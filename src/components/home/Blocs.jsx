@@ -105,7 +105,7 @@ function Blocs({ t }) {
 }
 
 Blocs.propTypes = {
-  t: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default withNamespaces()(Blocs);

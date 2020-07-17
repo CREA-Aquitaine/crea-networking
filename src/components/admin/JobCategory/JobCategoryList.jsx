@@ -10,7 +10,7 @@ function JobCategoryList({ getCategories, jobCategory }) {
     <>
       <Row className={styles.containerList}>
         {jobCategory.map((item) => (
-          <Col xs="4" className={styles.card}>
+          <Col xs="4" className={styles.card} key={item.id}>
             <Card>
               <CardBody>
                 <CardTitle>Catégorie d&apos;emploi : {item.labelFr}</CardTitle>
@@ -37,7 +37,7 @@ function JobCategoryList({ getCategories, jobCategory }) {
 
 JobCategoryList.propTypes = {
   jobCategory: PropTypes.string.isRequired,
-  getCategories: PropTypes.string.isRequired,
+  getCategories: PropTypes.func.isRequired,
 };
 
 export default JobCategoryList;

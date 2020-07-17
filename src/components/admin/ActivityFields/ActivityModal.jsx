@@ -216,7 +216,7 @@ ActivityModal.propTypes = {
   labelEu: PropTypes.string.isRequired,
   labelF: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  getActivity: PropTypes.string.isRequired,
+  getActivity: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(ActivityModal);
