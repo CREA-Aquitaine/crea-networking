@@ -22,7 +22,6 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
               </Link>
             </Col>
           </Row>
-
           <Row className={styles.userInfosCss}>
             <Col className={styles.contact} xs="3" sm="4">
               <ul>

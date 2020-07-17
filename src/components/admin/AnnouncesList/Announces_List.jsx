@@ -65,7 +65,7 @@ function AnnouncesList({ token }) {
   useEffect(() => {
     getAnnounces();
     getTypePost();
-  });
+  }, []);
   return (
     <>
       <Container>

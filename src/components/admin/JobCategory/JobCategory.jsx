@@ -42,7 +42,7 @@ function JobCategory({ token }) {
   };
   useEffect(() => {
     getCategories();
-  });
+  }, []);
 
   const setToastSuccess = () => {
     toast.success('Votre question a bien été publiée.', {

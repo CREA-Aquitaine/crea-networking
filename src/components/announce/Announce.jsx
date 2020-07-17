@@ -31,7 +31,7 @@ function Announce({ token }) {
 
   useEffect(() => {
     getInfosAnnounce();
-  });
+  }, []);
 
   return (
     <>

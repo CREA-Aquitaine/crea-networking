@@ -118,10 +118,16 @@ function ListAnnounceUser({ token }) {
   //     setAnnonceFiltered(arrayFiltered);
   //   }
   // };
+  const get = () => {
+    getAnnounces();
+    getJobCatData();
+    getTypePost();
+  };
 
   useEffect(() => {
     setisLoading(false);
-  }, [getAnnounces(), getJobCatData(), getTypePost()]);
+    get();
+  }, []);
 
   return (
     <Container>
