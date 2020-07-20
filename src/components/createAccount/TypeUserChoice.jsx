@@ -90,7 +90,7 @@ function TypeUserChoice() {
         <FormGroup check className={styles.formgroupSchool}>
           <Label check className={styles.label}>
             <Input type="radio" name="radio1" onClick={toggleSchool} /> Une
-            école ou une université
+            école, une université ou un étudiant
           </Label>
         </FormGroup>
       </FormGroup>
