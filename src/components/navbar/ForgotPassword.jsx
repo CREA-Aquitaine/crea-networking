@@ -4,7 +4,6 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   Input,
   Label,
   Col,
@@ -13,6 +12,8 @@ import {
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import Axios from 'axios';
+
+import styles from './ForgotPassword.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
@@ -38,13 +39,19 @@ function ForgotPassword({ t }) {
 
   return (
     <div>
-      <a href="a" onKeyDown={toggle} role="button" tabIndex={0}>
+      <div
+        onClick={toggle}
+        onKeyDown={toggle}
+        role="button"
+        tabIndex={0}
+        className={styles.button}
+      >
         {t('mdp2')}
-      </a>
+      </div>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>{t('mdp2')}</ModalHeader>
         <ModalBody>
-          <Row>
+          <Row className="ml-4 mr-4">
             <Col xs="2">
               <Label for="email">Email</Label>
             </Col>
@@ -56,19 +63,23 @@ function ForgotPassword({ t }) {
               />
             </Col>
           </Row>
-          <Row>
+          <Row className="mx-4 my-4">
             <em>{t('champ')}</em>
           </Row>
           {validate ? <p>{t('mailsend')}</p> : ''}
         </ModalBody>
-        <ModalFooter>
-          <Button className="button" onClick={handleSubmit}>
-            {t('Validez')}
-          </Button>
-          <Button className="button" onClick={toggle}>
-            {t('Annuler')}
-          </Button>
-        </ModalFooter>
+        <Row className="mb-4 mx-4">
+          <Col xs={{ size: 2, offset: 8 }}>
+            <Button className="button" onClick={handleSubmit}>
+              {t('Validez')}
+            </Button>
+          </Col>
+          <Col>
+            <Button className={styles.buttonCancel} onClick={toggle}>
+              {t('Annuler')}
+            </Button>
+          </Col>
+        </Row>
       </Modal>
     </div>
   );
