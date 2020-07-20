@@ -108,3 +108,17 @@
   background-color: #dd2b25;
   margin: 2vw 0 1vw;
 }
+.okButton {
+  background-color: white;
+  color: #dd2b25;
+  border-color: #dd2b25;
+}
+.okButton:hover {
+  background-color: #dd2b25;
+  color: white;
+  border-color: white;
+}
+.inputSearch{
+  border-radius : 0;
+  border-color: #dd2b25;
+}
