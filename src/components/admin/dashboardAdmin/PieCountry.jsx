@@ -32,6 +32,7 @@ function PieCountry({ token }) {
   }, []);
 
   const france = users.filter((item) => item.country === 'France');
+  const franceLength = france.length - 2;
   const espagne = users.filter((item) => item.country === 'Espagne');
 
   return (
@@ -42,7 +43,7 @@ function PieCountry({ token }) {
         data={{
           datasets: [
             {
-              data: [france.length, espagne.length],
+              data: [franceLength, espagne.length],
               backgroundColor: ['#ffa500', '#ffff00'],
             },
           ],
@@ -50,7 +51,7 @@ function PieCountry({ token }) {
         }}
       />
       <p className={styles.nbtotal}>
-        Nombre d&apos;utilisateurs en France: {france.length}
+        Nombre d&apos;utilisateurs en France: {franceLength}
       </p>
       <p className={styles.nbtotal2}>
         Nombre d&apos;utilisateurs en Espagne: {espagne.length}
