@@ -28,9 +28,9 @@
   padding-right: 8vw;
 }
 
-.partenairesUser {
+/* .partenairesUser {
   padding-left: 10vw;
-}
+} */
 
 .navlink {
   color: black;
@@ -39,9 +39,9 @@
   color: #dd2b25;
 }
 
-.monDashboard {
+/* .monDashboard {
   margin-left: 15vw;
-}
+} */
 .mesnavbarItems {
   margin-left: 5vw;
   color: black;
@@ -52,7 +52,7 @@
 
 .itemUser {
   padding-left: 4vw;
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
 }
 @media screen and (max-width: 800px) {
   .partenaires,
