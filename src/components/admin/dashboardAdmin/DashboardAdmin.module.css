@@ -29,20 +29,20 @@
   margin-bottom: 10vh;
 } */
 .nbtotal {
-  /* margin-top: 3vw; */
-  text-align: left;
-  /* margin-left: 5vw; */
+  margin-top: 2vw;
+  text-align: center;
+  margin-left: 2vw;
   font-size: 1vw;
   font-weight: bold;
 }
 .nbtotal2 {
-  text-align: left;
-  /* margin-left: 5vw; */
+  text-align: center;
+  margin-left: 2vw;
   font-size: 1vw;
   font-weight: bold;
 }
 .nb {
   text-align: left;
-  /* margin-left: 5vw; */
+  margin-left: 7vw;
   font-size: 0.8vw;
 }
