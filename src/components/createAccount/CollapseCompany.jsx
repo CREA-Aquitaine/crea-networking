@@ -354,13 +354,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
             </Label>
           </Col>
           <Col>
-            <Input
-              type="select"
-              name="select"
-              id="exampleSelect"
-              required
-              value={activityFields[0] && activityFields[0].labelFr}
-            >
+            <Input type="select" name="select" id="exampleSelect" required>
               {activityFields.map((item) => (
                 <option
                   value={item.id}
