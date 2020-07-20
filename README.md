@@ -24,3 +24,7 @@ This template provide :
 - Pre-commit prettifying
 - Pre-commit linting check
 - Pull request linting check (thanks to Github Action)
+
+## State management
+
+REDUX with 3 reducers for admin, languages and user.

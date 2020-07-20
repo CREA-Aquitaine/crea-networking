@@ -115,7 +115,7 @@ function SecondNavbar({ role, t }) {
 
             <NavItem className={styles.itemUser}>
               <NavLink className={styles.navlink} tag={Link} to="/contact">
-                {t('CONTACT')}
+                {t('Contact')}
               </NavLink>
             </NavItem>
           </Nav>
