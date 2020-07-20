@@ -127,7 +127,8 @@ function UsersList({ token }) {
               Gestion des utilisateurs
             </Col>
             <Col xs={{ size: 3, offset: 5 }}>
-              <Input className={styles.inputSearch}
+              <Input
+                className={styles.inputSearch}
                 placeholder="Rechercher par nom"
                 onChange={(e) => setInputSearch(e.target.value)}
               />
