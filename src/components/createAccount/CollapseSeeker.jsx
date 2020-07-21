@@ -100,7 +100,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
   };
   const postRegister = async () => {
     try {
-      const res = await Axios.post('http://localhost:8080/api/v1/auth/login', {
+      const res = await Axios.post(`${host}/api/v1/auth/login`, {
         email,
         password,
       });
@@ -196,7 +196,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="password2">Confirmez le mot de passe </Label>
+            <Label for="password2">Confirmez le mot de passe*</Label>
           </Col>
           <Col>
             <Input
@@ -246,7 +246,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="phone">Téléphone</Label>
+            <Label for="phone">Téléphone*</Label>
           </Col>
           <Col>
             <Input
@@ -261,7 +261,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="phone2">Téléphone 2 </Label>
+            <Label for="phone2">Téléphone 2</Label>
           </Col>
           <Col>
             <Input
