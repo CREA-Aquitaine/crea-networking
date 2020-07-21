@@ -32,7 +32,7 @@ function UsersList({ token }) {
 
   const getCompanies = async () => {
     try {
-      const res = await Axios.get('http://localhost:8080/api/v1/users', {
+      const res = await Axios.get(`${host}/api/v1/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -53,7 +53,7 @@ function UsersList({ token }) {
 
   const getSchools = async () => {
     try {
-      const res = await Axios.get('http://localhost:8080/api/v1/users', {
+      const res = await Axios.get(`${host}/api/v1/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -74,7 +74,7 @@ function UsersList({ token }) {
 
   const getJobSeekers = async () => {
     try {
-      const res = await Axios.get('http://localhost:8080/api/v1/users', {
+      const res = await Axios.get(`${host}/api/v1/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -95,7 +95,7 @@ function UsersList({ token }) {
 
   const getByName = async () => {
     try {
-      const res = await Axios.get('http://localhost:8080/api/v1/users', {
+      const res = await Axios.get(`${host}/api/v1/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

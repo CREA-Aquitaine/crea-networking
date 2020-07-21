@@ -21,6 +21,8 @@ import styles from './PopUpConnection.module.css';
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 import ForgotPassword from './ForgotPassword';
 
+const host = process.env.REACT_APP_HOST;
+
 function PopUpConnection({ setModal, toggle, modal, t }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,7 +40,7 @@ function PopUpConnection({ setModal, toggle, modal, t }) {
 
   const getUser = async () => {
     try {
-      const res = await Axios.post('http://localhost:8080/api/v1/auth/login', {
+      const res = await Axios.post(`${host}/api/v1/auth/login`, {
         email,
         password,
       });

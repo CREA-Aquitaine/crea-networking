@@ -114,7 +114,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
 
   const postRegister = async () => {
     try {
-      const res = await Axios.post('http://localhost:8080/api/v1/auth/login', {
+      const res = await Axios.post(`${host}/api/v1/auth/login`, {
         email,
         password,
       });

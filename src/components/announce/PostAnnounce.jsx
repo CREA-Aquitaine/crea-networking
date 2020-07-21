@@ -22,9 +22,9 @@ function PostAnnounce({ token, UserId }) {
   const [JobCategoryId, setJobCategoryId] = useState('');
   const [error, setError] = useState('');
   const [redirect, setredirect] = useState(false);
+  const host = process.env.REACT_APP_HOST;
 
   const getTypePostsData = async () => {
-    const host = process.env.REACT_APP_HOST;
     try {
       const res = await Axios.get(`${host}/api/v1/postTypes`, {
         headers: {
@@ -37,7 +37,6 @@ function PostAnnounce({ token, UserId }) {
     }
   };
   const getJobCatData = async () => {
-    const host = process.env.REACT_APP_HOST;
     try {
       const res = await Axios.get(`${host}/api/v1/jobCategories`, {
         headers: {
@@ -111,7 +110,7 @@ function PostAnnounce({ token, UserId }) {
     try {
       if (JobCategoryId && language && localisation && TypePostId && title) {
         await Axios.post(
-          'http://localhost:8080/api/v1/posts',
+          `${host}/api/v1/posts`,
           {
             title,
             content,
