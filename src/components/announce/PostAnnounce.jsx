@@ -270,16 +270,16 @@ function PostAnnounce({ token, UserId }) {
               }}
             />
             <Row className="mt-5">
-              <Col sm={{ size: 1, offset: 9 }}>
-                <button type="submit" className="button">
+              <Col md={{ size: 2, offset: 8 }} xs="12">
+                <button type="submit" className="button mt-2">
                   Valider
                 </button>
               </Col>
-              <Col>
+              <Col md="2" xs="12">
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="button ml-5 mb-5"
+                  className="button mt-2"
                 >
                   Annuler
                 </button>

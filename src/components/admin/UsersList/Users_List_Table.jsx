@@ -6,8 +6,9 @@ import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 import { Table, Col } from 'reactstrap';
 
+import { IoMdClose } from 'react-icons/io';
+import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import styles from './Users_List_Table.module.css';
-import cross from './img/cross.png';
 import ChangeRole from './ChangeRole';
 
 const host = process.env.REACT_APP_HOST;
@@ -171,79 +172,31 @@ function UsersListTable({ usersList, token, getAllUsers }) {
   return (
     <Col>
       <Table borderless id="emp">
-        <thead>
+        <thead className={styles.theadBackground}>
           <tr>
-            <th>
+            <th className={styles.thFontsize}>
               Nom
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getAscLastName}
-              >
-                <span className={styles.arrowDown} />
-              </button>
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getDscLastName}
-              >
-                <span className={styles.arrowUp} />
-              </button>
+              <RiArrowDropDownLine onClick={getAscLastName} size="25" />
+              <RiArrowDropUpLine onClick={getDscLastName} size="25" />
             </th>
-            <th>
+            <th className={styles.thFontsize}>
               Prénom
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getAscFirstName}
-              >
-                <span className={styles.arrowDown} />
-              </button>
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getDscFirstName}
-              >
-                <span className={styles.arrowUp} />
-              </button>
+              <RiArrowDropDownLine onClick={getAscFirstName} size="25" />
+              <RiArrowDropUpLine onClick={getDscFirstName} size="25" />
             </th>
-            <th>
+            <th className={styles.thFontsize}>
               Email
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getAscEmail}
-              >
-                <span className={styles.arrowDown} />
-              </button>
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getDscEmail}
-              >
-                <span className={styles.arrowUp} />
-              </button>
+              <RiArrowDropDownLine nClick={getAscEmail} size="25" />
+              <RiArrowDropUpLine onClick={getDscEmail} size="25" />
             </th>
-            <th>
+            <th className={styles.thFontsize}>
               Pays
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getAscCountry}
-              >
-                <span className={styles.arrowDown} />
-              </button>
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getDscCountry}
-              >
-                <span className={styles.arrowUp} />
-              </button>
+              <RiArrowDropDownLine onClick={getAscCountry} size="25" />
+              <RiArrowDropUpLine onClick={getDscCountry} size="25" />
             </th>
-            <th>Type d&apos;utilisateur</th>
-            <th>Role</th>
-            <th>Supprimer</th>
+            <th className={styles.thFontsize}>Type d&apos;utilisateur</th>
+            <th className={styles.thFontsize}>Role</th>
+            <th className={styles.thFontsize}>Supprimer</th>
           </tr>
         </thead>
         <tbody>
@@ -263,18 +216,15 @@ function UsersListTable({ usersList, token, getAllUsers }) {
                   getAllUsers={getAllUsers}
                 />
                 <td className={styles.crossImg}>
-                  <button
-                    type="button"
-                    className={styles.deleteButton}
+                  <IoMdClose
                     onClick={deleteUsers}
-                  >
-                    <img src={cross} alt="cross" className={styles.cross} />
-                  </button>
+                    fill="#dd2b25"
+                    className={styles.cross}
+                  />
                 </td>
               </tr>
             );
           })}
-
           <ReactHTMLTableToExcel
             className={styles.export}
             table="emp"

@@ -3,43 +3,9 @@
   src: url('../raleway/Raleway-Bold.ttf');
 }
 
-.cover {
-  background-image: url('../image/img_header_crea.png');
-  background-repeat: no-repeat;
-  background-size: 100vw;
-  height: 30vw;
-  text-align: left;
-  padding-left: 1vw;
-  padding-top: 15vw;
-  margin-bottom : 3vw;
-}
-
-.cover hr {
-  background-color: white;
-  width: 15vw;
-  height: 0.6vw;
-}
-
-.pres {
-  padding: 0 10vw;
-  line-height: 2;
-}
-
-.presentation {
-  margin-bottom: 4vw;
-}
-.button {
-  margin-top : 1vw;
-}
-
-@media screen and (max-width: 800px) {
-  .cover {
-    background-image: url('../image/img_header_crea.png');
-    background-repeat: no-repeat;
-    background-size: 100vw;
-    height: 30vw;
-    text-align: left;
-    padding-left: 1vw;
-    padding-top: 10vw;
+@media screen and (max-width: 640px) {
+  .presentation {
+    padding-top: 100px;
+    margin-top: 0 !important;
   }
-} 
+}

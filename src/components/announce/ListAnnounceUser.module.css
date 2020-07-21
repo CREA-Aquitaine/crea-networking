@@ -26,3 +26,20 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.button {
+  color: #dd2b25;
+  background-color: inherit;
+  border: 1px solid transparent;
+}
+.button:hover {
+  color: #dd2b25;
+  background-color: inherit;
+  border: 1px solid #dd2b25;
+}
+
+.button:focus {
+  color: #dd2b25;
+  background-color: inherit;
+  border: 1px solid #dd2b25;
+}

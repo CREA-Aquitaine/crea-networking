@@ -2,18 +2,6 @@
   width: 5vw;
   margin-left: 2vw;
 }
-
-.alignCenter {
-  align-items: center !important;
-}
-.logo_anec {
-  width: 12vw;
-  padding-top: 0.7vw;
-  margin-right: 2vw;
-}
-.logo_networking {
-  width: 18vw;
-}
 .navbar {
   background-color: rgb(255, 255, 255, 0.8);
   position: fixed !important;
@@ -23,7 +11,10 @@
   justify-content: flex-end !important;
 }
 
-.partenaires {
+<<<<<<< HEAD .alignCenter {
+  align-items: center !important;
+}
+======= .partenaires {
   padding-left: 45vw;
   padding-right: 8vw;
 }
@@ -31,14 +22,12 @@
 /* .partenairesUser {
   padding-left: 10vw;
 } */
-
-.navlink {
-  color: black;
-}
-.navlink:hover {
+>>>>>>>284b6a6de299e835ee57d343397b32767127cfa6 .navlink:hover {
   color: #dd2b25;
 }
 
+<<<<<<< HEAD
+=======
 /* .monDashboard {
   margin-left: 15vw;
 } */
@@ -46,22 +35,35 @@
   margin-left: 5vw;
   color: black;
 }
-.mesnavbarItems:hover {
+>>>>>>>284b6a6de299e835ee57d343397b32767127cfa6 .mesnavbarItems:hover {
   color: #dd2b25;
 }
 
-.itemUser {
+<<<<<<< HEAD ======= .itemUser {
   padding-left: 4vw;
   /* font-size: 1.5rem; */
 }
-@media screen and (max-width: 800px) {
+>>>>>>>284b6a6de299e835ee57d343397b32767127cfa6
+  @media
+  screen
+  and
+  (max-width: 800px) {
   .partenaires,
   .contact {
     padding-left: inherit;
     padding-right: inherit;
   }
+
+  .marginLeftResp {
+    margin-left: 0px !important;
+  }
+
   .logo_crea {
     display: none;
+  }
+  .toggleButton {
+    background-color: #dd2b25;
+    padding: 3px 8px;
   }
 
   .navbar {

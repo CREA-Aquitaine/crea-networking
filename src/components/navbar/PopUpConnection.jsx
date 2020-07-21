@@ -86,29 +86,40 @@ function PopUpConnection({ setModal, toggle, modal, t }) {
               />
             </FormGroup>
             <Row>
-              <Col xs={{ size: 3, offset: 2 }}>
+              <Col
+                xs="12"
+                md={{ size: 3, offset: 2 }}
+                className={styles.alignRespCenter}
+              >
                 <Link onClick={toggle} to="/createAccount">
                   {t('Inscription')}
                 </Link>
               </Col>
-              <Col>
+              <Col className={styles.alignRespCenter}>
                 <ForgotPassword />
               </Col>
             </Row>
             <Row className="mt-3">
-              <Col xs={{ size: 2, offset: 7 }}>
+              <Col
+                xs="12"
+                md={{ size: 2, offset: 7 }}
+                className={styles.alignRespCenter}
+              >
                 <Button type="submit" className={styles.button}>
                   {t('Valider')}
                 </Button>
               </Col>
-              <Col>
+              <Col className={styles.alignRespCenter}>
                 <Button className={styles.buttonLien} onClick={toggle}>
                   {t('Annuler')}
                 </Button>
               </Col>
             </Row>
             <Row className="mt-2">
-              <Col xs={{ size: 5, offset: 3 }}>
+              <Col
+                xs={{ size: 5, offset: 3 }}
+                className={styles.alignRespCenter}
+              >
                 {error ? (
                   <p className={styles.error}>
                     {t('mdp')} {t('ou')} {t('incorrect')}

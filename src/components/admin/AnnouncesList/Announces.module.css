@@ -1,4 +1,15 @@
-.announcesListTitle {
+.theadBackground {
+  background-color: black;
+  color: white;
+}
+
+.buttonInput {
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
+  margin: 5px;
+}
+/* .announcesListTitle {
   background-color: #28262b;
   color: white;
   padding: 0.8vw;
@@ -97,4 +108,4 @@
 }
 .cross {
   width: 1vw;
-}
+} */

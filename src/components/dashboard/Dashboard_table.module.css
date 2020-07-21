@@ -1,85 +1,20 @@
-@font-face {
-  font-family: 'Raleway-Bold';
-  src: url('../raleway/Raleway-Bold.ttf');
-}
-.dashboardTable {
-  margin: 0;
-  padding: 0;
-}
-.dashboardTable h3 {
-  font-size: 20px !important;
-  color: #28262b;
-  line-height: 1.5;
-  font-weight: 800;
-  text-align: left;
-  font-family: 'Raleway-Bold';
-  text-transform: uppercase;
-}
-/* .dashboardTable hr {
-  height: 8px;
-  width: 10%;
-  background-color: #dd2b25;
-  margin: 0;
-} */
-.tables td {
-  font-family: 'Raleway';
-  text-align: left;
-  font-size: 16px;
+.activeOn {
+  background-color: #dd2b25 !important;
+  color: white;
+  cursor: pointer;
 }
 
-.tables th {
-  text-align: left;
-  font-family: 'Raleway-Bold';
-  font-size: 17px;
-  border-bottom: inherit;
-  border-top: 2px solid grey;
-}
-.table {
-  color: black;
-}
-.activeOn {
-  color: black !important;
-  cursor: pointer;
-}
 .activeOff {
-  color: grey !important;
+  color: #c2c2c2;
   cursor: pointer;
+  border: transparent;
 }
-.rowTd {
-  display: flex;
-  flex-direction: row;
-  color: black;
+
+.activeOff h4 {
+  color: #c2c2c2 !important;
 }
-.rowTd img {
-  margin-right: 1vw;
-}
-.navButton {
-  border: inherit;
-}
-.cross {
-  width: 1vw;
-  cursor: pointer;
-}
-.deleteButton {
-  background-color: transparent;
-  margin: 0;
-}
-.collapse {
-  max-height: 5vh !important;
-  height: 5vh;
-  overflow: hidden;
-  text-overflow: ellipsis !important;
-}
-.collapse:hover {
-  height: auto;
-}
-.modalComment {
-  cursor: pointer;
-  color: #007bff !important;
-  margin-top: 1vw;
-}
-.modalComment:hover {
-  cursor: pointer;
-  text-decoration: underline !important;
-  color: #007bff;
+
+.activeOn h4,
+.activeOff h4 {
+  font-size: 20px;
 }

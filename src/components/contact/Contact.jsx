@@ -5,7 +5,6 @@ import {
   Button,
   Form,
   FormGroup,
-  Label,
   Input,
   Container,
   Row,
@@ -112,31 +111,25 @@ function Contact() {
         {error ? '' : ''}
         <Form onSubmit={handleSubmit} className={styles.form}>
           <FormGroup>
-            <Row className="mb-2">
-              <Col xs={{ size: 2, offset: 2 }}>
-                <Label for="lastname">Votre nom</Label>
-              </Col>
-              <Col xs="6">
+            <Row className="mb-2 justify-content-center">
+              <Col xs="10" sm="6">
                 <Input
                   type="lastname"
                   name="lastname"
                   id="lastname"
-                  placeholder="Dupont"
+                  placeholder="Votre nom"
                   value={lastname}
                   onChange={handleClick}
                 />
               </Col>
             </Row>
-            <Row>
-              <Col xs={{ size: 2, offset: 2 }}>
-                <Label for="firstname">Votre prénom</Label>
-              </Col>
-              <Col xs="6">
+            <Row className="justify-content-center">
+              <Col xs="10" sm="6">
                 <Input
                   type="text"
                   name="firstname"
                   id="firstname"
-                  placeholder="Jean"
+                  placeholder="Votre prénom"
                   value={firstname}
                   onChange={handleClick}
                 />
@@ -144,16 +137,13 @@ function Contact() {
             </Row>
           </FormGroup>
           <FormGroup>
-            <Row>
-              <Col xs={{ size: 2, offset: 2 }}>
-                <Label for="exampleEmail">Votre email</Label>
-              </Col>
-              <Col xs="6">
+            <Row className="justify-content-center">
+              <Col xs="10" sm="6">
                 <Input
                   type="email"
                   name="email"
                   id="email"
-                  placeholder="jean.durand@wcs.com"
+                  placeholder="Votre email"
                   value={email}
                   onChange={handleClick}
                 />
@@ -161,16 +151,13 @@ function Contact() {
             </Row>
           </FormGroup>
           <FormGroup>
-            <Row>
-              <Col xs={{ size: 2, offset: 2 }}>
-                <Label for="exampleEmail">Sujet de la demande</Label>
-              </Col>
-              <Col xs="6">
+            <Row className="justify-content-center">
+              <Col xs="10" sm="6">
                 <Input
                   type="text"
                   name="subject"
                   id="text"
-                  placeholder="Information sur CREA"
+                  placeholder="Sujet de la demande"
                   value={text}
                   onChange={handleClick}
                 />
@@ -178,30 +165,26 @@ function Contact() {
             </Row>
           </FormGroup>
           <FormGroup>
-            <Row>
-              <Col xs={{ size: 2, offset: 2 }}>
-                <Label for="exampleText">Votre demande</Label>
-              </Col>
-            </Row>
-            <Row>
-              <Col className="textarea" xs={{ size: 8, offset: 2 }}>
+            <Row className="justify-content-center">
+              <Col className="textarea" xs="10" sm="6">
                 <Input
                   type="textarea"
                   name="text"
                   id="textarea"
+                  placeholder="Votre demande"
                   value={textarea}
                   onChange={handleClick}
                 />
               </Col>
             </Row>
+            <Row className="justify-content-center mt-4">
+              <Col xs="12">
+                <Button type="submit" className="button">
+                  Envoyer
+                </Button>
+              </Col>
+            </Row>
           </FormGroup>
-          <Row>
-            <Col xs={{ size: 2, offset: 8 }} className="mb-5">
-              <Button type="submit" className="button">
-                Envoyer
-              </Button>
-            </Col>
-          </Row>
         </Form>
       </Container>
     </>

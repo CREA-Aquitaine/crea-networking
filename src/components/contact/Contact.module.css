@@ -1,8 +1,5 @@
-.container {
-    margin-top : 1vw;
-}
-
-.form {
-    margin-top : 2vw;
-    text-align: left;
+@media screen and (max-width: 640px) {
+  .form {
+    margin-top: 50px;
+  }
 }
