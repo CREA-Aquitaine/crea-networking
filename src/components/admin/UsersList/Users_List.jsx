@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 
 import UsersListTable from './Users_List_Table';
 import styles from './Users_List_Table.module.css';
@@ -99,14 +99,11 @@ function UsersList({ token }) {
   return (
     <>
       <Container>
-        <h2 className="mt-1 mb-3">Les utilisateurs</h2>
+        <h2 className="mt-1 mb-3">Gestion des utilisateurs</h2>
         <Container fluid className={styles.containerCadre}>
-          <Row className={styles.usersListTitle}>
-            <Col xs="3" className={styles.usersListTitleMargin}>
-              Gestion des utilisateurs
-            </Col>
-          </Row>
-          <Row className={styles.usersListPage}>
+          <Row
+            className={`${styles.usersListPage} justify-content-center mb-3`}
+          >
             <button
               type="button"
               onClick={getAllUsers}

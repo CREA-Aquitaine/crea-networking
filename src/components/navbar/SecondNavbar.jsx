@@ -8,7 +8,6 @@ import {
   DropdownItem,
   DropdownToggle,
   UncontrolledDropdown,
-  NavbarToggler,
   Collapse,
 } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -17,6 +16,7 @@ import { compose } from 'redux';
 
 import { Link } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 import crea from '../image/logo-crea_2015.png';
 
@@ -27,37 +27,42 @@ function SecondNavbar({ role, t }) {
   const toggle = () => setIsOpen(!isOpen);
   return (
     <Navbar className={styles.navbar} light expand="md">
-      <NavbarToggler onClick={toggle} />
+      <div className={styles.toggleButton}>
+        <GiHamburgerMenu onClick={toggle} fill="white" size="25" />
+      </div>
       <Collapse isOpen={isOpen} navbar>
         {role === 'admin' ? (
-          <Nav className="mr-auto align-items-center" navbar>
-            <NavItem className={styles.monDashboard}>
+          <Nav
+            className={`${styles.bkgRespMenu}mr-auto align-items-center`}
+            navbar
+          >
+            <NavItem className="ml-5">
               <NavLink className={styles.navlink} tag={Link} to="/dashboard">
                 {t('Mon dashboard')}
               </NavLink>
             </NavItem>
-            <NavItem className={styles.mesnavbarItems}>
+            <NavItem className="ml-5">
               <NavLink className={styles.navlink} tag={Link} to="/users">
                 {t('Mes utilisateurs')}{' '}
               </NavLink>
             </NavItem>
-            <NavItem className={styles.mesnavbarItems}>
+            <NavItem className="ml-5">
               <NavLink className={styles.navlink} tag={Link} to="/announces">
                 {t('Mes annonces')}
               </NavLink>
             </NavItem>
-            <NavItem className={styles.mesnavbarItems}>
+            <NavItem className="ml-5">
               <NavLink className={styles.navlink} tag={Link} to="/faq">
                 {t('FAQ')}
               </NavLink>
             </NavItem>
-            <NavItem className={styles.mesnavbarItems}>
+            <NavItem className="ml-5">
               <NavLink className={styles.navlink} tag={Link} to="/partners">
                 {t('Partenaires')}
               </NavLink>
             </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret className={styles.mesnavbarItems}>
+            <UncontrolledDropdown nav inNavbar className="ml-5">
+              <DropdownToggle nav caret>
                 {t('Divers')}
               </DropdownToggle>
               <DropdownMenu bottom>
@@ -80,58 +85,64 @@ function SecondNavbar({ role, t }) {
             </UncontrolledDropdown>
           </Nav>
         ) : role === 'user' ? (
-          <Nav className="mr-auto align-items-center" navbar>
+          <Nav
+            className={`${styles.bkgRespMenu}mr-auto align-items-center`}
+            navbar
+          >
             <NavItem>
               <NavLink tag={Link} to="/">
                 <img src={crea} alt="logo crea" className={styles.logo_crea} />
               </NavLink>
             </NavItem>
-            <NavItem className={styles.partenairesUser}>
+            <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/dashboard">
                 {t('Mon dashboard')}
               </NavLink>
             </NavItem>
 
-            <NavItem className={styles.itemUser}>
+            <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/post">
                 {t('Déposer une annonce')}
               </NavLink>
             </NavItem>
-            <NavItem className={styles.itemUser}>
+            <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/listAnnonce">
                 {t('Rechercher une annonce')}
               </NavLink>
             </NavItem>
-            <NavItem className={styles.itemUser}>
+            <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/partners">
                 {t('Partenaires')}
               </NavLink>
             </NavItem>
-            <NavItem className={styles.itemUser}>
+            <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/faq">
                 {t('FAQ')}
               </NavLink>
             </NavItem>
 
-            <NavItem className={styles.itemUser}>
+            <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/contact">
-                {t('CONTACT')}
+                {t('Contact')}
               </NavLink>
             </NavItem>
           </Nav>
         ) : (
-          <Nav className="mr-auto align-items-center" navbar>
+          <Nav
+            className={`${styles.bkgRespMenu}mr-auto align-items-center`}
+            navbar
+          >
             <NavItem>
               <NavLink tag={Link} to="/">
                 <img src={crea} alt="logo crea" className={styles.logo_crea} />
               </NavLink>
             </NavItem>
-            <NavItem className={styles.partenaires}>
+            <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/partners">
                 {t('Partenaires')}
               </NavLink>
             </NavItem>
-            <NavItem className={styles.contact}>
+            <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/contact">
                 {t('Contact')}
               </NavLink>

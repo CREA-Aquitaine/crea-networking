@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 import styles from './Announces.module.css';
 import AnnouncesListTable from './Announces_List_Table';
 
@@ -69,14 +69,11 @@ function AnnouncesList({ token }) {
   return (
     <>
       <Container>
-        <h2 className="mt-1 mb-3">Les annonces</h2>
+        <h2 className="mt-1 mb-3">Gestion des annonces</h2>
         <Container fluid className={styles.containerCadre}>
-          <Row className={styles.announcesListTitle}>
-            <Col xs="3" className={styles.announcesListTitleMargin}>
-              Gestion des annonces
-            </Col>
-          </Row>
-          <Row className={styles.announcesListPage}>
+          <Row
+            className={`${styles.announcesListPage} justify-content-center mb-3`}
+          >
             <button
               type="button"
               className={styles.buttonInput}

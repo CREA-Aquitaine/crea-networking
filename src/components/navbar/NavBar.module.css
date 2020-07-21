@@ -34,3 +34,9 @@
   cursor: pointer;
   padding: 0 !important;
 }
+
+@media screen and (max-width: 640px) {
+  .banner {
+    display: none;
+  }
+}

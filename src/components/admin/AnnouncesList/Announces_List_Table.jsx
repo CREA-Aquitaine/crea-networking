@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { connect } from 'react-redux';
-
 import { Table, Col } from 'reactstrap';
 
+import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
+import { IoMdClose } from 'react-icons/io';
 import styles from './Announces.module.css';
-import cross from './img/cross.png';
 
 const host = process.env.REACT_APP_HOST;
 
@@ -66,24 +66,12 @@ function AnnouncesListTable({ announcesList, token, getAnnounces }) {
   return (
     <Col>
       <Table borderless>
-        <thead>
+        <thead className={styles.theadBackground}>
           <tr>
             <th>
               Titre
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getAscTitle}
-              >
-                <span className={styles.arrowDown} />
-              </button>
-              <button
-                type="button"
-                className={styles.arrowButtons}
-                onClick={getDscTitle}
-              >
-                <span className={styles.arrowUp} />
-              </button>
+              <RiArrowDropDownLine onClick={getAscTitle} size="25" />
+              <RiArrowDropUpLine onClick={getDscTitle} size="25" />
             </th>
             <th>Type d&apos;annonces</th>
             <th>Catégorie</th>
@@ -98,13 +86,11 @@ function AnnouncesListTable({ announcesList, token, getAnnounces }) {
                 <td>{post.TypePost ? post.TypePost.labelFr : ''}</td>
                 <td>{post.JobCategory ? post.JobCategory.labelFr : ''}</td>
                 <td className={styles.crossImg}>
-                  <button
-                    type="button"
-                    className={styles.deleteButton}
+                  <IoMdClose
                     onClick={deleteAnnounce}
-                  >
-                    <img src={cross} alt="cross" className={styles.cross} />
-                  </button>
+                    fill="#dd2b25"
+                    className={styles.cross}
+                  />
                 </td>
               </tr>
             );

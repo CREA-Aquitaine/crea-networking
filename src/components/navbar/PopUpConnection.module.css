@@ -36,3 +36,9 @@
   font-weight: bold;
   text-align: center;
 }
+
+@media screen and (max-width: 640px) {
+  .alignRespCenter {
+    text-align: center;
+  }
+}

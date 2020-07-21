@@ -1,61 +1,11 @@
-@font-face {
-  font-family: 'Raleway-Bold';
-  src: url('../raleway/Raleway-Bold.ttf');
-}
-.userInfosCss {
-  margin-left: 0;
-  margin-right: 0 !important;
-  margin-bottom: 0;
-  padding: 0;
-}
-.userInfosCss p {
-  font-size: 1vw;
+.blocInfos,
+.blocInfos h3 {
   color: white;
-  font-family: 'Raleway';
-}
-.userLogo {
-  width: 10vw;
-  height: 20vh;
-  border-radius: 50%;
-}
-.logoSection {
-  padding-top: 2.5vw;
-}
-.userInfos {
-  padding: 2vw;
-}
-.userInfos li {
-  list-style: none;
   text-align: left;
+  padding: 2%;
 }
-.userInfos h4 {
-  font-size: 1.3vw;
-  color: white;
-  line-height: 1.5;
-  font-weight: 800;
-  font-family: 'Raleway';
-}
-.contact {
-  padding: 1vw 0 1vw 0 !important;
-  margin: 0;
-}
-.contact li {
-  list-style: none;
-  text-align: left;
-}
-.contact h4 {
-  font-size: 1.3vw;
-  color: white;
-  line-height: 1.5;
-  font-weight: 800;
-  font-family: 'Raleway';
-}
-.pen {
-  width: 1.2vw;
-  cursor: pointer;
-  margin: 1vw;
-}
-.myProfile {
-  color : white;
-  padding-top : 1vh;
+
+.widthInnerContainer {
+  width: 80%;
+  margin: auto;
 }

@@ -14,9 +14,10 @@ import Axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { IoMdClose } from 'react-icons/io';
 import styles from './Dashboard_table.module.css';
 import UserName from './UserName';
-import CrossDelete from './CrossDelete';
+// import CrossDelete from './CrossDelete';
 import Comment from './Comment';
 
 const host = process.env.REACT_APP_HOST;
@@ -85,46 +86,40 @@ function DashboardTable({ token, userInfos }) {
   return (
     <div className={styles.dashboardTable}>
       <Nav tabs className={styles.navButton}>
-        <NavItem>
+        <NavItem
+          className={activeTab === '1' ? styles.activeOn : styles.activeOff}
+        >
           <NavLink
-            className={{ active: activeTab === '1' }}
+            className={`{ active: activeTab === '1' } ${styles.tabStyles}`}
             onClick={() => {
               toggle('1');
             }}
           >
-            <h4
-              className={activeTab === '1' ? styles.activeOn : styles.activeOff}
-            >
-              Mes Annonces
-            </h4>
+            Mes Annonces
           </NavLink>
         </NavItem>
-        <NavItem>
+        <NavItem
+          className={activeTab === '2' ? styles.activeOn : styles.activeOff}
+        >
           <NavLink
             className={{ active: activeTab === '1' }}
             onClick={() => {
               toggle('2');
             }}
           >
-            <h4
-              className={activeTab === '2' ? styles.activeOn : styles.activeOff}
-            >
-              Réponses à mes annonces
-            </h4>
+            Réponses à mes annonces
           </NavLink>
         </NavItem>
-        <NavItem>
+        <NavItem
+          className={activeTab === '3' ? styles.activeOn : styles.activeOff}
+        >
           <NavLink
             className={{ active: activeTab === '1' }}
             onClick={() => {
               toggle('3');
             }}
           >
-            <h4
-              className={activeTab === '3' ? styles.activeOn : styles.activeOff}
-            >
-              Mes messages envoyés
-            </h4>
+            Mes messages envoyés
           </NavLink>
         </NavItem>
       </Nav>
@@ -132,7 +127,7 @@ function DashboardTable({ token, userInfos }) {
         <TabPane tabId="1">
           <Row>
             <Col>
-              <Table size="sm" className={styles.tables}>
+              <Table responsive>
                 <thead>
                   <tr>
                     <th>Titre</th>
@@ -152,11 +147,12 @@ function DashboardTable({ token, userInfos }) {
                         </Link>
                       </td>
                       <td>
-                        <CrossDelete
+                        <IoMdClose
                           id={post.id}
                           getDatas={getAnnounces}
                           token={token}
                           route="posts"
+                          fill="#dd2b25"
                         />
                       </td>
                     </tr>
@@ -169,7 +165,7 @@ function DashboardTable({ token, userInfos }) {
         <TabPane tabId="2">
           <Row>
             <Col>
-              <Table size="sm" className={styles.tables}>
+              <Table responsive>
                 <thead>
                   <tr>
                     <th>Annonce</th>
@@ -188,11 +184,12 @@ function DashboardTable({ token, userInfos }) {
                       <Comment comment={item.comment} title={item.title} />{' '}
                       <UserName id={item.UserId} token={token} />
                       <td>
-                        <CrossDelete
+                        <IoMdClose
                           route="replies"
                           id={item.id}
                           getDatas={getMessage}
                           token={token}
+                          fill="#dd2b25"
                         />
                       </td>
                     </tr>
@@ -205,7 +202,7 @@ function DashboardTable({ token, userInfos }) {
         <TabPane tabId="3">
           <Row>
             <Col>
-              <Table size="sm" className={styles.tables}>
+              <Table responsive>
                 <thead>
                   <tr>
                     <th>Annonce</th>
@@ -221,11 +218,12 @@ function DashboardTable({ token, userInfos }) {
                       <td>{item.title}</td>
                       <Comment comment={item.comment} title={item.title} />{' '}
                       <td>
-                        <CrossDelete
+                        <IoMdClose
                           route="replies"
                           id={item.id}
                           getDatas={getAnswer}
                           token={token}
+                          fill="#dd2b25"
                         />
                       </td>
                     </tr>

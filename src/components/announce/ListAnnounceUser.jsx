@@ -133,7 +133,7 @@ function ListAnnounceUser({ token }) {
     <Container>
       <h2 className="mb-5 mt-2">Rechercher une annonce</h2>
       <Row className="mt-5">
-        <Col xs="4">
+        <Col sm="4" xs="12" className="mt-2">
           <Input
             type="select"
             name="select"
@@ -149,7 +149,7 @@ function ListAnnounceUser({ token }) {
             ))}
           </Input>
         </Col>
-        <Col xs="4">
+        <Col sm="4" xs="12" className="mt-2">
           <Input
             type="select"
             name="select"
@@ -165,13 +165,13 @@ function ListAnnounceUser({ token }) {
             ))}
           </Input>
         </Col>
-        <Col xs={{ size: 1.5, offset: 1 }} className="mr-2">
+        <Col sm="2" xs="12" className="mt-2">
           <Button onClick={getResults} className="button">
             Rechercher
           </Button>
         </Col>
-        <Col xs="1.5">
-          <Button onClick={resetSearch} className="button">
+        <Col sm="2" xs="12" className="mt-2">
+          <Button onClick={resetSearch} className={styles.button}>
             Reinitialiser
           </Button>
         </Col>
