@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { connect, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
@@ -31,27 +32,84 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const setToastSuccess = () => {
+    toast.success('Vous êtes bien enregistré.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+  const setToastError = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+  const setToastInput = () => {
+    toast.info("Renseignez tous les champs s'il vous plait", {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
   const postUser = async () => {
     try {
-      await Axios.post(`${host}/api/v1/auth/register`, {
-        lastName,
-        firstName,
-        email,
-        password,
-        localisation,
-        country,
-        phone_number: Number(phone),
-        phone_number2: Number(phone2),
-        schoolName,
-        qualification,
-        ActivityFieldId,
-        UserTypeId: userTypeId,
-        RoleId: roleId,
-      });
-      setCreated(true);
+      if (
+        lastName &&
+        firstName &&
+        email &&
+        password &&
+        localisation &&
+        country &&
+        phone &&
+        schoolName &&
+        qualification &&
+        ActivityFieldId &&
+        userTypeId &&
+        roleId
+      ) {
+        await Axios.post(`${host}/api/v1/auth/register`, {
+          lastName,
+          firstName,
+          email,
+          password,
+          localisation,
+          country,
+          phone_number: Number(phone),
+          phone_number2: Number(phone2),
+          schoolName,
+          qualification,
+          ActivityFieldId,
+          UserTypeId: userTypeId,
+          RoleId: roleId,
+        });
+        setCreated(true);
+        setToastSuccess();
+      } else {
+        setToastInput();
+      }
     } catch (err) {
       setError(err);
+      setToastError();
     }
+  };
+
+  const selectActivityFields = (e) => {
+    const object = activityFields.find((el) => el.labelFr === e.target.value);
+    setActivityFieldId(object.id);
   };
 
   const postRegister = async () => {
@@ -67,6 +125,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
       } else if (res.data.user.Role.label === 'USER') {
         dispatch({ type: 'USER' });
       }
+      history.push('/dashboard');
     } catch (err) {
       setError(err);
     }
@@ -77,8 +136,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
     if (password === passwordRepeat) {
       try {
         await postUser();
-        postRegister();
-        history.push('/dashboard');
+        await postRegister();
       } catch (err) {
         setError(err);
       }
@@ -91,7 +149,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
     try {
       const res = await Axios.get(`${host}/api/v1/activityFields`);
       setActivityFields(res.data);
-      setActivityFieldId(res.data[0].id);
+      // setActivityFieldId(res.data[0].id);
     } catch (err) {
       setError(err);
     }
@@ -195,7 +253,6 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
           </Col>
         </Row>
         {errorPassword ? <p>Veuillez ressaisir votre mot de passe</p> : ''}
-
         <Row className="mb-2">
           <Col xs="3">
             <Label for="localisation">
@@ -282,14 +339,19 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
             </Label>
           </Col>
           <Col>
-            <Input type="select" name="select" id="exampleSelect" required>
+            <Input
+              type="select"
+              name="select"
+              id="exampleSelect"
+              required
+              onChange={selectActivityFields}
+              defaultValue="defaultValue"
+            >
+              <option value="defaultValue" disabled>
+                Selectionnez
+              </option>
               {activityFields.map((item) => (
-                <option
-                  value={item.id}
-                  onClick={() => setActivityFieldId(item.id)}
-                >
-                  {item.labelFr}
-                </option>
+                <option>{item.labelFr}</option>
               ))}
             </Input>
           </Col>

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import styles from './PostAnnounce.module.css';
 
 function PostAnnounce({ token, UserId }) {
@@ -21,6 +21,7 @@ function PostAnnounce({ token, UserId }) {
   const [language, setlanguage] = useState('');
   const [JobCategoryId, setJobCategoryId] = useState('');
   const [error, setError] = useState('');
+  const [redirect, setredirect] = useState(false);
 
   const getTypePostsData = async () => {
     const host = process.env.REACT_APP_HOST;
@@ -95,6 +96,16 @@ function PostAnnounce({ token, UserId }) {
     });
   };
 
+  const resetForm = () => {
+    setContent('');
+    setTitle('');
+    settypePostsData([]);
+    setjobCatData([]);
+    setLocalisation('');
+    setlanguage('');
+    setredirect(true);
+  };
+
   const handlePostAnnounce = async (e) => {
     e.preventDefault();
     try {
@@ -117,6 +128,7 @@ function PostAnnounce({ token, UserId }) {
           }
         );
         setToastSuccess();
+        resetForm();
       } else {
         setToastInput();
       }
@@ -136,21 +148,15 @@ function PostAnnounce({ token, UserId }) {
     setlanguage(e.target.value);
   };
 
-  const resetForm = (e) => {
-    e.preventDefault();
-    setContent('');
-    setTitle('');
-    settypePostId('');
-    setLocalisation('');
-    setlanguage('');
-    setJobCategoryId('');
-  };
-
   useEffect(() => {
     getTypePostsData();
     getJobCatData();
     setisLoading(false);
   }, []);
+
+  if (redirect) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <>

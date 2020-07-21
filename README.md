@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 **_ for this project, you need to create a ".env" with those fields _**
 
-- REACT_APP_HOST =
+- REACT_APP_HOST = host of development web server(ex: http://localhost:8080)
 - REACT_APP_IMGUR_TOKEN=Client_id imgur
 
 ## Getting started
@@ -24,3 +24,7 @@ This template provide :
 - Pre-commit prettifying
 - Pre-commit linting check
 - Pull request linting check (thanks to Github Action)
+
+## State management
+
+REDUX with 3 reducers for admin, languages and user.

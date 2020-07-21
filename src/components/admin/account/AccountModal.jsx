@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
+
 import {
   Button,
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   NavItem,
   FormGroup,
   Label,
@@ -31,8 +33,34 @@ function AccountModal({ token, userInfos }) {
   const [country, setCountry] = useState(userInfos.country);
   const [phone, setPhone] = useState(userInfos.phone_number);
   const [error, setError] = useState('');
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const toggle = () => setModal(!modal);
+
+  const setToastErrorDelete = () => {
+    toast.error('Une erreur est survenue, veuillez réessayer.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const setToastSuccessDelete = () => {
+    toast.success('Votre utilisateur a bien été supprimée.', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
   const putUser = async () => {
     try {
@@ -62,6 +90,22 @@ function AccountModal({ token, userInfos }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     putUser();
+  };
+
+  const deleteUser = async () => {
+    try {
+      await Axios.delete(`${host}/api/v1/users/${userInfos.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setModal(!modal);
+      setToastSuccessDelete();
+      history.push('/');
+      dispatch({ type: 'DISCONNECT' });
+    } catch (err) {
+      setToastErrorDelete();
+    }
   };
 
   return (
@@ -173,14 +217,23 @@ function AccountModal({ token, userInfos }) {
               </Row>
             </FormGroup>
           </ModalBody>
-          <ModalFooter>
-            <Button className={styles.buttonCancel} onClick={toggle}>
-              Annuler
-            </Button>
-            <Button className="button" type="submit">
-              Valider
-            </Button>
-          </ModalFooter>
+          <Row className="mb-4 ml-4">
+            <Col xs="4">
+              <Button className="button" onClick={deleteUser}>
+                Supprimer mon compte
+              </Button>
+            </Col>
+            <Col xs={{ size: 2, offset: 4 }}>
+              <Button className={styles.buttonCancel} onClick={toggle}>
+                Annuler
+              </Button>
+            </Col>
+            <Col xs="2">
+              <Button className="button" type="submit">
+                Valider
+              </Button>
+            </Col>
+          </Row>
         </Form>
       </Modal>
     </>

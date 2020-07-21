@@ -11,19 +11,43 @@
   justify-content: flex-end !important;
 }
 
-.alignCenter {
+<<<<<<< HEAD .alignCenter {
   align-items: center !important;
 }
+======= .partenaires {
+  padding-left: 45vw;
+  padding-right: 8vw;
+}
 
-.navlink:hover {
+/* .partenairesUser {
+  padding-left: 10vw;
+} */
+>>>>>>>284b6a6de299e835ee57d343397b32767127cfa6 .navlink:hover {
   color: #dd2b25;
 }
 
-.mesnavbarItems:hover {
+<<<<<<< HEAD
+=======
+/* .monDashboard {
+  margin-left: 15vw;
+} */
+.mesnavbarItems {
+  margin-left: 5vw;
+  color: black;
+}
+>>>>>>>284b6a6de299e835ee57d343397b32767127cfa6 .mesnavbarItems:hover {
   color: #dd2b25;
 }
 
-@media screen and (max-width: 800px) {
+<<<<<<< HEAD ======= .itemUser {
+  padding-left: 4vw;
+  /* font-size: 1.5rem; */
+}
+>>>>>>>284b6a6de299e835ee57d343397b32767127cfa6
+  @media
+  screen
+  and
+  (max-width: 800px) {
   .partenaires,
   .contact {
     padding-left: inherit;

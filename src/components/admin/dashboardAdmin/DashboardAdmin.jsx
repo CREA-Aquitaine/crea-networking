@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import Axios from 'axios';
 
 import styles from './DashboardAdmin.module.css';
-// import LineInscription from './LineInscription';
 import PieCountry from './PieCountry';
 
 const host = process.env.REACT_APP_HOST;
@@ -61,21 +60,13 @@ function HomeAdmin({ token }) {
                 labels: types.map((t) => t.label),
               }}
             />
-            {/* <p className={styles.nbtotal}></p> */}
-            {types.map((type) => {
-              return (
-                <p className={styles.nb} key={type.id}>
-                  {type.label} : {type.Users.length}
-                </p>
-              );
-            })}
+            <p className={styles.nbtotal}>
+              Nombre total d&apos;utilisateurs : {types.length}
+            </p>
           </Container>
         </Col>
         <Col>
           <PieCountry />
-          {/* TODO : connect graph to createAt */}
-
-          {/* <LineInscription users={usersWithUserType} /> */}
         </Col>
       </Row>
     </Container>

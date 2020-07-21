@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Col, Input, Button } from 'reactstrap';
 
 import UsersListTable from './Users_List_Table';
 import styles from './Users_List_Table.module.css';
@@ -13,6 +13,7 @@ function UsersList({ token }) {
   const [usersList, setUserslist] = useState([]);
   const [error, setError] = useState('');
   const [isUserType, setUserType] = useState(false);
+  const [inputSearch, setInputSearch] = useState('');
 
   const getAllUsers = async () => {
     try {
@@ -92,6 +93,26 @@ function UsersList({ token }) {
     return isUserType;
   };
 
+  const getByName = async () => {
+    try {
+      const res = await Axios.get('http://localhost:8080/api/v1/users', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const search = res.data.filter(
+        (user) =>
+          user.lastName.includes(inputSearch) ||
+          user.firstName.includes(inputSearch)
+      );
+      setUserslist(search);
+      setUserType(true);
+    } catch (err) {
+      setError(error);
+    }
+    return isUserType;
+  };
+
   useEffect(() => {
     getAllUsers();
   }, []);
@@ -101,6 +122,23 @@ function UsersList({ token }) {
       <Container>
         <h2 className="mt-1 mb-3">Gestion des utilisateurs</h2>
         <Container fluid className={styles.containerCadre}>
+          <Row className={styles.usersListTitle}>
+            <Col xs="3" className={styles.usersListTitleMargin}>
+              Gestion des utilisateurs
+            </Col>
+            <Col xs={{ size: 3, offset: 5 }}>
+              <Input
+                className={styles.inputSearch}
+                placeholder="Rechercher par nom"
+                onChange={(e) => setInputSearch(e.target.value)}
+              />
+            </Col>
+            <Col xs="1">
+              <Button className={styles.okButton} onClick={getByName}>
+                Ok
+              </Button>
+            </Col>
+          </Row>
           <Row
             className={`${styles.usersListPage} justify-content-center mb-3`}
           >
