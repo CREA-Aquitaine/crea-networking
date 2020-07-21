@@ -107,6 +107,11 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
     }
   };
 
+  const selectActivityFields = (e) => {
+    const object = activityFields.find((el) => el.labelFr === e.target.value);
+    setActivityFieldId(object.id);
+  };
+
   const postRegister = async () => {
     try {
       const res = await Axios.post('http://localhost:8080/api/v1/auth/login', {
@@ -144,7 +149,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
     try {
       const res = await Axios.get(`${host}/api/v1/activityFields`);
       setActivityFields(res.data);
-      setActivityFieldId(res.data[0].id);
+      // setActivityFieldId(res.data[0].id);
     } catch (err) {
       setError(err);
     }
@@ -334,14 +339,19 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
             </Label>
           </Col>
           <Col>
-            <Input type="select" name="select" id="exampleSelect" required>
+            <Input
+              type="select"
+              name="select"
+              id="exampleSelect"
+              required
+              onChange={selectActivityFields}
+              defaultValue="defaultValue"
+            >
+              <option value="defaultValue" disabled>
+                Selectionnez
+              </option>
               {activityFields.map((item) => (
-                <option
-                  value={item.id}
-                  onClick={() => setActivityFieldId(item.id)}
-                >
-                  {item.labelFr}
-                </option>
+                <option>{item.labelFr}</option>
               ))}
             </Input>
           </Col>

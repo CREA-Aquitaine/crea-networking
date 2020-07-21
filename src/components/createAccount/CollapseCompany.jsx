@@ -3,7 +3,7 @@ import { Collapse, Label, Input, Row, Col, Button, Form } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
@@ -26,7 +26,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
   const [phone2, setPhone2] = useState('');
   const [qualification, setQualification] = useState('');
   const [activityFields, setActivityFields] = useState([]);
-  const [ActivityFieldId, setActivityFieldId] = useState();
+  const [ActivityFieldId, setActivityFieldId] = useState('');
   const [error, setError] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [created, setCreated] = useState(false);
@@ -128,13 +128,20 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
     }
   };
 
+  const selectActivityFields = (e) => {
+    const object = activityFields.find((el) => el.labelFr === e.target.value);
+    setActivityFieldId(object.id);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === passwordRepeat) {
       try {
         await postUser();
         postRegister();
-        history.push('/dashboard');
+        if (created) {
+          history.push('/dashboard');
+        }
       } catch (err) {
         setError(err);
       }
@@ -155,6 +162,10 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
   useEffect(() => {
     getActivities();
   }, []);
+
+  if (created) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <Collapse isOpen={isOpen}>
@@ -354,14 +365,19 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
             </Label>
           </Col>
           <Col>
-            <Input type="select" name="select" id="exampleSelect" required>
+            <Input
+              type="select"
+              name="select"
+              id="exampleSelect"
+              required
+              defaultValue="defaultValue"
+              onChange={selectActivityFields}
+            >
+              <option value="defaultValue" disabled>
+                Selectionnez
+              </option>
               {activityFields.map((item) => (
-                <option
-                  value={item.id}
-                  onClick={() => setActivityFieldId(item.id)}
-                >
-                  {item.labelFr}
-                </option>
+                <option>{item.labelFr}</option>
               ))}
             </Input>
           </Col>
