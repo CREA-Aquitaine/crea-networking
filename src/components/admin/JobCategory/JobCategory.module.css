@@ -1,25 +1,19 @@
 .container {
   box-shadow: 5px 5px 2.5px #dfd9d9;
   border: 1px solid #dfd9d9;
-  margin-bottom: 4vh;
-  padding-bottom: 2vh;
 }
 
 .title {
   background-color: #dd2b25;
-  padding: 0.8vw;
 }
 
 .activityTitle {
   color: white;
-  padding-top: 0.8vh;
 }
 .addActivity {
   background-color: #f9f9f9;
   border: 1px solid #e7e5e5;
   box-shadow: 5px 5px 2.5px #dfd9d9;
-  padding: 2vw;
-  margin-top: 2vw;
 }
 .input {
   box-shadow: 5px 5px 2.5px #dfd9d9;
@@ -29,24 +23,16 @@
 .inputEnd {
   box-shadow: 5px 5px 2.5px #dfd9d9;
   border-radius: 0;
-  margin-bottom: 2vw;
-}
-.containerList {
-  margin: 2vw 2vw;
 }
 
 .textCard {
   text-align: left;
-  font-size: 0.8vw;
+  font-size: 12px;
   text-align: left;
 }
 
-.card {
-  margin-bottom: 1vw;
-}
 .titleModal {
   text-align: center;
-  margin-top: 1vw;
 }
 .buttonCancel {
   padding: 8px 20px !important;
@@ -63,6 +49,5 @@
 }
 .subtitle {
   text-align: center;
-  font-size: 0.8vw !important;
-  margin-bottom: 2vw;
+  font-size: 12px !important;
 }

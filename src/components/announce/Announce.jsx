@@ -38,7 +38,7 @@ function Announce({ token }) {
       {isLoading ? (
         <p>loading...</p>
       ) : (
-        <Container className={styles.global}>
+        <Container className={`p-5 ${styles.global}`}>
           {error ? <p>There is an error</p> : ''}
           <Row className={styles.top}>
             <Col sm={{ size: 4 }} className={styles.topleft}>

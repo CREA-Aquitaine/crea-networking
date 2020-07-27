@@ -9,7 +9,7 @@ function TypeAnnounceList({ typePost, getType }) {
     <Row>
       {typePost.map((item) => {
         return (
-          <Col xs={4} key={item.id}>
+          <Col md="4" xs="6" key={item.id}>
             <TypeAnnounceCard
               getType={getType}
               french={item.labelFr}

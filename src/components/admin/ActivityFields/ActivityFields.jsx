@@ -121,7 +121,7 @@ function ActivityFields({ token }) {
       <h2 className="mt-1 mb-3">Les secteurs d&apos;activité</h2>
       <Container fluid className={styles.container}>
         <Row className={styles.title}>
-          <Col xs="4" className={styles.activityTitle}>
+          <Col xs="12" md="4" className={`m-3 ${styles.activityTitle}`}>
             Gérer les secteurs d&apos;activité
           </Col>
         </Row>
@@ -162,8 +162,8 @@ function ActivityFields({ token }) {
               onChange={(e) => setLabelEus(e.target.value)}
             />
           </FormGroup>
-          <Row>
-            <Col xs={{ size: 2, offset: 10 }}>
+          <Row className="justify-content-end">
+            <Col md="2" xs="4">
               <Button className="button" type="submit">
                 Ajouter
               </Button>

@@ -10,7 +10,7 @@ function ActivityFieldsList({ getActivity, activityFields }) {
     <>
       <Row className={styles.containerList}>
         {activityFields.map((item) => (
-          <Col xs="4" className={styles.card} key={item.id}>
+          <Col md="4" xs="6" className={styles.card} key={item.id}>
             <Card>
               <CardBody>
                 <CardTitle>Secteur d&apos;activité : {item.labelFr}</CardTitle>

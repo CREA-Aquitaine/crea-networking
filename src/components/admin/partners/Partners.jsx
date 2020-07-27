@@ -36,7 +36,7 @@ function Partners({ token }) {
       <h2 className="mt-1 mb-3">Les partenaires</h2>
       <Container fluid className={styles.containerQR}>
         <Row className={styles.searchBar}>
-          <Col xs="3" className={styles.faqTitle}>
+          <Col md="3" xs="12" className={` m-3 ${styles.faqTitle}`}>
             Gérer les partenaires
           </Col>
         </Row>
