@@ -171,7 +171,7 @@ function UsersListTable({ usersList, token, getAllUsers }) {
 
   return (
     <Col>
-      <Table borderless id="emp">
+      <Table borderless responsive id="emp">
         <thead className={styles.theadBackground}>
           <tr>
             <th className={styles.thFontsize}>

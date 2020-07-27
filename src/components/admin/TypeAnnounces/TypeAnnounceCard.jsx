@@ -9,7 +9,7 @@ import ModalTypeAnnounce from './ModalTypeAnnounce';
 function TypeAnnounceCard({ french, euskara, castillan, id, getType }) {
   return (
     <div className={`${styles.card}  mt-5 mr-5`}>
-      <Card>
+      <Card md="4" xs="6">
         <CardImg
           className={styles.imgCard}
           top
