@@ -117,7 +117,7 @@ function UserTypes({ token }) {
       <h2 className="mt-1 mb-3">Les types d&apos;utilisateurs</h2>
       <Container fluid className={styles.container}>
         <Row className={styles.title}>
-          <Col xs="4" className={styles.activityTitle}>
+          <Col md="2" xs="12" className={`m-3 ${styles.activityTitle}`}>
             Gérer les types d&apos;utilisateurs
           </Col>
         </Row>
@@ -134,8 +134,8 @@ function UserTypes({ token }) {
               onChange={(e) => setLabel(e.target.value)}
             />
           </FormGroup>
-          <Row>
-            <Col xs={{ size: 2, offset: 10 }}>
+          <Row className="justify-content-end">
+            <Col md="2" xs="4">
               <Button className="button" type="submit">
                 Ajouter
               </Button>
