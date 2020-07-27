@@ -65,7 +65,7 @@ function AnnouncesListTable({ announcesList, token, getAnnounces }) {
 
   return (
     <Col>
-      <Table borderless>
+      <Table borderless responsive>
         <thead className={styles.theadBackground}>
           <tr>
             <th>

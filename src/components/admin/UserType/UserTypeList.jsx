@@ -10,7 +10,7 @@ function UserTypeList({ userTypes }) {
     <>
       <Row className={styles.containerList}>
         {userTypes.map((item) => (
-          <Col xs="4" className={styles.card} key={item.id}>
+          <Col md="4" xs="6" className={styles.card} key={item.id}>
             <Card>
               <CardBody>
                 <CardTitle>Type d&apos;utilisateur : {item.label}</CardTitle>

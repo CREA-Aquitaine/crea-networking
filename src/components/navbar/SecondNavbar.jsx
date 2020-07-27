@@ -9,6 +9,7 @@ import {
   DropdownToggle,
   UncontrolledDropdown,
   Collapse,
+  NavbarToggler,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -16,7 +17,7 @@ import { compose } from 'redux';
 
 import { Link } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
-import { GiHamburgerMenu } from 'react-icons/gi';
+// import { GiHamburgerMenu } from 'react-icons/gi';
 
 import crea from '../image/logo-crea_2015.png';
 
@@ -28,7 +29,8 @@ function SecondNavbar({ role, t }) {
   return (
     <Navbar className={styles.navbar} light expand="md">
       <div className={styles.toggleButton}>
-        <GiHamburgerMenu onClick={toggle} fill="white" size="25" />
+        <NavbarToggler onClick={toggle} />
+        {/* <GiHamburgerMenu onClick={toggle} fill="white" size="25" /> */}
       </div>
       <Collapse isOpen={isOpen} navbar>
         {role === 'admin' ? (

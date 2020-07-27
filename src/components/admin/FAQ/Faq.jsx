@@ -119,9 +119,9 @@ function Faq({ token }) {
   return (
     <Container>
       <h2 className="mt-1 mb-3">FAQ</h2>
-      <Container fluid className={styles.containerQR}>
+      <Container fluid className={`${styles.containerQR}`}>
         <Row className={styles.searchBar}>
-          <Col xs="2" className={styles.faqTitle}>
+          <Col xs="12" md="2" className={`mb-3 ${styles.faqTitle}`}>
             Gérer la FAQ
           </Col>
         </Row>
@@ -150,10 +150,10 @@ function Faq({ token }) {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs="1">
+              <Col md="1" xs="4">
                 <Label for="exampleSelect">Pays</Label>
               </Col>
-              <Col xs="3">
+              <Col md="3" xs="6">
                 <Input
                   type="select"
                   name="select"
@@ -170,8 +170,8 @@ function Faq({ token }) {
               </Col>
             </Row>
           </FormGroup>
-          <Row>
-            <Col xs={{ size: 2, offset: 10 }}>
+          <Row className="justify-content-end">
+            <Col md="2" xs="4">
               <Button className="button" type="submit">
                 Ajouter
               </Button>
