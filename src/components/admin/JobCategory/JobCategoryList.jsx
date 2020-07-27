@@ -8,9 +8,9 @@ import JobCategoryModal from './JobCategoryModal';
 function JobCategoryList({ getCategories, jobCategory }) {
   return (
     <>
-      <Row className={styles.containerList}>
+      <Row className={`m-4 ${styles.containerList}`}>
         {jobCategory.map((item) => (
-          <Col xs="4" className={styles.card} key={item.id}>
+          <Col md="4" xs="6" className={styles.card} key={item.id}>
             <Card>
               <CardBody>
                 <CardTitle>Catégorie d&apos;emploi : {item.labelFr}</CardTitle>

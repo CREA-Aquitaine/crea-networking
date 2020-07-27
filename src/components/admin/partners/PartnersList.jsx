@@ -2,7 +2,8 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import star from './images/star.svg';
+import { AiOutlineStar } from 'react-icons/ai';
+
 import starYellow from './images/starYellow.svg';
 import styles from './Partner.module.css';
 import PartnerModal from './PartnerModal';
@@ -21,7 +22,7 @@ function PartnersList({ partners, getPartners }) {
                 <Col>
                   <p className={styles.titreDescription}>{item.label}</p>
                 </Col>
-                <Col xs="1">
+                <Col md="1" xs="2">
                   {item.favorite === '1' ? (
                     <img
                       className={styles.star}
@@ -29,7 +30,7 @@ function PartnersList({ partners, getPartners }) {
                       alt="étoile"
                     />
                   ) : (
-                    <img className={styles.star} src={star} alt="étoile" />
+                    <AiOutlineStar />
                   )}
                 </Col>
               </Row>
@@ -37,8 +38,8 @@ function PartnersList({ partners, getPartners }) {
               <p className={styles.titreDescription}>{item.url}</p>
             </Col>
           </Row>
-          <Row>
-            <Col xs={{ size: 1.5, offset: 10 }}>
+          <Row className="justify-content-end">
+            <Col md="2" xs="4">
               <PartnerModal
                 getPartners={getPartners}
                 isfavorite={item.favorite}

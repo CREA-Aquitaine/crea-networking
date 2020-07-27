@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { AiOutlineStar } from 'react-icons/ai';
 import styles from './Partner.module.css';
-import star from './images/star.svg';
 import starYellow from './images/starYellow.svg';
 
 const host = process.env.REACT_APP_HOST;
@@ -154,10 +154,10 @@ function PartnersPost({ getPartners, token }) {
         onChange={handleUrl}
       />
       <Row>
-        <Col xs="3" className={styles.logo}>
+        <Col md="3" xs="5" className={styles.logo}>
           <Label for="exampleFile">Logo du partenaire</Label>
         </Col>
-        <Col>
+        <Col md="3" xs="5">
           <Input
             type="file"
             files={logo}
@@ -185,7 +185,7 @@ function PartnersPost({ getPartners, token }) {
               tabIndex={0}
               onKeyDown={handleStar}
             >
-              <img className={styles.star} src={star} alt="étoile" />
+              <AiOutlineStar />
             </div>
           )}
         </Col>
@@ -194,8 +194,8 @@ function PartnersPost({ getPartners, token }) {
           favoris.
         </Col>
       </Row>
-      <Row>
-        <Col xs={{ size: 2, offset: 10 }}>
+      <Row className="justify-content-end">
+        <Col md="2" xs="4">
           <Button className="button" type="submit">
             Ajouter
           </Button>
