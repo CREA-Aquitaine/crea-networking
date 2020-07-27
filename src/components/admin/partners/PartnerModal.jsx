@@ -85,42 +85,6 @@ function PartnerModal({
     });
   };
 
-  const setToastSuccessLogo = () => {
-    toast.success('Votre partenaire a bien été modifié.', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
-  const setToastErrorLogo = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
-  const setToastInputLogo = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
   const setToastSuccessDel = () => {
     toast.success('Votre partenaire a bien été supprimé.', {
       position: 'top-right',
