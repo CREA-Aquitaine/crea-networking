@@ -52,7 +52,11 @@ function DashboardTable({ token, userInfos }) {
   };
   const getAnswer = async () => {
     try {
-      const res = await Axios.get(`${host}/api/v1/replies`);
+      const res = await Axios.get(`${host}/api/v1/replies`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const filteredReply = res.data.filter(
         (reply) => reply.userPostId === userInfos.id
       );
@@ -65,7 +69,11 @@ function DashboardTable({ token, userInfos }) {
   };
   const getMessage = async () => {
     try {
-      const res = await Axios.get(`${host}/api/v1/replies`);
+      const res = await Axios.get(`${host}/api/v1/replies`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const filteredMessage = res.data.filter(
         (reply) => reply.UserId === userInfos.id
       );

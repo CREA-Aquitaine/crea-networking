@@ -5,12 +5,14 @@ import Axios from 'axios';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useHistory } from 'react-router-dom';
 
 import styles from './Partner.module.css';
 import star from './images/star.svg';
 import starYellow from './images/starYellow.svg';
 
 const host = process.env.REACT_APP_HOST;
+const imgurToken = process.env.REACT_APP_IMGUR_TOKEN;
 
 function PartnerModal({
   id,
@@ -29,6 +31,7 @@ function PartnerModal({
   const [url, setUrl] = useState(urlPartner);
   const [errorDelete, setErrorDelete] = useState(false);
   const [errorPut, setErrorPut] = useState('');
+  const history = useHistory();
 
   const toggle = () => setModal(!modal);
 
@@ -39,7 +42,7 @@ function PartnerModal({
     setDescription(e.target.value);
   };
   const handleImgPartner = (e) => {
-    setImgPartner(e.target.value);
+    setImgPartner(e.target.files[0]);
   };
 
   const handleUrl = (e) => {
@@ -82,42 +85,6 @@ function PartnerModal({
     });
   };
 
-  const setToastSuccessLogo = () => {
-    toast.success('Votre partenaire a bien été modifié.', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
-  const setToastErrorLogo = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
-  const setToastInputLogo = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
   const setToastSuccessDel = () => {
     toast.success('Votre partenaire a bien été supprimé.', {
       position: 'top-right',
@@ -143,61 +110,37 @@ function PartnerModal({
   };
 
   const putPartner = async () => {
-    if (logo === null) {
-      try {
-        if (label && description && url) {
-          await Axios.put(
-            `${host}/api/v1/partners/${id}`,
-            {
-              label,
-              description,
-              url,
-              favorite,
+    try {
+      if (label && description && url && logo) {
+        const res = await Axios.post('https://api.imgur.com/3/image', logo, {
+          headers: {
+            Authorization: `Client-ID ${imgurToken}`,
+          },
+        });
+        await Axios.put(
+          `${host}/api/v1/partners/${id}`,
+          {
+            label,
+            description,
+            url,
+            favorite,
+            logo: res.data.data.link,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
             },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          setModal(!modal);
-          getPartners();
-          setToastSuccess();
-        } else {
-          setToastInput();
-        }
-      } catch (err) {
-        setToastError();
-        setErrorPut(err);
+          }
+        );
+        setModal(!modal);
+        getPartners();
+        setToastSuccess();
+      } else {
+        setToastInput();
       }
-    } else {
-      try {
-        if (label && description && url) {
-          await Axios.put(
-            `${host}/api/v1/partners/${id}`,
-            {
-              label,
-              description,
-              url,
-              logo,
-              favorite,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          setModal(!modal);
-          getPartners();
-          setToastSuccessLogo();
-        } else {
-          setToastInputLogo();
-        }
-      } catch (err) {
-        setToastErrorLogo();
-        setErrorPut(err);
-      }
+    } catch (err) {
+      setToastError();
+      setErrorPut(err);
     }
   };
 
@@ -208,7 +151,7 @@ function PartnerModal({
           Authorization: `Bearer ${token}`,
         },
       });
-      setModal(!modal);
+      history.push('/partners');
       getPartners();
       setToastSuccessDel();
     } catch (err) {
@@ -239,21 +182,21 @@ function PartnerModal({
           {errorPut ? <p>Il y a eu une erreur lors de la modification.</p> : ''}
           <Row>
             <Col xs="1">
-              {favorite === 1 ? (
+              {favorite === '1' ? (
                 <div
-                  onClick={() => setFavorite(0)}
+                  onClick={() => setFavorite('0')}
                   role="button"
                   tabIndex={0}
-                  onKeyDown={() => setFavorite(0)}
+                  onKeyDown={() => setFavorite('0')}
                 >
                   <img className={styles.star} src={starYellow} alt="étoile" />
                 </div>
               ) : (
                 <div
-                  onClick={() => setFavorite(1)}
+                  onClick={() => setFavorite('1')}
                   role="button"
                   tabIndex={0}
-                  onKeyDown={() => setFavorite(1)}
+                  onKeyDown={() => setFavorite('1')}
                 >
                   <img className={styles.star} src={star} alt="étoile" />
                 </div>
@@ -292,7 +235,7 @@ function PartnerModal({
                 type="file"
                 name="file"
                 id="exampleFile"
-                value={logo}
+                files={logo}
                 onChange={handleImgPartner}
               />
             </Col>
