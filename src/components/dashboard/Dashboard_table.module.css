@@ -18,3 +18,7 @@
 .activeOff h4 {
   font-size: 20px;
 }
+
+.cross {
+  cursor: pointer;
+}

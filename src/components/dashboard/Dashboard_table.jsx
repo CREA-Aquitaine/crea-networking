@@ -14,10 +14,9 @@ import Axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { IoMdClose } from 'react-icons/io';
 import styles from './Dashboard_table.module.css';
 import UserName from './UserName';
-// import CrossDelete from './CrossDelete';
+import CrossDelete from './CrossDelete';
 import Comment from './Comment';
 
 const host = process.env.REACT_APP_HOST;
@@ -155,12 +154,11 @@ function DashboardTable({ token, userInfos }) {
                         </Link>
                       </td>
                       <td>
-                        <IoMdClose
+                        <CrossDelete
                           id={post.id}
                           getDatas={getAnnounces}
                           token={token}
                           route="posts"
-                          fill="#dd2b25"
                         />
                       </td>
                     </tr>
@@ -181,7 +179,6 @@ function DashboardTable({ token, userInfos }) {
                     <th>Message</th>
                     <th>Email</th>
                     <th>Nom/Prénom</th>
-                    <th>Supprimer</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -191,15 +188,6 @@ function DashboardTable({ token, userInfos }) {
                       <td>{item.title}</td>
                       <Comment comment={item.comment} title={item.title} />{' '}
                       <UserName id={item.UserId} token={token} />
-                      <td>
-                        <IoMdClose
-                          route="replies"
-                          id={item.id}
-                          getDatas={getMessage}
-                          token={token}
-                          fill="#dd2b25"
-                        />
-                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -216,7 +204,6 @@ function DashboardTable({ token, userInfos }) {
                     <th>Annonce</th>
                     <th>Sujet</th>
                     <th>Message</th>
-                    <th>Supprimer</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -225,15 +212,6 @@ function DashboardTable({ token, userInfos }) {
                       <td>{item.titlePost}</td>
                       <td>{item.title}</td>
                       <Comment comment={item.comment} title={item.title} />{' '}
-                      <td>
-                        <IoMdClose
-                          route="replies"
-                          id={item.id}
-                          getDatas={getAnswer}
-                          token={token}
-                          fill="#dd2b25"
-                        />
-                      </td>
                     </tr>
                   ))}
                 </tbody>
