@@ -123,7 +123,7 @@ function TypeAnnounce({ token }) {
       <h2 className="mt-1 mb-3">Les types d&apos;annonces</h2>
       <Container fluid className={styles.containerQR}>
         <Row className={styles.searchBar}>
-          <Col xs="4" className={styles.faqTitle}>
+          <Col xs="12" md="4" className={`m-3 ${styles.faqTitle}`}>
             Gérer les types d&apos;annonces
           </Col>
         </Row>
@@ -164,8 +164,8 @@ function TypeAnnounce({ token }) {
               onChange={(e) => setLabelEus(e.target.value)}
             />
           </FormGroup>
-          <Row>
-            <Col xs={{ size: 2, offset: 10 }}>
+          <Row className="justify-content-end">
+            <Col md="2" xs="4">
               <Button className="button" type="submit">
                 Ajouter
               </Button>

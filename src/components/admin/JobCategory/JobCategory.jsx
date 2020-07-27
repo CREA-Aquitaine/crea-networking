@@ -122,12 +122,16 @@ function JobCategory({ token }) {
       <h2 className="mt-1 mb-3">Les catégories d&apos;emploi</h2>
       <Container fluid className={styles.container}>
         <Row className={styles.title}>
-          <Col xs="4" className={styles.activityTitle}>
+          <Col xs="12" md="4" className={`m-3 ${styles.activityTitle}`}>
             Gérer les catégories d&apos;emploi
           </Col>
         </Row>
-        <Form fluid className={styles.addActivity} onSubmit={handleSubmit}>
-          <FormGroup>
+        <Form
+          fluid
+          className={`p-3 ${styles.addActivity}`}
+          onSubmit={handleSubmit}
+        >
+          <FormGroup className="m-2">
             <Label for="labelFr" />
             <Input
               className={styles.input}
@@ -139,7 +143,7 @@ function JobCategory({ token }) {
               onChange={(e) => setLabelFr(e.target.value)}
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="m-2">
             <Label for="labelEs" />
             <Input
               className={styles.input}
@@ -151,7 +155,7 @@ function JobCategory({ token }) {
               onChange={(e) => setLabelEs(e.target.value)}
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="m-2">
             <Label for="labelEus" />
             <Input
               className={styles.inputEnd}
@@ -163,8 +167,8 @@ function JobCategory({ token }) {
               onChange={(e) => setLabelEus(e.target.value)}
             />
           </FormGroup>
-          <Row>
-            <Col xs={{ size: 2, offset: 10 }}>
+          <Row className="justify-content-end">
+            <Col md="2" xs="4">
               <Button className="button" type="submit">
                 Ajouter
               </Button>
