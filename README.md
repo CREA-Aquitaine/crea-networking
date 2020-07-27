@@ -23,9 +23,9 @@ npm start # Runs the prod environment
 ### Architecture
 
 ```bash
-├── src
-  └── components 
-    └── admin # Interface admin
+src
+├──components 
+    └── admin # Back office components
     └── announce # announces components
     └── contact # page contact components
     └── dashboard # dashboard user components
@@ -36,8 +36,32 @@ npm start # Runs the prod environment
     └── navbar # navbar components
     └── partners # page partners components
     └── raleway # font used
-  └── store # reducers redux
+├──store # reducers redux
 ```
+
+## Standards
+
+We follow the [AirBnB  React  Styleguide](https://github.com/airbnb/javascript#airbnb-javascript-style-guide-)
+
+We also used [Prettier](https://github.com/prettier/prettier-vscode#prettier-formatter-for-visual-studio-code) for our code's indentation.
+
+All components are functions with Hooks.
+
+Our variables are written in camelCase.
+
+Components are written in PascalCase.
+
+## Our stack
+
+-  [React](https://fr.reactjs.org/docs/getting-started.html)
+
+-  [Redux](https://redux.js.org/)
+
+-  [Reacstrap](https://reactstrap.github.io/)
+
+-  [Axios](https://github.com/axios/axios#axios)
+
+-  [React-router-dom](https://www.npmjs.com/package/react-router-dom)
 
 ## WHO ARE WE ?
 
