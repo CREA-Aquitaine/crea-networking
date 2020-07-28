@@ -21,6 +21,13 @@
   background-color: white;
   color: #dd2b25;
   border-color: #dd2b25;
+  width: 100%;
+}
+
+.suppButton {
+  background-color: white;
+  color: #dd2b25;
+  border-color: #dd2b25;
 }
 .okButton:hover {
   background-color: #dd2b25;
@@ -30,4 +37,8 @@
 .inputSearch {
   border-radius: 0;
   border-color: #dd2b25;
+}
+
+.paddingRightNone {
+  padding-right: inherit !important;
 }
