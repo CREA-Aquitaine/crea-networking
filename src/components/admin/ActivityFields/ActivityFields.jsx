@@ -42,7 +42,7 @@ function ActivityFields({ token }) {
   };
   useEffect(() => {
     getActivity();
-  });
+  }, []);
 
   const setToastSuccess = () => {
     toast.success("Votre secteur d'activité a bien été publiée.", {

@@ -116,7 +116,7 @@ function TypeAnnounce({ token }) {
 
   useEffect(() => {
     getType();
-  });
+  }, []);
 
   return (
     <Container>
