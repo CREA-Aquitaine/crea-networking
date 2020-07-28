@@ -17,6 +17,7 @@
   },
   "plugins": ["react"],
   "rules": {
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }

@@ -112,7 +112,6 @@ function UsersList({ token }) {
     }
     return isUserType;
   };
-
   useEffect(() => {
     getAllUsers();
   }, []);

@@ -22,11 +22,12 @@ function PartnerModal({
   descriptionPartner,
   token,
   getPartners,
+  image,
 }) {
   const [modal, setModal] = useState(false);
   const [label, setLabel] = useState(labelPartner);
   const [description, setDescription] = useState(descriptionPartner);
-  const [logo, setImgPartner] = useState(null);
+  const [logo, setImgPartner] = useState(image);
   const [favorite, setFavorite] = useState(isfavorite);
   const [url, setUrl] = useState(urlPartner);
   const [errorDelete, setErrorDelete] = useState(false);
@@ -270,6 +271,7 @@ const mapStateToProps = (state) => ({
 PartnerModal.propTypes = {
   id: PropTypes.string.isRequired,
   isfavorite: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   labelPartner: PropTypes.string.isRequired,
   descriptionPartner: PropTypes.string.isRequired,
   urlPartner: PropTypes.string.isRequired,
