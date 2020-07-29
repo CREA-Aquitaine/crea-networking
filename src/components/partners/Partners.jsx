@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Row, Container, Col } from 'reactstrap';
 import Partner from './Partner';
-
 import styles from './Partners.module.css';
 
 function Partners() {

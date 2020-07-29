@@ -12,11 +12,11 @@
     "bootstrap": "^4.5.0",
     "chart.js": "^2.9.3",
     "dotenv": "^8.2.0",
+    "http-proxy-middleware": "^1.0.5",
     "i18next": "^19.6.0",
     "i18next-browser-languagedetector": "^5.0.0",
     "i18next-http-backend": "^1.0.17",
     "node-sass": "^4.14.1",
-    "http-proxy-middleware": "^1.0.5",
     "nodemailer-react": "^0.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -31,10 +31,12 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-slick": "^0.27.1",
     "react-toastify": "^6.0.8",
     "reactstrap": "^8.4.1",
     "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -82,5 +84,8 @@
       "./node_modules/.bin/eslint --max-warnings=0",
       "pretty-quick --staged"
     ]
+  },
+  "rules": {
+    "react/jsx-props-no-spreading": "off"
   }
 }
