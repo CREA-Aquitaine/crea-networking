@@ -26,7 +26,6 @@ function Dashboard({ token, userInfos }) {
         },
       });
       setUserInfos(res.data);
-
       const userTypeId = res.data.UserTypeId;
       const resType = await Axios.get(
         `${host}/api/v1/userTypes/${userTypeId}`,
@@ -37,18 +36,18 @@ function Dashboard({ token, userInfos }) {
         }
       );
       setUserTypes(resType.data);
-
-      const activityFieldId = res.data.ActivityFieldId;
-      const resActivity = await Axios.get(
-        `${host}/api/v1/activityFields/${activityFieldId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setActivityFields(resActivity.data);
-
+      if (res.data.ActivityFieldId) {
+        const activityFieldId = res.data.ActivityFieldId;
+        const resActivity = await Axios.get(
+          `${host}/api/v1/activityFields/${activityFieldId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setActivityFields(resActivity.data);
+      }
       setIsLoading(false);
     } catch (err) {
       setError(err);
