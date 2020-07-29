@@ -112,6 +112,11 @@ function UsersList({ token }) {
     }
     return isUserType;
   };
+
+  const resetSearch = () => {
+    getAllUsers();
+    setInputSearch('');
+  };
   useEffect(() => {
     getAllUsers();
   }, []);
@@ -121,23 +126,42 @@ function UsersList({ token }) {
       <Container>
         <h2 className="mt-1 mb-3">Gestion des utilisateurs</h2>
         <Container fluid className={styles.containerCadre}>
-          <Row className={styles.usersListTitle}>
-            <Col xs="3" className={styles.usersListTitleMargin}>
+          <Row className={`mb-4 ${styles.usersListTitle}`}>
+            <Col
+              xs="12"
+              md="6"
+              className={`text-left ${styles.usersListTitleMargin}`}
+            >
               Gestion des utilisateurs
             </Col>
-            <Col xs={{ size: 3, offset: 5 }}>
+            <Col className={styles.margcol} xs="4" md="4">
               <Input
                 className={styles.inputSearch}
                 placeholder="Rechercher par nom"
                 onChange={(e) => setInputSearch(e.target.value)}
               />
             </Col>
-            <Col xs="1">
+
+            <Col
+              className={`${styles.paddingRightNone} text-left`}
+              xs="3"
+              md="1"
+            >
               <Button className={styles.okButton} onClick={getByName}>
                 Ok
               </Button>
             </Col>
+            <Col
+              className={`${styles.paddingRightNone} text-left`}
+              xs="1"
+              md="1"
+            >
+              <Button className={styles.suppButton} onClick={resetSearch}>
+                X
+              </Button>
+            </Col>
           </Row>
+
           <Row
             className={`${styles.usersListPage} justify-content-center mb-3`}
           >

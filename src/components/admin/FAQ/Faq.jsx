@@ -114,7 +114,7 @@ function Faq({ token }) {
 
   useEffect(() => {
     getFaq();
-  });
+  }, []);
 
   return (
     <Container>

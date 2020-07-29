@@ -277,6 +277,7 @@ PartnerModal.propTypes = {
   urlPartner: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
   getPartners: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(PartnerModal);
