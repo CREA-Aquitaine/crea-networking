@@ -117,7 +117,6 @@ function UsersList({ token }) {
     getAllUsers();
     setInputSearch('');
   };
-
   useEffect(() => {
     getAllUsers();
   }, []);

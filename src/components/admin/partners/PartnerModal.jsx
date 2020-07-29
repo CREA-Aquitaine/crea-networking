@@ -271,12 +271,12 @@ const mapStateToProps = (state) => ({
 PartnerModal.propTypes = {
   id: PropTypes.string.isRequired,
   isfavorite: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   labelPartner: PropTypes.string.isRequired,
   descriptionPartner: PropTypes.string.isRequired,
   urlPartner: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
   getPartners: PropTypes.func.isRequired,
-  image: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(PartnerModal);
