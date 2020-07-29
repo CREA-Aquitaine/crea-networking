@@ -42,3 +42,6 @@
 .paddingRightNone {
   padding-right: inherit !important;
 }
+.cross {
+  cursor: pointer;
+}
