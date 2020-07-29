@@ -102,8 +102,8 @@ function UsersList({ token }) {
       });
       const search = res.data.filter(
         (user) =>
-          user.lastName.includes(inputSearch) ||
-          user.firstName.includes(inputSearch)
+          user.lastName.toLowerCase().includes(inputSearch.toLowerCase()) ||
+          user.firstName.toLowerCase().includes(inputSearch.toLowerCase())
       );
       setUserslist(search);
       setUserType(true);
@@ -139,10 +139,10 @@ function UsersList({ token }) {
               <Input
                 className={styles.inputSearch}
                 placeholder="Rechercher par nom"
+                value={inputSearch}
                 onChange={(e) => setInputSearch(e.target.value)}
               />
             </Col>
-
             <Col
               className={`${styles.paddingRightNone} text-left`}
               xs="3"
