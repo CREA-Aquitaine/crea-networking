@@ -14,6 +14,7 @@ const host = process.env.REACT_APP_HOST;
 function HomeAdmin({ token }) {
   const [types, setTypes] = useState([]);
   const [error, setError] = useState(null);
+  const [users, setUsers] = useState([]);
 
   const getData = async () => {
     try {
@@ -36,8 +37,24 @@ function HomeAdmin({ token }) {
       setError(err);
     }
   };
+
+  const getUsers = async () => {
+    try {
+      const res = await Axios.get(`${host}/api/v1/users`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const filteredUsers = res.data.filter((user) => user.UserType !== null);
+      setUsers(filteredUsers);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
   useEffect(() => {
     getData();
+    getUsers();
   }, []);
 
   return (
@@ -61,7 +78,7 @@ function HomeAdmin({ token }) {
               }}
             />
             <p className={styles.nbtotal}>
-              Nombre total d&apos;utilisateurs : {types.length}
+              Nombre total d&apos;utilisateurs : {users.length}
             </p>
           </Container>
         </Col>

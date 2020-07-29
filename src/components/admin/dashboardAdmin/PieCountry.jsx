@@ -11,8 +11,9 @@ import styles from './DashboardAdmin.module.css';
 const host = process.env.REACT_APP_HOST;
 
 function PieCountry({ token }) {
-  const [users, setUsers] = useState([]);
   const [error, setError] = useState('');
+  const [france, setFrance] = useState([]);
+  const [espagne, setEspagne] = useState([]);
 
   const getUsers = async () => {
     try {
@@ -21,7 +22,13 @@ function PieCountry({ token }) {
           Authorization: `Bearer ${token}`,
         },
       });
-      setUsers(res.data);
+      const francais = res.data.filter((item) => item.country === 'France');
+      const espagnol = res.data.filter((item) => item.country === 'Espagne');
+      const filteredFrancais = francais.filter(
+        (item) => item.UserType !== null
+      );
+      setFrance(filteredFrancais);
+      setEspagne(espagnol);
     } catch (err) {
       setError(err);
     }
@@ -31,10 +38,6 @@ function PieCountry({ token }) {
     getUsers();
   }, []);
 
-  const france = users.filter((item) => item.country === 'France');
-  const franceLength = france.length - 2;
-  const espagne = users.filter((item) => item.country === 'Espagne');
-
   return (
     <Container className={styles.pie}>
       {error ? "Impossible d'afficher les données" : ''}
@@ -43,7 +46,7 @@ function PieCountry({ token }) {
         data={{
           datasets: [
             {
-              data: [franceLength, espagne.length],
+              data: [france.length, espagne.length],
               backgroundColor: ['#ffa500', '#ffff00'],
             },
           ],
@@ -51,7 +54,7 @@ function PieCountry({ token }) {
         }}
       />
       <p className={styles.nbtotal}>
-        Nombre d&apos;utilisateurs en France: {franceLength}
+        Nombre d&apos;utilisateurs en France: {france.length}
       </p>
       <p className={styles.nbtotal2}>
         Nombre d&apos;utilisateurs en Espagne: {espagne.length}
