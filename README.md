@@ -80,7 +80,7 @@ We are a 7 developpers team who did this project. //TODO add avatar
 <tr>
 <td>
 
-<img src="./component/image/christelle.jpg"> </img>
+<img src="./component/image/christelle.jpg" alt="christelle conrozier"> </img>
 
 </td>
 <td>
