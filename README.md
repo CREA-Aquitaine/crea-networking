@@ -154,7 +154,7 @@ We are a 7 developpers team who did this project. //TODO add avatar
 
 #### Maxime Urbanski
 
-<img src="https://avatars2.githubusercontent.com/u/61539540?s=460&u=65e9ac46108c3c20748a49526e6c09abb5bfa4b8&v=4" alt="Maxime Urbanski" width="15%"> </img>
+<img src="https://avatars2.githubusercontent.com/u/61539540?s=460&u=65e9ac46108c3c20748a49526e6c09abb5bfa4b8&v=4" alt="Maxime Urbanski" width="10%"> </img>
 
 </th>
 <th colspan="2">
@@ -166,7 +166,7 @@ We are a 7 developpers team who did this project. //TODO add avatar
 
 #### Munio Campandegui
 
-<img src="https://avatars2.githubusercontent.com/u/60346563?s=460&u=e03af1052dcbefbc2c60f1a639dbff6095342888&v=4" alt="Munio Campandegui" width="15%"> </img>
+<img src="https://avatars2.githubusercontent.com/u/60346563?s=460&u=e03af1052dcbefbc2c60f1a639dbff6095342888&v=4" alt="Munio Campandegui" width="10%"> </img>
 
 </th>
 </tr>
