@@ -75,7 +75,7 @@ We are a 7 developpers team who did this project. //TODO add avatar
 
 #### Christelle Conrozier
 
-<img src="https://avatars3.githubusercontent.com/u/61701315?s=460&u=a65acc44f7d62aee4239472598b77943a5d96773&v=4" alt="christelle conrozier" width="15%"> </img>
+<img src="https://avatars3.githubusercontent.com/u/61701315?s=460&u=a65acc44f7d62aee4239472598b77943a5d96773&v=4" alt="christelle conrozier" width="18%"> </img>
 
 </th>
 <th colspan="2">
