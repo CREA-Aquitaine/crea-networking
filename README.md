@@ -1,8 +1,11 @@
 # CREA NETWORKING
 
+<img src="https://ibb.co/qyFxWjd" alt="christelle conrozier" width="20%"> </img>
+
 ## ABOUT PROJECT
 
 Crea is a cross-border networking platform.
+
 
 ## GETTING STARTED
 
