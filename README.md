@@ -1,6 +1,6 @@
 # CREA NETWORKING
 
-<img src="https://i.ibb.co/mDFSXNG/logo-crea-2015.jpg" alt="Crea" width="20%"> </img>
+<img src="https://i.ibb.co/mDFSXNG/logo-crea-2015.jpg" alt="Crea" width="15%"> </img>
 
 ## ABOUT PROJECT
 
