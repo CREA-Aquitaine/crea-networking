@@ -9,7 +9,7 @@ Crea is a cross-border networking platform.
 ```bash
 git clone # clone the project
 npm install # Install all dependencies
-npm start # Runs the prod environment
+npm start # Runs the dev environment
 ```
 
 ### Variable environment
@@ -18,13 +18,14 @@ npm start # Runs the prod environment
 
 ```bash
 - REACT_APP_HOST = host of development web server(ex: http://localhost:8080)
-- REACT_APP_IMGUR_TOKEN=Client_id imgur
+- REACT_APP_IMGUR_TOKEN=Client_id imgur //todo why imgur + link
 ```
+
 ### Architecture
 
 ```bash
 src
-├──components 
+├──components
     └── admin # Back office components
     └── announce # announces components
     └── contact # page contact components
@@ -32,7 +33,7 @@ src
     └── faq # page Faq
     └── footer # footer components
     └── home # page home components
-    └── image 
+    └── image
     └── navbar # navbar components
     └── partners # page partners components
     └── raleway # font used
@@ -41,31 +42,31 @@ src
 
 ## Standards
 
-We follow the [AirBnB  React  Styleguide](https://github.com/airbnb/javascript#airbnb-javascript-style-guide-)
+We follow the [AirBnB React Styleguide](https://github.com/airbnb/javascript#airbnb-javascript-style-guide-)
 
 We also used [Prettier](https://github.com/prettier/prettier-vscode#prettier-formatter-for-visual-studio-code) for our code's indentation.
 
 All components are functions with Hooks.
 
-Our variables are written in camelCase.
+Our variables are named in camelCase.
 
-Components are written in PascalCase.
+Components are named in PascalCase.
 
 ## Our stack
 
--  [React](https://fr.reactjs.org/docs/getting-started.html)
+- [React](https://fr.reactjs.org/docs/getting-started.html)
 
--  [Redux](https://redux.js.org/)
+- [Redux](https://redux.js.org/)
 
--  [Reacstrap](https://reactstrap.github.io/)
+- [Reacstrap](https://reactstrap.github.io/)
 
--  [Axios](https://github.com/axios/axios#axios)
+- [Axios](https://github.com/axios/axios#axios)
 
--  [React-router-dom](https://www.npmjs.com/package/react-router-dom)
+- [React-router-dom](https://www.npmjs.com/package/react-router-dom)
 
 ## WHO ARE WE ?
 
-We are a 7 developpers team who did this project.
+We are a 7 developpers team who did this project. //TODO add avatar
 
 #### Christelle Conrozier
 
@@ -73,13 +74,11 @@ We are a 7 developpers team who did this project.
 
 [_Linkedin_](https://www.linkedin.com/in/christelle-conrozier/)
 
-
 #### Charles Henry Le Nué
 
 [_Github_](https://github.com/Charlyln)
 
 [_Linkedin_](https://www.linkedin.com/in/charles-henry-le-nu%C3%A9/)
-
 
 #### Anaïs Jouaret
 
@@ -87,20 +86,17 @@ We are a 7 developpers team who did this project.
 
 [_Linkedin_](https://www.linkedin.com/in/anais-jouaret/)
 
-
 #### Marie Josselin
 
 [_Github_](https://github.com/MarieJoss)
 
 [_Linkedin_](https://www.linkedin.com/in/marie-josselin)
 
-
-#### Maxime Urbansky
+#### Maxime Urbanski
 
 [_Github_](https://github.com/Maxiloudoi)
 
 [_Linkedin_](https://www.linkedin.com/in/maxime-urbanski/)
-
 
 #### Lionel Rouge
 
@@ -108,10 +104,8 @@ We are a 7 developpers team who did this project.
 
 [_Linkedin_](https://www.linkedin.com/in/lionel-rouge/)
 
-
 #### Munio Campandegui
 
 [_Github_](https://github.com/whitewolf64)
 
 [_Linkedin_](https://www.linkedin.com/in/campandegui-munio/)
- 
