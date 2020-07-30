@@ -72,17 +72,14 @@ We are a 7 developpers team who did this project. //TODO add avatar
 <thead>
 <tr>
 
+<img src="https://avatars3.githubusercontent.com/u/61701315?s=460&u=a65acc44f7d62aee4239472598b77943a5d96773&v=4" alt="christelle conrozier" width="20%"> </img>
+
 #### Christelle Conrozier
 
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>
-
-<img src="https://avatars3.githubusercontent.com/u/61701315?s=460&u=a65acc44f7d62aee4239472598b77943a5d96773&v=4" alt="christelle conrozier" width="20%"> </img>
-
-</td>
 <td>
 
 [_Github_](https://github.com/christellec64)
