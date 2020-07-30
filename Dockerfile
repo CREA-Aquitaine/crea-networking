@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 ARG REACT_APP_HOST=${REACT_APP_HOST}
 ENV REACT_APP_HOST=${REACT_APP_HOST}
+ENV REACT_APP_IMGUR_TOKEN = ${REACT_APP_IMGUR_TOKEN}
 COPY . /usr/src/app
 RUN npm install
 RUN npm run build
