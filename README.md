@@ -208,3 +208,4 @@ We are a 7 developpers team who did this project.
 </td>
 </tr>
 </tbody>
+</table>
