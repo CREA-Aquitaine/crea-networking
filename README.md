@@ -68,12 +68,34 @@ Components are named in PascalCase.
 
 We are a 7 developpers team who did this project. //TODO add avatar
 
+<table>
+<thead>
+<tr>
+
 #### Christelle Conrozier
+
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<img src="./component/image/christelle.jpg"> </img>
+
+</td>
+<td>
 
 [_Github_](https://github.com/christellec64)
 
+</td>
+<td>
+
 [_Linkedin_](https://www.linkedin.com/in/christelle-conrozier/)
 
+</td>
+</tr>
+</tbody>
+</table>
 #### Charles Henry Le Nué
 
 [_Github_](https://github.com/Charlyln)
