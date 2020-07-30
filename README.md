@@ -93,11 +93,32 @@ We are a 7 developpers team who did this project. //TODO add avatar
 </tr>
 </tbody>
 </table>
+
+<table>
+<thead>
+<tr>
+
 #### Charles Henry Le Nué
+
+<img src="https://avatars3.githubusercontent.com/u/61701315?s=460&u=a65acc44f7d62aee4239472598b77943a5d96773&v=4" alt="christelle conrozier" width="10%"> </img>
+
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
 [_Github_](https://github.com/Charlyln)
 
+</td>
+<td>
+
 [_Linkedin_](https://www.linkedin.com/in/charles-henry-le-nu%C3%A9/)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Anaïs Jouaret
 
