@@ -143,8 +143,6 @@ We are a 7 developpers team who did this project. //TODO add avatar
 [_Linkedin_](https://www.linkedin.com/in/christelle-conrozier/)
 
 </td>
-</tr>
-<tr>
 <td>
 
 [_Github_](https://github.com/Charlyln)
@@ -155,8 +153,6 @@ We are a 7 developpers team who did this project. //TODO add avatar
 [_Linkedin_](https://www.linkedin.com/in/charles-henry-le-nu%C3%A9/)
 
 </td>
-</tr>
-<tr>
 <td>
 
 [_Github_](https://github.com/nanou-11)
@@ -167,8 +163,6 @@ We are a 7 developpers team who did this project. //TODO add avatar
 [_Linkedin_](https://www.linkedin.com/in/anais-jouaret/)
 
 </td>
-</tr>
-<tr>
 <td>
 
 [_Github_](https://github.com/MarieJoss)
@@ -179,8 +173,6 @@ We are a 7 developpers team who did this project. //TODO add avatar
 [_Linkedin_](https://www.linkedin.com/in/marie-josselin)
 
 </td>
-</tr>
-<tr>
 <td>
 
 [_Github_](https://github.com/Maxiloudoi)
@@ -191,8 +183,6 @@ We are a 7 developpers team who did this project. //TODO add avatar
 [_Linkedin_](https://www.linkedin.com/in/maxime-urbanski/)
 
 </td>
-</tr>
-<tr>
 <td>
 
 [_Github_](https://github.com/lio-code)
@@ -203,8 +193,6 @@ We are a 7 developpers team who did this project. //TODO add avatar
 [_Linkedin_](https://www.linkedin.com/in/lionel-rouge/)
 
 </td>
-</tr>
-<tr>
 <td>
 
 [_Github_](https://github.com/whitewolf64)
