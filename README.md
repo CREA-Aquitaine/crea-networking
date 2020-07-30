@@ -1,6 +1,6 @@
 # CREA NETWORKING
 
-<img src="https://ibb.co/qyFxWjd" alt="christelle conrozier" width="20%"> </img>
+<img src="https://i.ibb.co/mDFSXNG/logo-crea-2015.jpg" alt="Crea" width="20%"> </img>
 
 ## ABOUT PROJECT
 
@@ -69,7 +69,7 @@ Components are named in PascalCase.
 
 ## WHO ARE WE ?
 
-We are a 7 developpers team who did this project. //TODO add avatar
+We are a 7 developpers team who did this project.
 
 <table>
 <thead>
