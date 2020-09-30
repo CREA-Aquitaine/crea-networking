@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import React, { useState } from 'react';
+import { Container, Row, Col, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 
@@ -8,8 +8,11 @@ import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa';
 import styles from './footer.module.css';
 import LogoCrea from '../image/logo-crea_2015.png';
 import LogoNetworking from '../image/logo_netWorking.png';
+import LegalMentions from './LegalMentions';
 
-function footer({ t }) {
+function Footer({ t }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggle = () => setIsModalOpen((state) => !state);
   return (
     <>
       <Container fluid className={`${styles.bkgFooter} py-5 mt-5`}>
@@ -91,17 +94,19 @@ function footer({ t }) {
       <Container>
         <Row className="p-3">
           <Col>
-            <a href="$" className={styles.tagMl}>
+            <Button color="link" onClick={toggle}>
               {t('Mention')}
-            </a>
+            </Button>
           </Col>
         </Row>
       </Container>
+      <LegalMentions isOpen={isModalOpen} toggle={toggle} />
     </>
   );
 }
-footer.propTypes = {
+
+Footer.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default withNamespaces()(footer);
+export default withNamespaces()(Footer);
