@@ -12,6 +12,7 @@ function Header({ t }) {
     <Container className={`${styles.presentation} my-5`}>
       <h2>{t('TitrePresentation')}</h2>
       <p className={styles.pres}>{t('TextePresentation')}</p>
+      <p className={styles.pres}>{t('SecondTextePresentation')}</p>
       <Link to="/partners">
         <button className={styles.button} type="button">
           {t('ButtonPartenaires')}
