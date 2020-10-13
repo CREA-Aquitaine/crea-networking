@@ -72,7 +72,6 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
         localisation &&
         country &&
         phone &&
-        phone2 &&
         userTypeId &&
         roleId
       ) {
@@ -122,7 +121,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
     if (password === passwordRepeat) {
       try {
         await postUser();
-        postRegister();
+        await postRegister();
       } catch (err) {
         setError(err);
       }
