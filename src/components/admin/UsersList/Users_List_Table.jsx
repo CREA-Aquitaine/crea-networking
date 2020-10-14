@@ -154,10 +154,10 @@ function UsersListTable({ usersList, token, getAllUsers }) {
     return country && isAsc;
   };
 
-  const deleteUsers = async () => {
+  const deleteUsers = async (id) => {
     try {
-      const userId = usersList.find((user) => user.id);
-      await Axios.delete(`${host}/api/v1/users/${userId.id}`, {
+      const user = usersList.find((usr) => usr.id === id);
+      await Axios.delete(`${host}/api/v1/users/${user.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -203,7 +203,9 @@ function UsersListTable({ usersList, token, getAllUsers }) {
           {usersList.map((user) => {
             return (
               <tr key={user.id} id={user.id}>
-                <td>{user.lastName}</td>
+                <td>
+                  {user.lastName} {user.id}
+                </td>
                 <td>{user.firstName}</td>
                 <td>{user.email}</td>
                 <td>{user.country}</td>
@@ -217,7 +219,7 @@ function UsersListTable({ usersList, token, getAllUsers }) {
                 />
                 <td className={styles.crossImg}>
                   <IoMdClose
-                    onClick={deleteUsers}
+                    onClick={() => deleteUsers(user.id)}
                     fill="#dd2b25"
                     className={styles.cross}
                   />
