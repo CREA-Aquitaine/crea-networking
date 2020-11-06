@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Dashboard from './dashboard/Dashboard';
@@ -24,8 +24,33 @@ import TypeAnnounce from './admin/TypeAnnounces/TypeAnnounce';
 import ActivityFields from './admin/ActivityFields/ActivityFields';
 import FaqUser from './faq/FaqUser';
 import Put from './dashboard/putAccount/Put';
+import { AUTHENTICATED, USERINFOS } from '../store/reducerUser';
 
 function Router({ role }) {
+  const dispatch = useDispatch();
+  const [currentToken] = useState(() => sessionStorage.getItem('token'));
+  const [currentUser] = useState(() =>
+    JSON.parse(sessionStorage.getItem('user'))
+  );
+
+  const getCurrentUser = (user, token) => {
+    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('user', JSON.stringify(user));
+    dispatch({ type: AUTHENTICATED, payload: token });
+    dispatch({ type: USERINFOS, payload: user });
+    if (user.Role.label === 'ADMIN') {
+      dispatch({ type: 'ADMIN' });
+    } else if (user.Role.label === 'USER') {
+      dispatch({ type: 'USER' });
+    }
+  };
+
+  useEffect(() => {
+    if (currentToken) {
+      getCurrentUser(currentUser, currentToken);
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       {role === 'admin' ? (

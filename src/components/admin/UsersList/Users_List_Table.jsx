@@ -203,7 +203,9 @@ function UsersListTable({ usersList, token, getAllUsers }) {
           {usersList.map((user) => {
             return (
               <tr key={user.id} id={user.id}>
-                <td>{user.lastName}</td>
+                <td>
+                  {user.lastName} {user.id}
+                </td>
                 <td>{user.firstName}</td>
                 <td>{user.email}</td>
                 <td>{user.country}</td>
