@@ -44,6 +44,8 @@ function PopUpConnection({ setModal, toggle, modal, t }) {
         email,
         password,
       });
+      sessionStorage.setItem('token', res.data.token);
+      sessionStorage.setItem('user', JSON.stringify(res.data.user));
       dispatch({ type: AUTHENTICATED, payload: res.data.token });
       dispatch({ type: USERINFOS, payload: res.data.user });
       if (res.data.user.Role.label === 'ADMIN') {

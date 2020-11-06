@@ -18,6 +18,7 @@ function FirstNavbar({ role, t }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  // TODO: Clean sessiostorage
   const disconnect = () => {
     dispatch({ type: 'DISCONNECT' });
     history.push('/');

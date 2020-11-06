@@ -9,6 +9,9 @@ const authenticated = (state = initialState, action) => {
       return { ...state, token: action.payload };
     case 'USERINFOS':
       return { ...state, userInfos: action.payload };
+    // TODO: change disconnect reducerAdmin & reducerUser
+    // case 'DISCONNECT':
+    //   return { initialState };
     default:
       return { ...state };
   }
