@@ -13,6 +13,9 @@ function Announce({ token }) {
   const [error, setError] = useState('');
   const [isLoading, setisLoading] = useState(true);
   const { id } = useParams();
+  const [currentUser] = useState(() =>
+    JSON.parse(sessionStorage.getItem('user'))
+  );
 
   const getInfosAnnounce = async () => {
     const host = process.env.REACT_APP_HOST;
@@ -70,7 +73,13 @@ function Announce({ token }) {
               />
             </Col>
             <Col>
-              <Link to="/listAnnonce">
+              <Link
+                to={
+                  currentUser.Role.label === 'ADMIN'
+                    ? '/announces'
+                    : '/listAnnonce'
+                }
+              >
                 <button type="button">Retour</button>
               </Link>
             </Col>
