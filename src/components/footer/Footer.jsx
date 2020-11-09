@@ -94,7 +94,7 @@ function Footer({ t }) {
                         className={styles.colorLink}
                         href="https://www.crea-aquitaine.org/"
                       >
-                        Site du Cluc CREA
+                        Site du Club CREA
                       </a>
                     </Col>
                   </Row>
