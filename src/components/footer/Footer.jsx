@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 
 // eslint-disable-next-line import/no-unresolved
-import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa';
+import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope, FaLink } from 'react-icons/fa';
 import styles from './footer.module.css';
 import LogoCrea from '../image/logo-crea_2015.png';
 import LogoNetworking from '../image/logo_netWorking.png';
@@ -72,7 +72,7 @@ function Footer({ t }) {
                       </address>
                     </Col>
                   </Row>
-                  <Row>
+                  <Row className="mb-3">
                     <Col className={styles.iconFooter} md="2">
                       <FaEnvelope />
                     </Col>
@@ -82,6 +82,19 @@ function Footer({ t }) {
                         href="mailto:contact@crea-aquitaine.org"
                       >
                         contact@crea-aquitaine.org
+                      </a>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className={styles.iconFooter} md="2">
+                      <FaLink />
+                    </Col>
+                    <Col>
+                      <a
+                        className={styles.colorLink}
+                        href="https://www.crea-aquitaine.org/"
+                      >
+                        Site du Cluc CREA
                       </a>
                     </Col>
                   </Row>
