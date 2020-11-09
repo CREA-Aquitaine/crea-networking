@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import { Table, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import { IoMdClose } from 'react-icons/io';
@@ -74,6 +75,7 @@ function AnnouncesListTable({ announcesList, token, getAnnounces }) {
               <RiArrowDropUpLine onClick={getDscTitle} size="25" />
             </th>
             <th>Type d&apos;annonces</th>
+            <th>Contenu</th>
             <th>Catégorie</th>
             <th>Supprimer </th>
           </tr>
@@ -84,6 +86,9 @@ function AnnouncesListTable({ announcesList, token, getAnnounces }) {
               <tr key={post.id}>
                 <td>{post.title}</td>
                 <td>{post.TypePost ? post.TypePost.labelFr : ''}</td>
+                <td>
+                  <Link to={`/announces/${post.id}`}>Voir l&apos;annonce</Link>
+                </td>
                 <td>{post.JobCategory ? post.JobCategory.labelFr : ''}</td>
                 <td className={styles.crossImg}>
                   <IoMdClose

@@ -65,6 +65,7 @@ function Router({ role }) {
             <Route path="/users" component={UsersList} />
             <Route path="/partners" component={PartnersList} />
             <Route path="/faq" component={Faq} />
+            <Route path="/announces/:id" component={Announce} />
             <Route path="/announces" component={AnnouncesList} />
             <Route exact path="/" component={Home} />
           </Switch>
