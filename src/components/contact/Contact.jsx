@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {
@@ -25,6 +25,14 @@ function Contact() {
   const [currentUser] = useState(() =>
     JSON.parse(sessionStorage.getItem('user'))
   );
+
+  useEffect(() => {
+    if (currentUser) {
+      setEmail(currentUser.email);
+      setFirstName(currentUser.firstName);
+      setLastName(currentUser.lastName);
+    }
+  }, []);
 
   const setToastSuccess = () => {
     toast.success('Votre question a bien été publiée.', {
@@ -121,7 +129,7 @@ function Contact() {
                   name="firstname"
                   id="firstname"
                   placeholder="Votre prénom"
-                  value={currentUser ? currentUser.firstName : firstname}
+                  value={firstname}
                   onChange={handleClick}
                 />
               </Col>
@@ -133,7 +141,7 @@ function Contact() {
                   name="lastname"
                   id="lastname"
                   placeholder="Votre nom"
-                  value={currentUser ? currentUser.lastName : lastname}
+                  value={lastname}
                   onChange={handleClick}
                 />
               </Col>
@@ -147,7 +155,7 @@ function Contact() {
                   name="email"
                   id="email"
                   placeholder="Votre email"
-                  value={currentUser ? currentUser.email : email}
+                  value={email}
                   onChange={handleClick}
                 />
               </Col>
