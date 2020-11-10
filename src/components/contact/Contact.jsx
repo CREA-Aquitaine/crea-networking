@@ -22,6 +22,9 @@ function Contact() {
   const [text, setText] = useState('');
   const [textarea, setTextArea] = useState('');
   const [error, setError] = useState(false);
+  const [currentUser] = useState(() =>
+    JSON.parse(sessionStorage.getItem('user'))
+  );
 
   const setToastSuccess = () => {
     toast.success('Votre question a bien été publiée.', {
@@ -114,11 +117,11 @@ function Contact() {
             <Row className="mb-2 justify-content-center">
               <Col xs="10" sm="6">
                 <Input
-                  type="lastname"
-                  name="lastname"
-                  id="lastname"
-                  placeholder="Votre nom"
-                  value={lastname}
+                  type="text"
+                  name="firstname"
+                  id="firstname"
+                  placeholder="Votre prénom"
+                  value={currentUser ? currentUser.firstName : firstname}
                   onChange={handleClick}
                 />
               </Col>
@@ -126,11 +129,11 @@ function Contact() {
             <Row className="justify-content-center">
               <Col xs="10" sm="6">
                 <Input
-                  type="text"
-                  name="firstname"
-                  id="firstname"
-                  placeholder="Votre prénom"
-                  value={firstname}
+                  type="lastname"
+                  name="lastname"
+                  id="lastname"
+                  placeholder="Votre nom"
+                  value={currentUser ? currentUser.lastName : lastname}
                   onChange={handleClick}
                 />
               </Col>
@@ -144,7 +147,7 @@ function Contact() {
                   name="email"
                   id="email"
                   placeholder="Votre email"
-                  value={email}
+                  value={currentUser ? currentUser.email : email}
                   onChange={handleClick}
                 />
               </Col>

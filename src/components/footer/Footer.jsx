@@ -93,6 +93,8 @@ function Footer({ t }) {
                       <a
                         className={styles.colorLink}
                         href="https://www.crea-aquitaine.org/"
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         Site du Cluc CREA
                       </a>
