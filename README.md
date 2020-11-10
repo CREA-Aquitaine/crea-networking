@@ -209,3 +209,7 @@ We are a 7 developpers team who did this project.
 </tr>
 </tbody>
 </table>
+
+## & cie :
+
+<img  src="https://avatars1.githubusercontent.com/u/47717972?s=460&u=b2badbf82fd8e158ae78974ddf6853f4a5cc9981&v=4"  alt="Sylène Manusset"  width="5%"/>&nbsp;&nbsp;&nbsp;&nbsp;[Sylène](https://github.com/Zesysy) - Freelance fullstack Javascript developer (ReactJs / NodeJs), I take over the project.
