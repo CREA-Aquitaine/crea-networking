@@ -30,6 +30,7 @@ function ForgotPassword({ t }) {
       Axios.post(`${host}/api/v1/auth/forgetPassword`, {
         email,
       });
+      setModal(!modal);
       return setValidate(true);
     } catch (err) {
       setError(err);
