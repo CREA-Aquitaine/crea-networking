@@ -96,7 +96,7 @@ function Footer({ t }) {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        Site du Cluc CREA
+                        Site du Club CREA
                       </a>
                     </Col>
                   </Row>
