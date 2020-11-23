@@ -44,7 +44,14 @@ function Footer({ t }) {
                   md={{ size: 4, offset: 1 }}
                   xs="12"
                 >
-                  <p>
+                  <p
+                    style={{
+                      fontSize: '1.3rem',
+                      textAlign: 'center',
+                      color: '#4C4647',
+                      fontWeight: '700',
+                    }}
+                  >
                     Nous sommes persuadés que la réussite de tout projet
                     s’inscrit dans la valeur qu’incarne son porteur. La recette
                     du succès passe par le partage d’expériences, de savoirs et
