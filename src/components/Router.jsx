@@ -25,6 +25,7 @@ import ActivityFields from './admin/ActivityFields/ActivityFields';
 import FaqUser from './faq/FaqUser';
 import Put from './dashboard/putAccount/Put';
 import { AUTHENTICATED, USERINFOS } from '../store/reducerUser';
+import ResetPassword from './navbar/ResetPassword';
 
 function Router({ role }) {
   const dispatch = useDispatch();
@@ -97,6 +98,7 @@ function Router({ role }) {
             <Route path="/createAccount" component={CreateAccount} />
             <Route path="/contact" component={Contact} />
             <Route exact path="/" component={Home} />
+            <Route exact path="/resetPassword" component={ResetPassword} />
           </Switch>
           <Footer />
         </>
