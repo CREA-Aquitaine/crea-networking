@@ -195,7 +195,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
               type="text"
               name="siret"
               id="siret"
-              required
               placeholder="XXXXXXXXXXXXXX"
               onChange={(e) => setSiret(e.target.value)}
             />
