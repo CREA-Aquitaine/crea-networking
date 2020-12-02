@@ -141,7 +141,7 @@ function Faq({ token }) {
             <Label for="exampleEmail" />
             <Input
               className={styles.inputQR}
-              type="text"
+              type="textarea"
               name="answer"
               id="answer"
               placeholder="Ajouter votre réponse"
