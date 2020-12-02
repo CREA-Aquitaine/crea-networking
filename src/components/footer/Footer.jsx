@@ -9,10 +9,15 @@ import styles from './footer.module.css';
 import LogoCrea from '../image/logo-crea_2015.png';
 import LogoNetworking from '../image/logo_netWorking.png';
 import LegalMentions from './LegalMentions';
+import PersonalData from './PersonalData';
 
 function Footer({ t }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const toggle = () => setIsModalOpen((state) => !state);
+  const [isModalMentionsOpen, setIsModalMentionsOpen] = useState(false);
+  const toggleMentions = () => setIsModalMentionsOpen((state) => !state);
+
+  const [isModalDataOpen, setIsModalDataOpen] = useState(false);
+  const toggleData = () => setIsModalDataOpen((state) => !state);
+
   return (
     <>
       <Container fluid className={`${styles.bkgFooter} py-5 mt-5`}>
@@ -116,13 +121,26 @@ function Footer({ t }) {
       <Container>
         <Row className="p-3">
           <Col>
-            <Button color="link" onClick={toggle}>
+            <Button
+              color="link"
+              style={{ width: '200px' }}
+              onClick={toggleMentions}
+            >
               {t('Mention')}
+            </Button>
+
+            <Button
+              style={{ width: '200px' }}
+              color="link"
+              onClick={toggleData}
+            >
+              {t('Personal data')}
             </Button>
           </Col>
         </Row>
       </Container>
-      <LegalMentions isOpen={isModalOpen} toggle={toggle} />
+      <LegalMentions isOpen={isModalMentionsOpen} toggle={toggleMentions} />
+      <PersonalData isOpen={isModalDataOpen} toggle={toggleData} />
     </>
   );
 }

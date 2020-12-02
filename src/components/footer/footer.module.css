@@ -24,6 +24,10 @@
   text-align: center;
 }
 
+.textBold {
+  font-weight: bold;
+}
+
 @media screen and (max-width: 640px) {
   .bkgFooter {
     text-align: center;
