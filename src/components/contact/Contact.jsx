@@ -70,7 +70,7 @@ function Contact() {
     });
   };
 
-  const handleClick = (e) => {
+  const handleChange = (e) => {
     e.preventDefault();
 
     if (e.target.id === 'lastname') {
@@ -130,7 +130,7 @@ function Contact() {
                   id="firstname"
                   placeholder="Votre prénom"
                   value={firstname}
-                  onChange={handleClick}
+                  onChange={handleChange}
                 />
               </Col>
             </Row>
@@ -142,7 +142,7 @@ function Contact() {
                   id="lastname"
                   placeholder="Votre nom"
                   value={lastname}
-                  onChange={handleClick}
+                  onChange={handleChange}
                 />
               </Col>
             </Row>
@@ -156,7 +156,7 @@ function Contact() {
                   id="email"
                   placeholder="Votre email"
                   value={email}
-                  onChange={handleClick}
+                  onChange={handleChange}
                 />
               </Col>
             </Row>
@@ -170,7 +170,7 @@ function Contact() {
                   id="text"
                   placeholder="Sujet de la demande"
                   value={text}
-                  onChange={handleClick}
+                  onChange={handleChange}
                 />
               </Col>
             </Row>
@@ -184,7 +184,7 @@ function Contact() {
                   id="textarea"
                   placeholder="Votre demande"
                   value={textarea}
-                  onChange={handleClick}
+                  onChange={handleChange}
                 />
               </Col>
             </Row>

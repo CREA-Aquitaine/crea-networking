@@ -36,7 +36,7 @@ function Steps({ t }) {
               alt="search"
               className={`${styles.image} mb-4`}
             />
-            <figcaption className={styles.color}>{t('annonce')}</figcaption>
+            <figcaption className={styles.color}>{t('announce')}</figcaption>
           </figure>
         </Col>
         <Col className={styles.position}>

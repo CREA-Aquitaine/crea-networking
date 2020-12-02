@@ -78,7 +78,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
         localisation &&
         phone &&
         companyName &&
-        siret &&
         qualification &&
         userTypeId &&
         roleId
