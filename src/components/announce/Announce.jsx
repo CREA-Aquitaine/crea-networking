@@ -3,12 +3,14 @@ import { Container, Row, Col } from 'reactstrap';
 import Axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 import ReactHtmlParser from 'react-html-parser';
 import { connect } from 'react-redux';
 import styles from './Announce.module.css';
 import ApplyModal from './ApplyModal';
 
-function Announce({ token }) {
+function Announce({ token, t }) {
   const [infosAnnounce, setInfosAnnounce] = useState([]);
   const [error, setError] = useState('');
   const [isLoading, setisLoading] = useState(true);
@@ -39,10 +41,10 @@ function Announce({ token }) {
   return (
     <>
       {isLoading ? (
-        <p>loading...</p>
+        <p>Chargement...</p>
       ) : (
         <Container className={`p-5 ${styles.global}`}>
-          {error ? <p>There is an error</p> : ''}
+          {error ? <p>Il y a une erreur</p> : ''}
           <Row className={styles.top}>
             <Col sm={{ size: 4 }} className={styles.topleft}>
               <p>
@@ -50,11 +52,11 @@ function Announce({ token }) {
                 {`${infosAnnounce[0].localisation}`}
               </p>
               <p>
-                <b>Secteur d&apos;activité : </b>
+                <b>{t('typeAnnonce')} : </b>
                 {`${infosAnnounce[0].JobCategory.labelFr} `}
               </p>
               <p>
-                <b>Type d&apos;annonce : </b>
+                <b>{t('secteurActivite')} : </b>
                 {`${infosAnnounce[0].TypePost.labelFr} `}
               </p>
             </Col>
@@ -96,6 +98,7 @@ const mapStateToProps = (state) => ({
 
 Announce.propTypes = {
   token: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Announce);
+export default compose(connect(mapStateToProps), withNamespaces())(Announce);

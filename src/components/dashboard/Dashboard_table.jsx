@@ -11,6 +11,8 @@ import {
   Row,
 } from 'reactstrap';
 import Axios from 'axios';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -21,7 +23,7 @@ import Comment from './Comment';
 
 const host = process.env.REACT_APP_HOST;
 
-function DashboardTable({ token, userInfos }) {
+function DashboardTable({ token, userInfos, t }) {
   const [activeTab, setActiveTab] = useState('1');
   const [announces, setAnnounces] = useState([]);
   const [replies, setReplies] = useState([]);
@@ -137,8 +139,8 @@ function DashboardTable({ token, userInfos }) {
               <Table responsive>
                 <thead>
                   <tr>
-                    <th>Titre</th>
-                    <th>Localisation</th>
+                    <th>{t('titreAnnonce')}</th>
+                    <th>{t('localisation')}</th>
                     <th>Voir</th>
                     <th>Supprimer</th>
                   </tr>
@@ -178,7 +180,9 @@ function DashboardTable({ token, userInfos }) {
                     <th>Sujet</th>
                     <th>Message</th>
                     <th>Email</th>
-                    <th>Nom/Prénom</th>
+                    <th>
+                      {t('nom')}/{t('prenom')}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -227,9 +231,14 @@ const mapStateToProps = (state) => ({
   userInfos: state.authenticated.userInfos,
   token: state.authenticated.token,
 });
+
 DashboardTable.propTypes = {
   token: PropTypes.string.isRequired,
   userInfos: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(DashboardTable);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(DashboardTable);

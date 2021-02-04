@@ -4,13 +4,14 @@ import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { withNamespaces } from 'react-i18next';
 
 import ModalDelete from './ModalDelete';
 import styles from './Put.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function PutSchool({ userInfos, token, activityField }) {
+function PutSchool({ userInfos, token, activityField, t }) {
   const [schoolName, setSchoolName] = useState(userInfos.companyName);
   const [firstName, setfirstName] = useState(userInfos.firstName);
   const [lastName, setlastName] = useState(userInfos.lastName);
@@ -136,7 +137,7 @@ function PutSchool({ userInfos, token, activityField }) {
         <Row>
           <Col md={3}>
             <Label for="Nom" className="mt-3">
-              Nom
+              {t('nom')}
             </Label>
           </Col>
           <Col>
@@ -154,7 +155,7 @@ function PutSchool({ userInfos, token, activityField }) {
         <Row>
           <Col md={3}>
             <Label for="Prenom" className="mt-3">
-              Prénom
+              {t('prenom')}
             </Label>
           </Col>
           <Col>
@@ -226,7 +227,7 @@ function PutSchool({ userInfos, token, activityField }) {
         <Row>
           <Col md={3}>
             <Label for="phone" className="mt-3">
-              Téléphone 1
+              {t('telMobile')}
             </Label>
           </Col>
           <Col>
@@ -242,7 +243,7 @@ function PutSchool({ userInfos, token, activityField }) {
         <Row>
           <Col md={3}>
             <Label for="Password" className="mt-3">
-              Téléphone 2
+              {t('telFixe')}
             </Label>
           </Col>
           <Col>
@@ -257,7 +258,7 @@ function PutSchool({ userInfos, token, activityField }) {
         <Row>
           <Col md={3}>
             <Label for="localisation" className="mt-3">
-              Localisation de l&apos;établissement
+              {t('localisation')}
             </Label>
           </Col>
           <Col>
@@ -274,7 +275,7 @@ function PutSchool({ userInfos, token, activityField }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="country">Pays</Label>
+            <Label for="country">{t('pays')}</Label>
           </Col>
           <Col>
             <Input
@@ -310,7 +311,7 @@ function PutSchool({ userInfos, token, activityField }) {
         <Row>
           <Col md={3}>
             <Label for="sector" className="mt-3">
-              Secteur d&apos;activité de l&apos;établissement
+              {t('secteurActivite ')}
             </Label>
           </Col>
           <Col>
@@ -364,5 +365,6 @@ PutSchool.propTypes = {
   userInfos: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
   activityField: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
-export default PutSchool;
+export default withNamespaces()(PutSchool);

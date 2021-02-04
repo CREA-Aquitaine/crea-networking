@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Form, Label, Input, Button } from 'reactstrap';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +11,7 @@ import styles from './Put.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function PutSchool({ userInfos, token }) {
+function PutUserInfo({ userInfos, token, t }) {
   const [firstName, setfirstName] = useState(userInfos.firstName);
   const [lastName, setlastName] = useState(userInfos.lastName);
   const [password, setpassword] = useState('');
@@ -95,7 +96,7 @@ function PutSchool({ userInfos, token }) {
         <Row>
           <Col md={3}>
             <Label for="Nom" className="mt-3">
-              Nom
+              {t('nom')}
             </Label>
           </Col>
           <Col>
@@ -113,7 +114,7 @@ function PutSchool({ userInfos, token }) {
         <Row>
           <Col md={3}>
             <Label for="Prenom" className="mt-3">
-              Prénom
+              {t('prenom')}
             </Label>
           </Col>
           <Col>
@@ -185,7 +186,7 @@ function PutSchool({ userInfos, token }) {
         <Row>
           <Col md={3}>
             <Label for="phone" className="mt-3">
-              Téléphone 1
+              {t('telMobile')}
             </Label>
           </Col>
           <Col>
@@ -201,7 +202,7 @@ function PutSchool({ userInfos, token }) {
         <Row>
           <Col md={3}>
             <Label for="Password" className="mt-3">
-              Téléphone 2
+              {t('telFixe')}
             </Label>
           </Col>
           <Col>
@@ -216,7 +217,7 @@ function PutSchool({ userInfos, token }) {
         <Row>
           <Col md={3}>
             <Label for="localisation" className="mt-3">
-              Localisation
+              {t('localisation')}
             </Label>
           </Col>
           <Col>
@@ -233,7 +234,7 @@ function PutSchool({ userInfos, token }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="country">Pays</Label>
+            <Label for="country">{t('pays')}</Label>
           </Col>
           <Col>
             <Input
@@ -268,8 +269,9 @@ function PutSchool({ userInfos, token }) {
   );
 }
 
-PutSchool.propTypes = {
+PutUserInfo.propTypes = {
   userInfos: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
-export default PutSchool;
+export default withNamespaces()(PutUserInfo);

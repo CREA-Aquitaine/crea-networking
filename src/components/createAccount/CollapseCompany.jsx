@@ -5,6 +5,7 @@ import Axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { withNamespaces } from 'react-i18next';
 
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
@@ -12,7 +13,7 @@ import styles from './CreateAccount.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function CollapseCompany({ isOpen, userTypeId, roleId }) {
+function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
   const [companyName, setCompanyName] = useState('');
   const [siret, setSiret] = useState('');
   const [lastName, setLastName] = useState('');
@@ -188,7 +189,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="siret">Numéro de siret*</Label>
+            <Label for="siret">{t('siret')}</Label>
           </Col>
           <Col>
             <Input
@@ -202,9 +203,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="localisation">
-              Localisation de l&apos;entreprise ou de l&apos;association*
-            </Label>
+            <Label for="localisation">{t('localisation')}*</Label>
           </Col>
           <Col>
             <Input
@@ -219,7 +218,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="country">Pays*</Label>
+            <Label for="country">{t('pays')}*</Label>
           </Col>
           <Col>
             <Input
@@ -236,7 +235,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="nameOrganisation">Votre Prénom*</Label>
+            <Label for="firstname">{t('prenom')}*</Label>
           </Col>
           <Col>
             <Input
@@ -251,7 +250,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="lastname">Votre nom*</Label>
+            <Label for="lastname">{t('nom')}</Label>
           </Col>
           <Col>
             <Input
@@ -312,7 +311,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
         {errorPassword ? <p>Veuillez ressaisir votre mot de passe</p> : ''}
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="phone">Téléphone*</Label>
+            <Label for="phone">{t('telMobile')}*</Label>
           </Col>
           <Col>
             <Input
@@ -327,14 +326,14 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="phone2">Téléphone 2</Label>
+            <Label for="phone2">{t('localisation')}</Label>
           </Col>
           <Col>
             <Input
               type="text"
               name="phone2"
               id="phone2"
-              placeholder="0102030405"
+              placeholder="telFixe"
               onChange={(e) => setPhone2(e.target.value)}
             />
           </Col>
@@ -358,9 +357,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="exampleSelect">
-              Secteur d&apos;activité de l&apos;entreprise*
-            </Label>
+            <Label for="exampleSelect">{t('secteurActivite')}*</Label>
           </Col>
           <Col>
             <Input
@@ -372,7 +369,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId }) {
               onChange={selectActivityFields}
             >
               <option value="defaultValue" disabled>
-                Selectionnez
+                Sélectionnez
               </option>
               {activityFields.map((item) => (
                 <option>{item.labelFr}</option>
@@ -399,6 +396,7 @@ CollapseCompany.propTypes = {
   isOpen: PropTypes.string.isRequired,
   userTypeId: PropTypes.string.isRequired,
   roleId: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default CollapseCompany;
+export default withNamespaces()(CollapseCompany);

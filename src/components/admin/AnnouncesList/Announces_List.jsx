@@ -3,12 +3,14 @@ import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Container, Row } from 'reactstrap';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 import styles from './Announces.module.css';
 import AnnouncesListTable from './Announces_List_Table';
 
 const host = process.env.REACT_APP_HOST;
 
-function AnnouncesList({ token }) {
+function AnnouncesList({ token, t }) {
   const [announcesList, setAnnounceslist] = useState([]);
   const [error, setError] = useState('');
   const [isPostType, setIsPostType] = useState(false);
@@ -69,7 +71,7 @@ function AnnouncesList({ token }) {
   return (
     <>
       <Container>
-        <h2 className="mt-1 mb-3">Gestion des annonces</h2>
+        <h2 className="mt-1 mb-3">{t('gestionAnnonce')}</h2>
         <Container fluid className={styles.containerCadre}>
           <Row
             className={`${styles.announcesListPage} justify-content-center mb-3`}
@@ -79,7 +81,7 @@ function AnnouncesList({ token }) {
               className={styles.buttonInput}
               onClick={getAnnounces}
             >
-              Toutes les Annonces
+              {t('toutesAnnonces')}
             </button>
             {postTypes.map((type) => (
               <button
@@ -109,6 +111,10 @@ const mapStateToProps = (state) => ({
 
 AnnouncesList.propTypes = {
   token: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(AnnouncesList);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(AnnouncesList);

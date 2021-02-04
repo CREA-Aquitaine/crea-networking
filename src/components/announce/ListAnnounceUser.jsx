@@ -142,7 +142,7 @@ function ListAnnounceUser({ token }) {
             onChange={(e) => setSelectJobCat(e.target.value)}
           >
             <option value="defaultValue" disabled>
-              Selectionnez la catégorie
+              Sélectionnez la catégorie
             </option>
             {jobCatData.map((jobCat) => (
               <option>{jobCat.labelFr}</option>
@@ -158,7 +158,7 @@ function ListAnnounceUser({ token }) {
             onChange={(e) => setSelectTypePost(e.target.value)}
           >
             <option value="defaultValue" disabled>
-              Selectionnez le type d&apos;annonce
+              Sélectionnez le type d&apos;annonce
             </option>
             {TypePost.map((typepost) => (
               <option>{typepost.labelFr}</option>
@@ -172,7 +172,7 @@ function ListAnnounceUser({ token }) {
         </Col>
         <Col sm="2" xs="12" className="mt-2">
           <Button onClick={resetSearch} className={styles.button}>
-            Reinitialiser
+            Réinitialiser
           </Button>
         </Col>
       </Row>

@@ -348,7 +348,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
               defaultValue="defaultValue"
             >
               <option value="defaultValue" disabled>
-                Selectionnez
+                Sélectionnez
               </option>
               {activityFields.map((item) => (
                 <option>{item.labelFr}</option>

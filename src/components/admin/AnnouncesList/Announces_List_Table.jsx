@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { Table, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { withNamespaces } from 'react-i18next';
 
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import { IoMdClose } from 'react-icons/io';
@@ -11,7 +13,7 @@ import styles from './Announces.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function AnnouncesListTable({ announcesList, token, getAnnounces }) {
+function AnnouncesListTable({ announcesList, token, getAnnounces, t }) {
   const [isAsc, setIsAsc] = useState(false);
   const [title, setTitle] = useState([]);
   const [error, setError] = useState('');
@@ -70,14 +72,14 @@ function AnnouncesListTable({ announcesList, token, getAnnounces }) {
         <thead className={styles.theadBackground}>
           <tr>
             <th>
-              Titre
+              {t('titreAnnonce')}
               <RiArrowDropDownLine onClick={getAscTitle} size="25" />
               <RiArrowDropUpLine onClick={getDscTitle} size="25" />
             </th>
-            <th>Type d&apos;annonces</th>
-            <th>Contenu</th>
-            <th>Catégorie</th>
-            <th>Supprimer </th>
+            <th>{t('typeAnnonce')}</th>
+            <th>{t('contenuAnnonce')}</th>
+            <th>{t('categories')}</th>
+            <th>Supprimer</th>
           </tr>
         </thead>
         <tbody>
@@ -113,6 +115,10 @@ AnnouncesListTable.propTypes = {
   announcesList: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
   getAnnounces: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(AnnouncesListTable);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(AnnouncesListTable);

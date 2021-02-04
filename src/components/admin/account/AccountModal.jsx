@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
@@ -23,7 +25,7 @@ import styles from './Account.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function AccountModal({ token, userInfos }) {
+function AccountModal({ token, userInfos, t }) {
   const [modal, setModal] = useState(false);
   const [lastName, setLastname] = useState(userInfos.lastName);
   const [firstName, setFirstname] = useState(userInfos.firstName);
@@ -119,7 +121,7 @@ function AccountModal({ token, userInfos }) {
             <FormGroup>
               <Row className={styles.rowInput}>
                 <Col xs="2">
-                  <Label for="lastname">Nom</Label>
+                  <Label for="lastname"> {t('nom')}</Label>
                 </Col>
                 <Col>
                   <Input
@@ -133,7 +135,7 @@ function AccountModal({ token, userInfos }) {
               </Row>
               <Row className={styles.rowInput}>
                 <Col xs="2">
-                  <Label for="firstname">Prénom</Label>
+                  <Label for="firstname"> {t('prenom')}</Label>
                 </Col>
                 <Col>
                   <Input
@@ -161,7 +163,7 @@ function AccountModal({ token, userInfos }) {
               </Row>
               <Row className={styles.rowInput}>
                 <Col xs="2">
-                  <Label for="password">Password</Label>
+                  <Label for="password">Mot de passe</Label>
                 </Col>
                 <Col>
                   <Input
@@ -175,7 +177,7 @@ function AccountModal({ token, userInfos }) {
               </Row>
               <Row className={styles.rowInput}>
                 <Col xs="2">
-                  <Label for="localisation">Localisation</Label>
+                  <Label for="localisation"> {t('localisation')}</Label>
                 </Col>
                 <Col>
                   <Input
@@ -189,7 +191,7 @@ function AccountModal({ token, userInfos }) {
               </Row>
               <Row className={styles.rowInput}>
                 <Col xs="2">
-                  <Label for="country">Pays</Label>
+                  <Label for="country"> {t('pays')}</Label>
                 </Col>
                 <Col>
                   <Input
@@ -203,7 +205,7 @@ function AccountModal({ token, userInfos }) {
               </Row>
               <Row className={styles.rowInput}>
                 <Col xs="2">
-                  <Label for="phone">Téléphone</Label>
+                  <Label for="phone"> {t('telMobile')}</Label>
                 </Col>
                 <Col>
                   <Input
@@ -247,6 +249,10 @@ const mapStateToProps = (state) => ({
 AccountModal.propTypes = {
   token: PropTypes.string.isRequired,
   userInfos: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(AccountModal);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(AccountModal);
