@@ -1,12 +1,12 @@
 import React from 'react';
-
+import { withNamespaces } from 'react-i18next';
 import { Card, CardImg, CardBody, CardTitle, CardText, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import announce from './img/announce.png';
 import styles from './TypeAnnounce.module.css';
 import ModalTypeAnnounce from './ModalTypeAnnounce';
 
-function TypeAnnounceCard({ french, euskara, castillan, id, getType }) {
+function TypeAnnounceCard({ french, euskara, castillan, id, getType, t }) {
   return (
     <div className={`${styles.card}  mt-5 mr-5`}>
       <Card md="4" xs="6">
@@ -18,7 +18,7 @@ function TypeAnnounceCard({ french, euskara, castillan, id, getType }) {
           alt="Card image cap"
         />
         <CardBody>
-          <CardTitle>Type D&apos;annonce</CardTitle>
+          <CardTitle>{t('typeAnnonce')}</CardTitle>
           <CardText>
             <Row>Français: {french}</Row>
             <Row>Euskara: {euskara}</Row>
@@ -43,5 +43,6 @@ TypeAnnounceCard.propTypes = {
   euskara: PropTypes.string.isRequired,
   castillan: PropTypes.string.isRequired,
   getType: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
-export default TypeAnnounceCard;
+export default withNamespaces()(TypeAnnounceCard);

@@ -3,11 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Row, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { withNamespaces } from 'react-i18next';
 
 import { FaPen } from 'react-icons/fa';
 import styles from './User_Infos.module.css';
 
-function UserInfos({ userInfos, activityFields, userTypes }) {
+function UserInfos({ userInfos, activityFields, userTypes, t }) {
   return (
     <Container className={styles.blocInfos}>
       <div className={styles.widthInnerContainer}>
@@ -15,7 +16,7 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
           <>
             <Row className="align-items-center">
               <Col xs="10">
-                <h3>Mon profil</h3>
+                <h3>{t('profil')}</h3>
               </Col>
               <Col xs="2">
                 <Link to="/settings">
@@ -26,34 +27,34 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
             <Row>
               <Col xs="6" md="4">
                 <p>
-                  <b>Nom:</b> {userInfos.firstName}
+                  <b>{t('prenom')} :</b> {userInfos.firstName}
                 </p>
               </Col>
               <Col xs="6" md="4">
                 <p>
-                  <b>Prenom:</b> {userInfos.lastName}
+                  <b>{t('nom')} :</b> {userInfos.lastName}
                 </p>
               </Col>
               <Col xs="6" md="4">
                 <p>
-                  <b>Email:</b> {userInfos.email}
+                  <b>Email :</b> {userInfos.email}
                 </p>
               </Col>
             </Row>
             <Row>
               <Col xs="6" md="4">
                 <p>
-                  <b>Localisation:</b> {userInfos.localisation}
+                  <b>{t('localisation')} :</b> {userInfos.localisation}
                 </p>
               </Col>
               <Col xs="6" md="4">
                 <p>
-                  <b>Pays:</b> {userInfos.country}
+                  <b>{t('pays')} :</b> {userInfos.country}
                 </p>
               </Col>
               <Col xs="6" md="4">
                 <p>
-                  <b>Téléphone:</b> {userInfos.phone_number}
+                  <b>{t('telMobile')} :</b> {userInfos.phone_number}
                 </p>
               </Col>
               {/* <Col xs="6" md="3">
@@ -67,7 +68,7 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
           <>
             <Row className="align-items-center">
               <Col xs="10">
-                <h3 className={styles.myProfile}>Mon profil</h3>
+                <h3 className={styles.myProfile}>{t('profil')}</h3>
               </Col>
               <Col xs="2">
                 <Link to="/settings">
@@ -78,57 +79,57 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
             <Row>
               <Col xs="6" md="3">
                 <p>
-                  <b>Entreprise:</b> {userInfos.companyName}
+                  <b>{t('entreprise')} :</b> {userInfos.companyName}
                 </p>
               </Col>
               <Col xs="6" md="3">
                 <p>
-                  <b>Localisation:</b> {userInfos.localisation}
+                  <b>{t('localisation')} :</b> {userInfos.localisation}
                 </p>
               </Col>
               <Col xs="6" md="3">
                 <p>
-                  <b>Pays:</b> {userInfos.country}
+                  <b>{t('pays')} :</b> {userInfos.country}
                 </p>
               </Col>
               <Col xs="6" md="3">
                 <p>
-                  <b>N° de siret:</b> {userInfos.siret}
+                  <b>{t('siret')} :</b> {userInfos.siret}
                 </p>
               </Col>
             </Row>
             <Row>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Nom:</b> {userInfos.firstName}
+                  <b>{t('prenom')} :</b> {userInfos.firstName}
                 </p>
               </Col>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Prenom:</b> {userInfos.lastName}
+                  <b>{t('nom')} :</b> {userInfos.lastName}
                 </p>
               </Col>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Email:</b> {userInfos.email}
+                  <b>Email :</b> {userInfos.email}
                 </p>
               </Col>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Secteur d&lsquo;activité:</b> {activityFields.labelFr}{' '}
+                  <b>{t('secteurActivite')} :</b> {activityFields.labelFr}
                 </p>
               </Col>
             </Row>
             <Row>
               <Col xs="6">
                 <p>
-                  <b>Téléphone:</b> {userInfos.phone_number}
+                  <b>{t('telMobile')} :</b> {userInfos.phone_number}
                 </p>
               </Col>
 
               <Col xs="6">
                 <p>
-                  <b>Téléphone2:</b> {userInfos.phone_number2}
+                  <b>{t('telFixe')} :</b> {userInfos.phone_number2}
                 </p>
               </Col>
             </Row>
@@ -137,7 +138,7 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
           <>
             <Row className="align-items-center">
               <Col xs="10">
-                <h3 className={styles.myProfile}>Mon profil</h3>
+                <h3 className={styles.myProfile}>{t('profil')}</h3>
               </Col>
               <Col xs="2">
                 <Link to="/settings">
@@ -148,44 +149,44 @@ function UserInfos({ userInfos, activityFields, userTypes }) {
             <Row>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Nom:</b> {userInfos.firstName}
+                  <b>{t('prenom')} :</b> {userInfos.firstName}
                 </p>
               </Col>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Prenom:</b> {userInfos.lastName}{' '}
+                  <b>{t('nom')} :</b> {userInfos.lastName}
                 </p>
               </Col>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Email:</b> {userInfos.email}
+                  <b>Email :</b> {userInfos.email}
                 </p>
               </Col>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Etablissement:</b> {userInfos.schoolName}
+                  <b>Etablissement :</b> {userInfos.schoolName}
                 </p>
               </Col>
             </Row>
             <Row>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Localisation:</b> {userInfos.localisation}{' '}
+                  <b>{t('localisation')} :</b> {userInfos.localisation}
                 </p>
               </Col>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Pays:</b> {userInfos.country}
+                  <b>{t('pays')} :</b> {userInfos.country}
                 </p>
               </Col>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Téléphone:</b> {userInfos.phone_number}
+                  <b>{t('telMobile')} :</b> {userInfos.phone_number}
                 </p>
               </Col>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Téléphone2:</b> {userInfos.phone_number2}
+                  <b>{t('telFixe')} :</b> {userInfos.phone_number2}
                 </p>
               </Col>
             </Row>
@@ -215,6 +216,7 @@ UserInfos.propTypes = {
       schoolName: PropTypes.string,
     })
   ).isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default UserInfos;
+export default withNamespaces()(UserInfos);

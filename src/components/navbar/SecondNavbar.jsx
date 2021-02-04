@@ -69,7 +69,7 @@ function SecondNavbar({ role, t }) {
               </DropdownToggle>
               <DropdownMenu bottom>
                 <DropdownItem tag={Link} to="/jobCategory">
-                  {t('Catégories d&apos;emplois')}
+                  {t('categoriesEmplois')}
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem tag={Link} to="/typeAnnounce">

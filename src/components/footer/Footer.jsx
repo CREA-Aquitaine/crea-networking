@@ -57,10 +57,7 @@ function Footer({ t }) {
                       fontWeight: '700',
                     }}
                   >
-                    Nous sommes persuadés que la réussite de tout projet
-                    s’inscrit dans la valeur qu’incarne son porteur. La recette
-                    du succès passe par le partage d’expériences, de savoirs et
-                    la confrontation d’idées.
+                    {t('footerContent')}
                   </p>
                 </Col>
                 <Col

@@ -3,6 +3,8 @@ import { Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Redirect } from 'react-router-dom';
@@ -10,7 +12,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './PostAnnounce.module.css';
 
-function PostAnnounce({ token, UserId }) {
+function PostAnnounce({ token, UserId, t }) {
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
   const [isLoading, setisLoading] = useState(true);
@@ -160,15 +162,15 @@ function PostAnnounce({ token, UserId }) {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <p>Chargement...</p>
       ) : (
         <Container>
-          {error ? <p>There is an error</p> : ''}
+          {error ? <p>Il y a une erreur</p> : ''}
           <h2 className="mt-2 mb-5">Déposer une annonce</h2>
           <Form onSubmit={handlePostAnnounce}>
             <FormGroup row>
               <Col sm={2} className={styles.paragraphLeft}>
-                <Label for="exampleSelect">Type d&lsquo;annonce: </Label>
+                <Label for="exampleSelect">{t('typeAnnonce')} :</Label>
               </Col>
               <Col sm={5}>
                 <Input
@@ -179,7 +181,7 @@ function PostAnnounce({ token, UserId }) {
                   defaultValue="defaultValue"
                 >
                   <option value="defaultValue" disabled>
-                    Selectionnez
+                    Sélectionnez
                   </option>
 
                   {typePostsData.map((typePost) => (
@@ -205,7 +207,7 @@ function PostAnnounce({ token, UserId }) {
             </FormGroup>
             <FormGroup row>
               <Col sm={2} className={styles.paragraphLeft}>
-                <Label for="exampleAddress">Localisation :</Label>
+                <Label for="exampleAddress">{t('localisation')} :</Label>
               </Col>
               <Col sm={5}>
                 <Input
@@ -220,7 +222,7 @@ function PostAnnounce({ token, UserId }) {
             </FormGroup>
             <FormGroup row>
               <Col sm={2} className={styles.paragraphLeft}>
-                <Label for="exampleSelect">Langue: </Label>
+                <Label for="exampleSelect">Langue :</Label>
               </Col>
               <Col sm={5}>
                 <Input
@@ -231,7 +233,7 @@ function PostAnnounce({ token, UserId }) {
                   defaultValue="defaultValue"
                 >
                   <option value="defaultValue" disabled>
-                    Selectionnez
+                    Sélectionnez
                   </option>
                   <option>Français</option>
                   <option>Euskal</option>
@@ -241,7 +243,7 @@ function PostAnnounce({ token, UserId }) {
             </FormGroup>
             <FormGroup row>
               <Col sm={2} className={styles.paragraphLeft}>
-                <Label for="exampleSelect">Catégorie: </Label>
+                <Label for="exampleSelect">{t('categories')} :</Label>
               </Col>
               <Col sm={5}>
                 <Input
@@ -252,7 +254,7 @@ function PostAnnounce({ token, UserId }) {
                   onChange={selectJobCat}
                 >
                   <option value="defaultValue" disabled>
-                    Selectionnez
+                    Sélectionnez
                   </option>
 
                   {jobCatData.map((jobCat) => (
@@ -299,6 +301,10 @@ const mapStateToProps = (state) => ({
 PostAnnounce.propTypes = {
   token: PropTypes.string.isRequired,
   UserId: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(PostAnnounce);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(PostAnnounce);
