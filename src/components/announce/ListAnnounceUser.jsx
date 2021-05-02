@@ -16,9 +16,12 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
+
 import styles from './ListAnnounceUser.module.css';
 
-function ListAnnounceUser({ token }) {
+function ListAnnounceUser({ token, t }) {
   const [isLoading, setisLoading] = useState(true);
   const [annonceData, setAnnonceData] = useState([]);
   const [error, setError] = useState('');
@@ -131,7 +134,7 @@ function ListAnnounceUser({ token }) {
 
   return (
     <Container>
-      <h2 className="mb-5 mt-2">Rechercher une annonce</h2>
+      <h2 className="mb-5 mt-2">{t('rechercheAnnonce')}</h2>
       <Row className="mt-5">
         <Col sm="4" xs="12" className="mt-2">
           <Input
@@ -142,7 +145,7 @@ function ListAnnounceUser({ token }) {
             onChange={(e) => setSelectJobCat(e.target.value)}
           >
             <option value="defaultValue" disabled>
-              Sélectionnez la catégorie
+              {t('selectCategorie')}
             </option>
             {jobCatData.map((jobCat) => (
               <option>{jobCat.labelFr}</option>
@@ -218,6 +221,10 @@ const mapStateToProps = (state) => ({
 
 ListAnnounceUser.propTypes = {
   token: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ListAnnounceUser);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(ListAnnounceUser);

@@ -5,6 +5,8 @@ import Axios from 'axios';
 import { connect, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
@@ -12,7 +14,7 @@ import styles from './CreateAccount.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function CollapseSchool({ isOpen, userTypeId, roleId }) {
+function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
   const [schoolName, setSchoolName] = useState('');
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -224,7 +226,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="password">Mot de passe*</Label>
+            <Label for="password">{t('motDePasse')}*</Label>
           </Col>
           <Col>
             <Input
@@ -348,7 +350,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
               defaultValue="defaultValue"
             >
               <option value="defaultValue" disabled>
-                Sélectionnez
+                {t('selectionnez')}
               </option>
               {activityFields.map((item) => (
                 <option>{item.labelFr}</option>
@@ -360,7 +362,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
         <Row>
           <Col xs={{ size: 2, offset: 5 }}>
             <Button className={`${styles.buttonValidate} button`} type="submit">
-              Valider
+              {t('valider')}
             </Button>
           </Col>
         </Row>
@@ -380,6 +382,10 @@ CollapseSchool.propTypes = {
   isOpen: PropTypes.string.isRequired,
   roleId: PropTypes.string.isRequired,
   userTypeId: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(CollapseSchool);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(CollapseSchool);

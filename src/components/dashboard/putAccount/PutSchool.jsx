@@ -347,12 +347,12 @@ function PutSchool({ userInfos, token, activityField, t }) {
           </Col>
           <Col xs={{ size: 1.5, offset: 5 }}>
             <Button className="button" onClick={putInfo}>
-              Valider
+              {t('valider')}
             </Button>
           </Col>
           <Col xs="1">
             <Button tag={Link} to="/dashboard" className={styles.buttonCancel}>
-              Annuler
+              {t('annuler')}
             </Button>
           </Col>
         </Row>

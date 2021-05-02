@@ -83,6 +83,7 @@ function AnnouncesList({ token, t }) {
             >
               {t('toutesAnnonces')}
             </button>
+            {/* TODO : revoir ici partenariat */}
             {postTypes.map((type) => (
               <button
                 type="button"

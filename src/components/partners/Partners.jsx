@@ -2,10 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Row, Container, Col } from 'reactstrap';
+import { withNamespaces } from 'react-i18next';
+import PropTypes from 'prop-types';
+
 import Partner from './Partner';
 import styles from './Partners.module.css';
 
-function Partners() {
+function Partners({ t }) {
   const [partners, setPartners] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const [error, setError] = useState('');
@@ -28,11 +31,11 @@ function Partners() {
   return (
     <>
       {isLoading ? (
-        <p>loading...</p>
+        <p>Chargement...</p>
       ) : (
         <Container>
-          {error ? <p>There is an error</p> : ''}
-          <h2>Nos partenaires</h2>
+          {error ? <p>I y a une erreur</p> : ''}
+          <h2>{t('nosPartenaires')}</h2>
           <Row className={styles.rowPartners}>
             {partners.map((item) => (
               <Col xs="3" className={styles.colLogo} key={item.id}>
@@ -46,4 +49,8 @@ function Partners() {
   );
 }
 
-export default Partners;
+Partners.propTypes = {
+  t: PropTypes.func.isRequired,
+};
+
+export default withNamespaces()(Partners);

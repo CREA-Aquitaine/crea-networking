@@ -166,7 +166,7 @@ function PostAnnounce({ token, UserId, t }) {
       ) : (
         <Container>
           {error ? <p>Il y a une erreur</p> : ''}
-          <h2 className="mt-2 mb-5">Déposer une annonce</h2>
+          <h2 className="mt-2 mb-5">{t('deposerAnnonce')}</h2>
           <Form onSubmit={handlePostAnnounce}>
             <FormGroup row>
               <Col sm={2} className={styles.paragraphLeft}>
@@ -181,7 +181,7 @@ function PostAnnounce({ token, UserId, t }) {
                   defaultValue="defaultValue"
                 >
                   <option value="defaultValue" disabled>
-                    Sélectionnez
+                    {t('selectionnez')}
                   </option>
 
                   {typePostsData.map((typePost) => (
@@ -222,7 +222,7 @@ function PostAnnounce({ token, UserId, t }) {
             </FormGroup>
             <FormGroup row>
               <Col sm={2} className={styles.paragraphLeft}>
-                <Label for="exampleSelect">Langue :</Label>
+                <Label for="exampleSelect">{t('langue')} :</Label>
               </Col>
               <Col sm={5}>
                 <Input
@@ -233,7 +233,7 @@ function PostAnnounce({ token, UserId, t }) {
                   defaultValue="defaultValue"
                 >
                   <option value="defaultValue" disabled>
-                    Sélectionnez
+                    {t('selectionnez')}
                   </option>
                   <option>Français</option>
                   <option>Euskal</option>
@@ -254,7 +254,7 @@ function PostAnnounce({ token, UserId, t }) {
                   onChange={selectJobCat}
                 >
                   <option value="defaultValue" disabled>
-                    Sélectionnez
+                    {t('selectionnez')}
                   </option>
 
                   {jobCatData.map((jobCat) => (
@@ -273,7 +273,7 @@ function PostAnnounce({ token, UserId, t }) {
             <Row className="mt-5">
               <Col md={{ size: 2, offset: 8 }} xs="12">
                 <button type="submit" className="button mt-2">
-                  Valider
+                  {t('valider')}
                 </button>
               </Col>
               <Col md="2" xs="12">
@@ -282,7 +282,7 @@ function PostAnnounce({ token, UserId, t }) {
                   onClick={resetForm}
                   className="button mt-2"
                 >
-                  Annuler
+                  {t('annuler')}
                 </button>
               </Col>
             </Row>

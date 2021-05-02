@@ -16,7 +16,7 @@ function Header({ t }) {
       <p className={styles.pres}>{t('TextePresentationTroisPartie')}</p>
       <Link to="/partners">
         <button className={styles.button} type="button">
-          {t('ButtonPartenaires')}
+          {t('nosPartenaires')}
         </button>
       </Link>
     </Container>

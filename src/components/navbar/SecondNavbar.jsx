@@ -40,32 +40,32 @@ function SecondNavbar({ role, t }) {
           >
             <NavItem className="ml-5">
               <NavLink className={styles.navlink} tag={Link} to="/dashboard">
-                {t('Mon dashboard')}
+                {t('monDashboard')}
               </NavLink>
             </NavItem>
             <NavItem className="ml-5">
               <NavLink className={styles.navlink} tag={Link} to="/users">
-                {t('Mes utilisateurs')}{' '}
+                {t('mesUsers')}{' '}
               </NavLink>
             </NavItem>
             <NavItem className="ml-5">
               <NavLink className={styles.navlink} tag={Link} to="/announces">
-                {t('Mes annonces')}
+                {t('mesAnnonces')}
               </NavLink>
             </NavItem>
             <NavItem className="ml-5">
               <NavLink className={styles.navlink} tag={Link} to="/faq">
-                {t('FAQ')}
+                {t('faq')}
               </NavLink>
             </NavItem>
             <NavItem className="ml-5">
               <NavLink className={styles.navlink} tag={Link} to="/partners">
-                {t('Partenaires')}
+                {t('partenaires')}
               </NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar className="ml-5">
               <DropdownToggle nav caret>
-                {t('Divers')}
+                {t('divers')}
               </DropdownToggle>
               <DropdownMenu bottom>
                 <DropdownItem tag={Link} to="/jobCategory">
@@ -73,15 +73,15 @@ function SecondNavbar({ role, t }) {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem tag={Link} to="/typeAnnounce">
-                  {t('Types d&apos;annonces')}
+                  {t('typeAnnonce')}
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem tag={Link} to="/userType">
-                  {t('Types d&apos;utilisateurs')}
+                  {t('typeUtilisateur')}
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem tag={Link} to="/activityFields">
-                  {t('Secteurs d&apos;activité')}
+                  {t('secteurActivite')}
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -98,34 +98,34 @@ function SecondNavbar({ role, t }) {
             </NavItem>
             <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/dashboard">
-                {t('Mon dashboard')}
+                {t('monDashboard')}
               </NavLink>
             </NavItem>
 
             <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/post">
-                {t('Déposer une annonce')}
+                {t('deposerAnnonce')}
               </NavLink>
             </NavItem>
             <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/listAnnonce">
-                {t('Rechercher une annonce')}
+                {t('rechercheAnnonce')}
               </NavLink>
             </NavItem>
             <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/partners">
-                {t('Partenaires')}
+                {t('partenaires')}
               </NavLink>
             </NavItem>
             <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/faq">
-                {t('FAQ')}
+                {t('faq')}
               </NavLink>
             </NavItem>
 
             <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/contact">
-                {t('Contact')}
+                {t('contact')}
               </NavLink>
             </NavItem>
           </Nav>
@@ -141,12 +141,12 @@ function SecondNavbar({ role, t }) {
             </NavItem>
             <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/partners">
-                {t('Partenaires')}
+                {t('partenaires')}
               </NavLink>
             </NavItem>
             <NavItem className={`ml-5 ${styles.marginLeftResp}`}>
               <NavLink className={styles.navlink} tag={Link} to="/contact">
-                {t('Contact')}
+                {t('contact')}
               </NavLink>
             </NavItem>
           </Nav>

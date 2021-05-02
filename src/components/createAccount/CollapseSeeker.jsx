@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { withNamespaces } from 'react-i18next';
 
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
@@ -12,7 +13,7 @@ import styles from './CreateAccount.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function CollapseSeeker({ isOpen, userTypeId, roleId }) {
+function CollapseSeeker({ isOpen, userTypeId, roleId, t }) {
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
@@ -180,7 +181,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="password">Mot de passe*</Label>
+            <Label for="password">{t('motDePasse')}*</Label>
           </Col>
           <Col>
             <Input
@@ -276,7 +277,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId }) {
         <Row>
           <Col xs={{ size: 2, offset: 5 }}>
             <Button className={`${styles.buttonValidate} button`} type="submit">
-              Valider
+              {t('valider')}
             </Button>
           </Col>
         </Row>
@@ -291,5 +292,7 @@ CollapseSeeker.propTypes = {
   isOpen: PropTypes.string.isRequired,
   roleId: PropTypes.string.isRequired,
   userTypeId: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
-export default CollapseSeeker;
+
+export default withNamespaces()(CollapseSeeker);

@@ -14,12 +14,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import styles from './UserTypes.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function UserTypesModal({ labelf, token, getUserTypes, id }) {
+function UserTypesModal({ labelf, token, getUserTypes, id, t }) {
   const [modal, setModal] = useState(false);
   const [label, setLabel] = useState(labelf);
   const [error, setError] = useState('');
@@ -169,12 +171,12 @@ function UserTypesModal({ labelf, token, getUserTypes, id }) {
               </Col>
               <Col xs={{ size: 2, offset: 5 }}>
                 <Button className={styles.buttonCancel} onClick={toggle}>
-                  Annuler
+                  {t('annuler')}
                 </Button>
               </Col>
               <Col xs="2">
                 <Button className="button" type="submit">
-                  Valider
+                  {t('valider')}
                 </Button>
               </Col>
             </Row>
@@ -194,6 +196,10 @@ UserTypesModal.propTypes = {
   labelf: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   getUserTypes: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(UserTypesModal);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(UserTypesModal);

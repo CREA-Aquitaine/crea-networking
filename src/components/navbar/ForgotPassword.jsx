@@ -47,10 +47,10 @@ function ForgotPassword({ t }) {
         tabIndex={0}
         className={styles.button}
       >
-        {t('mdp2')}
+        {t('motDePasse2')}
       </div>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>{t('mdp2')}</ModalHeader>
+        <ModalHeader toggle={toggle}>{t('motDePasse2')}</ModalHeader>
         <ModalBody>
           <Row className="ml-4 mr-4">
             <Col xs="2">
@@ -72,12 +72,12 @@ function ForgotPassword({ t }) {
         <Row className="mb-4 mx-4">
           <Col xs={{ size: 2, offset: 8 }}>
             <Button className="button" onClick={handleSubmit}>
-              {t('Validez')}
+              {t('valider')}
             </Button>
           </Col>
           <Col>
             <Button className={styles.buttonCancel} onClick={toggle}>
-              {t('Annuler')}
+              {t('annuler')}
             </Button>
           </Col>
         </Row>

@@ -14,6 +14,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import styles from './JobCategory.module.css';
 
@@ -26,6 +28,7 @@ function JobCategoryModal({
   token,
   getCategories,
   id,
+  t,
 }) {
   const [modal, setModal] = useState(false);
   const [labelFr, setLabelFr] = useState(labelF);
@@ -142,12 +145,12 @@ function JobCategoryModal({
               </Col>
               <Col xs={{ size: 2, offset: 5 }}>
                 <Button className={styles.buttonCancel} onClick={toggle}>
-                  Annuler
+                  {t('annuler')}
                 </Button>
               </Col>
               <Col xs="2">
                 <Button className="button" type="submit">
-                  Valider
+                  {t('valider')}
                 </Button>
               </Col>
             </Row>
@@ -169,6 +172,10 @@ JobCategoryModal.propTypes = {
   labelF: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   getCategories: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(JobCategoryModal);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(JobCategoryModal);

@@ -79,7 +79,7 @@ function AnnouncesListTable({ announcesList, token, getAnnounces, t }) {
             <th>{t('typeAnnonce')}</th>
             <th>{t('contenuAnnonce')}</th>
             <th>{t('categories')}</th>
-            <th>Supprimer</th>
+            <th>{t('supprimer')}</th>
           </tr>
         </thead>
         <tbody>

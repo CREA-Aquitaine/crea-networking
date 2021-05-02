@@ -120,7 +120,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
       <Form>
         <Row className="mt-5">
           <Col md={3}>
-            <Label for="Nom" className="mt-3">
+            <Label for="entreprise" className="mt-3">
               Nom de l&apos;entreprise
             </Label>
           </Col>
@@ -138,7 +138,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
         </Row>
         <Row>
           <Col md={3}>
-            <Label for="Nom" className="mt-3">
+            <Label for="siret" className="mt-3">
               {t('siret')}
             </Label>
           </Col>
@@ -156,7 +156,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
         </Row>
         <Row>
           <Col md={3}>
-            <Label for="Nom" className="mt-3">
+            <Label for="nom" className="mt-3">
               {t('nom')}
             </Label>
           </Col>
@@ -174,7 +174,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
         </Row>
         <Row>
           <Col md={3}>
-            <Label for="Prenom" className="mt-3">
+            <Label for="prenom" className="mt-3">
               {t('prenom')}
             </Label>
           </Col>
@@ -365,12 +365,12 @@ function PutCompany({ userInfos, token, activityField, t }) {
           </Col>
           <Col xs={{ size: 1.5, offset: 5 }}>
             <Button className="button" onClick={putInfo}>
-              Valider
+              {t('valider')}
             </Button>
           </Col>
           <Col xs="1">
             <Button tag={Link} to="/dashboard" className={styles.buttonCancel}>
-              Annuler
+              {t('annuler')}
             </Button>
           </Col>
         </Row>

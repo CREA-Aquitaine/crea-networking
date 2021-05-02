@@ -10,7 +10,8 @@ import {
   Form,
 } from 'reactstrap';
 import Axios from 'axios';
-
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
@@ -20,7 +21,7 @@ import styles from './ActivityFields.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function ActivityModal({ labelF, labelE, labelEu, token, getActivity, id }) {
+function ActivityModal({ labelF, labelE, labelEu, token, getActivity, id, t }) {
   const [modal, setModal] = useState(false);
   const [labelFr, setLabelFr] = useState(labelF);
   const [labelEs, setLabelEs] = useState(labelE);
@@ -190,12 +191,12 @@ function ActivityModal({ labelF, labelE, labelEu, token, getActivity, id }) {
               </Col>
               <Col xs={{ size: 2, offset: 5 }}>
                 <Button className={styles.buttonCancel} onClick={toggle}>
-                  Annuler
+                  {t('annuler')}
                 </Button>
               </Col>
               <Col xs="2">
                 <Button className="button" type="submit">
-                  Valider
+                  {t('valider')}
                 </Button>
               </Col>
             </Row>
@@ -217,6 +218,10 @@ ActivityModal.propTypes = {
   labelF: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   getActivity: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ActivityModal);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(ActivityModal);

@@ -35,7 +35,7 @@ const ModalPartners = ({
       <ModalBody>{description}</ModalBody>
       <ModalFooter>
         <Button className="button" onClick={toggle}>
-          {t('Annuler')}
+          {t('annuler')}
         </Button>
         <a href={url} target="blanck">
           <Button className="button" onClick={toggle}>

@@ -114,11 +114,11 @@ function UserTypes({ token }) {
 
   return (
     <Container>
-      <h2 className="mt-1 mb-3">Les types d&apos;utilisateurs</h2>
+      <h2 className="mt-1 mb-3">Les ttypeUtilisateur</h2>
       <Container fluid className={styles.container}>
         <Row className={styles.title}>
           <Col md="2" xs="12" className={`m-3 ${styles.activityTitle}`}>
-            Gérer les types d&apos;utilisateurs
+            Gérer les ttypeUtilisateur
           </Col>
         </Row>
         <Form fluid className={styles.addActivity} onSubmit={handleSubmit}>

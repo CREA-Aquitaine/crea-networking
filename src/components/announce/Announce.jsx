@@ -48,7 +48,7 @@ function Announce({ token, t }) {
           <Row className={styles.top}>
             <Col sm={{ size: 4 }} className={styles.topleft}>
               <p>
-                <b>Ville : </b>
+                <b>{t('ville')} : </b>
                 {`${infosAnnounce[0].localisation}`}
               </p>
               <p>

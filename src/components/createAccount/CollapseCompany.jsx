@@ -280,7 +280,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="password">Mot de passe*</Label>
+            <Label for="password">{t('motDePasse')}*</Label>
           </Col>
           <Col>
             <Input
@@ -369,7 +369,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               onChange={selectActivityFields}
             >
               <option value="defaultValue" disabled>
-                Sélectionnez
+                {t('selectionnez')}
               </option>
               {activityFields.map((item) => (
                 <option>{item.labelFr}</option>
@@ -381,7 +381,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
         <Row>
           <Col xs={{ size: 2, offset: 5 }}>
             <Button className={`${styles.buttonValidate} button`} type="submit">
-              Valider
+              {t('valider')}
             </Button>
           </Col>
         </Row>

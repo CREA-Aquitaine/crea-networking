@@ -15,12 +15,14 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
+import { withNamespaces } from 'react-i18next';
+import { compose } from 'redux';
 
 import styles from './ApplyModale.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
+function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce, t }) {
   const [modal, setModal] = useState(false);
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
@@ -107,7 +109,7 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
           <ModalBody>
             <Row>
               <Col xs="3" className={styles.inputTitle}>
-                <Label for="exampleFile">Sujet</Label>
+                <Label for="exampleFile">{t('sujet')}</Label>
               </Col>
               <Col>
                 <Input
@@ -139,7 +141,7 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
               Répondre à l&apos;annonce
             </Button>
             <Button className="button" onClick={toggle}>
-              Annuler
+              {t('annuler')}
             </Button>
           </ModalFooter>
           {send ? <p>Votre réponse a bien été envoyée.</p> : ''}
@@ -166,6 +168,7 @@ ApplyModal.propTypes = {
   infosAnnounce: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
   getInfosAnnounce: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ApplyModal);
+export default compose(connect(mapStateToProps), withNamespaces())(ApplyModal);

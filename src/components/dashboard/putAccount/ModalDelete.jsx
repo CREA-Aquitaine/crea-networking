@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
-
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 import styles from './Put.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function ModalDelete({ id, token }) {
+function ModalDelete({ id, token, t }) {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   const [errorDelete, setErrorDelete] = useState(false);
@@ -40,10 +41,10 @@ function ModalDelete({ id, token }) {
         </ModalBody>
         <ModalFooter>
           <Button className="button" onClick={deleteUser}>
-            Oui
+            {t('oui')}
           </Button>
           <Button className={styles.no} onClick={toggle}>
-            Non
+            {t('non')}
           </Button>
           {errorDelete ? '' : ''}
         </ModalFooter>
@@ -58,6 +59,7 @@ const mapStateToProps = (state) => ({
 ModalDelete.propTypes = {
   token: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ModalDelete);
+export default compose(connect(mapStateToProps), withNamespaces())(ModalDelete);

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Pie } from 'react-chartjs-2';
+import { withNamespaces } from 'react-i18next';
+import { compose } from 'redux';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -11,7 +13,7 @@ import PieCountry from './PieCountry';
 
 const host = process.env.REACT_APP_HOST;
 
-function HomeAdmin({ token }) {
+function HomeAdmin({ token, t }) {
   const [types, setTypes] = useState([]);
   const [error, setError] = useState(null);
   const [users, setUsers] = useState([]);
@@ -59,22 +61,22 @@ function HomeAdmin({ token }) {
 
   return (
     <Container className={styles.containerGeneral}>
-      <h2 className="mt-1 mb-3">Mon dashboard</h2>
+      <h2 className="mt-1 mb-3">{t('monDashboard')}</h2>
       {error && <p>Erreur lors de la récupération des données</p>}
       <Row>
         <Col xs="12" md="6">
           <Container Fluid className={styles.pie}>
-            <h4 className={styles.userTypes}>Types d&apos;utilisateurs</h4>
+            <h4 className={styles.userTypes}>typeUtilisateur</h4>
             <Pie
               data={{
                 datasets: [
                   {
-                    data: types.map((t) => t.Users.length),
+                    data: types.map((item) => item.Users.length),
                     // TODO: bind these colors with types state
                     backgroundColor: ['#ffa500', '#ff4500', '#ffff00'],
                   },
                 ],
-                labels: types.map((t) => t.label),
+                labels: types.map((item) => item.label),
               }}
             />
             <p className={styles.nbtotal}>
@@ -96,6 +98,7 @@ const mapStateToProps = (state) => ({
 
 HomeAdmin.propTypes = {
   token: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(HomeAdmin);
+export default compose(connect(mapStateToProps), withNamespaces())(HomeAdmin);
