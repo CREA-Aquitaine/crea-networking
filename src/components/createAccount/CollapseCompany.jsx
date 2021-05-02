@@ -319,21 +319,21 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               required
               name="phone"
               id="phone"
-              placeholder="0102030405"
+              placeholder="0602030405"
               onChange={(e) => setPhone(e.target.value)}
             />
           </Col>
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="phone2">{t('localisation')}</Label>
+            <Label for="phone2">{t('telFixe')}</Label>
           </Col>
           <Col>
             <Input
               type="text"
               name="phone2"
               id="phone2"
-              placeholder="telFixe"
+              placeholder="0559414141"
               onChange={(e) => setPhone2(e.target.value)}
             />
           </Col>
