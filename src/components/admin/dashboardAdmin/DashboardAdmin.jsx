@@ -62,11 +62,11 @@ function HomeAdmin({ token, t }) {
   return (
     <Container className={styles.containerGeneral}>
       <h2 className="mt-1 mb-3">{t('monDashboard')}</h2>
-      {error && <p>Erreur lors de la récupération des données</p>}
+      {error && <p>{t('erreurRecupDonnees')}</p>}
       <Row>
         <Col xs="12" md="6">
           <Container Fluid className={styles.pie}>
-            <h4 className={styles.userTypes}>typeUtilisateur</h4>
+            <h4 className={styles.userTypes}>{t('typeUtilisateur')}</h4>
             <Pie
               data={{
                 datasets: [

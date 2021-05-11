@@ -35,7 +35,7 @@ function PutUserInfo({ userInfos, token, t }) {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -47,7 +47,7 @@ function PutUserInfo({ userInfos, token, t }) {
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -91,7 +91,7 @@ function PutUserInfo({ userInfos, token, t }) {
 
   return (
     <Container className={styles.container}>
-      <h2>Mes informations</h2>
+      <h2>{t('mesInfo')}</h2>
       <Form>
         <Row>
           <Col md={3}>
@@ -107,7 +107,7 @@ function PutUserInfo({ userInfos, token, t }) {
               required
               value={lastName}
               onChange={(event) => setlastName(event.target.value)}
-              placeholder="Votre nom ..."
+              placeholder={t('nom')}
             />
           </Col>
         </Row>
@@ -125,7 +125,7 @@ function PutUserInfo({ userInfos, token, t }) {
               required
               value={firstName}
               onChange={(event) => setfirstName(event.target.value)}
-              placeholder="Votre prénom ..."
+              placeholder={t('prenom')}
             />
           </Col>
         </Row>
@@ -168,7 +168,7 @@ function PutUserInfo({ userInfos, token, t }) {
         <Row>
           <Col md={3}>
             <Label for="Password" className="mt-3">
-              Confirmez votre mot de passe*
+              {t('confirmMotPasse')}
             </Label>
           </Col>
           <Col>

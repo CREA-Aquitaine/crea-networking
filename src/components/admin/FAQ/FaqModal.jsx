@@ -70,7 +70,7 @@ function FaqModal({ request, response, id, country, token, getFaq, t }) {
   };
 
   const setToastErrorPut = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -82,7 +82,7 @@ function FaqModal({ request, response, id, country, token, getFaq, t }) {
   };
 
   const setToastErrorDelete = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -94,7 +94,7 @@ function FaqModal({ request, response, id, country, token, getFaq, t }) {
   };
 
   const setToastInputPut = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -210,7 +210,7 @@ function FaqModal({ request, response, id, country, token, getFaq, t }) {
             <Row className="mt-5">
               <Col xs="3">
                 <Button className="button" onClick={deleteFaq}>
-                  Supprimer
+                  {t('supprimer')}
                 </Button>
               </Col>
               <Col xs={{ size: 2, offset: 5 }}>

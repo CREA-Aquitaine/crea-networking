@@ -54,7 +54,7 @@ function UserTypesModal({ labelf, token, getUserTypes, id, t }) {
   };
 
   const setToastErrorPut = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -66,7 +66,7 @@ function UserTypesModal({ labelf, token, getUserTypes, id, t }) {
   };
 
   const setToastErrorDelete = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -78,7 +78,7 @@ function UserTypesModal({ labelf, token, getUserTypes, id, t }) {
   };
 
   const setToastInputPut = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -166,7 +166,7 @@ function UserTypesModal({ labelf, token, getUserTypes, id, t }) {
             <Row className="mt-5">
               <Col xs="3">
                 <Button className="button" onClick={deleteUserTypes}>
-                  Supprimer
+                  {t('supprimer')}
                 </Button>
               </Col>
               <Col xs={{ size: 2, offset: 5 }}>

@@ -35,7 +35,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
   const history = useHistory();
 
   const setToastSuccess = () => {
-    toast.success('Vous êtes bien enregistré.', {
+    toast.success(t('confirmInscription'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -46,7 +46,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
     });
   };
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -57,7 +57,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
     });
   };
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -181,7 +181,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="firstname">Votre prénom*</Label>
+            <Label for="firstname">{t('prenom')}*</Label>
           </Col>
           <Col>
             <Input
@@ -196,7 +196,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="firstname">Votre nom*</Label>
+            <Label for="firstname">{t('nom')}*</Label>
           </Col>
           <Col>
             <Input
@@ -241,7 +241,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="password2">Confirmez votre mot de passe*</Label>
+            <Label for="password2"> {t('confirmMotPasse')}*</Label>
           </Col>
           <Col>
             <Input
@@ -366,8 +366,8 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
             </Button>
           </Col>
         </Row>
-        {created ? <p>L&apos;utilisateur a bien été créé</p> : ''}
-        {error ? <p>Erreur lors de la création de l&apos;utilisateur</p> : ''}
+        {created ? <p>{t('confirmCreationUser')}</p> : ''}
+        {error ? <p>{t('erreurCreatUser')}</p> : ''}
       </Form>
     </Collapse>
   );

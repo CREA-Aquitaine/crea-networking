@@ -33,12 +33,10 @@ function ModalDelete({ id, token, t }) {
   return (
     <div>
       <Button className="button" onClick={toggle}>
-        Supprimer mon compte
+        {t('supprimerCompte')}
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalBody>
-          <h3>Êtes-vous sûr de vouloir supprimer votre compte ?</h3>
-        </ModalBody>
+        <ModalBody>{t('confirmSuppressionCompte')}</ModalBody>
         <ModalFooter>
           <Button className="button" onClick={deleteUser}>
             {t('oui')}

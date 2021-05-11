@@ -31,7 +31,7 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce, t }) {
 
   const toggle = () => setModal(!modal);
   const setToastSuccess = () => {
-    toast.success('Votre réponse a bien été publiée.', {
+    toast.success(t('confirmReponsePubliee'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -43,7 +43,7 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce, t }) {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -55,7 +55,7 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce, t }) {
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -101,11 +101,11 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce, t }) {
   return (
     <>
       <Button className="button" onClick={toggle}>
-        Répondre à l&apos;annonce
+        {t('repondreAlAnnonce')}
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
         <Form onSubmit={handleSubmit}>
-          <ModalHeader toggle={toggle}>Répondre à l&apos;annonce</ModalHeader>
+          <ModalHeader toggle={toggle}>{t('repondreAlAnnonce')}</ModalHeader>
           <ModalBody>
             <Row>
               <Col xs="3" className={styles.inputTitle}>
@@ -123,7 +123,7 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce, t }) {
             </Row>
             <Row>
               <Col xs="3">
-                <Label for="exampleFile">Votre message</Label>
+                <Label for="exampleFile">{t('votreMessage')}</Label>
               </Col>
               <Col>
                 <Input
@@ -138,21 +138,14 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce, t }) {
           </ModalBody>
           <ModalFooter>
             <Button className="button" type="submit">
-              Répondre à l&apos;annonce
+              {t('repondreAlAnnonce')}
             </Button>
             <Button className="button" onClick={toggle}>
               {t('annuler')}
             </Button>
           </ModalFooter>
-          {send ? <p>Votre réponse a bien été envoyée.</p> : ''}
-          {error ? (
-            <p>
-              Une erreur s&apos;est produite lors de l&apos;envoie de votre
-              réponse.
-            </p>
-          ) : (
-            ''
-          )}
+          {send ? <p>{t('confirmReponseEnvoi')}.</p> : ''}
+          {error ? <p>{t('erreurEnvoiReponse')}.</p> : ''}
         </Form>
       </Modal>
     </>

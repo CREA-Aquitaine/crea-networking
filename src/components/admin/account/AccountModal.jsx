@@ -41,7 +41,7 @@ function AccountModal({ token, userInfos, t }) {
   const toggle = () => setModal(!modal);
 
   const setToastErrorDelete = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -53,7 +53,7 @@ function AccountModal({ token, userInfos, t }) {
   };
 
   const setToastSuccessDelete = () => {
-    toast.success('Votre utilisateur a bien été supprimé.', {
+    toast.success(t('confirmSupprUtilisateur'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -113,9 +113,9 @@ function AccountModal({ token, userInfos, t }) {
   return (
     <>
       <NavItem onClick={toggle}>{t('monCompte')}</NavItem>
-      {error ? <p>Erreur lors de la modification</p> : ''}
+      {error ? <p>{t('erreurModif')}</p> : ''}
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Mes informations</ModalHeader>
+        <ModalHeader toggle={toggle}>{t('mesInfo')}</ModalHeader>
         <Form onSubmit={handleSubmit}>
           <ModalBody>
             <FormGroup>
@@ -222,7 +222,7 @@ function AccountModal({ token, userInfos, t }) {
           <Row className="mb-4 ml-4">
             <Col xs="4">
               <Button className="button" onClick={deleteUser}>
-                Supprimer mon compte
+                {t('supprimerCompte')}
               </Button>
             </Col>
             <Col xs={{ size: 2, offset: 4 }}>

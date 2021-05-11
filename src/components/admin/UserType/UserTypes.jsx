@@ -14,13 +14,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import styles from './UserTypes.module.css';
 import UserTypeList from './UserTypeList';
 
 const host = process.env.REACT_APP_HOST;
 
-function UserTypes({ token }) {
+function UserTypes({ token, t }) {
   const [userTypes, setuserTypes] = useState([]);
   const [label, setLabel] = useState('');
   const [error, setError] = useState('');
@@ -52,7 +54,7 @@ function UserTypes({ token }) {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -64,7 +66,7 @@ function UserTypes({ token }) {
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -114,11 +116,11 @@ function UserTypes({ token }) {
 
   return (
     <Container>
-      <h2 className="mt-1 mb-3">Les ttypeUtilisateur</h2>
+      <h2 className="mt-1 mb-3">Les types d&apos;utilisateurs</h2>
       <Container fluid className={styles.container}>
         <Row className={styles.title}>
           <Col md="2" xs="12" className={`m-3 ${styles.activityTitle}`}>
-            Gérer les ttypeUtilisateur
+            Gérer les types d&apos;utilisateurs
           </Col>
         </Row>
         <Form fluid className={styles.addActivity} onSubmit={handleSubmit}>
@@ -155,6 +157,7 @@ const mapStateToProps = (state) => ({
 
 UserTypes.propTypes = {
   token: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(UserTypes);
+export default compose(connect(mapStateToProps), withNamespaces())(UserTypes);

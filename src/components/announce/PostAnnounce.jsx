@@ -86,7 +86,7 @@ function PostAnnounce({ token, UserId, t }) {
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -162,10 +162,10 @@ function PostAnnounce({ token, UserId, t }) {
   return (
     <>
       {isLoading ? (
-        <p>Chargement...</p>
+        <p>{t('chargement')}...</p>
       ) : (
         <Container>
-          {error ? <p>Il y a une erreur</p> : ''}
+          {error ? <p>{t('erreurVu')}</p> : ''}
           <h2 className="mt-2 mb-5">{t('deposerAnnonce')}</h2>
           <Form onSubmit={handlePostAnnounce}>
             <FormGroup row>
@@ -192,14 +192,14 @@ function PostAnnounce({ token, UserId, t }) {
             </FormGroup>
             <FormGroup row>
               <Col sm={2} className={styles.paragraphLeft}>
-                <Label for="exampleAddress">Titre / Sujet : </Label>
+                <Label for="exampleAddress">{t('titreSujet')} : </Label>
               </Col>
               <Col sm={5}>
                 <Input
                   type="text"
                   name="Sujet"
                   id="exampleAddress"
-                  placeholder="Exemple: recherche de partenariat - développement Web & Mobile"
+                  placeholder={t('exempleRechercheParternariat')}
                   onChange={handleTitleChange}
                   value={title}
                 />
@@ -214,7 +214,7 @@ function PostAnnounce({ token, UserId, t }) {
                   type="text"
                   name="Sujet"
                   id="exampleAddress"
-                  placeholder="Exemple: Bayonne"
+                  placeholder={t('exempleVille')}
                   onChange={handleLocalisationChange}
                   value={localisation}
                 />
@@ -237,7 +237,7 @@ function PostAnnounce({ token, UserId, t }) {
                   </option>
                   <option>Français</option>
                   <option>Euskal</option>
-                  <option>Spanish</option>
+                  <option>Español</option>
                 </Input>
               </Col>
             </FormGroup>

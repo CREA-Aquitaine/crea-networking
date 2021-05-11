@@ -161,7 +161,7 @@ function ListAnnounceUser({ token, t }) {
             onChange={(e) => setSelectTypePost(e.target.value)}
           >
             <option value="defaultValue" disabled>
-              Sélectionnez le type d&apos;annonce
+              {t('selectAnnonceType')}
             </option>
             {TypePost.map((typepost) => (
               <option>{typepost.labelFr}</option>
@@ -170,21 +170,21 @@ function ListAnnounceUser({ token, t }) {
         </Col>
         <Col sm="2" xs="12" className="mt-2">
           <Button onClick={getResults} className="button">
-            Rechercher
+            {t('rechercher')}
           </Button>
         </Col>
         <Col sm="2" xs="12" className="mt-2">
           <Button onClick={resetSearch} className={styles.button}>
-            Réinitialiser
+            {t('reinitialise')}
           </Button>
         </Col>
       </Row>
       <Row>
         {isLoading ? (
-          <p>Loading...</p>
+          <p>{t('chargement')}</p>
         ) : (
           <>
-            {error ? <p>There is an error</p> : ''}
+            {error ? <p>{t('erreurVu')}</p> : ''}
             {annonceFiltered.map((announce) => (
               <Col xs="6" className="mt-5">
                 <Card className={styles.cardSize}>
@@ -202,7 +202,7 @@ function ListAnnounceUser({ token, t }) {
                       {ReactHtmlParser(announce.content)}
                     </CardText>
                     <Link to={`/announces/${announce.id}`}>
-                      <Button className="button">En savoir plus ...</Button>
+                      <Button className="button">{t('savoirPlus')}...</Button>
                     </Link>
                   </CardBody>
                 </Card>

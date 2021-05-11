@@ -14,13 +14,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import styles from './Faq_List.module.css';
 import FaqList from './FaqList';
 
 const host = process.env.REACT_APP_HOST;
 
-function Faq({ token }) {
+function Faq({ token, t }) {
   const [faq, setFaq] = useState([]);
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
@@ -54,7 +56,7 @@ function Faq({ token }) {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -66,7 +68,7 @@ function Faq({ token }) {
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -118,7 +120,7 @@ function Faq({ token }) {
 
   return (
     <Container>
-      <h2 className="mt-1 mb-3">FAQ</h2>
+      <h2 className="mt-1 mb-3">{t('faq')}</h2>
       <Container fluid className={`${styles.containerQR}`}>
         <Row className={styles.searchBar}>
           <Col xs="12" md="2" className={`mb-3 ${styles.faqTitle}`}>
@@ -191,6 +193,7 @@ const mapStateToProps = (state) => ({
 
 Faq.propTypes = {
   token: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Faq);
+export default compose(connect(mapStateToProps), withNamespaces())(Faq);

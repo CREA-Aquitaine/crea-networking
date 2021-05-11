@@ -14,13 +14,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { withNamespaces } from 'react-i18next';
+import { compose } from 'redux';
 
 import styles from './ActivityFields.module.css';
 import ActivityFieldsList from './ActivityFieldsList';
 
 const host = process.env.REACT_APP_HOST;
 
-function ActivityFields({ token }) {
+function ActivityFields({ token, t }) {
   const [activity, setActivity] = useState([]);
   const [labelFr, setLabelFr] = useState('');
   const [labelEs, setLabelEs] = useState('');
@@ -57,7 +59,7 @@ function ActivityFields({ token }) {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -69,7 +71,7 @@ function ActivityFields({ token }) {
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -193,6 +195,10 @@ const mapStateToProps = (state) => ({
 
 ActivityFields.propTypes = {
   token: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ActivityFields);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(ActivityFields);

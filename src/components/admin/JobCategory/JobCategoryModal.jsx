@@ -140,7 +140,7 @@ function JobCategoryModal({
             <Row className="mt-5">
               <Col xs="3">
                 <Button className="button" onClick={deleteCategory}>
-                  Supprimer
+                  {t('supprimer')}
                 </Button>
               </Col>
               <Col xs={{ size: 2, offset: 5 }}>

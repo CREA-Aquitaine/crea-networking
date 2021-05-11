@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import { Table, Col } from 'reactstrap';
 
@@ -13,7 +15,7 @@ import ChangeRole from './ChangeRole';
 
 const host = process.env.REACT_APP_HOST;
 
-function UsersListTable({ usersList, token, getAllUsers }) {
+function UsersListTable({ usersList, token, getAllUsers, t }) {
   const [isAsc, setIsAsc] = useState(false);
   const [lastName, setLastName] = useState([]);
   const [firstName, setFirstName] = useState([]);
@@ -196,7 +198,7 @@ function UsersListTable({ usersList, token, getAllUsers }) {
             </th>
             <th className={styles.thFontsize}>Type d&apos;utilisateur</th>
             <th className={styles.thFontsize}>Role</th>
-            <th className={styles.thFontsize}>Supprimer</th>
+            <th className={styles.thFontsize}>{t('supprimer')}</th>
           </tr>
         </thead>
         <tbody>
@@ -247,6 +249,10 @@ UsersListTable.propTypes = {
   usersList: PropTypes.arrayOf.isRequired,
   token: PropTypes.string.isRequired,
   getAllUsers: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(UsersListTable);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(UsersListTable);

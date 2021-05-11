@@ -31,7 +31,7 @@ function Partners({ t }) {
   return (
     <>
       {isLoading ? (
-        <p>Chargement...</p>
+        <p>{t('chargement')}...</p>
       ) : (
         <Container>
           {error ? <p>I y a une erreur</p> : ''}
