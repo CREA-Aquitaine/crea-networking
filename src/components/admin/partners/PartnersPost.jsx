@@ -5,6 +5,8 @@ import Axios from 'axios';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import { AiOutlineStar } from 'react-icons/ai';
 import styles from './Partner.module.css';
@@ -13,7 +15,7 @@ import starYellow from './images/starYellow.svg';
 const host = process.env.REACT_APP_HOST;
 const imgurToken = process.env.REACT_APP_IMGUR_TOKEN;
 
-function PartnersPost({ getPartners, token }) {
+function PartnersPost({ getPartners, token, t }) {
   const [label, setLabel] = useState('');
   const [description, setDescription] = useState('');
   const [url, setUrl] = useState('');
@@ -54,7 +56,7 @@ function PartnersPost({ getPartners, token }) {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -214,6 +216,10 @@ const mapStateToProps = (state) => ({
 PartnersPost.propTypes = {
   getPartners: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(PartnersPost);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(PartnersPost);

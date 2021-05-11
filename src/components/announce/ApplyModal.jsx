@@ -15,12 +15,14 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
+import { withNamespaces } from 'react-i18next';
+import { compose } from 'redux';
 
 import styles from './ApplyModale.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
+function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce, t }) {
   const [modal, setModal] = useState(false);
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
@@ -29,7 +31,7 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
 
   const toggle = () => setModal(!modal);
   const setToastSuccess = () => {
-    toast.success('Votre réponse a bien été publiée.', {
+    toast.success(t('confirmReponsePubliee'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -41,7 +43,7 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -53,7 +55,7 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -99,15 +101,15 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
   return (
     <>
       <Button className="button" onClick={toggle}>
-        Répondre à l&apos;annonce
+        {t('repondreAlAnnonce')}
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
         <Form onSubmit={handleSubmit}>
-          <ModalHeader toggle={toggle}>Répondre à l&apos;annonce</ModalHeader>
+          <ModalHeader toggle={toggle}>{t('repondreAlAnnonce')}</ModalHeader>
           <ModalBody>
             <Row>
               <Col xs="3" className={styles.inputTitle}>
-                <Label for="exampleFile">Sujet</Label>
+                <Label for="exampleFile">{t('sujet')}</Label>
               </Col>
               <Col>
                 <Input
@@ -121,7 +123,7 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
             </Row>
             <Row>
               <Col xs="3">
-                <Label for="exampleFile">Votre message</Label>
+                <Label for="exampleFile">{t('votreMessage')}</Label>
               </Col>
               <Col>
                 <Input
@@ -136,21 +138,14 @@ function ApplyModal({ infosAnnounce, userInfos, token, getInfosAnnounce }) {
           </ModalBody>
           <ModalFooter>
             <Button className="button" type="submit">
-              Répondre à l&apos;annonce
+              {t('repondreAlAnnonce')}
             </Button>
             <Button className="button" onClick={toggle}>
-              Annuler
+              {t('annuler')}
             </Button>
           </ModalFooter>
-          {send ? <p>Votre réponse a bien été envoyée.</p> : ''}
-          {error ? (
-            <p>
-              Une erreur s&apos;est produite lors de l&apos;envoie de votre
-              réponse.
-            </p>
-          ) : (
-            ''
-          )}
+          {send ? <p>{t('confirmReponseEnvoi')}.</p> : ''}
+          {error ? <p>{t('erreurEnvoiReponse')}.</p> : ''}
         </Form>
       </Modal>
     </>
@@ -166,6 +161,7 @@ ApplyModal.propTypes = {
   infosAnnounce: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
   getInfosAnnounce: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ApplyModal);
+export default compose(connect(mapStateToProps), withNamespaces())(ApplyModal);

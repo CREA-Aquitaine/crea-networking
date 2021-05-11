@@ -12,6 +12,8 @@ import {
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import Axios from 'axios';
 import { connect } from 'react-redux';
@@ -19,7 +21,7 @@ import styles from './TypeAnnounce.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function ModalType({ french, euskara, castillan, getType, token, id }) {
+function ModalType({ french, euskara, castillan, getType, token, id, t }) {
   const [modal, setModal] = useState(false);
   const [labelFr, setLabelFr] = useState(french);
   const [labelEs, setLabelEs] = useState(castillan);
@@ -52,7 +54,7 @@ function ModalType({ french, euskara, castillan, getType, token, id }) {
   };
 
   const setToastErrorPut = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -64,7 +66,7 @@ function ModalType({ french, euskara, castillan, getType, token, id }) {
   };
 
   const setToastErrorDelete = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -76,7 +78,7 @@ function ModalType({ french, euskara, castillan, getType, token, id }) {
   };
 
   const setToastInputPut = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -187,17 +189,17 @@ function ModalType({ french, euskara, castillan, getType, token, id }) {
             <Row className="mt-5">
               <Col xs="3">
                 <Button className="mb-2 ml-2 button" onClick={deleteType}>
-                  Supprimer
+                  {t('supprimer')}
                 </Button>
               </Col>
               <Col xs={{ size: 2, offset: 5 }}>
                 <Button className={styles.buttonCancel} onClick={toggle}>
-                  Annuler
+                  {t('annuler')}
                 </Button>
               </Col>
               <Col xs="2">
                 <Button className="button mb-2" type="submit">
-                  Valider
+                  {t('valider')}
                 </Button>
               </Col>
             </Row>
@@ -218,6 +220,7 @@ ModalType.propTypes = {
   french: PropTypes.string.isRequired,
   castillan: PropTypes.string.isRequired,
   euskara: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ModalType);
+export default compose(connect(mapStateToProps), withNamespaces())(ModalType);

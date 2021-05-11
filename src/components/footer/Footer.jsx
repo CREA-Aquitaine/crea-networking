@@ -131,7 +131,7 @@ function Footer({ t }) {
               color="link"
               onClick={toggleData}
             >
-              {t('Personal data')}
+              {t('donneesPersonnel')}
             </Button>
           </Col>
         </Row>

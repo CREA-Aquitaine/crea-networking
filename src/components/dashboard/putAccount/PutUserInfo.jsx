@@ -35,7 +35,7 @@ function PutUserInfo({ userInfos, token, t }) {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -47,7 +47,7 @@ function PutUserInfo({ userInfos, token, t }) {
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -91,7 +91,7 @@ function PutUserInfo({ userInfos, token, t }) {
 
   return (
     <Container className={styles.container}>
-      <h2>Mes informations</h2>
+      <h2>{t('mesInfo')}</h2>
       <Form>
         <Row>
           <Col md={3}>
@@ -107,7 +107,6 @@ function PutUserInfo({ userInfos, token, t }) {
               required
               value={lastName}
               onChange={(event) => setlastName(event.target.value)}
-              placeholder="Votre nom ..."
             />
           </Col>
         </Row>
@@ -125,7 +124,6 @@ function PutUserInfo({ userInfos, token, t }) {
               required
               value={firstName}
               onChange={(event) => setfirstName(event.target.value)}
-              placeholder="Votre prénom ..."
             />
           </Col>
         </Row>
@@ -143,14 +141,13 @@ function PutUserInfo({ userInfos, token, t }) {
               id="email"
               value={email}
               onChange={(event) => setemail(event.target.value)}
-              placeholder="Votre adresse email"
             />
           </Col>
         </Row>
         <Row>
           <Col md={3}>
             <Label for="Password" className="mt-3">
-              Mot de Passe*
+              {t('motDePasse')}*
             </Label>
           </Col>
           <Col>
@@ -161,14 +158,13 @@ function PutUserInfo({ userInfos, token, t }) {
               required
               value={password}
               onChange={(event) => setpassword(event.target.value)}
-              placeholder="*******"
             />
           </Col>
         </Row>
         <Row>
           <Col md={3}>
             <Label for="Password" className="mt-3">
-              Confirmez votre mot de passe*
+              {t('confirmMotPasse')}
             </Label>
           </Col>
           <Col>
@@ -179,7 +175,6 @@ function PutUserInfo({ userInfos, token, t }) {
               id="Password"
               value={password2}
               onChange={(e) => setpassword2(e.target.value)}
-              placeholder="********"
             />
           </Col>
         </Row>
@@ -228,7 +223,6 @@ function PutUserInfo({ userInfos, token, t }) {
               required
               value={localisation}
               onChange={(event) => setlocalisation(event.target.value)}
-              placeholder="Bayonne"
             />
           </Col>
         </Row>
@@ -255,12 +249,12 @@ function PutUserInfo({ userInfos, token, t }) {
           </Col>
           <Col xs={{ size: 1.5, offset: 5 }}>
             <Button className="button" onClick={putInfo}>
-              Valider
+              {t('valider')}
             </Button>
           </Col>
           <Col xs="1">
             <Button tag={Link} to="/dashboard" className={styles.buttonCancel}>
-              Annuler
+              {t('annuler')}
             </Button>
           </Col>
         </Row>

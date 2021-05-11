@@ -14,13 +14,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import TypeAnnounceList from './TypeAnnounceList';
 import styles from './TypeAnnounce.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function TypeAnnounce({ token }) {
+function TypeAnnounce({ token, t }) {
   const [typePost, setTypePost] = useState([]);
   const [labelFr, setLabelFr] = useState('');
   const [labelEs, setLabelEs] = useState('');
@@ -54,7 +56,7 @@ function TypeAnnounce({ token }) {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -66,7 +68,7 @@ function TypeAnnounce({ token }) {
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -191,6 +193,10 @@ const mapStateToProps = (state) => ({
 
 TypeAnnounce.propTypes = {
   token: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(TypeAnnounce);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(TypeAnnounce);

@@ -3,13 +3,14 @@ import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Input, Button } from 'reactstrap';
-
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 import UsersListTable from './Users_List_Table';
 import styles from './Users_List_Table.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function UsersList({ token }) {
+function UsersList({ token, t }) {
   const [usersList, setUserslist] = useState([]);
   const [error, setError] = useState('');
   const [isUserType, setUserType] = useState(false);
@@ -29,6 +30,10 @@ function UsersList({ token }) {
     }
     return isUserType;
   };
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
 
   const getCompanies = async () => {
     try {
@@ -117,14 +122,11 @@ function UsersList({ token }) {
     getAllUsers();
     setInputSearch('');
   };
-  useEffect(() => {
-    getAllUsers();
-  }, []);
 
   return (
     <>
       <Container>
-        <h2 className="mt-1 mb-3">Gestion des utilisateurs</h2>
+        <h2 className="mt-1 mb-3">{t('gestionUtilisateur')}</h2>
         <Container fluid className={styles.containerCadre}>
           <Row className={`mb-4 ${styles.usersListTitle}`}>
             <Col
@@ -132,12 +134,12 @@ function UsersList({ token }) {
               md="6"
               className={`text-left ${styles.usersListTitleMargin}`}
             >
-              Gestion des utilisateurs
+              {t('gestionUtilisateur')}
             </Col>
             <Col className={styles.margcol} xs="4" md="4">
               <Input
                 className={styles.inputSearch}
-                placeholder="Rechercher par nom"
+                placeholder={t('rechercheNom')}
                 value={inputSearch}
                 onChange={(e) => setInputSearch(e.target.value)}
               />
@@ -170,28 +172,28 @@ function UsersList({ token }) {
               onClick={getAllUsers}
               className={styles.buttonInput}
             >
-              Tous les utilisateurs
+              {t('tousUtilisateurs')}
             </button>
             <button
               type="button"
               onClick={getCompanies}
               className={styles.buttonInput}
             >
-              Entreprises
+              {t('entreprises')}
             </button>
             <button
               type="button"
               onClick={getSchools}
               className={styles.buttonInput}
             >
-              Ecoles/Etudiants
+              {t('ecolesEtudiants')}
             </button>
             <button
               type="button"
               onClick={getJobSeekers}
               className={styles.buttonInput}
             >
-              Demandeurs d&apos;emploi
+              {t('demandeursEmplois')}
             </button>
           </Row>
           <Row>
@@ -209,6 +211,7 @@ const mapStateToProps = (state) => ({
 
 UsersList.propTypes = {
   token: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(UsersList);
+export default compose(connect(mapStateToProps), withNamespaces())(UsersList);

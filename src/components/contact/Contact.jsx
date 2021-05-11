@@ -10,12 +10,14 @@ import {
   Row,
   Col,
 } from 'reactstrap';
+import { withNamespaces } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 import styles from './Contact.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function Contact() {
+function Contact({ t }) {
   const [lastname, setLastName] = useState('');
   const [firstname, setFirstName] = useState('');
   const [email, setEmail] = useState('');
@@ -47,7 +49,7 @@ function Contact() {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -59,7 +61,7 @@ function Contact() {
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -118,7 +120,7 @@ function Contact() {
   return (
     <>
       <Container className={styles.container}>
-        <h2>Contactez-nous</h2>
+        <h2>{t('contactezNous')}</h2>
         {error ? '' : ''}
         <Form onSubmit={handleSubmit} className={styles.form}>
           <FormGroup>
@@ -128,7 +130,7 @@ function Contact() {
                   type="text"
                   name="firstname"
                   id="firstname"
-                  placeholder="Votre prénom"
+                  placeholder={t('prenom')}
                   value={firstname}
                   onChange={handleChange}
                 />
@@ -140,7 +142,7 @@ function Contact() {
                   type="lastname"
                   name="lastname"
                   id="lastname"
-                  placeholder="Votre nom"
+                  placeholder={t('nom')}
                   value={lastname}
                   onChange={handleChange}
                 />
@@ -191,7 +193,7 @@ function Contact() {
             <Row className="justify-content-center mt-4">
               <Col xs="12">
                 <Button type="submit" className="button">
-                  Envoyer
+                  {t('envoyer')}
                 </Button>
               </Col>
             </Row>
@@ -202,4 +204,8 @@ function Contact() {
   );
 }
 
-export default Contact;
+Contact.propTypes = {
+  t: PropTypes.func.isRequired,
+};
+
+export default withNamespaces()(Contact);

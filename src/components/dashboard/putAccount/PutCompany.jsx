@@ -43,7 +43,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -55,7 +55,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -116,12 +116,12 @@ function PutCompany({ userInfos, token, activityField, t }) {
 
   return (
     <Container className={styles.container}>
-      <h2>Mes informations</h2>
+      <h2>{t('mesInfo')}</h2>
       <Form>
         <Row className="mt-5">
           <Col md={3}>
-            <Label for="Nom" className="mt-3">
-              Nom de l&apos;entreprise
+            <Label for="entreprise" className="mt-3">
+              {t('nomEntreprise')}
             </Label>
           </Col>
           <Col>
@@ -132,13 +132,12 @@ function PutCompany({ userInfos, token, activityField, t }) {
               id="lastname"
               value={companyName}
               onChange={(event) => setCompanyName(event.target.value)}
-              placeholder="Nom de votre entreprise"
             />
           </Col>
         </Row>
         <Row>
           <Col md={3}>
-            <Label for="Nom" className="mt-3">
+            <Label for="siret" className="mt-3">
               {t('siret')}
             </Label>
           </Col>
@@ -150,13 +149,12 @@ function PutCompany({ userInfos, token, activityField, t }) {
               required
               value={siret}
               onChange={(event) => setsiret(event.target.value)}
-              placeholder="Votre numéro de siret"
             />
           </Col>
         </Row>
         <Row>
           <Col md={3}>
-            <Label for="Nom" className="mt-3">
+            <Label for="nom" className="mt-3">
               {t('nom')}
             </Label>
           </Col>
@@ -168,13 +166,12 @@ function PutCompany({ userInfos, token, activityField, t }) {
               required
               value={lastName}
               onChange={(event) => setlastName(event.target.value)}
-              placeholder="Votre nom ..."
             />
           </Col>
         </Row>
         <Row>
           <Col md={3}>
-            <Label for="Prenom" className="mt-3">
+            <Label for="prenom" className="mt-3">
               {t('prenom')}
             </Label>
           </Col>
@@ -186,7 +183,6 @@ function PutCompany({ userInfos, token, activityField, t }) {
               required
               value={firstName}
               onChange={(event) => setfirstName(event.target.value)}
-              placeholder="Votre prénom ..."
             />
           </Col>
         </Row>
@@ -204,14 +200,14 @@ function PutCompany({ userInfos, token, activityField, t }) {
               id="email"
               value={email}
               onChange={(event) => setemail(event.target.value)}
-              placeholder="Votre adresse email"
+              placeholder="jean.dubois@test.fr"
             />
           </Col>
         </Row>
         <Row>
           <Col md={3}>
             <Label for="Password" className="mt-3">
-              Mot de Passe*
+              {t('motDePasse')}*
             </Label>
           </Col>
           <Col>
@@ -221,14 +217,13 @@ function PutCompany({ userInfos, token, activityField, t }) {
               id="Password"
               value={password}
               onChange={(event) => setpassword(event.target.value)}
-              placeholder="*******"
             />
           </Col>
         </Row>
         <Row>
           <Col md={3}>
             <Label for="Password" className="mt-3">
-              Confirmez votre mot de passe*
+              {t('confirmMotPasse')}
             </Label>
           </Col>
           <Col>
@@ -287,7 +282,6 @@ function PutCompany({ userInfos, token, activityField, t }) {
               required
               value={localisation}
               onChange={(event) => setlocalisation(event.target.value)}
-              placeholder="Bayonne"
             />
           </Col>
         </Row>
@@ -311,7 +305,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
         <Row>
           <Col md={3}>
             <Label for="poste" className="mt-3">
-              Poste dans l&apos;entreprise
+              {t('posteEntreprise')}
             </Label>
           </Col>
           <Col>
@@ -322,7 +316,6 @@ function PutCompany({ userInfos, token, activityField, t }) {
               id="poste"
               value={poste}
               onChange={(event) => setposte(event.target.value)}
-              placeholder="Poste dans l'entreprise"
             />
           </Col>
         </Row>
@@ -341,13 +334,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
               value={sector}
               onChange={(event) => setsector(event.target.value)}
             >
-              {error ? (
-                <p>
-                  Les secteurs d&apos;activité n&apos;ont pas pu être récupérés.
-                </p>
-              ) : (
-                ''
-              )}
+              {error ? <p>{t('activiteNonRecup')}</p> : ''}
               {activityFields.map((item) => (
                 <option
                   value={item.id}
@@ -365,12 +352,12 @@ function PutCompany({ userInfos, token, activityField, t }) {
           </Col>
           <Col xs={{ size: 1.5, offset: 5 }}>
             <Button className="button" onClick={putInfo}>
-              Valider
+              {t('valider')}
             </Button>
           </Col>
           <Col xs="1">
             <Button tag={Link} to="/dashboard" className={styles.buttonCancel}>
-              Annuler
+              {t('annuler')}
             </Button>
           </Col>
         </Row>

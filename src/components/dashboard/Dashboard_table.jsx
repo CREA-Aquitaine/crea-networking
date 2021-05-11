@@ -141,8 +141,8 @@ function DashboardTable({ token, userInfos, t }) {
                   <tr>
                     <th>{t('titreAnnonce')}</th>
                     <th>{t('localisation')}</th>
-                    <th>Voir</th>
-                    <th>Supprimer</th>
+                    <th>{t('voir')}</th>
+                    <th>{t('supprimer')}</th>
                   </tr>
                 </thead>
                 <tbody>

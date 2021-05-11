@@ -5,6 +5,8 @@ import Axios from 'axios';
 import { connect, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import { AUTHENTICATED, USERINFOS } from '../../store/reducerUser';
 
@@ -12,7 +14,7 @@ import styles from './CreateAccount.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function CollapseSchool({ isOpen, userTypeId, roleId }) {
+function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
   const [schoolName, setSchoolName] = useState('');
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -33,7 +35,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
   const history = useHistory();
 
   const setToastSuccess = () => {
-    toast.success('Vous êtes bien enregistré.', {
+    toast.success(t('confirmInscription'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -44,7 +46,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
     });
   };
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -55,7 +57,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
     });
   };
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -172,14 +174,13 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
               name="schoolName"
               id="schoolName"
               required
-              placeholder="Wild Code School"
               onChange={(e) => setSchoolName(e.target.value)}
             />
           </Col>
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="firstname">Votre prénom*</Label>
+            <Label for="firstname">{t('prenom')}*</Label>
           </Col>
           <Col>
             <Input
@@ -187,14 +188,13 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
               name="firstname"
               required
               id="firstname"
-              placeholder="Jean"
               onChange={(e) => setFirstName(e.target.value)}
             />
           </Col>
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="firstname">Votre nom*</Label>
+            <Label for="firstname">{t('nom')}*</Label>
           </Col>
           <Col>
             <Input
@@ -202,7 +202,6 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
               name="lastname"
               required
               id="lastname"
-              placeholder="Dupont"
               onChange={(e) => setLastName(e.target.value)}
             />
           </Col>
@@ -224,7 +223,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="password">Mot de passe*</Label>
+            <Label for="password">{t('motDePasse')}*</Label>
           </Col>
           <Col>
             <Input
@@ -232,14 +231,13 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
               name="password"
               required
               id="password"
-              placeholder="*******"
               onChange={(e) => setPassword(e.target.value)}
             />
           </Col>
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="password2">Confirmez votre mot de passe*</Label>
+            <Label for="password2"> {t('confirmMotPasse')}*</Label>
           </Col>
           <Col>
             <Input
@@ -247,17 +245,14 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
               name="password2"
               required
               id="password2"
-              placeholder="*******"
               onChange={(e) => setPasswordRepeat(e.target.value)}
             />
           </Col>
         </Row>
-        {errorPassword ? <p>Veuillez ressaisir votre mot de passe</p> : ''}
+        {errorPassword ? <p>{t('saisirPasse')}</p> : ''}
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="localisation">
-              Localisation de l&apos;établissement*
-            </Label>
+            <Label for="localisation">{t('localisation')}*</Label>
           </Col>
           <Col>
             <Input
@@ -265,14 +260,13 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
               name="localisation"
               required
               id="localisation"
-              placeholder="Biarritz"
               onChange={(e) => setLocalisation(e.target.value)}
             />
           </Col>
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="country">Pays*</Label>
+            <Label for="country">{t('pays')}*</Label>
           </Col>
           <Col>
             <Input
@@ -289,7 +283,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="phone">Téléphone*</Label>
+            <Label for="phone">{t('telFixe')}*</Label>
           </Col>
           <Col>
             <Input
@@ -305,7 +299,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
 
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="phone2">Téléphone 2 </Label>
+            <Label for="phone2">{t('telMobile')}</Label>
           </Col>
           <Col>
             <Input
@@ -327,7 +321,6 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
               required
               name="poste"
               id="poste"
-              placeholder="Etudiant, professeur, ..."
               onChange={(e) => setQualification(e.target.value)}
             />
           </Col>
@@ -348,7 +341,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
               defaultValue="defaultValue"
             >
               <option value="defaultValue" disabled>
-                Sélectionnez
+                {t('selectionnez')}
               </option>
               {activityFields.map((item) => (
                 <option>{item.labelFr}</option>
@@ -356,16 +349,16 @@ function CollapseSchool({ isOpen, userTypeId, roleId }) {
             </Input>
           </Col>
         </Row>
-        <p className={styles.champs}>Les champs * sont obligatoires.</p>
+        <p className={styles.champs}>{t('champsObligatoire')}.</p>
         <Row>
           <Col xs={{ size: 2, offset: 5 }}>
             <Button className={`${styles.buttonValidate} button`} type="submit">
-              Valider
+              {t('valider')}
             </Button>
           </Col>
         </Row>
-        {created ? <p>L&apos;utilisateur a bien été créé</p> : ''}
-        {error ? <p>Erreur lors de la création de l&apos;utilisateur</p> : ''}
+        {created ? <p>{t('confirmCreationUser')}</p> : ''}
+        {error ? <p>{t('erreurCreatUser')}</p> : ''}
       </Form>
     </Collapse>
   );
@@ -380,6 +373,10 @@ CollapseSchool.propTypes = {
   isOpen: PropTypes.string.isRequired,
   roleId: PropTypes.string.isRequired,
   userTypeId: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(CollapseSchool);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(CollapseSchool);

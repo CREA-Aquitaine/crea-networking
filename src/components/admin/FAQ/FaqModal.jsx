@@ -14,12 +14,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import styles from './Faq_List.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function FaqModal({ request, response, id, country, token, getFaq }) {
+function FaqModal({ request, response, id, country, token, getFaq, t }) {
   const [modal, setModal] = useState(false);
   const [question, setQuestion] = useState(request);
   const [answer, setAnswer] = useState(response);
@@ -68,7 +70,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
   };
 
   const setToastErrorPut = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -80,7 +82,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
   };
 
   const setToastErrorDelete = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -92,7 +94,7 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
   };
 
   const setToastInputPut = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -208,17 +210,17 @@ function FaqModal({ request, response, id, country, token, getFaq }) {
             <Row className="mt-5">
               <Col xs="3">
                 <Button className="button" onClick={deleteFaq}>
-                  Supprimer
+                  {t('supprimer')}
                 </Button>
               </Col>
               <Col xs={{ size: 2, offset: 5 }}>
                 <Button className={styles.buttonDropdown} onClick={toggle}>
-                  Annuler
+                  {t('annuler')}
                 </Button>
               </Col>
               <Col xs="2">
                 <Button className="button" type="submit">
-                  Valider
+                  {t('valider')}
                 </Button>
               </Col>
             </Row>
@@ -240,6 +242,7 @@ FaqModal.propTypes = {
   response: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   getFaq: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(FaqModal);
+export default compose(connect(mapStateToProps), withNamespaces())(FaqModal);

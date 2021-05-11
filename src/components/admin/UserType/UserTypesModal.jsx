@@ -14,12 +14,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import styles from './UserTypes.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function UserTypesModal({ labelf, token, getUserTypes, id }) {
+function UserTypesModal({ labelf, token, getUserTypes, id, t }) {
   const [modal, setModal] = useState(false);
   const [label, setLabel] = useState(labelf);
   const [error, setError] = useState('');
@@ -52,7 +54,7 @@ function UserTypesModal({ labelf, token, getUserTypes, id }) {
   };
 
   const setToastErrorPut = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -64,7 +66,7 @@ function UserTypesModal({ labelf, token, getUserTypes, id }) {
   };
 
   const setToastErrorDelete = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -76,7 +78,7 @@ function UserTypesModal({ labelf, token, getUserTypes, id }) {
   };
 
   const setToastInputPut = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -164,17 +166,17 @@ function UserTypesModal({ labelf, token, getUserTypes, id }) {
             <Row className="mt-5">
               <Col xs="3">
                 <Button className="button" onClick={deleteUserTypes}>
-                  Supprimer
+                  {t('supprimer')}
                 </Button>
               </Col>
               <Col xs={{ size: 2, offset: 5 }}>
                 <Button className={styles.buttonCancel} onClick={toggle}>
-                  Annuler
+                  {t('annuler')}
                 </Button>
               </Col>
               <Col xs="2">
                 <Button className="button" type="submit">
-                  Valider
+                  {t('valider')}
                 </Button>
               </Col>
             </Row>
@@ -194,6 +196,10 @@ UserTypesModal.propTypes = {
   labelf: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   getUserTypes: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(UserTypesModal);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(UserTypesModal);

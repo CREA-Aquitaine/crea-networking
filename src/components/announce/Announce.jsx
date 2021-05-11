@@ -41,14 +41,14 @@ function Announce({ token, t }) {
   return (
     <>
       {isLoading ? (
-        <p>Chargement...</p>
+        <p>{t('chargement')}...</p>
       ) : (
         <Container className={`p-5 ${styles.global}`}>
-          {error ? <p>Il y a une erreur</p> : ''}
+          {error ? <p>{t('erreurVu')}</p> : ''}
           <Row className={styles.top}>
             <Col sm={{ size: 4 }} className={styles.topleft}>
               <p>
-                <b>Ville : </b>
+                <b>{t('ville')} : </b>
                 {`${infosAnnounce[0].localisation}`}
               </p>
               <p>
@@ -82,7 +82,7 @@ function Announce({ token, t }) {
                     : '/listAnnonce'
                 }
               >
-                <button type="button">Retour</button>
+                <button type="button">{t('retour')}</button>
               </Link>
             </Col>
           </Row>

@@ -3,6 +3,8 @@ import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import styles from './Dashboard.module.css';
 import UserInfos from './User_Infos';
@@ -10,7 +12,7 @@ import DashboardTable from './Dashboard_table';
 
 const host = process.env.REACT_APP_HOST;
 
-function Dashboard({ token, userInfos }) {
+function Dashboard({ token, userInfos, t }) {
   const [userInformations, setUserInfos] = useState([]);
   const [userTypes, setUserTypes] = useState([]);
   const [activityFields, setActivityFields] = useState([]);
@@ -66,7 +68,7 @@ function Dashboard({ token, userInfos }) {
         </>
       ) : (
         <div className={styles.dashboard}>
-          <h2>Mon dashboard</h2>
+          <h2>{t('monCompte')}</h2>
           <Container className={styles.userInfos}>
             <UserInfos
               userInfos={userInformations}
@@ -88,9 +90,11 @@ const mapStateToProps = (state) => ({
   token: state.authenticated.token,
   userInfos: state.authenticated.userInfos,
 });
+
 Dashboard.propTypes = {
   token: PropTypes.string.isRequired,
   userInfos: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Dashboard);
+export default compose(connect(mapStateToProps), withNamespaces())(Dashboard);

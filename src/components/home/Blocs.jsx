@@ -25,13 +25,13 @@ function Blocs({ t }) {
         <Col xs="12" md="6" className="text-left">
           <hr />
           <h3 className="text-left">
-            {t('TitreEntreprise')} <br />
-            {t('Association')}
+            {t('titreEntreprise')} <br />
+            {t('association')}
           </h3>
           <p className="mb-4 text-left">{t('TexteBlocEntreprise')}</p>
 
           <button type="button" onClick={toggle2}>
-            {t('Espace connexion')}
+            {t('seConnecter')}
           </button>
           <PopUpConnection
             modal={modal2}
@@ -40,7 +40,7 @@ function Blocs({ t }) {
           />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
-              {t('Inscription')}
+              {t('sInscrire')}
             </button>
           </Link>
         </Col>
@@ -55,7 +55,7 @@ function Blocs({ t }) {
           <p className="mb-5">{t('TexteDemandeurEmploi')}</p>
 
           <button type="button" onClick={toggle2}>
-            {t('Espace connexion')}
+            {t('seConnecter')}
           </button>
           <PopUpConnection
             modal={modal2}
@@ -64,7 +64,7 @@ function Blocs({ t }) {
           />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
-              {t('Inscription')}
+              {t('sInscrire')}
             </button>
           </Link>
         </Col>
@@ -86,7 +86,7 @@ function Blocs({ t }) {
           <h3>{t('TitreUniversite')}</h3>
           <p className="mb-5">{t('TexteUniversite')}</p>
           <button type="button" onClick={toggle2}>
-            {t('Espace connexion')}
+            {t('seConnecter')}
           </button>
           <PopUpConnection
             modal={modal2}
@@ -95,7 +95,7 @@ function Blocs({ t }) {
           />
           <Link to="/createAccount">
             <button type="button" className={styles.lienButton}>
-              {t('Inscription')}
+              {t('sInscrire')}
             </button>
           </Link>
         </Col>

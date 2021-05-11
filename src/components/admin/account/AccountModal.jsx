@@ -41,7 +41,7 @@ function AccountModal({ token, userInfos, t }) {
   const toggle = () => setModal(!modal);
 
   const setToastErrorDelete = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -53,7 +53,7 @@ function AccountModal({ token, userInfos, t }) {
   };
 
   const setToastSuccessDelete = () => {
-    toast.success('Votre utilisateur a bien été supprimée.', {
+    toast.success(t('confirmSupprUtilisateur'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -112,10 +112,10 @@ function AccountModal({ token, userInfos, t }) {
 
   return (
     <>
-      <NavItem onClick={toggle}>Mon compte</NavItem>
-      {error ? <p>Erreur lors de la modification</p> : ''}
+      <NavItem onClick={toggle}>{t('monCompte')}</NavItem>
+      {error ? <p>{t('erreurModif')}</p> : ''}
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Mes informations</ModalHeader>
+        <ModalHeader toggle={toggle}>{t('mesInfo')}</ModalHeader>
         <Form onSubmit={handleSubmit}>
           <ModalBody>
             <FormGroup>
@@ -135,7 +135,7 @@ function AccountModal({ token, userInfos, t }) {
               </Row>
               <Row className={styles.rowInput}>
                 <Col xs="2">
-                  <Label for="firstname"> {t('prenom')}</Label>
+                  <Label for="firstname">{t('prenom')}</Label>
                 </Col>
                 <Col>
                   <Input
@@ -163,7 +163,7 @@ function AccountModal({ token, userInfos, t }) {
               </Row>
               <Row className={styles.rowInput}>
                 <Col xs="2">
-                  <Label for="password">Mot de passe</Label>
+                  <Label for="password">{t('motDePasse')}</Label>
                 </Col>
                 <Col>
                   <Input
@@ -205,7 +205,7 @@ function AccountModal({ token, userInfos, t }) {
               </Row>
               <Row className={styles.rowInput}>
                 <Col xs="2">
-                  <Label for="phone"> {t('telMobile')}</Label>
+                  <Label for="phone">{t('telMobile')}</Label>
                 </Col>
                 <Col>
                   <Input
@@ -222,17 +222,17 @@ function AccountModal({ token, userInfos, t }) {
           <Row className="mb-4 ml-4">
             <Col xs="4">
               <Button className="button" onClick={deleteUser}>
-                Supprimer mon compte
+                {t('supprimerCompte')}
               </Button>
             </Col>
             <Col xs={{ size: 2, offset: 4 }}>
               <Button className={styles.buttonCancel} onClick={toggle}>
-                Annuler
+                {t('annuler')}
               </Button>
             </Col>
             <Col xs="2">
               <Button className="button" type="submit">
-                Valider
+                {t('valider')}
               </Button>
             </Col>
           </Row>

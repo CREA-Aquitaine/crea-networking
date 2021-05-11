@@ -68,7 +68,7 @@ function PopUpConnection({ setModal, toggle, modal, t }) {
   return (
     <>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader>{t('Espace connexion')}</ModalHeader>
+        <ModalHeader>{t('seConnecter')}</ModalHeader>
         <ModalBody>
           <Form onSubmit={handleSubmit}>
             <FormGroup className={styles.formgroup}>
@@ -81,7 +81,7 @@ function PopUpConnection({ setModal, toggle, modal, t }) {
               />
             </FormGroup>
             <FormGroup className={styles.formgroup}>
-              <Label for="examplePassword">{t('mdp')}</Label>
+              <Label for="examplePassword">{t('motDePasse')}</Label>
               <Input
                 type="password"
                 name="password"
@@ -96,7 +96,7 @@ function PopUpConnection({ setModal, toggle, modal, t }) {
                 className={styles.alignRespCenter}
               >
                 <Link onClick={toggle} to="/createAccount">
-                  {t('Inscription')}
+                  {t('sInscrire')}
                 </Link>
               </Col>
               <Col className={styles.alignRespCenter}>
@@ -110,12 +110,12 @@ function PopUpConnection({ setModal, toggle, modal, t }) {
                 className={styles.alignRespCenter}
               >
                 <Button type="submit" className={styles.button}>
-                  {t('Valider')}
+                  {t('valider')}
                 </Button>
               </Col>
               <Col className={styles.alignRespCenter}>
                 <Button className={styles.buttonLien} onClick={toggle}>
-                  {t('Annuler')}
+                  {t('annuler')}
                 </Button>
               </Col>
             </Row>
@@ -126,7 +126,7 @@ function PopUpConnection({ setModal, toggle, modal, t }) {
               >
                 {error ? (
                   <p className={styles.error}>
-                    {t('mdp')} {t('ou')} {t('incorrect')}
+                    {t('motDePasse')} {t('ou')} {t('incorrect')}
                   </p>
                 ) : (
                   ''

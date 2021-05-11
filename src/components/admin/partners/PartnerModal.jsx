@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import styles from './Partner.module.css';
 import star from './images/star.svg';
@@ -23,6 +25,7 @@ function PartnerModal({
   token,
   getPartners,
   image,
+  t,
 }) {
   const [modal, setModal] = useState(false);
   const [label, setLabel] = useState(labelPartner);
@@ -63,7 +66,7 @@ function PartnerModal({
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -75,7 +78,7 @@ function PartnerModal({
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -99,7 +102,7 @@ function PartnerModal({
   };
 
   const setToastErrorDel = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -244,17 +247,17 @@ function PartnerModal({
           <Row className="mt-5">
             <Col xs="3">
               <Button className="button" onClick={deletePartner}>
-                Supprimer
+                {t('supprimer')}
               </Button>
             </Col>
             <Col xs={{ size: 2, offset: 5 }}>
               <Button className={styles.buttonDropdown} onClick={toggle}>
-                Annuler
+                {t('annuler')}
               </Button>
             </Col>
             <Col xs="2">
               <Button className="button" type="submit" onClick={putPartner}>
-                Valider
+                {t('valider')}
               </Button>
             </Col>
           </Row>
@@ -277,6 +280,10 @@ PartnerModal.propTypes = {
   urlPartner: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
   getPartners: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(PartnerModal);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(PartnerModal);

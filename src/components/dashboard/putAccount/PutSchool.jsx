@@ -42,7 +42,7 @@ function PutSchool({ userInfos, token, activityField, t }) {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -54,7 +54,7 @@ function PutSchool({ userInfos, token, activityField, t }) {
   };
 
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -114,7 +114,7 @@ function PutSchool({ userInfos, token, activityField, t }) {
 
   return (
     <Container className={styles.container}>
-      <h2>Mes informations</h2>
+      <h2>{t('mesInfo')}</h2>
       <Form>
         <Row className="mt-5">
           <Col md={3}>
@@ -130,7 +130,6 @@ function PutSchool({ userInfos, token, activityField, t }) {
               id="lastname"
               value={schoolName}
               onChange={(event) => setSchoolName(event.target.value)}
-              placeholder="Nom de votre établissement"
             />
           </Col>
         </Row>
@@ -148,7 +147,6 @@ function PutSchool({ userInfos, token, activityField, t }) {
               required
               value={lastName}
               onChange={(event) => setlastName(event.target.value)}
-              placeholder="Votre nom ..."
             />
           </Col>
         </Row>
@@ -166,7 +164,6 @@ function PutSchool({ userInfos, token, activityField, t }) {
               required
               value={firstName}
               onChange={(event) => setfirstName(event.target.value)}
-              placeholder="Votre prénom ..."
             />
           </Col>
         </Row>
@@ -184,14 +181,13 @@ function PutSchool({ userInfos, token, activityField, t }) {
               id="email"
               value={email}
               onChange={(event) => setemail(event.target.value)}
-              placeholder="Votre adresse email"
             />
           </Col>
         </Row>
         <Row>
           <Col md={3}>
             <Label for="Password" className="mt-3">
-              Mot de Passe*
+              {t('motDePasse')}*
             </Label>
           </Col>
           <Col>
@@ -202,14 +198,13 @@ function PutSchool({ userInfos, token, activityField, t }) {
               required
               value={password}
               onChange={(event) => setpassword(event.target.value)}
-              placeholder="*******"
             />
           </Col>
         </Row>
         <Row>
           <Col md={3}>
             <Label for="Password" className="mt-3">
-              Confirmez votre mot de passe*
+              {t('confirmMotPasse')}
             </Label>
           </Col>
           <Col>
@@ -220,7 +215,6 @@ function PutSchool({ userInfos, token, activityField, t }) {
               id="Password"
               value={password2}
               onChange={(e) => setpassword2(e.target.value)}
-              placeholder="********"
             />
           </Col>
         </Row>
@@ -269,7 +263,6 @@ function PutSchool({ userInfos, token, activityField, t }) {
               required
               value={localisation}
               onChange={(event) => setlocalisation(event.target.value)}
-              placeholder="Bayonne"
             />
           </Col>
         </Row>
@@ -323,13 +316,7 @@ function PutSchool({ userInfos, token, activityField, t }) {
               value={sector}
               onChange={(event) => setsector(event.target.value)}
             >
-              {error ? (
-                <p>
-                  Les secteurs d&apos;activité n&apos;ont pas pu être récupérés.
-                </p>
-              ) : (
-                ''
-              )}
+              {error ? <p>{t('activiteNonRecup ')} </p> : ''}
               {activityFields.map((item) => (
                 <option
                   value={item.id}
@@ -347,12 +334,12 @@ function PutSchool({ userInfos, token, activityField, t }) {
           </Col>
           <Col xs={{ size: 1.5, offset: 5 }}>
             <Button className="button" onClick={putInfo}>
-              Valider
+              {t('valider')}
             </Button>
           </Col>
           <Col xs="1">
             <Button tag={Link} to="/dashboard" className={styles.buttonCancel}>
-              Annuler
+              {t('annuler')}
             </Button>
           </Col>
         </Row>

@@ -10,7 +10,8 @@ import {
   Form,
 } from 'reactstrap';
 import Axios from 'axios';
-
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
@@ -20,7 +21,7 @@ import styles from './ActivityFields.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function ActivityModal({ labelF, labelE, labelEu, token, getActivity, id }) {
+function ActivityModal({ labelF, labelE, labelEu, token, getActivity, id, t }) {
   const [modal, setModal] = useState(false);
   const [labelFr, setLabelFr] = useState(labelF);
   const [labelEs, setLabelEs] = useState(labelE);
@@ -55,7 +56,7 @@ function ActivityModal({ labelF, labelE, labelEu, token, getActivity, id }) {
   };
 
   const setToastErrorPut = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -67,7 +68,7 @@ function ActivityModal({ labelF, labelE, labelEu, token, getActivity, id }) {
   };
 
   const setToastErrorDelete = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -79,7 +80,7 @@ function ActivityModal({ labelF, labelE, labelEu, token, getActivity, id }) {
   };
 
   const setToastInputPut = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -185,17 +186,17 @@ function ActivityModal({ labelF, labelE, labelEu, token, getActivity, id }) {
             <Row className="mt-5">
               <Col xs="3">
                 <Button className="button" onClick={deleteActivity}>
-                  Supprimer
+                  {t('supprimer')}
                 </Button>
               </Col>
               <Col xs={{ size: 2, offset: 5 }}>
                 <Button className={styles.buttonCancel} onClick={toggle}>
-                  Annuler
+                  {t('annuler')}
                 </Button>
               </Col>
               <Col xs="2">
                 <Button className="button" type="submit">
-                  Valider
+                  {t('valider')}
                 </Button>
               </Col>
             </Row>
@@ -217,6 +218,10 @@ ActivityModal.propTypes = {
   labelF: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   getActivity: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ActivityModal);
+export default compose(
+  connect(mapStateToProps),
+  withNamespaces()
+)(ActivityModal);

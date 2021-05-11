@@ -38,19 +38,19 @@ function FirstNavbar({ role, t }) {
             className={`${styles.navItem} mr-5 mt-2`}
             onClick={disconnect}
           >
-            {t('Deconnexion')}
+            {t('deconnexion')}
           </NavItem>
         ) : role === 'user' ? (
           <NavItem
             className={`${styles.navItem} mr-5 mt-2`}
             onClick={disconnect}
           >
-            {t('Deconnexion')}
+            {t('deconnexion')}
           </NavItem>
         ) : (
           <NavItem className="mr-5">
             <NavLink className={styles.navItem} onClick={toggle}>
-              {t('Espace connexion')}
+              {t('seConnecter')}
             </NavLink>
             <PopUpConnection
               setModal={setModal}
@@ -61,7 +61,7 @@ function FirstNavbar({ role, t }) {
         )}
 
         {/* <NavItem>
-          <NavLink>{t('Langue')}</NavLink>
+          <NavLink>{t('langue')}</NavLink>
         </NavItem> */}
         <TraductionNav />
       </Nav>

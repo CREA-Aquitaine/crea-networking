@@ -35,7 +35,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
   const history = useHistory();
 
   const setToastSuccess = () => {
-    toast.success('Vous êtes bien enregistré.', {
+    toast.success(t('confirmInscription'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -46,7 +46,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
     });
   };
   const setToastError = () => {
-    toast.error('Une erreur est survenue, veuillez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -57,7 +57,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
     });
   };
   const setToastInput = () => {
-    toast.info("Renseignez tous les champs s'il vous plait", {
+    toast.info(t('renseignerChamps'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -172,9 +172,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
       <Form onSubmit={handleSubmit}>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="nameOrganisation">
-              Nom de l&apos;entreprise ou de l&apos;association*
-            </Label>
+            <Label for="nameOrganisation">{t('nomEntrepriseAsso')}*</Label>
           </Col>
           <Col>
             <Input
@@ -182,7 +180,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               required
               name="nameOrganisation"
               id="nameOrganisation"
-              placeholder="SAS Jean Dupont"
               onChange={(e) => setCompanyName(e.target.value)}
             />
           </Col>
@@ -196,7 +193,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               type="text"
               name="siret"
               id="siret"
-              placeholder="XXXXXXXXXXXXXX"
               onChange={(e) => setSiret(e.target.value)}
             />
           </Col>
@@ -211,7 +207,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               name="localisation"
               id="localisation"
               required
-              placeholder="Biarritz"
               onChange={(e) => setLocalisation(e.target.value)}
             />
           </Col>
@@ -242,7 +237,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               type="text"
               name="firstname"
               id="firstname"
-              placeholder="Jean"
               required
               onChange={(e) => setFirstName(e.target.value)}
             />
@@ -250,7 +244,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="lastname">{t('nom')}</Label>
+            <Label for="lastname">{t('nom')}*</Label>
           </Col>
           <Col>
             <Input
@@ -258,7 +252,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               name="lastname"
               required
               id="lastname"
-              placeholder="Dupont"
               onChange={(e) => setLastName(e.target.value)}
             />
           </Col>
@@ -280,7 +273,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="password">Mot de passe*</Label>
+            <Label for="password">{t('motDePasse')}*</Label>
           </Col>
           <Col>
             <Input
@@ -288,14 +281,13 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               name="password"
               required
               id="password"
-              placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
             />
           </Col>
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="password2">Confirmez le mot de passe*</Label>
+            <Label for="password2">{t('confirmMotPasse')}*</Label>
           </Col>
           <Col>
             <Input
@@ -303,12 +295,11 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               name="password2"
               id="password2"
               required
-              placeholder="********"
               onChange={(e) => setPasswordRepeat(e.target.value)}
             />
           </Col>
         </Row>
-        {errorPassword ? <p>Veuillez ressaisir votre mot de passe</p> : ''}
+        {errorPassword ? <p>{t('saisirPasse')}</p> : ''}
         <Row className="mb-2">
           <Col xs="3">
             <Label for="phone">{t('telMobile')}*</Label>
@@ -340,9 +331,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="qualification">
-              Poste dans l&apos;entreprise ou de l&apos;association*
-            </Label>
+            <Label for="qualification">{t('posteEntrepriseAsso')}*</Label>
           </Col>
           <Col>
             <Input
@@ -350,7 +339,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               name="qualification"
               required
               id="qualification"
-              placeholder="DRH"
               onChange={(e) => setQualification(e.target.value)}
             />
           </Col>
@@ -369,7 +357,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               onChange={selectActivityFields}
             >
               <option value="defaultValue" disabled>
-                Sélectionnez
+                {t('selectionnez')}
               </option>
               {activityFields.map((item) => (
                 <option>{item.labelFr}</option>
@@ -377,16 +365,16 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
             </Input>
           </Col>
         </Row>
-        <p className={styles.champs}>Les champs * sont obligatoires.</p>
+        <p className={styles.champs}>{t('champsObligatoire')}.</p>
         <Row>
           <Col xs={{ size: 2, offset: 5 }}>
             <Button className={`${styles.buttonValidate} button`} type="submit">
-              Valider
+              {t('valider')}
             </Button>
           </Col>
         </Row>
-        {created ? <p>L&apos;utilisateur a bien été créé</p> : ''}
-        {error ? <p>Erreur lors de la création de l&apos;utilisateur</p> : ''}
+        {created ? <p>{t('confirmCreationUser')}</p> : ''}
+        {error ? <p>{t('erreurCreatUser')}</p> : ''}
       </Form>
     </Collapse>
   );
