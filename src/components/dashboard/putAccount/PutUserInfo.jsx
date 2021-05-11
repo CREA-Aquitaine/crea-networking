@@ -107,7 +107,6 @@ function PutUserInfo({ userInfos, token, t }) {
               required
               value={lastName}
               onChange={(event) => setlastName(event.target.value)}
-              placeholder={t('nom')}
             />
           </Col>
         </Row>
@@ -125,7 +124,6 @@ function PutUserInfo({ userInfos, token, t }) {
               required
               value={firstName}
               onChange={(event) => setfirstName(event.target.value)}
-              placeholder={t('prenom')}
             />
           </Col>
         </Row>
@@ -143,14 +141,13 @@ function PutUserInfo({ userInfos, token, t }) {
               id="email"
               value={email}
               onChange={(event) => setemail(event.target.value)}
-              placeholder="Votre adresse email"
             />
           </Col>
         </Row>
         <Row>
           <Col md={3}>
             <Label for="Password" className="mt-3">
-              Mot de Passe*
+              {t('motDePasse')}*
             </Label>
           </Col>
           <Col>
@@ -161,7 +158,6 @@ function PutUserInfo({ userInfos, token, t }) {
               required
               value={password}
               onChange={(event) => setpassword(event.target.value)}
-              placeholder="*******"
             />
           </Col>
         </Row>
@@ -179,7 +175,6 @@ function PutUserInfo({ userInfos, token, t }) {
               id="Password"
               value={password2}
               onChange={(e) => setpassword2(e.target.value)}
-              placeholder="********"
             />
           </Col>
         </Row>
@@ -228,7 +223,6 @@ function PutUserInfo({ userInfos, token, t }) {
               required
               value={localisation}
               onChange={(event) => setlocalisation(event.target.value)}
-              placeholder="Bayonne"
             />
           </Col>
         </Row>

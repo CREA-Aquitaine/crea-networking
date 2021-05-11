@@ -107,10 +107,14 @@
   "nomEntrepriseAsso": "Enpresa edo elkartearen izena",
   "confirmInscription": "Erregistratuda zaude",
   "saisirPasse": "Veuillez ressaisir votre mot de passe",
-  "posteEntrepriseAsso": "Poste dans l'entreprise ou de l'association",
+  "posteEntrepriseAsso": "Enpresa edo elkartearen kargua",
   "champsObligatoire": "Informazioa beharrezkoa da *",
   "confirmCreationUser": "Erabiltzailea sortu da",
   "erreurCreatUser": "Errorea erabiltzailea sortzean",
   "erreurRecupDonnees": "Errorea datuak berreskuratzean",
-  "voir": "Ikusi"
+  "voir": "Ikusi",
+  "nomEntreprise": "Enpresa izena",
+  "entrepriseAsso": "Enpresa edo elkartearen",
+  "demandeurEmploi": "Lan bila dabiltzan",
+  "ecoleUniversiteEtudiant": "Une école, une université ou un étudiant"
 }

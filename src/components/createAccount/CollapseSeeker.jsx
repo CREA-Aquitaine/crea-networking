@@ -144,7 +144,6 @@ function CollapseSeeker({ isOpen, userTypeId, roleId, t }) {
               name="firstname"
               id="firstname"
               required
-              placeholder="Jean"
               onChange={(e) => setFirstName(e.target.value)}
             />
           </Col>
@@ -159,7 +158,6 @@ function CollapseSeeker({ isOpen, userTypeId, roleId, t }) {
               required
               name="lastname"
               id="lastname"
-              placeholder="Dupont"
               onChange={(e) => setLastName(e.target.value)}
             />
           </Col>
@@ -189,7 +187,6 @@ function CollapseSeeker({ isOpen, userTypeId, roleId, t }) {
               name="password"
               required
               id="password"
-              placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
             />
           </Col>
@@ -204,17 +201,14 @@ function CollapseSeeker({ isOpen, userTypeId, roleId, t }) {
               name="password2"
               id="password2"
               required
-              placeholder="********"
               onChange={(e) => setPasswordRepeat(e.target.value)}
             />
           </Col>
         </Row>
-        {errorPassword ? <p>Veuillez ressaisir votre mot de passe</p> : ''}
+        {errorPassword ? <p>{t('saisirPasse')}</p> : ''}
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="localisation">
-              Localisation de l&apos;entreprise ou de l&apos;association*
-            </Label>
+            <Label for="localisation">{t('localisation')}*</Label>
           </Col>
           <Col>
             <Input
@@ -222,7 +216,6 @@ function CollapseSeeker({ isOpen, userTypeId, roleId, t }) {
               required
               name="localisation"
               id="localisation"
-              placeholder="Biarritz"
               onChange={(e) => setLocalisation(e.target.value)}
             />
           </Col>

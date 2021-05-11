@@ -180,7 +180,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               required
               name="nameOrganisation"
               id="nameOrganisation"
-              placeholder="SAS Jean Dupont"
               onChange={(e) => setCompanyName(e.target.value)}
             />
           </Col>
@@ -194,7 +193,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               type="text"
               name="siret"
               id="siret"
-              placeholder="XXXXXXXXXXXXXX"
               onChange={(e) => setSiret(e.target.value)}
             />
           </Col>
@@ -209,7 +207,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               name="localisation"
               id="localisation"
               required
-              placeholder="Biarritz"
               onChange={(e) => setLocalisation(e.target.value)}
             />
           </Col>
@@ -240,7 +237,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               type="text"
               name="firstname"
               id="firstname"
-              placeholder="Jean"
               required
               onChange={(e) => setFirstName(e.target.value)}
             />
@@ -248,7 +244,7 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="lastname">{t('nom')}</Label>
+            <Label for="lastname">{t('nom')}*</Label>
           </Col>
           <Col>
             <Input
@@ -256,7 +252,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               name="lastname"
               required
               id="lastname"
-              placeholder="Dupont"
               onChange={(e) => setLastName(e.target.value)}
             />
           </Col>
@@ -286,14 +281,13 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               name="password"
               required
               id="password"
-              placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
             />
           </Col>
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="password2">{t('confirmerPass')}*</Label>
+            <Label for="password2">{t('confirmMotPasse')}*</Label>
           </Col>
           <Col>
             <Input
@@ -301,7 +295,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               name="password2"
               id="password2"
               required
-              placeholder="********"
               onChange={(e) => setPasswordRepeat(e.target.value)}
             />
           </Col>
@@ -346,7 +339,6 @@ function CollapseCompany({ isOpen, userTypeId, roleId, t }) {
               name="qualification"
               required
               id="qualification"
-              placeholder="DRH"
               onChange={(e) => setQualification(e.target.value)}
             />
           </Col>

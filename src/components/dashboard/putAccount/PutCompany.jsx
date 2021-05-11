@@ -121,7 +121,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
         <Row className="mt-5">
           <Col md={3}>
             <Label for="entreprise" className="mt-3">
-              Nom de l&apos;entreprise
+              {t('nomEntreprise')}
             </Label>
           </Col>
           <Col>
@@ -132,7 +132,6 @@ function PutCompany({ userInfos, token, activityField, t }) {
               id="lastname"
               value={companyName}
               onChange={(event) => setCompanyName(event.target.value)}
-              placeholder="Nom de votre entreprise"
             />
           </Col>
         </Row>
@@ -150,7 +149,6 @@ function PutCompany({ userInfos, token, activityField, t }) {
               required
               value={siret}
               onChange={(event) => setsiret(event.target.value)}
-              placeholder="Votre numéro de siret"
             />
           </Col>
         </Row>
@@ -168,7 +166,6 @@ function PutCompany({ userInfos, token, activityField, t }) {
               required
               value={lastName}
               onChange={(event) => setlastName(event.target.value)}
-              placeholder={t('nom')}
             />
           </Col>
         </Row>
@@ -186,7 +183,6 @@ function PutCompany({ userInfos, token, activityField, t }) {
               required
               value={firstName}
               onChange={(event) => setfirstName(event.target.value)}
-              placeholder={t('prenom')}
             />
           </Col>
         </Row>
@@ -204,14 +200,14 @@ function PutCompany({ userInfos, token, activityField, t }) {
               id="email"
               value={email}
               onChange={(event) => setemail(event.target.value)}
-              placeholder="Votre adresse email"
+              placeholder="jean.dubois@test.fr"
             />
           </Col>
         </Row>
         <Row>
           <Col md={3}>
             <Label for="Password" className="mt-3">
-              Mot de Passe*
+              {t('motDePasse')}*
             </Label>
           </Col>
           <Col>
@@ -221,7 +217,6 @@ function PutCompany({ userInfos, token, activityField, t }) {
               id="Password"
               value={password}
               onChange={(event) => setpassword(event.target.value)}
-              placeholder="*******"
             />
           </Col>
         </Row>
@@ -287,7 +282,6 @@ function PutCompany({ userInfos, token, activityField, t }) {
               required
               value={localisation}
               onChange={(event) => setlocalisation(event.target.value)}
-              placeholder="Bayonne"
             />
           </Col>
         </Row>
@@ -311,7 +305,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
         <Row>
           <Col md={3}>
             <Label for="poste" className="mt-3">
-              Poste dans l&apos;entreprise
+              {t('posteEntreprise')}
             </Label>
           </Col>
           <Col>
@@ -322,7 +316,6 @@ function PutCompany({ userInfos, token, activityField, t }) {
               id="poste"
               value={poste}
               onChange={(event) => setposte(event.target.value)}
-              placeholder={t('posteEntreprise')}
             />
           </Col>
         </Row>
@@ -341,13 +334,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
               value={sector}
               onChange={(event) => setsector(event.target.value)}
             >
-              {error ? (
-                <p>
-                  Les secteurs d&apos;activité n&apos;ont pas pu être récupérés.
-                </p>
-              ) : (
-                ''
-              )}
+              {error ? <p>{t('activiteNonRecup')}</p> : ''}
               {activityFields.map((item) => (
                 <option
                   value={item.id}

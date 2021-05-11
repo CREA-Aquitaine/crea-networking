@@ -130,7 +130,6 @@ function PutSchool({ userInfos, token, activityField, t }) {
               id="lastname"
               value={schoolName}
               onChange={(event) => setSchoolName(event.target.value)}
-              placeholder="Nom de votre établissement"
             />
           </Col>
         </Row>
@@ -148,7 +147,6 @@ function PutSchool({ userInfos, token, activityField, t }) {
               required
               value={lastName}
               onChange={(event) => setlastName(event.target.value)}
-              placeholder={t('nom')}
             />
           </Col>
         </Row>
@@ -166,7 +164,6 @@ function PutSchool({ userInfos, token, activityField, t }) {
               required
               value={firstName}
               onChange={(event) => setfirstName(event.target.value)}
-              placeholder={t('prenom')}
             />
           </Col>
         </Row>
@@ -184,14 +181,13 @@ function PutSchool({ userInfos, token, activityField, t }) {
               id="email"
               value={email}
               onChange={(event) => setemail(event.target.value)}
-              placeholder="Votre adresse email"
             />
           </Col>
         </Row>
         <Row>
           <Col md={3}>
             <Label for="Password" className="mt-3">
-              Mot de Passe*
+              {t('motDePasse')}*
             </Label>
           </Col>
           <Col>
@@ -202,7 +198,6 @@ function PutSchool({ userInfos, token, activityField, t }) {
               required
               value={password}
               onChange={(event) => setpassword(event.target.value)}
-              placeholder="*******"
             />
           </Col>
         </Row>
@@ -220,7 +215,6 @@ function PutSchool({ userInfos, token, activityField, t }) {
               id="Password"
               value={password2}
               onChange={(e) => setpassword2(e.target.value)}
-              placeholder="********"
             />
           </Col>
         </Row>
@@ -269,7 +263,6 @@ function PutSchool({ userInfos, token, activityField, t }) {
               required
               value={localisation}
               onChange={(event) => setlocalisation(event.target.value)}
-              placeholder="Bayonne"
             />
           </Col>
         </Row>
@@ -323,13 +316,7 @@ function PutSchool({ userInfos, token, activityField, t }) {
               value={sector}
               onChange={(event) => setsector(event.target.value)}
             >
-              {error ? (
-                <p>
-                  Les secteurs d&apos;activité n&apos;ont pas pu être récupérés.
-                </p>
-              ) : (
-                ''
-              )}
+              {error ? <p>{t('activiteNonRecup ')} </p> : ''}
               {activityFields.map((item) => (
                 <option
                   value={item.id}

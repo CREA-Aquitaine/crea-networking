@@ -174,7 +174,6 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
               name="schoolName"
               id="schoolName"
               required
-              placeholder="Wild Code School"
               onChange={(e) => setSchoolName(e.target.value)}
             />
           </Col>
@@ -189,7 +188,6 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
               name="firstname"
               required
               id="firstname"
-              placeholder="Jean"
               onChange={(e) => setFirstName(e.target.value)}
             />
           </Col>
@@ -204,7 +202,6 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
               name="lastname"
               required
               id="lastname"
-              placeholder="Dupont"
               onChange={(e) => setLastName(e.target.value)}
             />
           </Col>
@@ -234,7 +231,6 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
               name="password"
               required
               id="password"
-              placeholder="*******"
               onChange={(e) => setPassword(e.target.value)}
             />
           </Col>
@@ -249,17 +245,14 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
               name="password2"
               required
               id="password2"
-              placeholder="*******"
               onChange={(e) => setPasswordRepeat(e.target.value)}
             />
           </Col>
         </Row>
-        {errorPassword ? <p>Veuillez ressaisir votre mot de passe</p> : ''}
+        {errorPassword ? <p>{t('saisirPasse')}</p> : ''}
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="localisation">
-              Localisation de l&apos;établissement*
-            </Label>
+            <Label for="localisation">{t('localisation')}*</Label>
           </Col>
           <Col>
             <Input
@@ -267,14 +260,13 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
               name="localisation"
               required
               id="localisation"
-              placeholder="Biarritz"
               onChange={(e) => setLocalisation(e.target.value)}
             />
           </Col>
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="country">Pays*</Label>
+            <Label for="country">{t('pays')}*</Label>
           </Col>
           <Col>
             <Input
@@ -291,7 +283,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="phone">Téléphone*</Label>
+            <Label for="phone">{t('telFixe')}*</Label>
           </Col>
           <Col>
             <Input
@@ -307,7 +299,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
 
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="phone2">Téléphone 2 </Label>
+            <Label for="phone2">{t('telMobile')}</Label>
           </Col>
           <Col>
             <Input
@@ -329,7 +321,6 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
               required
               name="poste"
               id="poste"
-              placeholder="Etudiant, professeur, ..."
               onChange={(e) => setQualification(e.target.value)}
             />
           </Col>
@@ -358,7 +349,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
             </Input>
           </Col>
         </Row>
-        <p className={styles.champs}>Les champs * sont obligatoires.</p>
+        <p className={styles.champs}>{t('champsObligatoire')}.</p>
         <Row>
           <Col xs={{ size: 2, offset: 5 }}>
             <Button className={`${styles.buttonValidate} button`} type="submit">

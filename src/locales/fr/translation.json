@@ -111,5 +111,10 @@
   "confirmCreationUser": "L'utilisateur a bien été créé",
   "erreurCreatUser": "Erreur lors de la création de l'utilisateur",
   "erreurRecupDonnees": "Erreur lors de la récupération des données",
-  "voir": "Voir"
+  "voir": "Voir",
+  "nomEntreprise": "Nom de l'entreprise",
+  "vousEtes": "Vous êtes",
+  "entrepriseAsso": "Une entreprise ou une association",
+  "demandeurEmploi": "Demandeur d'emploi",
+  "ecoleUniversiteEtudiant": "Une école, une université ou un étudiant"
 }

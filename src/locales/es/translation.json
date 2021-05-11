@@ -107,10 +107,14 @@
   "nomEntrepriseAsso": "Nombre de la empresa o asociación",
   "confirmInscription": "Estas bien registrado",
   "saisirPasse": "Veuillez ressaisir votre mot de passe",
-  "posteEntrepriseAsso": "Poste dans l'entreprise ou de l'association",
+  "posteEntrepriseAsso": "Posición en la compañía o la asociación",
   "champsObligatoire": "Se requiere información *",
   "confirmCreationUser": "El usuario ha sido creado",
   "erreurCreatUser": "Error al crear del usuario",
   "erreurRecupDonnees": "Error al recuperar datos",
-  "voir": "Ver"
+  "voir": "Ver",
+  "nomEntreprise": "Nombre de la empresa",
+  "entrepriseAsso": "Una compañía o una asociación",
+  "demandeurEmploi": "Solicitante de empleo",
+  "ecoleUniversiteEtudiant": "Une école, une université ou un étudiant"
 }

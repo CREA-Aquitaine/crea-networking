@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import Axios from 'axios';
+import { withNamespaces } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 import CollapseSchool from './CollapseSchool';
 import CollapseCompany from './CollapseCompany';
@@ -10,7 +12,7 @@ import styles from './CreateAccount.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function TypeUserChoice() {
+function TypeUserChoice({ t }) {
   const [isOpenCompany, setIsOpenCompany] = useState(false);
   const [isOpenSeeker, setIsOpenSeeker] = useState(false);
   const [isOpenSchool, setIsOpenScool] = useState(false);
@@ -74,23 +76,23 @@ function TypeUserChoice() {
   return (
     <Form>
       <FormGroup tag="fieldset">
-        <h3>Vous êtes ...</h3>
+        <h3>{t('vousEtes')}...</h3>
         <FormGroup check className={styles.formgroup}>
           <Label check className={styles.label}>
             <Input type="radio" name="radio1" onClick={toggleCompany} />
-            Une entreprise ou une association
+            {t('entrepriseAsso')}
           </Label>
         </FormGroup>
         <FormGroup check className={styles.formgroup}>
           <Label check className={styles.label}>
-            <Input type="radio" name="radio1" onClick={toggleSeeker} /> Un
-            demandeur d&apos;emploi
+            <Input type="radio" name="radio1" onClick={toggleSeeker} />{' '}
+            {t('demandeurEmploi')}
           </Label>
         </FormGroup>
         <FormGroup check className={styles.formgroupSchool}>
           <Label check className={styles.label}>
-            <Input type="radio" name="radio1" onClick={toggleSchool} /> Une
-            école, une université ou un étudiant
+            <Input type="radio" name="radio1" onClick={toggleSchool} />{' '}
+            {t('ecoleUniversiteEtudiant')}
           </Label>
         </FormGroup>
       </FormGroup>
@@ -113,4 +115,8 @@ function TypeUserChoice() {
   );
 }
 
-export default TypeUserChoice;
+TypeUserChoice.propTypes = {
+  t: PropTypes.func.isRequired,
+};
+
+export default withNamespaces()(TypeUserChoice);
