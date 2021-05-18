@@ -164,7 +164,7 @@ function UserInfos({ userInfos, activityFields, userTypes, t }) {
               </Col>
               <Col xs="6" sm="3">
                 <p>
-                  <b>Etablissement :</b> {userInfos.schoolName}
+                  <b>{t('ets')} :</b> {userInfos.schoolName}
                 </p>
               </Col>
             </Row>
@@ -192,7 +192,7 @@ function UserInfos({ userInfos, activityFields, userTypes, t }) {
             </Row>
           </>
         ) : (
-          <>jesaispas</>
+          <></>
         )}
       </div>
     </Container>

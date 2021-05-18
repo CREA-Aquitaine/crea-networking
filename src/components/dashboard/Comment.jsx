@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, ModalBody } from 'reactstrap';
+import { withNamespaces } from 'react-i18next';
 import styles from './Dashboard_table.module.css';
 
-function Comment({ comment, title }) {
+function Comment({ comment, title, t }) {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
   return (
     <div className="mt-1">
       <a href={toggle} onClick={toggle} className={styles.modalComment}>
-        voir message
+        {t('voirMessage')}
       </a>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalBody>
@@ -25,6 +26,7 @@ function Comment({ comment, title }) {
 Comment.propTypes = {
   comment: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default Comment;
+export default withNamespaces()(Comment);

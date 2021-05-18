@@ -30,7 +30,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId, t }) {
   const history = useHistory();
 
   const setToastSuccess = () => {
-    toast.success('Votre utilisateur a bien été créé.', {
+    toast.success(t('userCree'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -222,7 +222,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="country">Pays*</Label>
+            <Label for="country">{t('langue')}*</Label>
           </Col>
           <Col>
             <Input
@@ -232,14 +232,15 @@ function CollapseSeeker({ isOpen, userTypeId, roleId, t }) {
               id="country"
               onChange={(e) => setCountry(e.target.value)}
             >
-              <option>France</option>
-              <option>Espagne</option>
+              <option>Español</option>
+              <option>Euskara</option>
+              <option>Français</option>
             </Input>
           </Col>
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="phone">Téléphone*</Label>
+            <Label for="phone">{t('telMobile')}*</Label>
           </Col>
           <Col>
             <Input
@@ -254,7 +255,7 @@ function CollapseSeeker({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="phone2">Téléphone 2</Label>
+            <Label for="phone2">{t('telFixe')}</Label>
           </Col>
           <Col>
             <Input

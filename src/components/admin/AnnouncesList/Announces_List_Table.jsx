@@ -89,7 +89,7 @@ function AnnouncesListTable({ announcesList, token, getAnnounces, t }) {
                 <td>{post.title}</td>
                 <td>{post.TypePost ? post.TypePost.labelFr : ''}</td>
                 <td>
-                  <Link to={`/announces/${post.id}`}>Voir l&apos;annonce</Link>
+                  <Link to={`/announces/${post.id}`}>{t('voirAnnonce')}</Link>
                 </td>
                 <td>{post.JobCategory ? post.JobCategory.labelFr : ''}</td>
                 <td className={styles.crossImg}>

@@ -18,7 +18,7 @@
   "marche": "Cómo funciona",
   "inscrit": "Me inscribo",
   "postule": "Yo postulo",
-  "annonce": "Consulto los anuncios",
+  "annonce": "Anuncios",
   "TitrePresentation": "Presentación",
   "TextePresentationPremPartie": "La RED TRANSFRONTERIZA fue creado por iniciativa del CREA*, y sus socios: ANEC** en PAMPLONA, de CFCINE *** en BILBAO, han aunado sus capacidades y redes para promover los intercambios económicos y socioculturales entre los distintos actores económicos con el fin de favorecer el desarrollo de las relaciones transfronterizas.",
   "TextePresentationDeuxPartie": "Este sitio está destinado a ser el enlace permanente de REDES TRANSFRONTERIZAS, está dedicado a empresas que buscan socios, solicitantes de empleo, escuelas y estudiantes que buscan pasantías o trabajos.",
@@ -116,5 +116,15 @@
   "nomEntreprise": "Nombre de la empresa",
   "entrepriseAsso": "Una compañía o una asociación",
   "demandeurEmploi": "Solicitante de empleo",
-  "ecoleUniversiteEtudiant": "Une école, une université ou un étudiant"
+  "ecoleUniversiteEtudiant": "Una escuela, universidad o estudiante",
+  "nomEts": "Nombre del establecimiento",
+  "posteEts": "Posición en el establecimiento",
+  "etsActivite": "Sector empresarial del establecimiento",
+  "userCree": "Su usuario ha sido creado con éxito",
+  "vousEtes": "¿ Usted es ?",
+  "voirMessage": "Ver el mensaje",
+  "voirAnnonce": "Ver el anuncio",
+  "message": "Mensaje",
+  "ets": "Establecimiento",
+  "messagesEnvoyés": "Mensajes enviados"
 }

@@ -119,7 +119,7 @@ function PutSchool({ userInfos, token, activityField, t }) {
         <Row className="mt-5">
           <Col md={3}>
             <Label for="Nom" className="mt-3">
-              Nom de l&apos;établissement
+              {t('nomEts')}
             </Label>
           </Col>
           <Col>
@@ -236,7 +236,7 @@ function PutSchool({ userInfos, token, activityField, t }) {
         </Row>
         <Row>
           <Col md={3}>
-            <Label for="Password" className="mt-3">
+            <Label for="phone2" className="mt-3">
               {t('telFixe')}
             </Label>
           </Col>
@@ -268,7 +268,7 @@ function PutSchool({ userInfos, token, activityField, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="country">{t('pays')}</Label>
+            <Label for="country">{t('langue')}*</Label>
           </Col>
           <Col>
             <Input
@@ -278,15 +278,16 @@ function PutSchool({ userInfos, token, activityField, t }) {
               id="country"
               onChange={(e) => setCountry(e.target.value)}
             >
-              <option>France</option>
-              <option>Espagne</option>
+              <option>Español</option>
+              <option>Euskara</option>
+              <option>Français</option>
             </Input>
           </Col>
         </Row>
         <Row>
           <Col md={3}>
             <Label for="poste" className="mt-3">
-              Poste dans l&apos;établissement
+              {t('posteEts')}
             </Label>
           </Col>
           <Col>

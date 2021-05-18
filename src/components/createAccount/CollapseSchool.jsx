@@ -166,7 +166,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
       <Form onSubmit={handleSubmit}>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="schoolName">Nom de l&apos;établissement*</Label>
+            <Label for="schoolName">{t('nomEts')}*</Label>
           </Col>
           <Col>
             <Input
@@ -266,7 +266,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="country">{t('pays')}*</Label>
+            <Label for="country">{t('langue')}*</Label>
           </Col>
           <Col>
             <Input
@@ -276,8 +276,9 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
               id="country"
               onChange={(e) => setCountry(e.target.value)}
             >
-              <option>France</option>
-              <option>Espagne</option>
+              <option>Español</option>
+              <option>Euskara</option>
+              <option>Français</option>
             </Input>
           </Col>
         </Row>
@@ -313,7 +314,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="poste">Poste dans l&apos;établissement*</Label>
+            <Label for="poste">{t('posteEts')}*</Label>
           </Col>
           <Col>
             <Input
@@ -327,9 +328,7 @@ function CollapseSchool({ isOpen, userTypeId, roleId, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="exampleSelect">
-              Secteur d&apos;activité de l&apos;établissement*
-            </Label>
+            <Label for="exampleSelect">{t('etsActivite')}*</Label>
           </Col>
           <Col>
             <Input

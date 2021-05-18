@@ -63,7 +63,7 @@ function Dashboard({ token, userInfos, t }) {
     <>
       {isLoading ? (
         <>
-          <h1>Loading...</h1>
+          <h1>{t('chargement')}</h1>
           <h2>{error}</h2>
         </>
       ) : (
