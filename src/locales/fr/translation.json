@@ -126,5 +126,7 @@
   "annonce": "Annonce",
   "message": "Message",
   "ets": "Etablissement",
-  "messagesEnvoyés": "Messages envoyés"
+  "messagesEnvoyés": "Messages envoyés",
+  "annoncePubliee": "Votre annonce a bien été publiée",
+  "votreDemande": "Votre demande"
 }

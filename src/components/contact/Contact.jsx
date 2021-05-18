@@ -156,7 +156,7 @@ function Contact({ t }) {
                   type="email"
                   name="email"
                   id="email"
-                  placeholder="Votre email"
+                  placeholder="Email"
                   value={email}
                   onChange={handleChange}
                 />
@@ -170,7 +170,7 @@ function Contact({ t }) {
                   type="text"
                   name="subject"
                   id="text"
-                  placeholder="Sujet de la demande"
+                  placeholder={t('sujet')}
                   value={text}
                   onChange={handleChange}
                 />
@@ -184,7 +184,7 @@ function Contact({ t }) {
                   type="textarea"
                   name="text"
                   id="textarea"
-                  placeholder="Votre demande"
+                  placeholder={t('votreDemande')}
                   value={textarea}
                   onChange={handleChange}
                 />

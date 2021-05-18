@@ -126,5 +126,7 @@
   "voirAnnonce": "Ver el anuncio",
   "message": "Mensaje",
   "ets": "Establecimiento",
-  "messagesEnvoyés": "Mensajes enviados"
+  "messagesEnvoyés": "Mensajes enviados",
+  "annoncePubliee": "Votre annonce a bien été publiée",
+  "votreDemande": "Votre demande"
 }
