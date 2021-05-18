@@ -34,7 +34,7 @@ function Partners({ t }) {
         <p>{t('chargement')}...</p>
       ) : (
         <Container>
-          {error ? <p>I y a une erreur</p> : ''}
+          {error ? <p>{t('erreurVu')}</p> : ''}
           <h2>{t('nosPartenaires')}</h2>
           <Row className={styles.rowPartners}>
             {partners.map((item) => (

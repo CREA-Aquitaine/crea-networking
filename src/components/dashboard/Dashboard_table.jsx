@@ -104,7 +104,7 @@ function DashboardTable({ token, userInfos, t }) {
               toggle('1');
             }}
           >
-            Mes Annonces
+            {t('mesAnnonces')}
           </NavLink>
         </NavItem>
         <NavItem
@@ -116,7 +116,7 @@ function DashboardTable({ token, userInfos, t }) {
               toggle('2');
             }}
           >
-            Réponses à mes annonces
+            {t('reponseAnnonce')}
           </NavLink>
         </NavItem>
         <NavItem
@@ -128,7 +128,7 @@ function DashboardTable({ token, userInfos, t }) {
               toggle('3');
             }}
           >
-            Mes messages envoyés
+            {t('messagesEnvoyés')}
           </NavLink>
         </NavItem>
       </Nav>
@@ -152,7 +152,7 @@ function DashboardTable({ token, userInfos, t }) {
                       <td>{post.localisation}</td>
                       <td>
                         <Link to={`/announces/${post.id}`}>
-                          Voir l&apos;annonce
+                          {t('voirAnnonce')}
                         </Link>
                       </td>
                       <td>
@@ -176,9 +176,9 @@ function DashboardTable({ token, userInfos, t }) {
               <Table responsive>
                 <thead>
                   <tr>
-                    <th>Annonce</th>
-                    <th>Sujet</th>
-                    <th>Message</th>
+                    <th>{t('annonce')}</th>
+                    <th>{t('sujet')}</th>
+                    <th>{t('message')}</th>
                     <th>Email</th>
                     <th>
                       {t('nom')}/{t('prenom')}
@@ -205,9 +205,9 @@ function DashboardTable({ token, userInfos, t }) {
               <Table responsive>
                 <thead>
                   <tr>
-                    <th>Annonce</th>
-                    <th>Sujet</th>
-                    <th>Message</th>
+                    <th>{t('annonce')}</th>
+                    <th>{t('sujet')}</th>
+                    <th>{t('message')}</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -62,7 +62,7 @@ function PostAnnounce({ token, UserId, t }) {
   };
 
   const setToastSuccess = () => {
-    toast.success('Votre annonce a bien été publiée.', {
+    toast.success(t('annoncePubliee'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -74,7 +74,7 @@ function PostAnnounce({ token, UserId, t }) {
   };
 
   const setToastError = () => {
-    toast.error('Une erreur est survenue, vous pouvez réessayer.', {
+    toast.error(t('erreurReessaye'), {
       position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,

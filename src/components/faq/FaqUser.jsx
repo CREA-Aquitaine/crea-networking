@@ -3,12 +3,14 @@ import { Container } from 'reactstrap';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { withNamespaces } from 'react-i18next';
 
 import styles from './FaqUser.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function FaqUser({ token }) {
+function FaqUser({ token, t }) {
   const [faq, setFaq] = useState([]);
   const [error, setError] = useState('');
 
@@ -30,8 +32,8 @@ function FaqUser({ token }) {
 
   return (
     <Container>
-      <h2 className="mt-1">Foire aux questions</h2>
-      {error ? <p>error</p> : ''}
+      <h2 className="mt-1">{t('faq')}</h2>
+      {error ? <p>{t('erreurVu')}</p> : ''}
       {faq.map((question) => (
         <div className={styles.container}>
           <h4 className={styles.question}>{question.question}</h4>
@@ -47,6 +49,7 @@ const mapStateToProps = (state) => ({
 
 FaqUser.propTypes = {
   token: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(FaqUser);
+export default compose(connect(mapStateToProps), withNamespaces())(FaqUser);

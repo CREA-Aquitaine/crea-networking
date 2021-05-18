@@ -17,7 +17,7 @@
   "marche": "Nola dabil",
   "inscrit": "Izena ematen ari naiz",
   "postule": "Postulatu egiten dut",
-  "annonce": "Iragarkiak kontsultatzen ditut",
+  "annonce": "Iragarkia",
   "TitrePresentation": "AURKEZPENA",
   "TextePresentationPremPartie": "MUGAZ GABEKO SAREA CREA * ren eta bere bazkideen ekimenez sortu zen: ANEC ** Iruñean, CFCINE *** BILBON. Elkarrekin, beren gaitasunak eta sareak bateratu zituzten eragile desberdinen arteko truke ekonomikoak eta soziokulturalak sustatzeko. Helburu bat: Mugaz gaindiko harremanen garapena bultzatzea.",
   "TextePresentationDeuxPartie": "Gune hau Mugaz gaindiko sareen esteka pribilegiatua bihurtzen da. Enpresei, enplegu eskatzaileei, ikastetxeei eta ikasleei bazkideak, praktikak eta lana aurkitzeko aukera eskaintzen die.",
@@ -116,5 +116,17 @@
   "nomEntreprise": "Enpresa izena",
   "entrepriseAsso": "Enpresa edo elkartearen",
   "demandeurEmploi": "Lan bila dabiltzan",
-  "ecoleUniversiteEtudiant": "Une école, une université ou un étudiant"
+  "ecoleUniversiteEtudiant": "Eskola, unibertsitatea edo ikaslea",
+  "nomEts": "Instalazioaren izena",
+  "posteEts": "Establezimenduan duen",
+  "etsActivite": "Establezimenduaren negozio sektorea",
+  "userCree": "Zure erabiltzailea behar bezala sortu da",
+  "vousEtes": "Zu zara ?",
+  "voirMessage": "Ikusi mezua",
+  "voirAnnonce": "Ikusi iragarkia",
+  "message": "Mezua",
+  "ets": "Establezimendua",
+  "messagesEnvoyés": "Bidali ditudan mezuak",
+  "annoncePubliee": "Votre annonce a bien été publiée",
+  "votreDemande": "Votre demande"
 }

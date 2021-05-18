@@ -287,7 +287,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="country">{t('pays')}</Label>
+            <Label for="country">{t('langue')}*</Label>
           </Col>
           <Col>
             <Input
@@ -297,8 +297,9 @@ function PutCompany({ userInfos, token, activityField, t }) {
               id="country"
               onChange={(e) => setCountry(e.target.value)}
             >
-              <option>France</option>
-              <option>Espagne</option>
+              <option>Español</option>
+              <option>Euskara</option>
+              <option>Français</option>
             </Input>
           </Col>
         </Row>

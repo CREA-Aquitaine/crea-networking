@@ -231,16 +231,22 @@ function PutUserInfo({ userInfos, token, t }) {
             <Label for="country">{t('pays')}</Label>
           </Col>
           <Col>
-            <Input
-              type="select"
-              name="country"
-              required
-              id="country"
-              onChange={(e) => setCountry(e.target.value)}
-            >
-              <option>France</option>
-              <option>Espagne</option>
-            </Input>
+            <Col xs="3">
+              <Label for="country">{t('langue')}*</Label>
+            </Col>
+            <Col>
+              <Input
+                type="select"
+                name="country"
+                required
+                id="country"
+                onChange={(e) => setCountry(e.target.value)}
+              >
+                <option>Español</option>
+                <option>Euskara</option>
+                <option>Français</option>
+              </Input>
+            </Col>
           </Col>
         </Row>
         <Row className="mt-5">
@@ -268,4 +274,5 @@ PutUserInfo.propTypes = {
   token: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
 };
+
 export default withNamespaces()(PutUserInfo);
