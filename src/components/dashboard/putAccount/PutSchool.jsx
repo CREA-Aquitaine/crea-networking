@@ -298,7 +298,6 @@ function PutSchool({ userInfos, token, activityField, t }) {
               id="poste"
               value={poste}
               onChange={(event) => setposte(event.target.value)}
-              placeholder="Etudiant, professeur, ..."
             />
           </Col>
         </Row>
