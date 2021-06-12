@@ -3,53 +3,17 @@ import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Table, Col } from 'reactstrap';
+import { Table, Button } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
 
-import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
-import { IoMdClose } from 'react-icons/io';
-import styles from './Announces.module.css';
+import './AnouncesListTable.css';
 
 const host = process.env.REACT_APP_HOST;
 
 function AnnouncesListTable({ announcesList, token, getAnnounces, t }) {
-  const [isAsc, setIsAsc] = useState(false);
-  const [title, setTitle] = useState([]);
   const [error, setError] = useState('');
-
-  const getAscTitle = () => {
-    const ascTitle = announcesList.sort((a, b) => {
-      const firstTitle = a.title.toLowerCase();
-      const secondTitle = b.title.toLowerCase();
-      if (firstTitle < secondTitle) {
-        return -1;
-      }
-      if (firstTitle > secondTitle) {
-        return 1;
-      }
-      return 0;
-    });
-    setTitle(ascTitle);
-    setIsAsc(true);
-    return title && isAsc;
-  };
-  const getDscTitle = () => {
-    const dscTitle = announcesList.sort((a, b) => {
-      const firstTitle = a.title.toLowerCase();
-      const secondTitle = b.title.toLowerCase();
-      if (firstTitle > secondTitle) {
-        return -1;
-      }
-      if (firstTitle < secondTitle) {
-        return 1;
-      }
-      return 0;
-    });
-    setTitle(dscTitle);
-    setIsAsc(false);
-    return title && isAsc;
-  };
 
   const deleteAnnounce = async () => {
     try {
@@ -66,45 +30,58 @@ function AnnouncesListTable({ announcesList, token, getAnnounces, t }) {
     }
   };
 
+  const columns = [
+    {
+      title: t('titreAnnonce'),
+      dataIndex: 'title',
+      key: 'title',
+      sorter: (a, b) => a.title.localeCompare(b.title),
+    },
+    {
+      title: t('typeAnnonce'),
+      dataIndex: 'TypePost',
+      key: 'TypePost',
+      render: (record) => <span>{record?.labelFr}</span>,
+    },
+    {
+      title: t('categories'),
+      dataIndex: 'JobCategory',
+      key: 'JobCategory',
+      render: (record) => <span>{record?.labelFr}</span>,
+    },
+    {
+      title: t('contenuAnnonce'),
+      key: 'contenu',
+      render: (record) => (
+        <Link to={`/announces/${record.id}`}>{t('voirAnnonce')}</Link>
+      ),
+    },
+    {
+      title: '',
+      key: 'actions',
+      render: (record) => (
+        <>
+          <Button
+            type="link"
+            icon={<DeleteOutlined />}
+            onClick={() => deleteAnnounce(record.id)}
+          />
+        </>
+      ),
+    },
+  ];
+
   return (
-    <Col>
-      <Table borderless responsive>
-        <thead className={styles.theadBackground}>
-          <tr>
-            <th>
-              {t('titreAnnonce')}
-              <RiArrowDropDownLine onClick={getAscTitle} size="25" />
-              <RiArrowDropUpLine onClick={getDscTitle} size="25" />
-            </th>
-            <th>{t('typeAnnonce')}</th>
-            <th>{t('contenuAnnonce')}</th>
-            <th>{t('categories')}</th>
-            <th>{t('supprimer')}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {announcesList.map((post) => {
-            return (
-              <tr key={post.id}>
-                <td>{post.title}</td>
-                <td>{post.TypePost ? post.TypePost.labelFr : ''}</td>
-                <td>
-                  <Link to={`/announces/${post.id}`}>{t('voirAnnonce')}</Link>
-                </td>
-                <td>{post.JobCategory ? post.JobCategory.labelFr : ''}</td>
-                <td className={styles.crossImg}>
-                  <IoMdClose
-                    onClick={deleteAnnounce}
-                    fill="#dd2b25"
-                    className={styles.cross}
-                  />
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
-    </Col>
+    <div className="header-table-black" style={{ width: '100%' }}>
+      <Table
+        dataSource={announcesList}
+        columns={columns}
+        style={{ width: '100%' }}
+        rowKey="id"
+        showSorterTooltip={false}
+        className="table-head-red"
+      />
+    </div>
   );
 }
 

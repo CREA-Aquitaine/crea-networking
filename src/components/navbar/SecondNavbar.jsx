@@ -75,7 +75,7 @@ function SecondNavbar({ role, t }) {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem tag={Link} to="/userType">
-                  {t('typeUtilisateur')}
+                  {t('typesUtilisateur')}
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem tag={Link} to="/activityFields">

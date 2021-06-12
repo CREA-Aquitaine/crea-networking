@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Table, Button } from 'antd';
 import {
-  Table,
   Col,
   Nav,
   NavItem,
@@ -15,10 +15,10 @@ import { compose } from 'redux';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { DeleteOutlined } from '@ant-design/icons';
 
 import styles from './Dashboard_table.module.css';
 import UserName from './UserName';
-import CrossDelete from './CrossDelete';
 import Comment from './Comment';
 
 const host = process.env.REACT_APP_HOST;
@@ -51,6 +51,7 @@ function DashboardTable({ token, userInfos, t }) {
       return error;
     }
   };
+
   const getAnswer = async () => {
     try {
       const res = await Axios.get(`${host}/api/v1/replies`, {
@@ -91,6 +92,105 @@ function DashboardTable({ token, userInfos, t }) {
     getAnswer();
     getMessage();
   }, []);
+
+  const deleteAnnounce = async () => {
+    try {
+      const postId = announces.find((post) => post.id);
+      await Axios.delete(`${host}/api/v1/posts/${postId.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return getAnnounces();
+    } catch (err) {
+      setError(err);
+      return error;
+    }
+  };
+
+  const columnsAnnunces = [
+    {
+      title: t('titreAnnonce'),
+      dataIndex: 'title',
+      key: 'title',
+      sorter: (a, b) => a.title.localeCompare(b.title),
+    },
+    {
+      title: t('localisation'),
+      dataIndex: 'localisation',
+      key: 'localisation',
+    },
+
+    {
+      title: t('voir'),
+      key: 'voir',
+      render: (record) => (
+        <Link to={`/announces/${record.id}`}>{t('voirAnnonce')}</Link>
+      ),
+    },
+    {
+      title: '',
+      key: 'actions',
+      render: (record) => (
+        <>
+          <Button
+            type="link"
+            icon={<DeleteOutlined />}
+            onClick={() => deleteAnnounce(record.id)}
+          />
+        </>
+      ),
+    },
+  ];
+
+  const columnsReplies = [
+    {
+      title: t('annonce'),
+      dataIndex: 'titlePost',
+      key: 'titlePost',
+      sorter: (a, b) => a.titlePost.localeCompare(b.titlePost),
+    },
+    {
+      title: t('sujet'),
+      dataIndex: 'title',
+      key: 'title',
+    },
+    {
+      title: t('message'),
+      key: 'comment',
+      render: (record) => (
+        <Comment comment={record.comment} title={record.title} />
+      ),
+    },
+
+    {
+      title: t('contact'),
+      key: 'UserId',
+      dataIndex: 'UserId',
+      render: (record) => <UserName id={record} token={token} />,
+    },
+  ];
+
+  const columnsMessage = [
+    {
+      title: t('annonce'),
+      dataIndex: 'titlePost',
+      key: 'titlePost',
+      sorter: (a, b) => a.titlePost.localeCompare(b.titlePost),
+    },
+    {
+      title: t('sujet'),
+      dataIndex: 'title',
+      key: 'title',
+    },
+    {
+      title: t('message'),
+      key: 'comment',
+      render: (record) => (
+        <Comment comment={record.comment} title={record.title} />
+      ),
+    },
+  ];
 
   return (
     <div className={styles.dashboardTable}>
@@ -136,90 +236,42 @@ function DashboardTable({ token, userInfos, t }) {
         <TabPane tabId="1">
           <Row>
             <Col>
-              <Table responsive>
-                <thead>
-                  <tr>
-                    <th>{t('titreAnnonce')}</th>
-                    <th>{t('localisation')}</th>
-                    <th>{t('voir')}</th>
-                    <th>{t('supprimer')}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {announces.map((post) => (
-                    <tr>
-                      <td>{post.title}</td>
-                      <td>{post.localisation}</td>
-                      <td>
-                        <Link to={`/announces/${post.id}`}>
-                          {t('voirAnnonce')}
-                        </Link>
-                      </td>
-                      <td>
-                        <CrossDelete
-                          id={post.id}
-                          getDatas={getAnnounces}
-                          token={token}
-                          route="posts"
-                        />
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
+              <Table
+                dataSource={announces}
+                columns={columnsAnnunces}
+                style={{ width: '100%' }}
+                rowKey="id"
+                showSorterTooltip={false}
+                className="table-head-red"
+              />
             </Col>
           </Row>
         </TabPane>
         <TabPane tabId="2">
           <Row>
             <Col>
-              <Table responsive>
-                <thead>
-                  <tr>
-                    <th>{t('annonce')}</th>
-                    <th>{t('sujet')}</th>
-                    <th>{t('message')}</th>
-                    <th>Email</th>
-                    <th>
-                      {t('nom')}/{t('prenom')}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {replies.map((item) => (
-                    <tr>
-                      <td>{item.titlePost}</td>
-                      <td>{item.title}</td>
-                      <Comment comment={item.comment} title={item.title} />{' '}
-                      <UserName id={item.UserId} token={token} />
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
+              <Table
+                dataSource={replies}
+                columns={columnsReplies}
+                style={{ width: '100%' }}
+                rowKey="id"
+                showSorterTooltip={false}
+                className="table-head-red"
+              />
             </Col>
           </Row>
         </TabPane>
         <TabPane tabId="3">
           <Row>
             <Col>
-              <Table responsive>
-                <thead>
-                  <tr>
-                    <th>{t('annonce')}</th>
-                    <th>{t('sujet')}</th>
-                    <th>{t('message')}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {message.map((item) => (
-                    <tr>
-                      <td>{item.titlePost}</td>
-                      <td>{item.title}</td>
-                      <Comment comment={item.comment} title={item.title} />{' '}
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
+              <Table
+                dataSource={message}
+                columns={columnsMessage}
+                style={{ width: '100%' }}
+                rowKey="id"
+                showSorterTooltip={false}
+                className="table-head-red"
+              />
             </Col>
           </Row>
         </TabPane>

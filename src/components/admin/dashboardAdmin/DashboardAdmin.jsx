@@ -66,7 +66,7 @@ function HomeAdmin({ token, t }) {
       <Row>
         <Col xs="12" md="6">
           <Container Fluid className={styles.pie}>
-            <h4 className={styles.userTypes}>{t('typeUtilisateur')}</h4>
+            <h4 className={styles.userTypes}>{t('typesUtilisateur')}</h4>
             <Pie
               data={{
                 datasets: [
