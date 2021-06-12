@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-
 import { withNamespaces } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
 import basque from './images/basque.png';
 import france from './images/france.png';
@@ -11,8 +11,24 @@ import i18n from '../../i18n';
 import styles from './NavBar.module.css';
 
 function TraductionNav() {
+  const dispatch = useDispatch();
+
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
+    switch (lng) {
+      case 'fr':
+        dispatch({ type: 'FRANCE', payload: 'France' });
+        break;
+      case 'esp':
+        dispatch({ type: 'SPAIN', payload: 'Spain' });
+        break;
+      case 'eus':
+        dispatch({ type: 'BASQUE', payload: 'Basque' });
+        break;
+
+      default:
+        break;
+    }
   };
   return (
     <>

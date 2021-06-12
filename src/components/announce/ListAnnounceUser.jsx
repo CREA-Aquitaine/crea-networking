@@ -21,7 +21,7 @@ import { withNamespaces } from 'react-i18next';
 
 import styles from './ListAnnounceUser.module.css';
 
-function ListAnnounceUser({ token, t }) {
+function ListAnnounceUser({ token, t, translate }) {
   const [isLoading, setisLoading] = useState(true);
   const [annonceData, setAnnonceData] = useState([]);
   const [error, setError] = useState('');
@@ -99,28 +99,6 @@ function ListAnnounceUser({ token, t }) {
     setAnnonceFiltered(annonceData);
   };
 
-  // const selectJobCat = (e) => {
-  //   const jobCat = e.target.value;
-  //   const arrayFiltered = annonceData.filter(
-  //     (annonce) => annonce.JobCategory.labelFr === jobCat
-  //   );
-  //   setAnnonceFiltered(arrayFiltered);
-  // };
-
-  // const selectTypePost = (e) => {
-  //   const typePost = e.target.value;
-  //   if (annonceData !== annonceFiltered) {
-  //     const arrayFiltered = annonceFiltered.filter(
-  //       (annonce) => annonce.TypePost.labelFr === typePost
-  //     );
-  //     setAnnonceFiltered(arrayFiltered);
-  //   } else {
-  //     const arrayFiltered = annonceData.filter(
-  //       (annonce) => annonce.TypePost.labelFr === typePost
-  //     );
-  //     setAnnonceFiltered(arrayFiltered);
-  //   }
-  // };
   const get = () => {
     getAnnounces();
     getJobCatData();
@@ -148,7 +126,13 @@ function ListAnnounceUser({ token, t }) {
               {t('selectCategorie')}
             </option>
             {jobCatData.map((jobCat) => (
-              <option>{jobCat.labelFr}</option>
+              <option>
+                {translate === 'France'
+                  ? jobCat.labelFr
+                  : translate === 'Spain'
+                  ? jobCat.labelEs
+                  : jobCat.labelEus}
+              </option>
             ))}
           </Input>
         </Col>
@@ -164,7 +148,13 @@ function ListAnnounceUser({ token, t }) {
               {t('selectAnnonceType')}
             </option>
             {TypePost.map((typepost) => (
-              <option>{typepost.labelFr}</option>
+              <option>
+                {translate === 'France'
+                  ? typepost.labelFr
+                  : translate === 'Spain'
+                  ? typepost.labelEs
+                  : typepost.labelEus}
+              </option>
             ))}
           </Input>
         </Col>
@@ -217,11 +207,13 @@ function ListAnnounceUser({ token, t }) {
 
 const mapStateToProps = (state) => ({
   token: state.authenticated.token,
+  translate: state.translate.language,
 });
 
 ListAnnounceUser.propTypes = {
   token: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
+  translate: PropTypes.string.isRequired,
 };
 
 export default compose(

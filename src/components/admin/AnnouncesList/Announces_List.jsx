@@ -10,7 +10,7 @@ import AnnouncesListTable from './Announces_List_Table';
 
 const host = process.env.REACT_APP_HOST;
 
-function AnnouncesList({ token, t }) {
+function AnnouncesList({ token, t, language }) {
   const [announcesList, setAnnounceslist] = useState([]);
   const [error, setError] = useState('');
   const [isPostType, setIsPostType] = useState(false);
@@ -83,14 +83,26 @@ function AnnouncesList({ token, t }) {
             >
               {t('toutesAnnonces')}
             </button>
-            {/* TODO : revoir ici partenariat */}
             {postTypes.map((type) => (
               <button
                 type="button"
+                key={type.id}
                 className={styles.buttonInput}
-                onClick={() => getAnnouncesByType(type.labelFr)}
+                onClick={() =>
+                  getAnnouncesByType(
+                    language === 'France'
+                      ? type.labelFr
+                      : language === 'Spain'
+                      ? type.labelEs
+                      : type.labelEus
+                  )
+                }
               >
-                {type.labelFr}
+                {language === 'France'
+                  ? type.labelFr
+                  : language === 'Spain'
+                  ? type.labelEs
+                  : type.labelEus}
               </button>
             ))}
           </Row>
@@ -108,11 +120,13 @@ function AnnouncesList({ token, t }) {
 
 const mapStateToProps = (state) => ({
   token: state.authenticated.token,
+  language: state.translate.language,
 });
 
 AnnouncesList.propTypes = {
   token: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
+  language: PropTypes.string.isRequired,
 };
 
 export default compose(

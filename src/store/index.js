@@ -1,11 +1,11 @@
 import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import language from './reducerLanguage';
+import translate from './reducerTranslate';
 import role from './reducerAdmin';
 import authenticated from './reducerUser';
 
-const reducers = combineReducers({ language, role, authenticated });
+const reducers = combineReducers({ translate, role, authenticated });
 const store = createStore(reducers, composeWithDevTools());
 
 export default store;
