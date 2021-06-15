@@ -54,7 +54,7 @@ function ChangeRole({ user, token, getAllUsers, t, visible, setVisible }) {
         <ModalHeader>Changement de rôle</ModalHeader>
         <ModalBody>
           <p>
-            <b>Êtes-vous sûr de vouloir le rôle de cette personne ?</b>
+            <b>Êtes-vous sûr de vouloir changer le rôle de cette personne ?</b>
           </p>
         </ModalBody>
         <ModalFooter>
