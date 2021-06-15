@@ -17,7 +17,6 @@ import { compose } from 'redux';
 
 import { Link } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
-// import { GiHamburgerMenu } from 'react-icons/gi';
 
 import crea from '../image/logo-crea_2015.png';
 
@@ -30,7 +29,6 @@ function SecondNavbar({ role, t }) {
     <Navbar className={styles.navbar} light expand="md">
       <div className={styles.toggleButton}>
         <NavbarToggler onClick={toggle} />
-        {/* <GiHamburgerMenu onClick={toggle} fill="white" size="25" /> */}
       </div>
       <Collapse isOpen={isOpen} navbar>
         {role === 'admin' ? (
@@ -77,7 +75,7 @@ function SecondNavbar({ role, t }) {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem tag={Link} to="/userType">
-                  {t('typeUtilisateur')}
+                  {t('typesUtilisateur')}
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem tag={Link} to="/activityFields">

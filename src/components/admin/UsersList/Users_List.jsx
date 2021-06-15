@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Container, Row, Col, Input, Button } from 'reactstrap';
 import { compose } from 'redux';
 import { withNamespaces } from 'react-i18next';
+
 import UsersListTable from './Users_List_Table';
 import styles from './Users_List_Table.module.css';
 

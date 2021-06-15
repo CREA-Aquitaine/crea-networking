@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './PostAnnounce.module.css';
 
-function PostAnnounce({ token, UserId, t }) {
+function PostAnnounce({ token, UserId, t, translate }) {
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
   const [isLoading, setisLoading] = useState(true);
@@ -185,7 +185,13 @@ function PostAnnounce({ token, UserId, t }) {
                   </option>
 
                   {typePostsData.map((typePost) => (
-                    <option>{typePost.labelFr}</option>
+                    <option>
+                      {translate === 'France'
+                        ? typePost.labelFr
+                        : translate === 'Spain'
+                        ? typePost.labelEs
+                        : typePost.labelEus}
+                    </option>
                   ))}
                 </Input>
               </Col>
@@ -258,7 +264,13 @@ function PostAnnounce({ token, UserId, t }) {
                   </option>
 
                   {jobCatData.map((jobCat) => (
-                    <option>{jobCat.labelFr}</option>
+                    <option>
+                      {translate === 'France'
+                        ? jobCat.labelFr
+                        : translate === 'Spain'
+                        ? jobCat.labelEs
+                        : jobCat.labelEus}
+                    </option>
                   ))}
                 </Input>
               </Col>
@@ -296,12 +308,14 @@ function PostAnnounce({ token, UserId, t }) {
 const mapStateToProps = (state) => ({
   token: state.authenticated.token,
   UserId: state.authenticated.userInfos.id,
+  translate: state.translate.language,
 });
 
 PostAnnounce.propTypes = {
   token: PropTypes.string.isRequired,
   UserId: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
+  translate: PropTypes.string.isRequired,
 };
 
 export default compose(

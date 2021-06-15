@@ -2,161 +2,23 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { connect } from 'react-redux';
-import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import { compose } from 'redux';
 import { withNamespaces } from 'react-i18next';
+import { Table, Button } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
-import { Table, Col } from 'reactstrap';
-
-import { IoMdClose } from 'react-icons/io';
-import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
-import styles from './Users_List_Table.module.css';
 import ChangeRole from './ChangeRole';
+
+import './UserListTable.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function UsersListTable({ usersList, token, getAllUsers, t }) {
-  const [isAsc, setIsAsc] = useState(false);
-  const [lastName, setLastName] = useState([]);
-  const [firstName, setFirstName] = useState([]);
-  const [email, setEmail] = useState([]);
-  const [country, setCountry] = useState([]);
+function UsersListTable({ usersList, t, token, getAllUsers }) {
   const [error, setError] = useState('');
+  const [openMOdal, setOpenModal] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
-  const getAscLastName = () => {
-    const ascLastName = usersList.sort((a, b) => {
-      const firstLastName = a.lastName.toLowerCase();
-      const secondLastName = b.lastName.toLowerCase();
-      if (firstLastName < secondLastName) {
-        return -1;
-      }
-      if (firstLastName > secondLastName) {
-        return 1;
-      }
-      return 0;
-    });
-    setLastName(ascLastName);
-    setIsAsc(true);
-    return lastName && isAsc;
-  };
-
-  const getDscLastName = () => {
-    const dscLastName = usersList.sort((a, b) => {
-      const firstLastName = a.lastName.toLowerCase();
-      const secondLastName = b.lastName.toLowerCase();
-      if (firstLastName > secondLastName) {
-        return -1;
-      }
-      if (firstLastName < secondLastName) {
-        return 1;
-      }
-      return 0;
-    });
-    setLastName(dscLastName);
-    setIsAsc(false);
-    return lastName && isAsc;
-  };
-
-  const getAscFirstName = () => {
-    const ascFirstName = usersList.sort((a, b) => {
-      const firstFirstName = a.firstName.toLowerCase();
-      const secondFirstName = b.firstName.toLowerCase();
-      if (firstFirstName < secondFirstName) {
-        return -1;
-      }
-      if (firstFirstName > secondFirstName) {
-        return 1;
-      }
-      return 0;
-    });
-    setFirstName(ascFirstName);
-    setIsAsc(true);
-    return firstName && isAsc;
-  };
-  const getDscFirstName = () => {
-    const dscFirstName = usersList.sort((a, b) => {
-      const firstFirstName = a.firstName.toLowerCase();
-      const secondFirstName = b.firstName.toLowerCase();
-      if (firstFirstName > secondFirstName) {
-        return -1;
-      }
-      if (firstFirstName < secondFirstName) {
-        return 1;
-      }
-      return 0;
-    });
-    setFirstName(dscFirstName);
-    setIsAsc(false);
-    return firstName && isAsc;
-  };
-
-  const getAscEmail = () => {
-    const ascEmail = usersList.sort((a, b) => {
-      const firstEmail = a.email.toLowerCase();
-      const secondEmail = b.email.toLowerCase();
-      if (firstEmail < secondEmail) {
-        return -1;
-      }
-      if (firstEmail > secondEmail) {
-        return 1;
-      }
-      return 0;
-    });
-    setEmail(ascEmail);
-    setIsAsc(true);
-    return email && isAsc;
-  };
-  const getDscEmail = () => {
-    const dscEmail = usersList.sort((a, b) => {
-      const firstEmail = a.email.toLowerCase();
-      const secondEmail = b.email.toLowerCase();
-      if (firstEmail > secondEmail) {
-        return -1;
-      }
-      if (firstEmail < secondEmail) {
-        return 1;
-      }
-      return 0;
-    });
-    setEmail(dscEmail);
-    setIsAsc(false);
-    return email && isAsc;
-  };
-
-  const getAscCountry = () => {
-    const ascCountry = usersList.sort((a, b) => {
-      const firstCountry = a.country.toLowerCase();
-      const secondCountry = b.country.toLowerCase();
-      if (firstCountry < secondCountry) {
-        return -1;
-      }
-      if (firstCountry > secondCountry) {
-        return 1;
-      }
-      return 0;
-    });
-    setCountry(ascCountry);
-    setIsAsc(true);
-    return country && isAsc;
-  };
-  const getDscCountry = () => {
-    const dscCountry = usersList.sort((a, b) => {
-      const firstCountry = a.country.toLowerCase();
-      const secondCountry = b.country.toLowerCase();
-      if (firstCountry > secondCountry) {
-        return -1;
-      }
-      if (firstCountry < secondCountry) {
-        return 1;
-      }
-      return 0;
-    });
-    setCountry(dscCountry);
-    setIsAsc(false);
-    return country && isAsc;
-  };
-
-  const deleteUsers = async (id) => {
+  const handleDeleteUsers = async (id) => {
     try {
       const user = usersList.find((usr) => usr.id === id);
       await Axios.delete(`${host}/api/v1/users/${user.id}`, {
@@ -171,76 +33,83 @@ function UsersListTable({ usersList, token, getAllUsers, t }) {
     }
   };
 
-  return (
-    <Col>
-      <Table borderless responsive id="emp">
-        <thead className={styles.theadBackground}>
-          <tr>
-            <th className={styles.thFontsize}>
-              Nom
-              <RiArrowDropDownLine onClick={getAscLastName} size="25" />
-              <RiArrowDropUpLine onClick={getDscLastName} size="25" />
-            </th>
-            <th className={styles.thFontsize}>
-              Prénom
-              <RiArrowDropDownLine onClick={getAscFirstName} size="25" />
-              <RiArrowDropUpLine onClick={getDscFirstName} size="25" />
-            </th>
-            <th className={styles.thFontsize}>
-              Email
-              <RiArrowDropDownLine nClick={getAscEmail} size="25" />
-              <RiArrowDropUpLine onClick={getDscEmail} size="25" />
-            </th>
-            <th className={styles.thFontsize}>
-              Pays
-              <RiArrowDropDownLine onClick={getAscCountry} size="25" />
-              <RiArrowDropUpLine onClick={getDscCountry} size="25" />
-            </th>
-            <th className={styles.thFontsize}>Type d&apos;utilisateur</th>
-            <th className={styles.thFontsize}>Role</th>
-            <th className={styles.thFontsize}>{t('supprimer')}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {usersList.map((user) => {
-            return (
-              <tr key={user.id} id={user.id}>
-                <td>
-                  {user.lastName} {user.id}
-                </td>
-                <td>{user.firstName}</td>
-                <td>{user.email}</td>
-                <td>{user.country}</td>
-                <td>{user.UserType ? user.UserType.label : ''} </td>
-                {/* <td>{user.RoleId ? user.Role.label : ''}</td> */}
-                <ChangeRole
-                  user={user}
-                  token={token}
-                  key={user.id}
-                  getAllUsers={getAllUsers}
-                />
-                <td className={styles.crossImg}>
-                  <IoMdClose
-                    onClick={() => deleteUsers(user.id)}
-                    fill="#dd2b25"
-                    className={styles.cross}
-                  />
-                </td>
-              </tr>
-            );
-          })}
-          <ReactHTMLTableToExcel
-            className={styles.export}
-            table="emp"
-            filename="ReportExcel"
-            sheet="Sheet"
-            buttonText="Export excel"
+  const columns = [
+    {
+      title: t('nom'),
+      dataIndex: 'lastName',
+      key: 'lastName',
+      sorter: (a, b) => a.lastName.localeCompare(b.lastName),
+    },
+    {
+      title: t('prenom'),
+      dataIndex: 'firstName',
+      key: 'firstName',
+      sorter: (a, b) => a.firstName.localeCompare(b.firstName),
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+    },
+
+    { title: t('pays'), dataIndex: 'country', key: 'country' },
+    {
+      title: `Type d'utilisateur`,
+      dataIndex: 'UserType',
+      key: 'type',
+      render: (record) => <span>{record?.label}</span>,
+    },
+    {
+      title: 'Rôle',
+      dataIndex: 'Role',
+      key: 'role',
+      render: (record) => <span>{record?.label}</span>,
+    },
+
+    {
+      title: '',
+      key: 'actions',
+      render: (record) => (
+        <>
+          <Button
+            type="link"
+            onClick={() => {
+              setOpenModal(true);
+              setCurrentUser(record);
+            }}
+            icon={<EditOutlined />}
+          />{' '}
+          <Button
+            type="link"
+            icon={<DeleteOutlined />}
+            onClick={() => handleDeleteUsers(record.id)}
           />
-        </tbody>
-      </Table>
-    </Col>
+        </>
+      ),
+    },
+  ];
+
+  return (
+    <div className="header-table-red" style={{ width: '100%' }}>
+      <Table
+        dataSource={usersList}
+        columns={columns}
+        style={{ width: '100%' }}
+        rowKey="id"
+        showSorterTooltip={false}
+        className="table-head-red"
+      />
+      <ChangeRole
+        user={currentUser}
+        token={token}
+        getAllUsers={getAllUsers}
+        visible={openMOdal}
+        setVisible={setOpenModal}
+      />
+    </div>
   );
 }
+
 const mapStateToProps = (state) => ({
   token: state.authenticated.token,
 });

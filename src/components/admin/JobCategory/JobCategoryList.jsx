@@ -15,9 +15,9 @@ function JobCategoryList({ getCategories, jobCategory }) {
               <CardBody>
                 <CardTitle>Catégorie d&apos;emploi : {item.labelFr}</CardTitle>
                 <CardText>
-                  <p className={styles.textCard}>LabelFr : {item.labelFr}</p>
-                  <p className={styles.textCard}>LabelEs : {item.labelEs}</p>
-                  <p className={styles.textCard}>LabelEus: {item.labelEus}</p>
+                  <p className={styles.textCard}>Français : {item.labelFr}</p>
+                  <p className={styles.textCard}>Español : {item.labelEs}</p>
+                  <p className={styles.textCard}>Euskara: {item.labelEus}</p>
                 </CardText>
                 <JobCategoryModal
                   getCategories={getCategories}

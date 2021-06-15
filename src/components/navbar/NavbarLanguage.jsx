@@ -6,6 +6,7 @@ import {
   DropdownItem,
 } from 'reactstrap';
 import { withNamespaces } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
 import eus from './images/basque.png';
 import fr from './images/france.png';
@@ -16,8 +17,24 @@ import styles from './NavBar.module.css';
 import './Navbar.css';
 
 function NavbarLanguage() {
+  const dispatch = useDispatch();
+
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
+    switch (lng) {
+      case 'fr':
+        dispatch({ type: 'FRANCE', payload: 'France' });
+        break;
+      case 'esp':
+        dispatch({ type: 'SPAIN', payload: 'Spain' });
+        break;
+      case 'eus':
+        dispatch({ type: 'BASQUE', payload: 'Basque' });
+        break;
+
+      default:
+        break;
+    }
   };
 
   return (

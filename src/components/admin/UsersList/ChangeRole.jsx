@@ -3,17 +3,15 @@ import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { Modal, ModalBody, ModalFooter, Button, ModalHeader } from 'reactstrap';
 import { withNamespaces } from 'react-i18next';
-import styles from './Users_List_Table.module.css';
 
 const host = process.env.REACT_APP_HOST;
 
-function ChangeRole({ user, token, getAllUsers, t }) {
+function ChangeRole({ user, token, getAllUsers, t, visible, setVisible }) {
   const [error, setError] = useState('');
   const [errorPut, setErrorPut] = useState('');
   const [roles, setRoles] = useState([]);
-  const [modal, setModal] = useState(false);
 
-  const toggle = () => setModal(!modal);
+  const toggle = () => setVisible(!visible);
 
   const getRoles = async () => {
     try {
@@ -38,7 +36,7 @@ function ChangeRole({ user, token, getAllUsers, t }) {
           },
         }
       );
-      setModal(false);
+      setVisible(false);
       getAllUsers();
       return '';
     } catch (err) {
@@ -52,19 +50,11 @@ function ChangeRole({ user, token, getAllUsers, t }) {
 
   return (
     <>
-      <td className={styles.role}>
-        <div onClick={toggle} onKeyDown={toggle} role="button" tabIndex={0}>
-          {user.RoleId ? user.Role.label : ''}
-        </div>
-      </td>
-      <Modal isOpen={modal} toggle={toggle}>
+      <Modal isOpen={visible} toggle={toggle}>
         <ModalHeader>Changement de rôle</ModalHeader>
         <ModalBody>
           <p>
-            <b>
-              Êtes-vous sûr de vouloir passer cet utilisateur en administrateur
-              ?
-            </b>
+            <b>Êtes-vous sûr de vouloir le rôle de cette personne ?</b>
           </p>
         </ModalBody>
         <ModalFooter>
@@ -85,6 +75,8 @@ ChangeRole.propTypes = {
   token: PropTypes.string.isRequired,
   getAllUsers: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
+  visible: PropTypes.bool.isRequired,
+  setVisible: PropTypes.func.isRequired,
 };
 
 export default withNamespaces()(ChangeRole);
