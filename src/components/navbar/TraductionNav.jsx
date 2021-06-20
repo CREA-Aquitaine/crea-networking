@@ -18,15 +18,19 @@ function TraductionNav() {
     switch (lng) {
       case 'fr':
         dispatch({ type: 'FRANCE', payload: 'France' });
+        localStorage.setItem('currentLanguage', 'fr');
         break;
       case 'esp':
         dispatch({ type: 'SPAIN', payload: 'Spain' });
+        localStorage.setItem('currentLanguage', 'esp');
         break;
       case 'eus':
         dispatch({ type: 'BASQUE', payload: 'Basque' });
+        localStorage.setItem('currentLanguage', 'eus');
         break;
 
       default:
+        localStorage.setItem('currentLanguage', '');
         break;
     }
   };

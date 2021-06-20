@@ -60,11 +60,18 @@ function PutUserInfo({ userInfos, token, t }) {
 
   const putInfo = async () => {
     const { id } = userInfos;
-    if (password === password2) {
-      try {
-        Axios.put(
-          `${host}/api/v1/users/${id}`,
-          {
+    const datas =
+      password === ''
+        ? {
+            lastName,
+            firstName,
+            email,
+            localisation,
+            country,
+            phone_number: Number(phone),
+            phone_number2: Number(phone2),
+          }
+        : {
             lastName,
             firstName,
             email,
@@ -73,13 +80,14 @@ function PutUserInfo({ userInfos, token, t }) {
             country,
             phone_number: Number(phone),
             phone_number2: Number(phone2),
+          };
+    if (password === password2) {
+      try {
+        Axios.put(`${host}/api/v1/users/${id}`, datas, {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        });
         setToastSuccess();
       } catch (err) {
         setToastInput();
@@ -172,7 +180,7 @@ function PutUserInfo({ userInfos, token, t }) {
               type="password"
               name="Password"
               required
-              id="Password"
+              id="Password2"
               value={password2}
               onChange={(e) => setpassword2(e.target.value)}
             />
@@ -228,25 +236,20 @@ function PutUserInfo({ userInfos, token, t }) {
         </Row>
         <Row className="mb-2">
           <Col xs="3">
-            <Label for="country">{t('pays')}</Label>
+            <Label for="country">{t('langue')}*</Label>
           </Col>
           <Col>
-            <Col xs="3">
-              <Label for="country">{t('langue')}*</Label>
-            </Col>
-            <Col>
-              <Input
-                type="select"
-                name="country"
-                required
-                id="country"
-                onChange={(e) => setCountry(e.target.value)}
-              >
-                <option>Español</option>
-                <option>Euskara</option>
-                <option>Français</option>
-              </Input>
-            </Col>
+            <Input
+              type="select"
+              name="country"
+              required
+              id="country"
+              onChange={(e) => setCountry(e.target.value)}
+            >
+              <option>Español</option>
+              <option>Euskara</option>
+              <option>Français</option>
+            </Input>
           </Col>
         </Row>
         <Row className="mt-5">
@@ -270,7 +273,21 @@ function PutUserInfo({ userInfos, token, t }) {
 }
 
 PutUserInfo.propTypes = {
-  userInfos: PropTypes.string.isRequired,
+  userInfos: PropTypes.objectOf(
+    PropTypes.shape({
+      uuid: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      email: PropTypes.string,
+      phone_number: PropTypes.string,
+      localisation: PropTypes.string,
+      mobility: PropTypes.string,
+      qualification: PropTypes.string,
+      siret: PropTypes.string,
+      companyName: PropTypes.string,
+      schoolName: PropTypes.string,
+    })
+  ).isRequired,
   token: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
 };
