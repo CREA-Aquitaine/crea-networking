@@ -30,6 +30,7 @@ function TraductionNav() {
         break;
     }
   };
+
   return (
     <>
       <Button

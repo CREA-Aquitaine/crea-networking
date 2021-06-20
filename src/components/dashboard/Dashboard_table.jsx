@@ -211,7 +211,7 @@ function DashboardTable({ token, userInfos, t }) {
           className={activeTab === '2' ? styles.activeOn : styles.activeOff}
         >
           <NavLink
-            className={{ active: activeTab === '1' }}
+            className={`{ active: activeTab === '1' } `}
             onClick={() => {
               toggle('2');
             }}
@@ -223,7 +223,7 @@ function DashboardTable({ token, userInfos, t }) {
           className={activeTab === '3' ? styles.activeOn : styles.activeOff}
         >
           <NavLink
-            className={{ active: activeTab === '1' }}
+            className={`{ active: activeTab === '1' } `}
             onClick={() => {
               toggle('3');
             }}
@@ -286,7 +286,22 @@ const mapStateToProps = (state) => ({
 
 DashboardTable.propTypes = {
   token: PropTypes.string.isRequired,
-  userInfos: PropTypes.string.isRequired,
+  userInfos: PropTypes.objectOf(
+    PropTypes.shape({
+      uuid: PropTypes.string,
+      id: PropTypes.objectOf(),
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      email: PropTypes.string,
+      phone_number: PropTypes.string,
+      localisation: PropTypes.string,
+      mobility: PropTypes.string,
+      qualification: PropTypes.string,
+      siret: PropTypes.string,
+      companyName: PropTypes.string,
+      schoolName: PropTypes.string,
+    })
+  ).isRequired,
   t: PropTypes.func.isRequired,
 };
 
