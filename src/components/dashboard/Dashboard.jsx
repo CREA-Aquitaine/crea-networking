@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
 import { compose } from 'redux';
 import { withNamespaces } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 
 import styles from './Dashboard.module.css';
 import UserInfos from './User_Infos';
 import DashboardTable from './Dashboard_table';
+import TemporarModal from './TemporarModal';
 
 const host = process.env.REACT_APP_HOST;
 
@@ -18,6 +20,12 @@ function Dashboard({ token, userInfos, t }) {
   const [activityFields, setActivityFields] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const history = useHistory();
+
+  const [currentUser] = useState(() =>
+    JSON.parse(sessionStorage.getItem('user'))
+  );
 
   const getUserInfos = async () => {
     try {
@@ -55,8 +63,13 @@ function Dashboard({ token, userInfos, t }) {
       setError(err);
     }
   };
+
   useEffect(() => {
     getUserInfos();
+    // eslint-disable-next-line no-unused-expressions
+    currentUser?.country === 'France' || currentUser?.country === 'Espagne'
+      ? setIsModalVisible(true)
+      : setIsModalVisible(false);
   }, []);
 
   return (
@@ -67,20 +80,31 @@ function Dashboard({ token, userInfos, t }) {
           <h2>{error}</h2>
         </>
       ) : (
-        <div className={styles.dashboard}>
-          <h2>{t('monCompte')}</h2>
-          <Container className={styles.userInfos}>
-            <UserInfos
-              userInfos={userInformations}
-              activityFields={activityFields}
-              userTypes={userTypes}
-            />
-          </Container>
-          <Container className={styles.dashboardTable}>
-            <DashboardTable />
-          </Container>
-          <hr className="hrFooter" />
-        </div>
+        <>
+          <div className={styles.dashboard}>
+            <h2>{t('monCompte')}</h2>
+            <Container className={styles.userInfos}>
+              <UserInfos
+                userInfos={userInformations}
+                activityFields={activityFields}
+                userTypes={userTypes}
+              />
+            </Container>
+            <Container className={styles.dashboardTable}>
+              <DashboardTable />
+            </Container>
+            <hr className="hrFooter" />
+          </div>
+
+          <TemporarModal
+            isModalVisible={isModalVisible}
+            handleCancel={() => setIsModalVisible(false)}
+            handleOk={() => {
+              setIsModalVisible(false);
+              history.push('/settings');
+            }}
+          />
+        </>
       )}
     </>
   );
