@@ -10,9 +10,10 @@ function Comment({ comment, title, t }) {
 
   return (
     <div className="mt-1">
-      <a href={toggle} onClick={toggle} className={styles.modalComment}>
+      <button type="button" onClick={toggle} className={styles.modalComment}>
         {t('voirMessage')}
-      </a>
+      </button>
+
       <Modal isOpen={modal} toggle={toggle}>
         <ModalBody>
           <h5>{title}</h5>

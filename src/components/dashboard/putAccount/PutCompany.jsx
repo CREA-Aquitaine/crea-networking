@@ -230,7 +230,7 @@ function PutCompany({ userInfos, token, activityField, t }) {
             <Input
               type="password"
               name="Password"
-              id="Password"
+              id="Password2"
               value={password2}
               onChange={(e) => setpassword2(e.target.value)}
               placeholder="********"
@@ -368,7 +368,21 @@ function PutCompany({ userInfos, token, activityField, t }) {
 }
 
 PutCompany.propTypes = {
-  userInfos: PropTypes.string.isRequired,
+  userInfos: PropTypes.objectOf(
+    PropTypes.shape({
+      uuid: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      email: PropTypes.string,
+      phone_number: PropTypes.string,
+      localisation: PropTypes.string,
+      mobility: PropTypes.string,
+      qualification: PropTypes.string,
+      siret: PropTypes.string,
+      companyName: PropTypes.string,
+      schoolName: PropTypes.string,
+    })
+  ).isRequired,
   token: PropTypes.string.isRequired,
   activityField: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,

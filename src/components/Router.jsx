@@ -24,6 +24,8 @@ import TypeAnnounce from './admin/TypeAnnounces/TypeAnnounce';
 import ActivityFields from './admin/ActivityFields/ActivityFields';
 import FaqUser from './faq/FaqUser';
 import Put from './dashboard/putAccount/Put';
+import i18n from '../i18n';
+
 import { AUTHENTICATED, USERINFOS } from '../store/reducerUser';
 
 function Router({ role }) {
@@ -32,6 +34,31 @@ function Router({ role }) {
   const [currentUser] = useState(() =>
     JSON.parse(sessionStorage.getItem('user'))
   );
+  const [currentLanguage] = useState(() =>
+    localStorage.getItem('currentLanguage')
+  );
+
+  useEffect(() => {
+    const item =
+      currentLanguage !== '' ? currentLanguage : currentUser?.country;
+    switch (item) {
+      case ('Français', 'fr'):
+        dispatch({ type: 'FRANCE', payload: 'France' });
+        i18n.changeLanguage('fr');
+        break;
+      case ('Español', 'esp'):
+        dispatch({ type: 'SPAIN', payload: 'Spain' });
+        i18n.changeLanguage('esp');
+        break;
+      case ('Euskara', 'eus'):
+        dispatch({ type: 'BASQUE', payload: 'Basque' });
+        i18n.changeLanguage('eus');
+        break;
+
+      default:
+        break;
+    }
+  }, []);
 
   const getCurrentUser = (user, token) => {
     sessionStorage.setItem('token', token);
@@ -108,6 +135,9 @@ function Router({ role }) {
 const mapStateToProps = (state) => ({
   role: state.role.isRole,
 });
-Router.propTypes = { role: PropTypes.string.isRequired };
+
+Router.propTypes = {
+  role: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps)(Router);

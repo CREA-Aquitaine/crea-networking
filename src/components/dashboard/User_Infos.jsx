@@ -49,7 +49,7 @@ function UserInfos({ userInfos, activityFields, userTypes, t }) {
               </Col>
               <Col xs="6" md="4">
                 <p>
-                  <b>{t('pays')} :</b> {userInfos.country}
+                  <b>{t('langue')} :</b> {userInfos.country}
                 </p>
               </Col>
               <Col xs="6" md="4">
@@ -89,7 +89,7 @@ function UserInfos({ userInfos, activityFields, userTypes, t }) {
               </Col>
               <Col xs="6" md="3">
                 <p>
-                  <b>{t('pays')} :</b> {userInfos.country}
+                  <b>{t('langue')} :</b> {userInfos.country}
                 </p>
               </Col>
               <Col xs="6" md="3">
@@ -176,7 +176,7 @@ function UserInfos({ userInfos, activityFields, userTypes, t }) {
               </Col>
               <Col xs="6" sm="3">
                 <p>
-                  <b>{t('pays')} :</b> {userInfos.country}
+                  <b>{t('langue')} :</b> {userInfos.country}
                 </p>
               </Col>
               <Col xs="6" sm="3">
@@ -198,9 +198,10 @@ function UserInfos({ userInfos, activityFields, userTypes, t }) {
     </Container>
   );
 }
+
 UserInfos.propTypes = {
-  userTypes: PropTypes.arrayOf().isRequired,
-  activityFields: PropTypes.arrayOf().isRequired,
+  userTypes: PropTypes.string.isRequired,
+  activityFields: PropTypes.string.isRequired,
   userInfos: PropTypes.arrayOf(
     PropTypes.shape({
       uuid: PropTypes.string,

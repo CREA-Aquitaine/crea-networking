@@ -248,7 +248,21 @@ const mapStateToProps = (state) => ({
 
 AccountModal.propTypes = {
   token: PropTypes.string.isRequired,
-  userInfos: PropTypes.string.isRequired,
+  userInfos: PropTypes.objectOf(
+    PropTypes.shape({
+      uuid: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      email: PropTypes.string,
+      phone_number: PropTypes.string,
+      localisation: PropTypes.string,
+      mobility: PropTypes.string,
+      qualification: PropTypes.string,
+      siret: PropTypes.string,
+      companyName: PropTypes.string,
+      schoolName: PropTypes.string,
+    })
+  ).isRequired,
   t: PropTypes.func.isRequired,
 };
 
