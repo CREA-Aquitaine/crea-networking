@@ -65,7 +65,7 @@ function HomeAdmin({ token, t }) {
       {error && <p>{t('erreurRecupDonnees')}</p>}
       <Row>
         <Col xs="12" md="6">
-          <Container Fluid className={styles.pie}>
+          <Container fluid className={styles.pie}>
             <h4 className={styles.userTypes}>{t('typesUtilisateur')}</h4>
             <Pie
               data={{

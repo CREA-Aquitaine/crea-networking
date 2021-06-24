@@ -112,7 +112,9 @@ function AccountModal({ token, userInfos, t }) {
 
   return (
     <>
-      <NavItem onClick={toggle}>{t('monCompte')}</NavItem>
+      <NavItem className={`${styles.navItem} mr-5 mt-2`} onClick={toggle}>
+        {t('monCompte')}
+      </NavItem>
       {error ? <p>{t('erreurModif')}</p> : ''}
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>{t('mesInfo')}</ModalHeader>
