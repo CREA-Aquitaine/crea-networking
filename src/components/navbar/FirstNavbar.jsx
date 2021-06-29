@@ -30,23 +30,25 @@ function FirstNavbar({ role, t }) {
   return (
     <Navbar color="light" expand="xs" className={styles.nav}>
       <Nav navbar className={`${styles.navbar} mr-5`}>
-        <NavItem className={`${styles.navItem} mr-5 mt-2`}>
-          {role === 'admin' ? <AccountModal /> : ''}
-        </NavItem>
+        {role === 'admin' ? <AccountModal /> : ''}
         {role === 'admin' ? (
-          <NavItem
-            className={`${styles.navItem} mr-5 mt-2`}
-            onClick={disconnect}
-          >
-            {t('deconnexion')}
-          </NavItem>
+          <>
+            <NavItem
+              className={`${styles.navItem} mr-5 mt-2`}
+              onClick={disconnect}
+            >
+              {t('deconnexion')}
+            </NavItem>
+          </>
         ) : role === 'user' ? (
-          <NavItem
-            className={`${styles.navItem} mr-5 mt-2`}
-            onClick={disconnect}
-          >
-            {t('deconnexion')}
-          </NavItem>
+          <>
+            <NavItem
+              className={`${styles.navItem} mr-5 mt-2`}
+              onClick={disconnect}
+            >
+              {t('deconnexion')}
+            </NavItem>
+          </>
         ) : (
           <NavItem className="mr-5">
             <NavLink className={styles.navItem} onClick={toggle}>

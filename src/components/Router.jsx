@@ -25,6 +25,7 @@ import ActivityFields from './admin/ActivityFields/ActivityFields';
 import FaqUser from './faq/FaqUser';
 import Put from './dashboard/putAccount/Put';
 import i18n from '../i18n';
+import ErrorsLog from './errorBoundary/ErrorsLog';
 
 import { AUTHENTICATED, USERINFOS } from '../store/reducerUser';
 
@@ -94,6 +95,7 @@ function Router({ role }) {
             <Route path="/faq" component={Faq} />
             <Route path="/announces/:id" component={Announce} />
             <Route path="/announces" component={AnnouncesList} />
+            <Route path="/errorsLog" component={ErrorsLog} />
             <Route exact path="/" component={Home} />
           </Switch>
           <Footer />

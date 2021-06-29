@@ -128,5 +128,6 @@
   "ets": "Establecimiento",
   "messagesEnvoyés": "Mensajes enviados",
   "annoncePubliee": "Su anuncio ha sido publicado",
-  "votreDemande": "Su solicitud"
+  "votreDemande": "Su solicitud",
+  "journalisationErreur": "Journalisation des erreurs"
 }

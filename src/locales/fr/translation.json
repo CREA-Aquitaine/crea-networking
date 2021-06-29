@@ -128,5 +128,6 @@
   "ets": "Etablissement",
   "messagesEnvoyés": "Messages envoyés",
   "annoncePubliee": "Votre annonce a bien été publiée",
-  "votreDemande": "Votre demande"
+  "votreDemande": "Votre demande",
+  "journalisationErreur": "Journalisation des erreurs"
 }

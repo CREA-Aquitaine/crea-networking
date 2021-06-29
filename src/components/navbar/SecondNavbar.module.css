@@ -8,7 +8,7 @@
   width: 100%;
   margin-top: 7vh;
   z-index: 500;
-  justify-content: flex-end !important;
+  justify-content: space-between !important;
 }
 
 .alignCenter {
